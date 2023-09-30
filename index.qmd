@@ -1,5 +1,5 @@
 ---
-title: "BIOE215fall23"
+title: "Data Science for Eco/Evo (Fall 23 BIOE215)"
 ---
 
 This is a Quarto website.
