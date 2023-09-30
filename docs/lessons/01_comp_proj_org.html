@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Science for Eco/Evo (Fall 23 BIOE215)</title>
+<title>Data Science for Eco/Evo (Fall 23 BIOE215) - Computational project organization</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,25 +20,44 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -61,7 +80,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -71,7 +90,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Data Science for Eco/Evo (Fall 23 BIOE215)</span>
     </a>
   </div>
@@ -82,11 +101,11 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="../index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html" rel="" target="">
+    <a class="nav-link" href="../about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -95,7 +114,7 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-lessons">    
         <li>
-    <a class="dropdown-item" href="./lessons/01_comp_proj_org.html" rel="" target="">
+    <a class="dropdown-item" href="../lessons/01_comp_proj_org.html" rel="" target="">
  <span class="dropdown-text">Computational project organization</span></a>
   </li>  
     </ul>
@@ -116,12 +135,14 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#course" id="toc-course" class="nav-link active" data-scroll-target="#course">Course</a></li>
-  <li><a href="#instructor" id="toc-instructor" class="nav-link" data-scroll-target="#instructor">Instructor</a></li>
-  <li><a href="#location" id="toc-location" class="nav-link" data-scroll-target="#location">Location</a></li>
-  <li><a href="#times" id="toc-times" class="nav-link" data-scroll-target="#times">Times</a></li>
-  <li><a href="#office-hours" id="toc-office-hours" class="nav-link" data-scroll-target="#office-hours">Office Hours</a></li>
-  <li><a href="#course-description" id="toc-course-description" class="nav-link" data-scroll-target="#course-description">Course Description</a></li>
+  <li><a href="#student-learning-objectives" id="toc-student-learning-objectives" class="nav-link active" data-scroll-target="#student-learning-objectives">Student learning objectives</a></li>
+  <li><a href="#todays-lesson" id="toc-todays-lesson" class="nav-link" data-scroll-target="#todays-lesson">Today’s lesson</a>
+  <ul class="collapse">
+  <li><a href="#readings" id="toc-readings" class="nav-link" data-scroll-target="#readings">Readings</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
+  <li><a href="#assessment" id="toc-assessment" class="nav-link" data-scroll-target="#assessment">Assessment</a></li>
+  </ul></li>
+  <li><a href="#additional-reading" id="toc-additional-reading" class="nav-link" data-scroll-target="#additional-reading">Additional reading</a></li>
   </ul>
 </nav>
     </div>
@@ -130,7 +151,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Data Science for Eco/Evo (Fall 23 BIOE215)</h1>
+<h1 class="title">Computational project organization</h1>
 </div>
 
 
@@ -145,39 +166,112 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Welcome to <em>Data Science for Eco/Evo</em>! I’m excited to have you in class and hope this course helps you reach your research goals. On this website, you’ll find course logistics, schedule, and lessons. You’ll use GitHub for submitting assessments.</p>
-<section id="course" class="level2">
-<h2 class="anchored" data-anchor-id="course">Course</h2>
-<p>Data Science for Eco/Evo</p>
-<p>BIOE215, 3 Credits, Fall 2023</p>
+<section id="student-learning-objectives" class="level2">
+<h2 class="anchored" data-anchor-id="student-learning-objectives">Student learning objectives</h2>
+<p><em>Students will be able to:</em></p>
+<ul>
+<li><p>Describe the relationship between RStudio project, git repo, and GitHub repo</p></li>
+<li><p>Organize files and folders to maximize reproducibility and collaboration</p></li>
+<li><p>Create a project website on GitHub</p></li>
+</ul>
 </section>
-<section id="instructor" class="level2">
-<h2 class="anchored" data-anchor-id="instructor">Instructor</h2>
-<p>Dr.&nbsp;Max Czapanskiy (he/they)</p>
-<p>Email: <a href="mailto:mczapans@ucsc.edu">mczapans@ucsc.edu</a></p>
+<section id="todays-lesson" class="level2">
+<h2 class="anchored" data-anchor-id="todays-lesson">Today’s lesson</h2>
+<p><strong>tl;dr</strong> Each of your analyses <em>should</em> have a standalone directory with all the code and data necessary to produce your results.</p>
+<p>This lesson has readings, an exercise, and an assessment. Feel free to jump around and do them in whatever order works best for you. I suggest the following order:</p>
+<ol type="1">
+<li>Read <span class="citation" data-cites="bryan2017">Bryan (<a href="#ref-bryan2017" role="doc-biblioref">2017</a>)</span> about project-oriented workflows</li>
+<li>Complete the first three parts of the <a href="#exercise">Exercise</a></li>
+<li>Read <span class="citation" data-cites="bryan2018">Bryan (<a href="#ref-bryan2018" role="doc-biblioref">2018</a>)</span> about version control with git and GitHub</li>
+<li>Complete the final fourth part of the <a href="#exercise">Exercise</a></li>
+<li>Complete the <a href="#assessment">Assessment</a></li>
+</ol>
+<p>But first, watch this Tik Tok</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://player.vimeo.com/video/650880532" frameborder="0" allow="autoplay; title=" "="" fullscreen;="" picture-in-picture"="" allowfullscreen=""></iframe></div>
+<section id="readings" class="level3">
+<h3 class="anchored" data-anchor-id="readings">Readings</h3>
+<p>The readings will help clarify why the skills you’re learning will improve your productivity and make your science easier to share, reproduce, and collaborate on.</p>
+<ul>
+<li><p><span class="citation" data-cites="bryan2017">(<a href="#ref-bryan2017" role="doc-biblioref">Bryan 2017</a>)</span></p></li>
+<li><p><span class="citation" data-cites="bryan2018">(<a href="#ref-bryan2018" role="doc-biblioref">Bryan 2018</a>)</span></p></li>
+</ul>
 </section>
-<section id="location" class="level2">
-<h2 class="anchored" data-anchor-id="location">Location</h2>
-<p>CoastBio 115</p>
+<section id="exercise" class="level3">
+<h3 class="anchored" data-anchor-id="exercise">Exercise</h3>
+<section id="goals" class="level4">
+<h4 class="anchored" data-anchor-id="goals">Goals</h4>
+<ol type="1">
+<li>Create an RStudio project and git repository on your computer</li>
+<li>Create a corresponding GitHub repository online</li>
+<li>Set up an analysis-friendly folder structure</li>
+<li>Activate GitHub pages to give your project a website</li>
+</ol>
 </section>
-<section id="times" class="level2">
-<h2 class="anchored" data-anchor-id="times">Times</h2>
-<p>Mondays, 3:30-5:30 pm</p>
+<section id="create-an-rstudio-project-and-git-repository" class="level4">
+<h4 class="anchored" data-anchor-id="create-an-rstudio-project-and-git-repository">1. Create an RStudio project and git repository</h4>
 </section>
-<section id="office-hours" class="level2">
-<h2 class="anchored" data-anchor-id="office-hours">Office Hours</h2>
-<p>Times: Thursdays 3:30-5:30 pm</p>
-<p>Location: CoastBio Otter Conference Room</p>
-<p>Or by appointment<em>.</em></p>
+<section id="create-a-github-repository" class="level4">
+<h4 class="anchored" data-anchor-id="create-a-github-repository">2. Create a GitHub repository</h4>
 </section>
-<section id="course-description" class="level2">
-<h2 class="anchored" data-anchor-id="course-description">Course Description</h2>
-<p>This course will aim to be practical and provide structure for learning the computational skills most eco/evo grad students have to pick up on their own. Topics will include programming best practices in R, organizing data and computational projects, and planning for reproducibility. This is a chance to gain knowledge and experience with the nuts and bolts of making your science work in code, without trying to learn generalized linear models at the same time. The course structure will be self-directed for weeks 1-6, followed by a final project in weeks 7-10.</p>
+<section id="set-up-folder-structure" class="level4">
+<h4 class="anchored" data-anchor-id="set-up-folder-structure">3. Set up folder structure</h4>
+</section>
+<section id="activate-github-pages" class="level4">
+<h4 class="anchored" data-anchor-id="activate-github-pages">4. Activate GitHub pages</h4>
+</section>
+</section>
+<section id="assessment" class="level3">
+<h3 class="anchored" data-anchor-id="assessment">Assessment</h3>
+<section id="reading-questions" class="level4">
+<h4 class="anchored" data-anchor-id="reading-questions">Reading questions</h4>
+<p>Answer the following questions about the reading. After you finish step 3 of the exercise, create a markdown file in your project’s <code>docs/</code> folder called <code>comp_proj_org.md</code> and place your answers there. Plain text is ok, or you can use <a href="https://quarto.org/docs/authoring/markdown-basics.html">Markdown</a>.</p>
+<section id="bryan-2017" class="level5">
+<h5 class="anchored" data-anchor-id="bryan-2017">Bryan (2017)</h5>
+<ul>
+<li><p>What problems can <code>setwd()</code> cause in your scripts and how do RStudio projects address them?</p></li>
+<li><p>When you call <code>rm(list=ls())</code>, what is removed from your environment? What’s left over that restarting your R session would remove? What’s the keyboard shortcut for restarting your R session?</p></li>
+</ul>
+</section>
+<section id="bryan-2018" class="level5">
+<h5 class="anchored" data-anchor-id="bryan-2018">Bryan (2018)</h5>
+<ul>
+<li>The basic git commands are commit, push, and pull. Which one</li>
+</ul>
+</section>
+</section>
+</section>
+</section>
+<section id="additional-reading" class="level2">
+<h2 class="anchored" data-anchor-id="additional-reading">Additional reading</h2>
+<p><span class="citation" data-cites="cooper2018">(<a href="#ref-cooper2018" role="doc-biblioref">British Ecological Society and Cooper 2018</a>)</span></p>
+<p><span class="citation" data-cites="wilson2017">(<a href="#ref-wilson2017" role="doc-biblioref">Wilson et al. 2017</a>)</span></p>
+<p><span class="citation" data-cites="noble2009">(<a href="#ref-noble2009" role="doc-biblioref">Noble 2009</a>)</span></p>
+<p><span class="citation" data-cites="braga2023">(<a href="#ref-braga2023" role="doc-biblioref">Braga et al. 2023</a>)</span></p>
 
 
+
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-braga2023" class="csl-entry" role="listitem">
+Braga, Pedro Henrique Pereira, Katherine Hébert, Emma J. Hudgins, Eric R. Scott, Brandon P. M. Edwards, Luna L. Sánchez Reyes, Matthew J. Grainger, et al. 2023. <span>“Not Just for Programmers: How GitHub Can Accelerate Collaborative and Reproducible Research in Ecology and Evolution.”</span> <em>Methods in Ecology and Evolution</em> 14 (6): 1364–80. <a href="https://doi.org/10.1111/2041-210x.14108">https://doi.org/10.1111/2041-210x.14108</a>.
+</div>
+<div id="ref-cooper2018" class="csl-entry" role="listitem">
+British Ecological Society, and Natalie Cooper. 2018. <span>“A Guide to Reproducible Code in Ecology and Evolution.”</span> <em>Natural History Museum Open Repository</em>. British Ecological Society. <a href="https://nhm.openrepository.com/handle/10141/622618">https://nhm.openrepository.com/handle/10141/622618</a>.
+</div>
+<div id="ref-bryan2017" class="csl-entry" role="listitem">
+Bryan, Jenny. 2017. <span>“Project-Oriented Workflow.”</span> <a href="https://www.tidyverse.org/blog/2017/12/workflow-vs-script/">https://www.tidyverse.org/blog/2017/12/workflow-vs-script/</a>.
+</div>
+<div id="ref-bryan2018" class="csl-entry" role="listitem">
+———. 2018. <span>“Excuse Me, Do You Have a Moment to Talk About Version Control?”</span> <em>The American Statistician</em> 72 (1): 20–27. <a href="https://doi.org/10.1080/00031305.2017.1399928">https://doi.org/10.1080/00031305.2017.1399928</a>.
+</div>
+<div id="ref-noble2009" class="csl-entry" role="listitem">
+Noble, William Stafford. 2009. <span>“A Quick Guide to Organizing Computational Biology Projects.”</span> Edited by Fran Lewitter. <em>PLoS Computational Biology</em> 5 (7): e1000424. <a href="https://doi.org/10.1371/journal.pcbi.1000424">https://doi.org/10.1371/journal.pcbi.1000424</a>.
+</div>
+<div id="ref-wilson2017" class="csl-entry" role="listitem">
+Wilson, Greg, Jennifer Bryan, Karen Cranston, Justin Kitzes, Lex Nederbragt, and Tracy K. Teal. 2017. <span>“Good Enough Practices in Scientific Computing.”</span> Edited by Francis Ouellette. <em>PLOS Computational Biology</em> 13 (6): e1005510. <a href="https://doi.org/10.1371/journal.pcbi.1005510">https://doi.org/10.1371/journal.pcbi.1005510</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

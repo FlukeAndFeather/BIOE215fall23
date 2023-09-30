@@ -1,0 +1,86 @@
+---
+title: "Computational project organization"
+format: 
+  html:
+    toc: true
+    toc-depth: 3
+editor: visual
+bibliography: references.bib
+---
+
+## Student learning objectives
+
+*Students will be able to:*
+
+-   Describe the relationship between RStudio project, git repo, and GitHub repo
+
+-   Organize files and folders to maximize reproducibility and collaboration
+
+-   Create a project website on GitHub
+
+## Today's lesson
+
+**tl;dr** Each of your analyses *should* have a standalone directory with all the code and data necessary to produce your results.
+
+This lesson has readings, an exercise, and an assessment. Feel free to jump around and do them in whatever order works best for you. I suggest the following order:
+
+1.  Read @bryan2017 about project-oriented workflows
+2.  Complete the first three parts of the [Exercise]
+3.  Read @bryan2018 about version control with git and GitHub
+4.  Complete the final fourth part of the [Exercise]
+5.  Complete the [Assessment]
+
+But first, watch this Tik Tok
+
+{{< video https://vimeo.com/650880532 >}}
+
+### Readings
+
+The readings will help clarify why the skills you're learning will improve your productivity and make your science easier to share, reproduce, and collaborate on.
+
+-   [@bryan2017]
+
+-   [@bryan2018]
+
+### Exercise
+
+#### Goals
+
+1.  Create an RStudio project and git repository on your computer
+2.  Create a corresponding GitHub repository online
+3.  Set up an analysis-friendly folder structure
+4.  Activate GitHub pages to give your project a website
+
+#### 1. Create an RStudio project and git repository
+
+#### 2. Create a GitHub repository
+
+#### 3. Set up folder structure
+
+#### 4. Activate GitHub pages
+
+### Assessment
+
+#### Reading questions
+
+Answer the following questions about the reading. After you finish step 3 of the exercise, create a markdown file in your project's `docs/` folder called `comp_proj_org.md` and place your answers there. Plain text is ok, or you can use [Markdown](https://quarto.org/docs/authoring/markdown-basics.html).
+
+##### Bryan (2017)
+
+-   What problems can `setwd()` cause in your scripts and how do RStudio projects address them?
+
+-   When you call `rm(list=ls())`, what is removed from your environment? What's left over that restarting your R session would remove? What's the keyboard shortcut for restarting your R session?
+
+##### Bryan (2018)
+
+-   The basic git commands are commit, push, and pull. Which one
+
+## Additional reading
+
+[@cooper2018]
+
+[@wilson2017]
+
+[@noble2009]
+
+[@braga2023]

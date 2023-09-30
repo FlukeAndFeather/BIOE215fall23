@@ -1,5 +1,33 @@
 [
   {
+    "objectID": "lessons/01_comp_proj_org.html",
+    "href": "lessons/01_comp_proj_org.html",
+    "title": "Computational project organization",
+    "section": "",
+    "text": "Students will be able to:\n\nDescribe the relationship between RStudio project, git repo, and GitHub repo\nOrganize files and folders to maximize reproducibility and collaboration\nCreate a project website on GitHub"
+  },
+  {
+    "objectID": "lessons/01_comp_proj_org.html#student-learning-objectives",
+    "href": "lessons/01_comp_proj_org.html#student-learning-objectives",
+    "title": "Computational project organization",
+    "section": "",
+    "text": "Students will be able to:\n\nDescribe the relationship between RStudio project, git repo, and GitHub repo\nOrganize files and folders to maximize reproducibility and collaboration\nCreate a project website on GitHub"
+  },
+  {
+    "objectID": "lessons/01_comp_proj_org.html#todays-lesson",
+    "href": "lessons/01_comp_proj_org.html#todays-lesson",
+    "title": "Computational project organization",
+    "section": "Today’s lesson",
+    "text": "Today’s lesson\ntl;dr Each of your analyses should have a standalone directory with all the code and data necessary to produce your results.\nThis lesson has readings, an exercise, and an assessment. Feel free to jump around and do them in whatever order works best for you. I suggest the following order:\n\nRead Bryan (2017) about project-oriented workflows\nComplete the first three parts of the Exercise\nRead Bryan (2018) about version control with git and GitHub\nComplete the final fourth part of the Exercise\nComplete the Assessment\n\nBut first, watch this Tik Tok\n\n\nReadings\nThe readings will help clarify why the skills you’re learning will improve your productivity and make your science easier to share, reproduce, and collaborate on.\n\n(Bryan 2017)\n(Bryan 2018)\n\n\n\nExercise\n\nGoals\n\nCreate an RStudio project and git repository on your computer\nCreate a corresponding GitHub repository online\nSet up an analysis-friendly folder structure\nActivate GitHub pages to give your project a website\n\n\n\n1. Create an RStudio project and git repository\n\n\n2. Create a GitHub repository\n\n\n3. Set up folder structure\n\n\n4. Activate GitHub pages\n\n\n\nAssessment\n\nReading questions\nAnswer the following questions about the reading. After you finish step 3 of the exercise, create a markdown file in your project’s docs/ folder called comp_proj_org.md and place your answers there. Plain text is ok, or you can use Markdown.\n\nBryan (2017)\n\nWhat problems can setwd() cause in your scripts and how do RStudio projects address them?\nWhen you call rm(list=ls()), what is removed from your environment? What’s left over that restarting your R session would remove? What’s the keyboard shortcut for restarting your R session?\n\n\n\nBryan (2018)\n\nThe basic git commands are commit, push, and pull. Which one"
+  },
+  {
+    "objectID": "lessons/01_comp_proj_org.html#additional-reading",
+    "href": "lessons/01_comp_proj_org.html#additional-reading",
+    "title": "Computational project organization",
+    "section": "Additional reading",
+    "text": "Additional reading\n(British Ecological Society and Cooper 2018)\n(Wilson et al. 2017)\n(Noble 2009)\n(Braga et al. 2023)"
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
