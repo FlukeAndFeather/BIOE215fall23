@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data Science for Eco/Evo (Fall 23 BIOE215) - Syllabus</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Data Science for Eco/Evo (Fall 23 BIOE215)</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./syllabus.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-lessons" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Lessons</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-lessons">    
+        <li>
+    <a class="dropdown-item" href="./lessons/01_comp_proj_org.html" rel="" target="">
+ <span class="dropdown-text">Computational project organization</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#course" id="toc-course" class="nav-link active" data-scroll-target="#course">Course</a></li>
+  <li><a href="#instructor" id="toc-instructor" class="nav-link" data-scroll-target="#instructor">Instructor</a></li>
+  <li><a href="#location" id="toc-location" class="nav-link" data-scroll-target="#location">Location</a></li>
+  <li><a href="#times" id="toc-times" class="nav-link" data-scroll-target="#times">Times</a></li>
+  <li><a href="#office-hours" id="toc-office-hours" class="nav-link" data-scroll-target="#office-hours">Office Hours</a></li>
+  <li><a href="#course-description" id="toc-course-description" class="nav-link" data-scroll-target="#course-description">Course Description</a></li>
+  <li><a href="#schedule" id="toc-schedule" class="nav-link" data-scroll-target="#schedule">Schedule</a></li>
+  <li><a href="#how-class-works" id="toc-how-class-works" class="nav-link" data-scroll-target="#how-class-works">How class works</a></li>
+  <li><a href="#course-expectations" id="toc-course-expectations" class="nav-link" data-scroll-target="#course-expectations">Course Expectations</a>
+  <ul class="collapse">
+  <li><a href="#what-you-can-expect-from-your-instructor" id="toc-what-you-can-expect-from-your-instructor" class="nav-link" data-scroll-target="#what-you-can-expect-from-your-instructor">What you can expect from your instructor</a></li>
+  <li><a href="#what-your-instructor-expects-from-you" id="toc-what-your-instructor-expects-from-you" class="nav-link" data-scroll-target="#what-your-instructor-expects-from-you">What your instructor expects from you</a></li>
+  </ul></li>
+  <li><a href="#why-isnt-there-a-remote-option" id="toc-why-isnt-there-a-remote-option" class="nav-link" data-scroll-target="#why-isnt-there-a-remote-option">Why isn’t there a remote option?</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Syllabus</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="course" class="level2">
+<h2 class="anchored" data-anchor-id="course">Course</h2>
+<p>Data Science for Eco/Evo</p>
+<p>BIOE215, 3 Credits, Fall 2023</p>
+</section>
+<section id="instructor" class="level2">
+<h2 class="anchored" data-anchor-id="instructor">Instructor</h2>
+<p>Dr.&nbsp;Max Czapanskiy (he/they)</p>
+<p>Email: <a href="mailto:mczapans@ucsc.edu">mczapans@ucsc.edu</a></p>
+</section>
+<section id="location" class="level2">
+<h2 class="anchored" data-anchor-id="location">Location</h2>
+<p>CoastBio 115</p>
+</section>
+<section id="times" class="level2">
+<h2 class="anchored" data-anchor-id="times">Times</h2>
+<p>Mondays, 3:30-5:30 pm</p>
+</section>
+<section id="office-hours" class="level2">
+<h2 class="anchored" data-anchor-id="office-hours">Office Hours</h2>
+<p>Times: Thursdays 3:30-5:30 pm</p>
+<p>Location: CoastBio Otter Conference Room</p>
+<p>Or by appointment<em>.</em></p>
+</section>
+<section id="course-description" class="level2">
+<h2 class="anchored" data-anchor-id="course-description">Course Description</h2>
+<p>This course will aim to be practical and provide structure for learning the computational skills most eco/evo grad students have to pick up on their own. Topics will include programming best practices in R, organizing data and computational projects, and planning for reproducibility. This is a chance to gain knowledge and experience with the nuts and bolts of making your science work in code, without trying to learn generalized linear models at the same time. The course structure will be self-directed for weeks 1-6, followed by a final project in weeks 7-10.</p>
+</section>
+<section id="schedule" class="level2">
+<h2 class="anchored" data-anchor-id="schedule">Schedule</h2>
+<p>Week 1: Computational project organization</p>
+<p>Week 2: Computational thinking I</p>
+<p>Week 3: Working with data</p>
+<p>Week 4: Computational thinking II</p>
+<p>Week 5: Troubleshooting</p>
+<p>Week 6: Wrap up self-directed portion of class</p>
+<p>Weeks 7-9: Final projects</p>
+<p>Week 10: Communities of practice</p>
+</section>
+<section id="how-class-works" class="level2">
+<h2 class="anchored" data-anchor-id="how-class-works">How class works</h2>
+<p>The class format is self-paced with an emphasis on small-group learning. Each class will begin with a short discussion on the assigned readings, then we’ll break out into groups. I will require everyone to complete some lessons start to finish (for example, the project organization lesson). Other lessons will let you jump in at the point appropriate to your level of experience.</p>
+<p>After week 6, class time will be devoted to your final projects. These will be replication studies. You and your group will find a paper that you want to replicate some part of, either a figure or a table. Using the skills you’ve learned in this class, you will create a stand-alone analysis that replicates their work. I will encourage all groups to submit their replication to an appropriate journal such as <a href="http://rescience.github.io/">Re-Science C</a>.</p>
+<p>This class covers computational thinking, programming in base R and the tidyverse, project organization and management, and open science practices. You all probably have very different levels of preparation in these areas. For example, if you have more base R programming experience, I’ll suggest you tackle advanced lessons like functional programming. If you feel your foundation is a little patchy, I’ll suggest you deepen your understanding of the core data structures. This means most students will complete somewhat distinct subsets of the available material. That’s by design! You’re not expected to do the same lessons as everyone else. You are expected to do the lessons that best support your growth as a scientist. Speaking of expectations…</p>
+</section>
+<section id="course-expectations" class="level2">
+<h2 class="anchored" data-anchor-id="course-expectations">Course Expectations</h2>
+<p>This course offers more material than can be covered in the time allocated and students should not expect to complete all of it! Biology grad students have diverse backgrounds, training, and experience with computational skills. Some of the available material will be too basic or too advanced for you at this time. With help from the instructor, you will identify what content will contribute most to your academic and professional success.</p>
+<section id="what-you-can-expect-from-your-instructor" class="level3">
+<h3 class="anchored" data-anchor-id="what-you-can-expect-from-your-instructor">What you can expect from your instructor</h3>
+<p>The instructor is here to support your learning and provide you with guidance as you develop your understanding of and skills in data science. I strive for an inclusive and collaborative classroom and welcome any suggestions for improvement. I will do my best to provide useful content, rapid feedback, and enthusiastic support, so let me know if I can do anything more. I highly encourage everyone to visit me in office hours or to set up a meeting, even if you don’t feel that you have questions. I want to get to know you and support you in this learning experience!</p>
+</section>
+<section id="what-your-instructor-expects-from-you" class="level3">
+<h3 class="anchored" data-anchor-id="what-your-instructor-expects-from-you">What your instructor expects from you</h3>
+<p>I expect you to attend class regularly, complete the self-guided material <em>at the pace that works best for you</em>, and contribute to your group’s final project. Your learning depends on your own preparation and engagement as well as that of your fellow students. I encourage you to rely on each other, as well as the instructor, for problem solving and finding solutions. Teaching reinforces learning, so after you complete lessons be prepared to assist other students with that material. Each member of this class has different ideas and perspectives that will enrich the experience for everyone else, so I ask you to be respectful and thoughtful in your interactions. To get the most out of the class, you should be prepared to share your ideas, ask questions, listen actively and collaborate effectively during small group work. Never hesitate to email your instructors, stop by office hours, or set up a meeting. This class should challenge you, but I believe everyone has the ability to succeed with some effort.</p>
+</section>
+</section>
+<section id="why-isnt-there-a-remote-option" class="level2">
+<h2 class="anchored" data-anchor-id="why-isnt-there-a-remote-option">Why isn’t there a remote option?</h2>
+<p>Remote options have become standard for most classes and I wish I could offer one for this course. However, the structure of the class does not lend itself to hybrid formats because of the emphasis on peer learning and 1-on-1 coaching from the instructor. In the future, I hope to offer online and in-person versions of the course. For now, I only have resources to support the in-person version.</p>
+<p>For the same reason, I can’t support auditing the class at this time. However, I am happy to share the educational materials with anyone who’s interested. I will try to connect these students so you can form a study group. If that happens, I will add additional office hours to meet with you.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

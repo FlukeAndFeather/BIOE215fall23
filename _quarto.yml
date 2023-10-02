@@ -9,9 +9,7 @@ website:
       - href: index.qmd
         text: Home
       - about.qmd
-#      - syllabus.qmd
-#      - resources.qmd
-#      - assessment.qmd
+      - syllabus.qmd
       - text: "Lessons"
         menu:
           - lessons/01_comp_proj_org.qmd

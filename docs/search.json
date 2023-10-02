@@ -103,5 +103,82 @@
     "title": "Computational project organization",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nIf you can’t find the Terminal pane, ask your instructor for help. Sometimes it needs to be activated the first time you use it.↩︎\nThe internet is full of vandals. C’est la vie.↩︎\nPATs are kind of like your git configuration in that they’re “set it and forget it” commands. You will only need to update your PAT every three months if you set Expiration to 90 days. The rest of the time you don’t need to think about it. And if you’re wondering why we set PATs to expire at all, see the previous footnote about vandals.↩︎\nWe won’t cover branches in this course, but they’re an important part of version control. Suffice to say, every repo has a main branch which by default is called “master”. That’s racist terminology, so there’s a concerted effort to use “main” instead.↩︎\n“Quarto, what’s that?” you might say. Quarto documents combine text, code, figures, and tables. They’re extremely useful for scientific analyses and writing! You’ll learn more about them next week. If you’re familiar with RMarkdown, Quarto is its next evolutionary step.↩︎\nIf you hold the rights to your data and they’re safe to put online (i.e., nothing sensitive), I strongly encourage you to make them public from the start. You might worry about getting scooped, which is understandable. But in my experience publishing datasets, it’s incredibly difficult to get other scientists to look at your data when you’re literally advertising them. In my opinion, the advantages of making data public far outweigh the risks. It facilitates collaboration and makes it easier to publish your data when you wrap up your project.↩︎\nTBH I haven’t figured out yet how to access UCSC’s Canvas as an instructor. You’ll submit future assessments through Canvas once I figure that out.↩︎"
+  },
+  {
+    "objectID": "syllabus.html",
+    "href": "syllabus.html",
+    "title": "Syllabus",
+    "section": "",
+    "text": "Data Science for Eco/Evo\nBIOE215, 3 Credits, Fall 2023"
+  },
+  {
+    "objectID": "syllabus.html#course",
+    "href": "syllabus.html#course",
+    "title": "Syllabus",
+    "section": "",
+    "text": "Data Science for Eco/Evo\nBIOE215, 3 Credits, Fall 2023"
+  },
+  {
+    "objectID": "syllabus.html#instructor",
+    "href": "syllabus.html#instructor",
+    "title": "Syllabus",
+    "section": "Instructor",
+    "text": "Instructor\nDr. Max Czapanskiy (he/they)\nEmail: mczapans@ucsc.edu"
+  },
+  {
+    "objectID": "syllabus.html#location",
+    "href": "syllabus.html#location",
+    "title": "Syllabus",
+    "section": "Location",
+    "text": "Location\nCoastBio 115"
+  },
+  {
+    "objectID": "syllabus.html#times",
+    "href": "syllabus.html#times",
+    "title": "Syllabus",
+    "section": "Times",
+    "text": "Times\nMondays, 3:30-5:30 pm"
+  },
+  {
+    "objectID": "syllabus.html#office-hours",
+    "href": "syllabus.html#office-hours",
+    "title": "Syllabus",
+    "section": "Office Hours",
+    "text": "Office Hours\nTimes: Thursdays 3:30-5:30 pm\nLocation: CoastBio Otter Conference Room\nOr by appointment."
+  },
+  {
+    "objectID": "syllabus.html#course-description",
+    "href": "syllabus.html#course-description",
+    "title": "Syllabus",
+    "section": "Course Description",
+    "text": "Course Description\nThis course will aim to be practical and provide structure for learning the computational skills most eco/evo grad students have to pick up on their own. Topics will include programming best practices in R, organizing data and computational projects, and planning for reproducibility. This is a chance to gain knowledge and experience with the nuts and bolts of making your science work in code, without trying to learn generalized linear models at the same time. The course structure will be self-directed for weeks 1-6, followed by a final project in weeks 7-10."
+  },
+  {
+    "objectID": "syllabus.html#schedule",
+    "href": "syllabus.html#schedule",
+    "title": "Syllabus",
+    "section": "Schedule",
+    "text": "Schedule\nWeek 1: Computational project organization\nWeek 2: Computational thinking I\nWeek 3: Working with data\nWeek 4: Computational thinking II\nWeek 5: Troubleshooting\nWeek 6: Wrap up self-directed portion of class\nWeeks 7-9: Final projects\nWeek 10: Communities of practice"
+  },
+  {
+    "objectID": "syllabus.html#how-class-works",
+    "href": "syllabus.html#how-class-works",
+    "title": "Syllabus",
+    "section": "How class works",
+    "text": "How class works\nThe class format is self-paced with an emphasis on small-group learning. Each class will begin with a short discussion on the assigned readings, then we’ll break out into groups. I will require everyone to complete some lessons start to finish (for example, the project organization lesson). Other lessons will let you jump in at the point appropriate to your level of experience.\nAfter week 6, class time will be devoted to your final projects. These will be replication studies. You and your group will find a paper that you want to replicate some part of, either a figure or a table. Using the skills you’ve learned in this class, you will create a stand-alone analysis that replicates their work. I will encourage all groups to submit their replication to an appropriate journal such as Re-Science C.\nThis class covers computational thinking, programming in base R and the tidyverse, project organization and management, and open science practices. You all probably have very different levels of preparation in these areas. For example, if you have more base R programming experience, I’ll suggest you tackle advanced lessons like functional programming. If you feel your foundation is a little patchy, I’ll suggest you deepen your understanding of the core data structures. This means most students will complete somewhat distinct subsets of the available material. That’s by design! You’re not expected to do the same lessons as everyone else. You are expected to do the lessons that best support your growth as a scientist. Speaking of expectations…"
+  },
+  {
+    "objectID": "syllabus.html#course-expectations",
+    "href": "syllabus.html#course-expectations",
+    "title": "Syllabus",
+    "section": "Course Expectations",
+    "text": "Course Expectations\nThis course offers more material than can be covered in the time allocated and students should not expect to complete all of it! Biology grad students have diverse backgrounds, training, and experience with computational skills. Some of the available material will be too basic or too advanced for you at this time. With help from the instructor, you will identify what content will contribute most to your academic and professional success.\n\nWhat you can expect from your instructor\nThe instructor is here to support your learning and provide you with guidance as you develop your understanding of and skills in data science. I strive for an inclusive and collaborative classroom and welcome any suggestions for improvement. I will do my best to provide useful content, rapid feedback, and enthusiastic support, so let me know if I can do anything more. I highly encourage everyone to visit me in office hours or to set up a meeting, even if you don’t feel that you have questions. I want to get to know you and support you in this learning experience!\n\n\nWhat your instructor expects from you\nI expect you to attend class regularly, complete the self-guided material at the pace that works best for you, and contribute to your group’s final project. Your learning depends on your own preparation and engagement as well as that of your fellow students. I encourage you to rely on each other, as well as the instructor, for problem solving and finding solutions. Teaching reinforces learning, so after you complete lessons be prepared to assist other students with that material. Each member of this class has different ideas and perspectives that will enrich the experience for everyone else, so I ask you to be respectful and thoughtful in your interactions. To get the most out of the class, you should be prepared to share your ideas, ask questions, listen actively and collaborate effectively during small group work. Never hesitate to email your instructors, stop by office hours, or set up a meeting. This class should challenge you, but I believe everyone has the ability to succeed with some effort."
+  },
+  {
+    "objectID": "syllabus.html#why-isnt-there-a-remote-option",
+    "href": "syllabus.html#why-isnt-there-a-remote-option",
+    "title": "Syllabus",
+    "section": "Why isn’t there a remote option?",
+    "text": "Why isn’t there a remote option?\nRemote options have become standard for most classes and I wish I could offer one for this course. However, the structure of the class does not lend itself to hybrid formats because of the emphasis on peer learning and 1-on-1 coaching from the instructor. In the future, I hope to offer online and in-person versions of the course. For now, I only have resources to support the in-person version.\nFor the same reason, I can’t support auditing the class at this time. However, I am happy to share the educational materials with anyone who’s interested. I will try to connect these students so you can form a study group. If that happens, I will add additional office hours to meet with you."
   }
 ]
