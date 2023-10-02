@@ -214,3 +214,13 @@ You either read @bryan2018 or @braga2023. Answer the questions for the paper you
 
 -   Imagine you're working with a few collaborators on an analysis. Come up with two examples of *Issues* you might open. How would using *Issues* differ from communicating over email?
 -   What are three ways GitHub features can promote open science practices?
+
+#### Project organization notes
+
+You were (probably) exposed to *a lot* of new material in this lesson. In this part of the assessment, you'll create a cheat sheet for yourself. Create a markdown file called `docs/proj_org_notes.md`. In that file, create a short document you can use to guide you when you create your next analysis project. Consider which steps only need to be configured once versus which have to be repeated for every project. If there were steps you found counterintuitive or confusing today, make a note of why you did them or how you figured them out.
+
+#### Submission
+
+Submit your assessment by emailing your GitHub pages url to mczapans \[at\] ucsc \[dot\] edu[^7].
+
+[^7]: TBH I haven't figured out yet how to access UCSC's Canvas as an instructor. You'll submit future assessments through Canvas once I figure that out.
