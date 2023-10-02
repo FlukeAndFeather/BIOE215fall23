@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -198,6 +232,7 @@ div.csl-indent {
 </section>
 <section id="exercise" class="level3">
 <h3 class="anchored" data-anchor-id="exercise">Exercise</h3>
+<p>In this exercise you’re going to set up an analysis to take advantage of project organization tools in RStudio, git, and GitHub. We’ll use this framework for exercises and assessments throughout the rest of the course.</p>
 <section id="goals" class="level4">
 <h4 class="anchored" data-anchor-id="goals">Goals</h4>
 <ol type="1">
@@ -207,17 +242,36 @@ div.csl-indent {
 <li>Activate GitHub pages to give your project a website</li>
 </ol>
 </section>
-<section id="create-an-rstudio-project-and-git-repository" class="level4">
-<h4 class="anchored" data-anchor-id="create-an-rstudio-project-and-git-repository">1. Create an RStudio project and git repository</h4>
+<section id="step-1-create-an-rstudio-project-and-git-repository" class="level4">
+<h4 class="anchored" data-anchor-id="step-1-create-an-rstudio-project-and-git-repository">Step 1: Create an RStudio project and git repository</h4>
+<p>Open RStudio. From the top menu, click on File &gt; New Project to launch the New Project Wizard.</p>
+<p>Choose New Directory &gt; New Project. You should now see the Create New Project prompt.</p>
+<p><img src="../img/new_project_wizard.jpg" class="img-fluid" width="556"></p>
+<p>The <em>Directory name</em> is the name of your project. Call it “bioe215lesson1”. When it comes to project directory naming, there are a couple of best practices to follow. Stick to letters and numbers, and avoid special characters like spaces, underscores, and dashes. This ensures your directory name will be compatible with the naming requirements for R, git, and GitHub.</p>
+<p>Next you’ll choose where to put your project on your computer. In the screenshot above, <em>Create project as subdirectory of:</em> is set to <code>/Users/frank/Documents/GitHub</code>, which is where I keep projects on my computer. Yours may default to somewhere unhelpful. I suggest creating a subfolder in your “Documents” directory called “GitHub”, then use the “Browse…” button to navigate there.</p>
+<p>Make sure the check box for <em>Create a git repository</em> is checked.</p>
+<p>Click on <strong><em>Create Project</em></strong>.</p>
+<p><img src="../img/new_project.png" class="img-fluid" width="578"></p>
+<p>Once RStudio finishes creating your project, you should see something like the screenshot above. Make sure you see both the git pane and the project name. Let the instructor know when you’re done with this step so they can check everything looks right.</p>
 </section>
-<section id="create-a-github-repository" class="level4">
-<h4 class="anchored" data-anchor-id="create-a-github-repository">2. Create a GitHub repository</h4>
+<section id="step-2-create-a-github-repository" class="level4">
+<h4 class="anchored" data-anchor-id="step-2-create-a-github-repository">Step 2: Create a GitHub repository</h4>
+<p>RStudio projects and git repos both live <em>locally</em> on your computer. GitHub repos are <em>remote</em> repositories on the internet. Now you’re going to create a remote GitHub repository.</p>
+<p>First, install the <code>usethis</code> package, which has helpful functions for project organization and management. At the R console, run <code>install.packages("usethis")</code>.</p>
+<p>If you don’t have a GitHub account yet, now’s the time to create one. Go to <a href="https://www.github.com">github.com</a> and create an account.</p>
+<p>Make sure git is configured on your machine to have the correct user name and email. In the <strong>Terminal</strong> pane (<em>not</em> the <strong>Console</strong> pane)<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, run <code>git config --list</code>. Your <code>user.name</code> should be your name and <code>user.email</code> should be the same email you used with your GitHub account. If they’re not configured correctly, run the following R command in the <strong>Console</strong>. Change YOURNAME and YOUREMAIL accordingly. This is a one-time setup command, you won’t have to do it again until you replace your computer.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_git_config</span>(<span class="at">user.name =</span> <span class="st">"YOURNAME"</span>, <span class="at">user.email =</span> <span class="st">"YOUREMAIL"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>[Is the double colon <code>::</code> unfamiliar? This operator tells R to look for a function in a certain package. So this command uses the <code>use_git_config()</code> function from the <code>usethis</code> package. Alternatively, you can call <code>library(usethis)</code> and then call the function directly.]</p>
+<p>The last step before you can connect RStudio to GitHub is saving your credentials. The safest way to do that is with <em>Personal Access Tokens</em>, or PATs. These tell GitHub you are who you say you are and prevent anyone else from messing with your remote repositories<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. If you know you already have a PAT, continue to the next step. This is easy to do with <code>usethis</code>. Call <code>usethis::create_github_token()</code>, which will launch GitHub in your web browser. Give your token the name “RSTUDIO” and change the Expiration from 30 days to 90 days. Scroll all the way to the bottom and click the green <strong>Generate token</strong> button.</p>
+<p><img src="../img/pat.jpg" class="img-fluid" width="795"></p>
+<p>You should see a long line of text with a green check mark next to it. That’s your token. Copy it, then go back to RStudio. At the <strong>Console</strong>, run <code>gitcreds::gitcreds_set()</code>. You’ll get a prompt to <code>? Enter new password or token:</code>. Paste your token and click enter. Now RStudio and GitHub can talk to each other<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</p>
+<p>All that’s left to do now is creating your GitHub repo. <code>usethis</code> helps automate this step. First, call <code>usethis::use_git()</code> and commit the uncommitted files. Then call <code>usethis::git_default_branch_rename()</code><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. Finally, call <code>usethis::use_github()</code>. You should now see your GitHub repository in your browser. Once again, let the instructor know when you’re done with this step so they can check everything looks right.</p>
 </section>
-<section id="set-up-folder-structure" class="level4">
-<h4 class="anchored" data-anchor-id="set-up-folder-structure">3. Set up folder structure</h4>
+<section id="step-3-set-up-folder-structure" class="level4">
+<h4 class="anchored" data-anchor-id="step-3-set-up-folder-structure">Step 3: Set up folder structure</h4>
 </section>
-<section id="activate-github-pages" class="level4">
-<h4 class="anchored" data-anchor-id="activate-github-pages">4. Activate GitHub pages</h4>
+<section id="step-4-activate-github-pages" class="level4">
+<h4 class="anchored" data-anchor-id="step-4-activate-github-pages">Step 4: Activate GitHub pages</h4>
 </section>
 </section>
 <section id="assessment" class="level3">
@@ -252,6 +306,7 @@ div.csl-indent {
 
 </section>
 
+
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-braga2023" class="csl-entry" role="listitem">
 Braga, Pedro Henrique Pereira, Katherine Hébert, Emma J. Hudgins, Eric R. Scott, Brandon P. M. Edwards, Luna L. Sánchez Reyes, Matthew J. Grainger, et al. 2023. <span>“Not Just for Programmers: How GitHub Can Accelerate Collaborative and Reproducible Research in Ecology and Evolution.”</span> <em>Methods in Ecology and Evolution</em> 14 (6): 1364–80. <a href="https://doi.org/10.1111/2041-210x.14108">https://doi.org/10.1111/2041-210x.14108</a>.
@@ -271,7 +326,15 @@ Noble, William Stafford. 2009. <span>“A Quick Guide to Organizing Computationa
 <div id="ref-wilson2017" class="csl-entry" role="listitem">
 Wilson, Greg, Jennifer Bryan, Karen Cranston, Justin Kitzes, Lex Nederbragt, and Tracy K. Teal. 2017. <span>“Good Enough Practices in Scientific Computing.”</span> Edited by Francis Ouellette. <em>PLOS Computational Biology</em> 13 (6): e1005510. <a href="https://doi.org/10.1371/journal.pcbi.1005510">https://doi.org/10.1371/journal.pcbi.1005510</a>.
 </div>
-</div></section></div></main> <!-- /main -->
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>If you can’t find the <strong>Terminal</strong> pane, ask your instructor for help. Sometimes it needs to be activated the first time you use it.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>The internet is full of vandals. C’est la vie.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>PATs are kind of like your git configuration in that they’re “set it and forget it” commands. You will only need to update your PAT every three months if you set Expiration to 90 days. The rest of the time you don’t need to think about it. And if you’re wondering why we set PATs to expire at all, see the previous footnote about vandals.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>We won’t cover branches in this course, but they’re an important part of version control. Suffice to say, every repo has a main branch which by default is called “master”. That’s racist terminology, so there’s a concerted effort to use “main” instead.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
