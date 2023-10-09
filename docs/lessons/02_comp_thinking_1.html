@@ -225,26 +225,105 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="intro" class="level1">
 <h1>Intro</h1>
-<p>Today's topic is <strong>computational thinking</strong>. The particular computational thinking skills we're focusing on are <em>data structures</em> and <em>abstraction</em>. Abstraction is about simplifying problems - it's how you take a complex, unique system and decompose it into patterns that are easier to think about and work with. It's arguably the single most important skill for doing things with code. But before we can think about a problem abstractly, we first need patterns to match our problem to. That's where data structures come in: they're how we organize and store data in code.</p>
-<p>Depending on your previous experience level, today's lesson may feel like you're revisiting material you've already learned. But when it comes to programming, most biologists learn to run before they can walk. The purpose of today's lesson is to give you a more comprehensive understanding of what's happening when you use R's built-in data structures.</p>
-<p>We're going to begin with a pre-assessment. Don't worry if some of the questions feel unfamiliar - that's expected and normal! Based on the pre-assessment, I'm going to recommend one of two different lessons for you.</p>
+<p>Today’s topic is <strong>computational thinking</strong>. The particular computational thinking skills we’re focusing on are <em>data structures</em> and <em>abstraction</em>. Abstraction is about simplifying problems - it’s how you take a complex, unique system and decompose it into patterns that are easier to think about and work with. It’s arguably the single most important skill for doing things with code. But before we can think about a problem abstractly, we first need patterns to match our problem to. That’s where data structures come in: they’re how we organize and store data in code.</p>
+<p>Depending on your previous experience level, today’s lesson may feel like you’re revisiting material you’ve already learned. But when it comes to programming, most biologists learn to run before they can walk. The purpose of today’s lesson is to give you a more comprehensive understanding of what’s happening when you use R’s built-in data structures.</p>
+<p>We’re going to begin with a pre-assessment. Don’t worry if some of the questions feel unfamiliar - that’s expected and normal! Based on the pre-assessment, I’m going to recommend one of two different lessons for you.</p>
 </section>
 <section id="pre-assessment" class="level1">
 <h1>Pre-assessment</h1>
 <p><strong>Q1</strong></p>
-<p>RStudio has a code editor pane and a console pane. What's the difference between the two? <em>The code editor is where you write and edit text files e.g., R scripts and Quarto documents. You can save text for later, but writing code in this pane doesn't directly change anything about your environment. The console runs R commands. Typing a command at the console will execute it and change your environment. If you want to save those commands to run again in the future, you'll have to copy them to a script or other document in the code editor pane.</em></p>
+<p>RStudio has a code editor pane and a console pane. What’s the difference between the two?</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><em>The code editor is where you write and edit text files e.g., R scripts and Quarto documents. You can save text for later, but writing code in this pane doesn’t directly change anything about your environment. The console runs R commands. Typing a command at the console will execute it and change your environment. If you want to save those commands to run again in the future, you’ll have to copy them to a script or other document in the code editor pane.</em></p>
+</div>
+</div>
+</div>
 <p><strong>Q2</strong></p>
-<p>What's the result of this code?</p>
+<p>What’s the result of this code?</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">8</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><em>8</em></p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>8</p>
+</div>
+</div>
+</div>
 <p><strong>Q3</strong></p>
-<p>Say you have a data frame, <code>foo</code>, with columns <code>a</code>, <code>b</code>, and <code>c</code> in that order. What are two different ways of pulling the third element from column <code>b</code>? <code>foo$b[3]</code>, <code>foo[2, 3]</code></p>
+<p>Say you have a data frame, <code>foo</code>, with columns <code>a</code>, <code>b</code>, and <code>c</code> in that order. What are two different ways of pulling the third element from column <code>b</code>?</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><code>foo$b[3]</code>, <code>foo[2, 3]</code>, <code>foo[["b"]][3]</code></p>
+</div>
+</div>
+</div>
 <p><strong>Q4</strong></p>
-<p>Name at least two of the four basic types for data in R? (In R parlance, name two of the <em>atomic vector</em> types) <em>logical, integer, numeric (or double), character</em></p>
+<p>Name at least two of the four basic types for data in R? (In R parlance, name two of the <em>atomic vector</em> types)</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><em>logical, integer, numeric (or double), character</em></p>
+</div>
+</div>
+</div>
 <p><strong>Q5</strong></p>
-<p>What data structure would you use to hold objects that are different types? For example, what data structure can hold <code>"a"</code> and <code>1.0</code> together? <em>list. “data frame” is partially correct, since data frames are a type of list.</em></p>
-<p>How did you feel about the questions on the pre-assessment? If the subject matter felt familiar (even if you didn't get all the questions exactly right) I suggest you follow the lesson for <a href="https://www.notion.so/Why-did-you-do-it-that-way-team-Ctenophora-68bea38348ae49cc85b8aadb148fa163?pvs=21">team Ctenophora</a>. If the terms and concepts in the pre-assessment were new to you or if you want to revisit them in more detail, try the <a href="https://www.notion.so/Writing-R-code-from-scratch-team-Porifera-11be6a952e524009b83b230d0da1ea93?pvs=21">team Porifera</a> lesson.</p>
+<p>What data structure would you use to hold objects that are different types? For example, what data structure can hold <code>"a"</code> and <code>1.0</code> together?</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><em>list. “data frame” is partially correct, since data frames are a type of list.</em></p>
+</div>
+</div>
+</div>
+<p>How did you feel about the questions on the pre-assessment? If the subject matter felt familiar (even if you didn’t get all the questions exactly right) I suggest you follow the lesson for <a href="https://www.notion.so/Why-did-you-do-it-that-way-team-Ctenophora-68bea38348ae49cc85b8aadb148fa163?pvs=21">team Ctenophora</a>. If the terms and concepts in the pre-assessment were new to you or if you want to revisit them in more detail, try the <a href="https://www.notion.so/Writing-R-code-from-scratch-team-Porifera-11be6a952e524009b83b230d0da1ea93?pvs=21">team Porifera</a> lesson.</p>
 </section>
 <section id="lessons" class="level1">
 <h1>Lessons</h1>
@@ -253,11 +332,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="which-lesson-should-you-choose">Which lesson should you choose?</h2>
 <section id="writing-r-code-from-scratch-team-porifera" class="level3">
 <h3 class="anchored" data-anchor-id="writing-r-code-from-scratch-team-porifera">Writing R code from scratch (team Porifera)</h3>
-<p>You can run code someone else wrote or you can look up code online and paste that into your script, but starting your own script from scratch is a bit mystifying. This lesson introduces the fundamentals of working in R, like creating scripts and making variables. It also covers the fundamental <strong>data structure</strong> in R: vectors. You'll learn what vectors are, their different flavors, how to create/subset them, and how to call functions on them.</p>
+<p>You can run code someone else wrote or you can look up code online and paste that into your script, but starting your own script from scratch is a bit mystifying. This lesson introduces the fundamentals of working in R, like creating scripts and making variables. It also covers the fundamental <strong>data structure</strong> in R: vectors. You’ll learn what vectors are, their different flavors, how to create/subset them, and how to call functions on them.</p>
 </section>
 <section id="why-did-you-do-it-that-way-team-ctenophora" class="level3">
 <h3 class="anchored" data-anchor-id="why-did-you-do-it-that-way-team-ctenophora">Why did you do it that way? (team Ctenophora)</h3>
-<p>You've memorized recipes and formulas for getting R to do what you want, but maybe you don't know why things work they do. Usually variables behave the way you expect. However when things go sideways you don't know where to begin diagnosing the issue. This lesson will formalize your understanding of types and how the more complex R data structures (like lists and data frames) are composed from simpler structures (like atomic vectors of numbers or text).</p>
+<p>You’ve memorized recipes and formulas for getting R to do what you want, but maybe you don’t know why things work they do. Usually variables behave the way you expect. However when things go sideways you don’t know where to begin diagnosing the issue. This lesson will formalize your understanding of types and how the more complex R data structures (like lists and data frames) are composed from simpler structures (like atomic vectors of numbers or text).</p>
 </section>
 </section>
 <section id="team-porifera" class="level2">
@@ -294,10 +373,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="assessment" class="level1">
 <h1>Assessment</h1>
-<p>Your assessment this week will use the computational project organization skills you learned last week. Work from your notes (last week's assessment) instead of the course material as much as you can. If/when you refer to the course material, update your notes accordingly!</p>
+<p>Your assessment this week will use the computational project organization skills you learned last week. Work from your notes (last week’s assessment) instead of the course material as much as you can. If/when you refer to the course material, update your notes accordingly!</p>
 <section id="quarto" class="level2">
 <h2 class="anchored" data-anchor-id="quarto">Quarto</h2>
-<p>This assessment involves a Quarto document. If you're already familiar with Quarto, move on to the next section. Otherwise, complete the <a href="../lessons/02a_quarto_essentials.html">Quarto Essentials</a> mini-lesson.</p>
+<p>This assessment involves a Quarto document. If you’re already familiar with Quarto, move on to the next section. Otherwise, complete the <a href="../lessons/02a_quarto_essentials.html">Quarto Essentials</a> mini-lesson.</p>
 </section>
 <section id="set-up" class="level2">
 <h2 class="anchored" data-anchor-id="set-up">Set up</h2>
@@ -309,8 +388,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="questions" class="level2">
 <h2 class="anchored" data-anchor-id="questions">Questions</h2>
-<p><em>Abstraction</em> is a key computational thinking skill: filtering out all but the key details and matching your task to the right patterns. When it comes to data, abstraction means learning how to represent complex real-world data in standard <em>data structures</em>. In today's lesson you learned about the fundamental data structure in R: vectors.</p>
-<p>Answer the following questions in your Quarto document. Choose the questions according to the lesson you completed. Pretend this assessment is a report about your research you're sharing with a collaborator: add descriptive text and use Markdown formatting to make it easy to read.</p>
+<p><em>Abstraction</em> is a key computational thinking skill: filtering out all but the key details and matching your task to the right patterns. When it comes to data, abstraction means learning how to represent complex real-world data in standard <em>data structures</em>. In today’s lesson you learned about the fundamental data structure in R: vectors.</p>
+<p>Answer the following questions in your Quarto document. Choose the questions according to the lesson you completed. Pretend this assessment is a report about your research you’re sharing with a collaborator: add descriptive text and use Markdown formatting to make it easy to read.</p>
 <section id="team-porifera-1" class="level3">
 <h3 class="anchored" data-anchor-id="team-porifera-1">Team Porifera</h3>
 <p><strong>Q1</strong></p>
@@ -328,7 +407,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>num_outliers <span class="ot">&lt;-</span> <span class="fu">sum</span>(is_outlier)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><p>In plain english, what does this code chunk do?</p></li>
-<li><p>Two of the lines have mistakes that keep the code from doing what it's supposed to. What are the mistakes and how would you fix them?</p></li>
+<li><p>Two of the lines have mistakes that keep the code from doing what it’s supposed to. What are the mistakes and how would you fix them?</p></li>
 <li><p>What are the types of <code>bird_mass_g</code>, <code>is_outlier</code>, and <code>num_outliers</code>?</p></li>
 </ul>
 <p><strong>Q3</strong></p>
@@ -341,7 +420,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="team-ctenophora-1" class="level3">
 <h3 class="anchored" data-anchor-id="team-ctenophora-1">Team Ctenophora</h3>
 <p><strong>Q1</strong></p>
-<p><em>Lookup tables</em> are a common use case for named vectors. Let's say you're surveying the avian community of a wetland. In your notebook, you recorded species by their 4-letter code: GREG for Great Egret, MALL for Mallard, MAWR for Marsh Wren, and KILL for Killdeer. You need a table of counts, but you need the table to show the full common name, not just the 4-letter code you used for convenience. Modify the code below to accomplish that task. First, make <code>species_code</code> a named vector, then modify the call to <code>table()</code> to use <code>species_code</code> as a lookup table that converts 4-letter codes to common names.</p>
+<p><em>Lookup tables</em> are a common use case for named vectors. Let’s say you’re surveying the avian community of a wetland. In your notebook, you recorded species by their 4-letter code: GREG for Great Egret, MALL for Mallard, MAWR for Marsh Wren, and KILL for Killdeer. You need a table of counts, but you need the table to show the full common name, not just the 4-letter code you used for convenience. Modify the code below to accomplish that task. First, make <code>species_code</code> a named vector, then modify the call to <code>table()</code> to use <code>species_code</code> as a lookup table that converts 4-letter codes to common names.</p>
 <pre><code>species_codes &lt;- c(  
     # Fill this in
 )
@@ -354,9 +433,9 @@ table(sightings)</code></pre>
 <p>These questions are about a built-in R class that is an extremely common source of confusion: <code>POSIXct</code>.</p>
 <ul>
 <li><p>Explain why adding 1 to a <code>POSIXct</code> datetime object increments it by a second. What <em>type</em> is <code>POSIXct</code> (type, not class)? How does <code>POSIXct</code> use that type to represent datetimes?</p></li>
-<li><p>What's the default <strong>origin</strong> of POSIXct objects? Write a line of code that converts the number 0 to January 1, 2000 at noon in UTC using <code>as.POSIXct()</code> (hint: look up the documentation for the <code>origin</code> parameter in the <code>as.POSIXct()</code> help page).</p>
+<li><p>What’s the default <strong>origin</strong> of POSIXct objects? Write a line of code that converts the number 0 to January 1, 2000 at noon in UTC using <code>as.POSIXct()</code> (hint: look up the documentation for the <code>origin</code> parameter in the <code>as.POSIXct()</code> help page).</p>
 <ul>
-<li>Take away the POSIXct class from the object you just made. What kind of vector is it now? Why isn't the value 0 anymore?</li>
+<li>Take away the POSIXct class from the object you just made. What kind of vector is it now? Why isn’t the value 0 anymore?</li>
 </ul></li>
 </ul>
 <p><strong>Q3</strong></p>
@@ -371,7 +450,7 @@ table(sightings)</code></pre>
 <li><p>When called on a data frame, is <code>length()</code> equivalent to <code>nrow()</code> or <code>ncol()</code>? Why?</p></li>
 </ul>
 <p><strong>Q5</strong></p>
-<p>Say you have four experimental plots that you're supplementing with fertilizer. In the code below, which subsetting operator (<code>$</code>, <code>[</code>, or <code>[[</code>) would you use to pull out the column specified by the variable <code>nutrient</code>? Does your answer change if I specify the result has to be an atomic vector? Why or why not?</p>
+<p>Say you have four experimental plots that you’re supplementing with fertilizer. In the code below, which subsetting operator (<code>$</code>, <code>[</code>, or <code>[[</code>) would you use to pull out the column specified by the variable <code>nutrient</code>? Does your answer change if I specify the result has to be an atomic vector? Why or why not?</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>experiment <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot =</span> <span class="fu">c</span>(<span class="st">"p1"</span>, <span class="st">"p2"</span>, <span class="st">"p3"</span>, <span class="st">"p4"</span>),</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">N_g =</span> <span class="fu">c</span>(<span class="fl">0.2</span>, <span class="fl">0.7</span>, <span class="fl">0.3</span>, <span class="fl">0.2</span>),</span>
@@ -380,7 +459,7 @@ table(sightings)</code></pre>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>nutrient <span class="ot">&lt;-</span> <span class="st">"N_g"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Q6</strong></p>
-<p>The elements of lists can be anything, even other lists. That's why a common use case for lists is splitting data frames into groups (note: if you're familiar with <code>dplyr::group_by()</code>, just know this is something different). Explain what the following code does in plain language. If you want to play around with the code (and I recommend you do!) you may need to install the <code>palmerpenguins</code> package. Use <code>?split</code> for more information about that function.</p>
+<p>The elements of lists can be anything, even other lists. That’s why a common use case for lists is splitting data frames into groups (note: if you’re familiar with <code>dplyr::group_by()</code>, just know this is something different). Explain what the following code does in plain language. If you want to play around with the code (and I recommend you do!) you may need to install the <code>palmerpenguins</code> package. Use <code>?split</code> for more information about that function.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins) </span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>penguins_by_island <span class="ot">&lt;-</span> <span class="fu">split</span>(penguins, penguins<span class="sc">$</span>island)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>mean_mass <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
@@ -394,16 +473,16 @@ table(sightings)</code></pre>
 <h2 class="anchored" data-anchor-id="submission">Submission</h2>
 <ol type="1">
 <li>Render <code>reports/index.qmd</code>, which creates <code>reports/index.html</code>. Move <code>reports/index.html</code> to <code>docs/</code>.</li>
-<li>Activate your GitHub repository's Pages. What do you have to do to make <code>docs/index.html</code> render on your Pages site?</li>
-<li>Open an <strong><em>Issue</em></strong> in your repository on GitHub. Provide a link to your repo's Pages site. It should look like <em>yourusername.github.io/compthinking1</em>. Tag me in your issue (my user name on GitHub is FlukeAndFeather). In the issue’s thread, tell me how you updated your computational project organization notes during this assessment..</li>
+<li>Activate your GitHub repository’s Pages. What do you have to do to make <code>docs/index.html</code> render on your Pages site?</li>
+<li>Open an <strong><em>Issue</em></strong> in your repository on GitHub. Provide a link to your repo’s Pages site. It should look like <em>yourusername.github.io/compthinking1</em>. Tag me in your issue (my user name on GitHub is FlukeAndFeather). In the issue’s thread, tell me how you updated your computational project organization notes during this assessment..</li>
 </ol>
-<p>Note: I'm deliberately not providing instructions for creating GitHub Issues. I want you to rely on experimentation, the internet, and your peers. If you haven't opened an issue before, try the following in this order:</p>
+<p>Note: I’m deliberately not providing instructions for creating GitHub Issues. I want you to rely on experimentation, the internet, and your peers. If you haven’t opened an issue before, try the following in this order:</p>
 <ol type="1">
 <li><p>Try on your own</p></li>
 <li><p>Ask Google</p></li>
 <li><p>Ask a colleague (i.e., your classmates)</p></li>
 </ol>
-<p>Congrats! You're done with Week 2! Keep up the good work!</p>
+<p>Congrats! You’re done with Week 2! Keep up the good work!</p>
 
 
 </section>
