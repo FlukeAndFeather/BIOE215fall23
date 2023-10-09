@@ -1,5 +1,5 @@
 ---
-title: "Computational project organization"
+title: "Computational thinking 1"
 format: 
   html:
     toc: true
@@ -108,7 +108,7 @@ Your assessment this week will use the computational project organization skills
 
 ## Quarto
 
-This assessment involves a Quarto document. If you\'re already familiar with Quarto, move on to the next section. Otherwise, complete the Quarto Essentials mini-lesson.
+This assessment involves a Quarto document. If you\'re already familiar with Quarto, move on to the next section. Otherwise, complete the [Quarto Essentials](02a_quarto_essentials.qmd) mini-lesson.
 
 ## Set up
 

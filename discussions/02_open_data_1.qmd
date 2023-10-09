@@ -1,0 +1,17 @@
+---
+title: "Open data 1"
+format: html
+bibliography: references.bib
+---
+
+For this week you read @vines2014 and @wilkinson2016 about open data.
+
+Our discussion today will follow the ***Snowballing*** format [@brookfield2016]. Here's how it works.
+
+1.  You're presented with two discussion questions.
+    1.  Think of a time you tried to use data from another scientist, lab, paper, etc. What challenges did you encounter trying to use those data? Conversely, what did the data provider do that made your science easier?
+    2.  What challenges do you anticipate encountering if/when you share your own data? What would you need to learn or what systems would have to change to make sharing data easier?
+2.  Take two minutes to reflect and make a note of your thoughts.
+3.  Find a partner. For three minutes, take turns sharing your thoughts. What did you have in common? What was different? How would you synthesize your two points of view?
+4.  Now your pair finds another pair. For another three minutes, repeat step 3 with the larger group. As the group expands, be mindful of everyone's participation. A little bit of silence can go a long way to giving everyone a chance to participate.
+5.  Repeat step 4 until the whole group is discussing together.

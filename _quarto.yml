@@ -13,6 +13,10 @@ website:
       - text: "Lessons"
         menu:
           - lessons/01_comp_proj_org.qmd
+          - lessons/02_comp_thinking_1.qmd
+      - text: "Discussions"
+        menu:
+          - discussions/02_open_data_1.qmd
   
 format:
   html:

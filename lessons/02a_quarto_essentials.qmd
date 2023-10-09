@@ -1,0 +1,28 @@
+---
+title: "Quarto essentials"
+format: 
+  html:
+    toc: true
+    toc-depth: 3
+editor: visual
+---
+
+Quarto documents combine text, code, and results (e.g., figures and tables). They\'re a type of **literate programming**, which differs from scripts because they\'re intended for a human audience over computation. You\'ll use Quarto documents for assessments and your final project. Quarto is an extremely powerful data science platform: you can dynamically create PDFs, Word documents, and even websites in Quarto, plus they support R, Python, and other data science programming languages. For now, you just need to know the essentials. Ask yourself the following questions to see if you need this lesson.
+
+*Can you...*
+
+-   Create a Quarto document in RStudio and render it to HTML?
+
+-   Format text with Markdown and insert code chunks?
+
+-   Recognize a YAML header and change options to customize your document?
+
+If you answered yes to all these questions, skip this lesson. Otherwise, choose one of the two options below.
+
+## If you\'ve used R Markdown before...
+
+If you\'ve used R Markdown documents before, then you\'re already familiar with literate programming (though the terminology may be new to you). Quarto is extremely similar to R Markdown, but redesigned for consistency. Read [*We don\'t talk about Quarto*](https://www.apreshill.com/blog/2022-04-we-dont-talk-about-quarto/) by Alison Hill to learn what\'s the same and what\'s different.
+
+## If you\'re brand new to literate programming...
+
+If Quarto and R Markdown are unfamiliar to you, I recommend [Chapter 29: Quarto](https://r4ds.hadley.nz/quarto.html), sections 29.1-29.5 (*Introduction* through *Code chunks*), in *R 4 Data Science* by Hadley Wickham. You\'ll learn the basics of creating Quarto documents, editing in both *Visual* and *Source* modes, and adding code chunks.
