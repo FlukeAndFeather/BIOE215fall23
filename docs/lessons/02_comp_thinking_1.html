@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data Science for Eco/Evo (Fall 23 BIOE215) - Computational project organization</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Data Science for Eco/Evo (Fall 23 BIOE215)</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../syllabus.html" rel="" target="">
+ <span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-lessons" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Lessons</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-lessons">    
+        <li>
+    <a class="dropdown-item" href="../lessons/01_comp_proj_org.html" rel="" target="">
+ <span class="dropdown-text">Computational project organization</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#intro" id="toc-intro" class="nav-link active" data-scroll-target="#intro">Intro</a></li>
+  <li><a href="#pre-assessment" id="toc-pre-assessment" class="nav-link" data-scroll-target="#pre-assessment">Pre-assessment</a></li>
+  <li><a href="#lessons" id="toc-lessons" class="nav-link" data-scroll-target="#lessons">Lessons</a>
+  <ul class="collapse">
+  <li><a href="#which-lesson-should-you-choose" id="toc-which-lesson-should-you-choose" class="nav-link" data-scroll-target="#which-lesson-should-you-choose">Which lesson should you choose?</a>
+  <ul class="collapse">
+  <li><a href="#writing-r-code-from-scratch-team-porifera" id="toc-writing-r-code-from-scratch-team-porifera" class="nav-link" data-scroll-target="#writing-r-code-from-scratch-team-porifera">Writing R code from scratch (team Porifera)</a></li>
+  <li><a href="#why-did-you-do-it-that-way-team-ctenophora" id="toc-why-did-you-do-it-that-way-team-ctenophora" class="nav-link" data-scroll-target="#why-did-you-do-it-that-way-team-ctenophora">Why did you do it that way? (team Ctenophora)</a></li>
+  </ul></li>
+  <li><a href="#team-porifera" id="toc-team-porifera" class="nav-link" data-scroll-target="#team-porifera">Team Porifera</a>
+  <ul class="collapse">
+  <li><a href="#reading" id="toc-reading" class="nav-link" data-scroll-target="#reading">Reading</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
+  </ul></li>
+  <li><a href="#team-ctenophora" id="toc-team-ctenophora" class="nav-link" data-scroll-target="#team-ctenophora">Team Ctenophora</a>
+  <ul class="collapse">
+  <li><a href="#reading-1" id="toc-reading-1" class="nav-link" data-scroll-target="#reading-1">Reading</a></li>
+  <li><a href="#exercises-1" id="toc-exercises-1" class="nav-link" data-scroll-target="#exercises-1">Exercises</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#assessment" id="toc-assessment" class="nav-link" data-scroll-target="#assessment">Assessment</a>
+  <ul class="collapse">
+  <li><a href="#quarto" id="toc-quarto" class="nav-link" data-scroll-target="#quarto">Quarto</a></li>
+  <li><a href="#set-up" id="toc-set-up" class="nav-link" data-scroll-target="#set-up">Set up</a></li>
+  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions">Questions</a>
+  <ul class="collapse">
+  <li><a href="#team-porifera-1" id="toc-team-porifera-1" class="nav-link" data-scroll-target="#team-porifera-1">Team Porifera</a></li>
+  <li><a href="#team-ctenophora-1" id="toc-team-ctenophora-1" class="nav-link" data-scroll-target="#team-ctenophora-1">Team Ctenophora</a></li>
+  </ul></li>
+  <li><a href="#submission" id="toc-submission" class="nav-link" data-scroll-target="#submission">Submission</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Computational project organization</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="intro" class="level1">
+<h1>Intro</h1>
+<p>Today's topic is <strong>computational thinking</strong>. The particular computational thinking skills we're focusing on are <em>data structures</em> and <em>abstraction</em>. Abstraction is about simplifying problems - it's how you take a complex, unique system and decompose it into patterns that are easier to think about and work with. It's arguably the single most important skill for doing things with code. But before we can think about a problem abstractly, we first need patterns to match our problem to. That's where data structures come in: they're how we organize and store data in code.</p>
+<p>Depending on your previous experience level, today's lesson may feel like you're revisiting material you've already learned. But when it comes to programming, most biologists learn to run before they can walk. The purpose of today's lesson is to give you a more comprehensive understanding of what's happening when you use R's built-in data structures.</p>
+<p>We're going to begin with a pre-assessment. Don't worry if some of the questions feel unfamiliar - that's expected and normal! Based on the pre-assessment, I'm going to recommend one of two different lessons for you.</p>
+</section>
+<section id="pre-assessment" class="level1">
+<h1>Pre-assessment</h1>
+<p><strong>Q1</strong></p>
+<p>RStudio has a code editor pane and a console pane. What's the difference between the two? <em>The code editor is where you write and edit text files e.g., R scripts and Quarto documents. You can save text for later, but writing code in this pane doesn't directly change anything about your environment. The console runs R commands. Typing a command at the console will execute it and change your environment. If you want to save those commands to run again in the future, you'll have to copy them to a script or other document in the code editor pane.</em></p>
+<p><strong>Q2</strong></p>
+<p>What's the result of this code?</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">8</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>8</em></p>
+<p><strong>Q3</strong></p>
+<p>Say you have a data frame, <code>foo</code>, with columns <code>a</code>, <code>b</code>, and <code>c</code> in that order. What are two different ways of pulling the third element from column <code>b</code>? <code>foo$b[3]</code>, <code>foo[2, 3]</code></p>
+<p><strong>Q4</strong></p>
+<p>Name at least two of the four basic types for data in R? (In R parlance, name two of the <em>atomic vector</em> types) <em>logical, integer, numeric (or double), character</em></p>
+<p><strong>Q5</strong></p>
+<p>What data structure would you use to hold objects that are different types? For example, what data structure can hold <code>"a"</code> and <code>1.0</code> together? <em>list. “data frame” is partially correct, since data frames are a type of list.</em></p>
+<p>How did you feel about the questions on the pre-assessment? If the subject matter felt familiar (even if you didn't get all the questions exactly right) I suggest you follow the lesson for <a href="https://www.notion.so/Why-did-you-do-it-that-way-team-Ctenophora-68bea38348ae49cc85b8aadb148fa163?pvs=21">team Ctenophora</a>. If the terms and concepts in the pre-assessment were new to you or if you want to revisit them in more detail, try the <a href="https://www.notion.so/Writing-R-code-from-scratch-team-Porifera-11be6a952e524009b83b230d0da1ea93?pvs=21">team Porifera</a> lesson.</p>
+</section>
+<section id="lessons" class="level1">
+<h1>Lessons</h1>
+<p>You have two options for today’s lesson.</p>
+<section id="which-lesson-should-you-choose" class="level2">
+<h2 class="anchored" data-anchor-id="which-lesson-should-you-choose">Which lesson should you choose?</h2>
+<section id="writing-r-code-from-scratch-team-porifera" class="level3">
+<h3 class="anchored" data-anchor-id="writing-r-code-from-scratch-team-porifera">Writing R code from scratch (team Porifera)</h3>
+<p>You can run code someone else wrote or you can look up code online and paste that into your script, but starting your own script from scratch is a bit mystifying. This lesson introduces the fundamentals of working in R, like creating scripts and making variables. It also covers the fundamental <strong>data structure</strong> in R: vectors. You'll learn what vectors are, their different flavors, how to create/subset them, and how to call functions on them.</p>
+</section>
+<section id="why-did-you-do-it-that-way-team-ctenophora" class="level3">
+<h3 class="anchored" data-anchor-id="why-did-you-do-it-that-way-team-ctenophora">Why did you do it that way? (team Ctenophora)</h3>
+<p>You've memorized recipes and formulas for getting R to do what you want, but maybe you don't know why things work they do. Usually variables behave the way you expect. However when things go sideways you don't know where to begin diagnosing the issue. This lesson will formalize your understanding of types and how the more complex R data structures (like lists and data frames) are composed from simpler structures (like atomic vectors of numbers or text).</p>
+</section>
+</section>
+<section id="team-porifera" class="level2">
+<h2 class="anchored" data-anchor-id="team-porifera">Team Porifera</h2>
+<p>This lesson is from the Data Carpentry Semester Biology Course.</p>
+<section id="reading" class="level3">
+<h3 class="anchored" data-anchor-id="reading">Reading</h3>
+<p>Complete the <a href="https://datacarpentry.org/R-ecology-lesson/01-intro-to-r.html">Introduction to R</a> lesson from Data Analysis and Vizualisation in R for Ecologists.</p>
+</section>
+<section id="exercises" class="level3">
+<h3 class="anchored" data-anchor-id="exercises">Exercises</h3>
+<p><a href="https://datacarpentry.org/semester-biology/exercises/Expressions-and-variables-basic-expressions-R/">Basic expressions</a></p>
+<p><a href="https://datacarpentry.org/semester-biology/exercises/Expressions-and-variables-basic-variables-R/">Basic variables</a></p>
+<p><a href="https://datacarpentry.org/semester-biology/exercises/Expressions-and-variables-more-variables-R/">More variables</a></p>
+<p><a href="https://datacarpentry.org/semester-biology/exercises/Functions-built-in-functions-R/">Built-in functions</a></p>
+<p><a href="https://datacarpentry.org/semester-biology/exercises/Expressions-and-variables-modify-the-code-R/">Modify the code</a></p>
+<p><a href="https://datacarpentry.org/semester-biology/exercises/Vectors-basic-vectors-R/">Basic vectors</a></p>
+<p><a href="https://datacarpentry.org/semester-biology/exercises/Vectors-nulls-in-vectors-R/">Nulls in vectors</a></p>
+<p><a href="https://datacarpentry.org/semester-biology/exercises/Vectors-shrub-volume-vectors-R/">Shrub volume vectors</a></p>
+<p><a href="https://datacarpentry.org/semester-biology/exercises/Expressions-and-variables-variable-names-R/">Variable names</a></p>
+</section>
+</section>
+<section id="team-ctenophora" class="level2">
+<h2 class="anchored" data-anchor-id="team-ctenophora">Team Ctenophora</h2>
+<section id="reading-1" class="level3">
+<h3 class="anchored" data-anchor-id="reading-1">Reading</h3>
+<p>Read sections 3-3.6.2 in <a href="https://adv-r.hadley.nz/vectors-chap.html">Chapter 3: Vectors</a> and sections 4-4.2.4, and 4.3-4.3.2 in <a href="https://adv-r.hadley.nz/subsetting.html">Chapter 4: Subsetting</a> in Advanced R by Hadley Wickham.</p>
+</section>
+<section id="exercises-1" class="level3">
+<h3 class="anchored" data-anchor-id="exercises-1">Exercises</h3>
+<p>Use the exercise questions at the end of each section in the chapter.</p>
+</section>
+</section>
+</section>
+<section id="assessment" class="level1">
+<h1>Assessment</h1>
+<p>Your assessment this week will use the computational project organization skills you learned last week. Work from your notes (last week's assessment) instead of the course material as much as you can. If/when you refer to the course material, update your notes accordingly!</p>
+<section id="quarto" class="level2">
+<h2 class="anchored" data-anchor-id="quarto">Quarto</h2>
+<p>This assessment involves a Quarto document. If you're already familiar with Quarto, move on to the next section. Otherwise, complete the Quarto Essentials mini-lesson.</p>
+</section>
+<section id="set-up" class="level2">
+<h2 class="anchored" data-anchor-id="set-up">Set up</h2>
+<ul>
+<li><p>Create a new RStudio project with a git repository called <em>compthinking1</em>. Create a GitHub repository to go with it.</p></li>
+<li><p>Create a folder structure in your project to match what you learned in Week 1.</p></li>
+<li><p>In your <code>reports/</code> directory, create a Quarto document called <strong>index.qmd</strong>.</p></li>
+</ul>
+</section>
+<section id="questions" class="level2">
+<h2 class="anchored" data-anchor-id="questions">Questions</h2>
+<p><em>Abstraction</em> is a key computational thinking skill: filtering out all but the key details and matching your task to the right patterns. When it comes to data, abstraction means learning how to represent complex real-world data in standard <em>data structures</em>. In today's lesson you learned about the fundamental data structure in R: vectors.</p>
+<p>Answer the following questions in your Quarto document. Choose the questions according to the lesson you completed. Pretend this assessment is a report about your research you're sharing with a collaborator: add descriptive text and use Markdown formatting to make it easy to read.</p>
+<section id="team-porifera-1" class="level3">
+<h3 class="anchored" data-anchor-id="team-porifera-1">Team Porifera</h3>
+<p><strong>Q1</strong></p>
+<p>Match the following types of real-world data to their equivalent R type and explain your reasoning.</p>
+<ul>
+<li><p>Real world data: scientific names, the count of plants in a quadrat, whether or not it rained on a sequence of days, and the reaction times of birds to disturbances in seconds</p></li>
+<li><p>R types: logical, integer, numeric, and character</p></li>
+</ul>
+<p><strong>Q2</strong></p>
+<p>Use this code chunk to answer the following questions.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>bird_mass_g <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">100.1</span>, <span class="fl">99.2</span>, <span class="fl">99.3</span>, <span class="cn">NA</span>, <span class="fl">100.0</span>, <span class="fl">101.5</span>, <span class="fl">94.7</span>, <span class="fl">99.2</span>, <span class="fl">108.2</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>mean_mass <span class="ot">&lt;-</span> <span class="fu">mean</span>(bird_mass_g)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>sd_mass <span class="ot">&lt;-</span> <span class="fu">sd</span>(bird_mass_g)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>is_outlier <span class="ot">&lt;-</span> bird_mass_g <span class="sc">&gt;</span> mean_mass <span class="sc">+</span> <span class="dv">3</span> <span class="sc">*</span> sd_mass</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>num_outliers <span class="ot">&lt;-</span> <span class="fu">sum</span>(is_outlier)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><p>In plain english, what does this code chunk do?</p></li>
+<li><p>Two of the lines have mistakes that keep the code from doing what it's supposed to. What are the mistakes and how would you fix them?</p></li>
+<li><p>What are the types of <code>bird_mass_g</code>, <code>is_outlier</code>, and <code>num_outliers</code>?</p></li>
+</ul>
+<p><strong>Q3</strong></p>
+<p>How could you change the first line of code in the following chunk so that <code>median_count</code> comes out to <code>5L</code>?</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>quad_counts <span class="ot">&lt;-</span> <span class="fu">c</span>(2L, 19L, 4L, 5L, 5L, 12L, 0L, 7L)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>valid_quads <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>) <span class="dv">2</span>,<span class="dv">19</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">0</span> <span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">19</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>quad_counts2 <span class="ot">&lt;-</span> quad_counts[valid_quads]</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>median_count <span class="ot">&lt;-</span> <span class="fu">median</span>(quad_counts2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="team-ctenophora-1" class="level3">
+<h3 class="anchored" data-anchor-id="team-ctenophora-1">Team Ctenophora</h3>
+<p><strong>Q1</strong></p>
+<p><em>Lookup tables</em> are a common use case for named vectors. Let's say you're surveying the avian community of a wetland. In your notebook, you recorded species by their 4-letter code: GREG for Great Egret, MALL for Mallard, MAWR for Marsh Wren, and KILL for Killdeer. You need a table of counts, but you need the table to show the full common name, not just the 4-letter code you used for convenience. Modify the code below to accomplish that task. First, make <code>species_code</code> a named vector, then modify the call to <code>table()</code> to use <code>species_code</code> as a lookup table that converts 4-letter codes to common names.</p>
+<pre><code>species_codes &lt;- c(  
+    # Fill this in
+)
+
+sightings = c("GREG", "GREG", "MALL", "MAWR", "KILL", "GREG")
+
+# Modify this line to use species_codes so your counts have common names
+table(sightings)</code></pre>
+<p><strong>Q2</strong></p>
+<p>These questions are about a built-in R class that is an extremely common source of confusion: <code>POSIXct</code>.</p>
+<ul>
+<li><p>Explain why adding 1 to a <code>POSIXct</code> datetime object increments it by a second. What <em>type</em> is <code>POSIXct</code> (type, not class)? How does <code>POSIXct</code> use that type to represent datetimes?</p></li>
+<li><p>What's the default <strong>origin</strong> of POSIXct objects? Write a line of code that converts the number 0 to January 1, 2000 at noon in UTC using <code>as.POSIXct()</code> (hint: look up the documentation for the <code>origin</code> parameter in the <code>as.POSIXct()</code> help page).</p>
+<ul>
+<li>Take away the POSIXct class from the object you just made. What kind of vector is it now? Why isn't the value 0 anymore?</li>
+</ul></li>
+</ul>
+<p><strong>Q3</strong></p>
+<p>What are the types of <code>y</code> and <code>z</code> in the following code? Why are they different?</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> x[<span class="dv">2</span>]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> x[[<span class="dv">2</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Q4</strong></p>
+<p>These questions are about the data structure underlying data frames.</p>
+<ul>
+<li><p>You learned that data frames are built on top of lists. In a data frame, what are the elements of the list - rows or columns?</p></li>
+<li><p>When called on a data frame, is <code>length()</code> equivalent to <code>nrow()</code> or <code>ncol()</code>? Why?</p></li>
+</ul>
+<p><strong>Q5</strong></p>
+<p>Say you have four experimental plots that you're supplementing with fertilizer. In the code below, which subsetting operator (<code>$</code>, <code>[</code>, or <code>[[</code>) would you use to pull out the column specified by the variable <code>nutrient</code>? Does your answer change if I specify the result has to be an atomic vector? Why or why not?</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>experiment <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot =</span> <span class="fu">c</span>(<span class="st">"p1"</span>, <span class="st">"p2"</span>, <span class="st">"p3"</span>, <span class="st">"p4"</span>),</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">N_g =</span> <span class="fu">c</span>(<span class="fl">0.2</span>, <span class="fl">0.7</span>, <span class="fl">0.3</span>, <span class="fl">0.2</span>),</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">P_g =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="fl">0.6</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>nutrient <span class="ot">&lt;-</span> <span class="st">"N_g"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Q6</strong></p>
+<p>The elements of lists can be anything, even other lists. That's why a common use case for lists is splitting data frames into groups (note: if you're familiar with <code>dplyr::group_by()</code>, just know this is something different). Explain what the following code does in plain language. If you want to play around with the code (and I recommend you do!) you may need to install the <code>palmerpenguins</code> package. Use <code>?split</code> for more information about that function.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins) </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>penguins_by_island <span class="ot">&lt;-</span> <span class="fu">split</span>(penguins, penguins<span class="sc">$</span>island)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>mean_mass <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Biscoe =</span> <span class="fu">mean</span>(penguins_by_island<span class="sc">$</span>Biscoe<span class="sc">$</span>body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Dream =</span> <span class="fu">mean</span>(penguins_by_island<span class="sc">$</span>Dream<span class="sc">$</span>body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Torgersen =</span> <span class="fu">mean</span>(penguins_by_island<span class="sc">$</span>Torgersen<span class="sc">$</span>body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="submission" class="level2">
+<h2 class="anchored" data-anchor-id="submission">Submission</h2>
+<ol type="1">
+<li>Render <code>reports/index.qmd</code>, which creates <code>reports/index.html</code>. Move <code>reports/index.html</code> to <code>docs/</code>.</li>
+<li>Activate your GitHub repository's Pages. What do you have to do to make <code>docs/index.html</code> render on your Pages site?</li>
+<li>Open an <strong><em>Issue</em></strong> in your repository on GitHub. Provide a link to your repo's Pages site. It should look like <em>yourusername.github.io/compthinking1</em>. Tag me in your issue (my user name on GitHub is FlukeAndFeather). In the issue’s thread, tell me how you updated your computational project organization notes during this assessment..</li>
+</ol>
+<p>Note: I'm deliberately not providing instructions for creating GitHub Issues. I want you to rely on experimentation, the internet, and your peers. If you haven't opened an issue before, try the following in this order:</p>
+<ol type="1">
+<li><p>Try on your own</p></li>
+<li><p>Ask Google</p></li>
+<li><p>Ask a colleague (i.e., your classmates)</p></li>
+</ol>
+<p>Congrats! You're done with Week 2! Keep up the good work!</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

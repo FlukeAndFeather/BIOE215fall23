@@ -1,0 +1,253 @@
+---
+title: "Computational project organization"
+format: 
+  html:
+    toc: true
+    toc-depth: 3
+editor: visual
+---
+
+# Intro
+
+Today\'s topic is **computational thinking**. The particular computational thinking skills we\'re focusing on are *data structures* and *abstraction*. Abstraction is about simplifying problems - it\'s how you take a complex, unique system and decompose it into patterns that are easier to think about and work with. It\'s arguably the single most important skill for doing things with code. But before we can think about a problem abstractly, we first need patterns to match our problem to. That\'s where data structures come in: they\'re how we organize and store data in code.
+
+Depending on your previous experience level, today\'s lesson may feel like you\'re revisiting material you\'ve already learned. But when it comes to programming, most biologists learn to run before they can walk. The purpose of today\'s lesson is to give you a more comprehensive understanding of what\'s happening when you use R\'s built-in data structures.
+
+We\'re going to begin with a pre-assessment. Don\'t worry if some of the questions feel unfamiliar - that\'s expected and normal! Based on the pre-assessment, I\'m going to recommend one of two different lessons for you.
+
+# Pre-assessment
+
+**Q1**
+
+RStudio has a code editor pane and a console pane. What\'s the difference between the two?
+*The code editor is where you write and edit text files e.g., R scripts and Quarto documents. You can save text for later, but writing code in this pane doesn\'t directly change anything about your environment. The console runs R commands. Typing a command at the console will execute it and change your environment. If you want to save those commands to run again in the future, you\'ll have to copy them to a script or other document in the code editor pane.*
+
+**Q2**
+
+What\'s the result of this code?
+
+``` R
+x <- 1:10
+x[8]
+```
+
+*8*
+
+**Q3**
+
+Say you have a data frame, `foo`, with columns `a`, `b`, and `c` in that order. What are two different ways of pulling the third element from column `b`?
+`foo$b[3]`, `foo[2, 3]`
+
+**Q4**
+
+Name at least two of the four basic types for data in R? (In R parlance, name two of the *atomic vector* types)
+*logical, integer, numeric (or double), character*
+
+**Q5**
+
+What data structure would you use to hold objects that are different types? For example, what data structure can hold `"a"` and `1.0` together?
+*list. "data frame" is partially correct, since data frames are a type of list.*
+
+How did you feel about the questions on the pre-assessment? If the subject matter felt familiar (even if you didn\'t get all the questions exactly right) I suggest you follow the lesson for [team Ctenophora](https://www.notion.so/Why-did-you-do-it-that-way-team-Ctenophora-68bea38348ae49cc85b8aadb148fa163?pvs=21). If the terms and concepts in the pre-assessment were new to you or if you want to revisit them in more detail, try the [team Porifera](https://www.notion.so/Writing-R-code-from-scratch-team-Porifera-11be6a952e524009b83b230d0da1ea93?pvs=21) lesson.
+
+# Lessons
+
+You have two options for today's lesson.
+
+## Which lesson should you choose?
+
+### Writing R code from scratch (team Porifera)
+
+You can run code someone else wrote or you can look up code online and paste that into your script, but starting your own script from scratch is a bit mystifying. This lesson introduces the fundamentals of working in R, like creating scripts and making variables. It also covers the fundamental **data structure** in R: vectors. You\'ll learn what vectors are, their different flavors, how to create/subset them, and how to call functions on them.
+
+### Why did you do it that way? (team Ctenophora)
+
+You\'ve memorized recipes and formulas for getting R to do what you want, but maybe you don\'t know why things work they do. Usually variables behave the way you expect. However when things go sideways you don\'t know where to begin diagnosing the issue. This lesson will formalize your understanding of types and how the more complex R data structures (like lists and data frames) are composed from simpler structures (like atomic vectors of numbers or text).
+
+## Team Porifera
+
+This lesson is from the Data Carpentry Semester Biology Course.
+
+### Reading
+
+Complete the [Introduction to R](https://datacarpentry.org/R-ecology-lesson/01-intro-to-r.html) lesson from Data Analysis and Vizualisation in R for Ecologists.
+
+### Exercises
+
+[Basic expressions](https://datacarpentry.org/semester-biology/exercises/Expressions-and-variables-basic-expressions-R/)
+
+[Basic variables](https://datacarpentry.org/semester-biology/exercises/Expressions-and-variables-basic-variables-R/)
+
+[More variables](https://datacarpentry.org/semester-biology/exercises/Expressions-and-variables-more-variables-R/)
+
+[Built-in functions](https://datacarpentry.org/semester-biology/exercises/Functions-built-in-functions-R/)
+
+[Modify the code](https://datacarpentry.org/semester-biology/exercises/Expressions-and-variables-modify-the-code-R/)
+
+[Basic vectors](https://datacarpentry.org/semester-biology/exercises/Vectors-basic-vectors-R/)
+
+[Nulls in vectors](https://datacarpentry.org/semester-biology/exercises/Vectors-nulls-in-vectors-R/)
+
+[Shrub volume vectors](https://datacarpentry.org/semester-biology/exercises/Vectors-shrub-volume-vectors-R/)
+
+[Variable names](https://datacarpentry.org/semester-biology/exercises/Expressions-and-variables-variable-names-R/)
+
+## Team Ctenophora
+
+### Reading
+
+Read sections 3-3.6.2 in [Chapter 3: Vectors](https://adv-r.hadley.nz/vectors-chap.html) and sections 4-4.2.4, and 4.3-4.3.2 in [Chapter 4: Subsetting](https://adv-r.hadley.nz/subsetting.html) in Advanced R by Hadley Wickham.
+
+### Exercises
+
+Use the exercise questions at the end of each section in the chapter.
+
+# Assessment
+
+Your assessment this week will use the computational project organization skills you learned last week. Work from your notes (last week\'s assessment) instead of the course material as much as you can. If/when you refer to the course material, update your notes accordingly!
+
+## Quarto
+
+This assessment involves a Quarto document. If you\'re already familiar with Quarto, move on to the next section. Otherwise, complete the Quarto Essentials mini-lesson.
+
+## Set up
+
+-   Create a new RStudio project with a git repository called *compthinking1*. Create a GitHub repository to go with it.
+
+-   Create a folder structure in your project to match what you learned in Week 1.
+
+-   In your `reports/` directory, create a Quarto document called **index.qmd**.
+
+## Questions
+
+*Abstraction* is a key computational thinking skill: filtering out all but the key details and matching your task to the right patterns. When it comes to data, abstraction means learning how to represent complex real-world data in standard *data structures*. In today\'s lesson you learned about the fundamental data structure in R: vectors.
+
+Answer the following questions in your Quarto document. Choose the questions according to the lesson you completed. Pretend this assessment is a report about your research you\'re sharing with a collaborator: add descriptive text and use Markdown formatting to make it easy to read.
+
+### Team Porifera
+
+**Q1**
+
+Match the following types of real-world data to their equivalent R type and explain your reasoning.
+
+-   Real world data: scientific names, the count of plants in a quadrat, whether or not it rained on a sequence of days, and the reaction times of birds to disturbances in seconds
+
+-   R types: logical, integer, numeric, and character
+
+**Q2**
+
+Use this code chunk to answer the following questions.
+
+``` R
+bird_mass_g <- c(100.1, 99.2, 99.3, NA, 100.0, 101.5, 94.7, 99.2, 108.2)
+mean_mass <- mean(bird_mass_g)
+sd_mass <- sd(bird_mass_g)
+is_outlier <- bird_mass_g > mean_mass + 3 * sd_mass
+num_outliers <- sum(is_outlier)
+```
+
+-   In plain english, what does this code chunk do?
+
+-   Two of the lines have mistakes that keep the code from doing what it\'s supposed to. What are the mistakes and how would you fix them?
+
+-   What are the types of `bird_mass_g`, `is_outlier`, and `num_outliers`?
+
+**Q3**
+
+How could you change the first line of code in the following chunk so that `median_count` comes out to `5L`?
+
+``` R
+quad_counts <- c(2L, 19L, 4L, 5L, 5L, 12L, 0L, 7L)
+valid_quads <- c(1, 2, 3, 5, 7) 2,19,4,5,0 0,2,4,5,19
+quad_counts2 <- quad_counts[valid_quads]
+median_count <- median(quad_counts2)
+```
+
+### Team Ctenophora
+
+**Q1**
+
+*Lookup tables* are a common use case for named vectors. Let\'s say you\'re surveying the avian community of a wetland. In your notebook, you recorded species by their 4-letter code: GREG for Great Egret, MALL for Mallard, MAWR for Marsh Wren, and KILL for Killdeer. You need a table of counts, but you need the table to show the full common name, not just the 4-letter code you used for convenience. Modify the code below to accomplish that task. First, make `species_code` a named vector, then modify the call to `table()` to use `species_code` as a lookup table that converts 4-letter codes to common names.
+
+```         
+species_codes <- c(  
+	# Fill this in
+)
+
+sightings = c("GREG", "GREG", "MALL", "MAWR", "KILL", "GREG")
+
+# Modify this line to use species_codes so your counts have common names
+table(sightings)
+```
+
+**Q2**
+
+These questions are about a built-in R class that is an extremely common source of confusion: `POSIXct`.
+
+-   Explain why adding 1 to a `POSIXct` datetime object increments it by a second. What *type* is `POSIXct` (type, not class)? How does `POSIXct` use that type to represent datetimes?
+
+-   What\'s the default **origin** of POSIXct objects? Write a line of code that converts the number 0 to January 1, 2000 at noon in UTC using `as.POSIXct()` (hint: look up the documentation for the `origin` parameter in the `as.POSIXct()` help page).
+
+    -   Take away the POSIXct class from the object you just made. What kind of vector is it now? Why isn\'t the value 0 anymore?
+
+**Q3**
+
+What are the types of `y` and `z` in the following code? Why are they different?
+
+``` R
+x <- list(1, 2, 3)
+y <- x[2]
+z <- x[[2]]
+```
+
+**Q4**
+
+These questions are about the data structure underlying data frames.
+
+-   You learned that data frames are built on top of lists. In a data frame, what are the elements of the list - rows or columns?
+
+-   When called on a data frame, is `length()` equivalent to `nrow()` or `ncol()`? Why?
+
+**Q5**
+
+Say you have four experimental plots that you\'re supplementing with fertilizer. In the code below, which subsetting operator (`$`, `[`, or `[[`) would you use to pull out the column specified by the variable `nutrient`? Does your answer change if I specify the result has to be an atomic vector? Why or why not?
+
+``` R
+experiment <- data.frame(
+	plot = c("p1", "p2", "p3", "p4"),
+	N_g = c(0.2, 0.7, 0.3, 0.2),
+	P_g = c(0.1, 0.1, 0.5, 0.6)
+)
+
+nutrient <- "N_g"
+```
+
+**Q6**
+
+The elements of lists can be anything, even other lists. That\'s why a common use case for lists is splitting data frames into groups (note: if you\'re familiar with `dplyr::group_by()`, just know this is something different). Explain what the following code does in plain language. If you want to play around with the code (and I recommend you do!) you may need to install the `palmerpenguins` package. Use `?split` for more information about that function.
+
+``` R
+library(palmerpenguins) 
+penguins_by_island <- split(penguins, penguins$island)
+mean_mass <- list(
+	Biscoe = mean(penguins_by_island$Biscoe$body_mass_g, na.rm = TRUE),
+	Dream = mean(penguins_by_island$Dream$body_mass_g, na.rm = TRUE),
+	Torgersen = mean(penguins_by_island$Torgersen$body_mass_g, na.rm = TRUE)
+)
+```
+
+## Submission
+
+1.  Render `reports/index.qmd`, which creates `reports/index.html`. Move `reports/index.html` to `docs/`.
+2.  Activate your GitHub repository\'s Pages. What do you have to do to make `docs/index.html` render on your Pages site?
+3.  Open an ***Issue*** in your repository on GitHub. Provide a link to your repo\'s Pages site. It should look like *yourusername.github.io/compthinking1*. Tag me in your issue (my user name on GitHub is FlukeAndFeather). In the issue's thread, tell me how you updated your computational project organization notes during this assessment..
+
+Note: I\'m deliberately not providing instructions for creating GitHub Issues. I want you to rely on experimentation, the internet, and your peers. If you haven\'t opened an issue before, try the following in this order:
+
+1.  Try on your own
+
+2.  Ask Google
+
+3.  Ask a colleague (i.e., your classmates)
+
+Congrats! You\'re done with Week 2! Keep up the good work!
