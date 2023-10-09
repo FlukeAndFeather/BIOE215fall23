@@ -323,7 +323,7 @@ Answer
 </div>
 </div>
 </div>
-<p>How did you feel about the questions on the pre-assessment? If the subject matter felt familiar (even if you didn’t get all the questions exactly right) I suggest you follow the lesson for <a href="https://www.notion.so/Why-did-you-do-it-that-way-team-Ctenophora-68bea38348ae49cc85b8aadb148fa163?pvs=21">team Ctenophora</a>. If the terms and concepts in the pre-assessment were new to you or if you want to revisit them in more detail, try the <a href="https://www.notion.so/Writing-R-code-from-scratch-team-Porifera-11be6a952e524009b83b230d0da1ea93?pvs=21">team Porifera</a> lesson.</p>
+<p>How did you feel about the questions on the pre-assessment? If the subject matter felt familiar (even if you didn’t get all the questions exactly right) I suggest you follow the lesson for <a href="#team-ctenophora">Team Ctenophora</a>. If the terms and concepts in the pre-assessment were new to you or if you want to revisit them in more detail, try the <a href="#team-porifera">Team Porifera</a> lesson.</p>
 </section>
 <section id="lessons" class="level1">
 <h1>Lessons</h1>
@@ -421,14 +421,14 @@ Answer
 <h3 class="anchored" data-anchor-id="team-ctenophora-1">Team Ctenophora</h3>
 <p><strong>Q1</strong></p>
 <p><em>Lookup tables</em> are a common use case for named vectors. Let’s say you’re surveying the avian community of a wetland. In your notebook, you recorded species by their 4-letter code: GREG for Great Egret, MALL for Mallard, MAWR for Marsh Wren, and KILL for Killdeer. You need a table of counts, but you need the table to show the full common name, not just the 4-letter code you used for convenience. Modify the code below to accomplish that task. First, make <code>species_code</code> a named vector, then modify the call to <code>table()</code> to use <code>species_code</code> as a lookup table that converts 4-letter codes to common names.</p>
-<pre><code>species_codes &lt;- c(  
-    # Fill this in
-)
-
-sightings = c("GREG", "GREG", "MALL", "MAWR", "KILL", "GREG")
-
-# Modify this line to use species_codes so your counts have common names
-table(sightings)</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>species_codes <span class="ot">&lt;-</span> <span class="fu">c</span>(  </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Fill this in</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>sightings <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"GREG"</span>, <span class="st">"GREG"</span>, <span class="st">"MALL"</span>, <span class="st">"MAWR"</span>, <span class="st">"KILL"</span>, <span class="st">"GREG"</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Modify this line to use species_codes so your counts have common names</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(sightings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Q2</strong></p>
 <p>These questions are about a built-in R class that is an extremely common source of confusion: <code>POSIXct</code>.</p>
 <ul>
