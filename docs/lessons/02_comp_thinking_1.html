@@ -200,6 +200,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#submission" id="toc-submission" class="nav-link" data-scroll-target="#submission">Submission</a></li>
   </ul></li>
+  <li><a href="#key-points" id="toc-key-points" class="nav-link" data-scroll-target="#key-points">Key points</a>
+  <ul class="collapse">
+  <li><a href="#types" id="toc-types" class="nav-link" data-scroll-target="#types">Types</a></li>
+  <li><a href="#indexing" id="toc-indexing" class="nav-link" data-scroll-target="#indexing">Indexing</a>
+  <ul class="collapse">
+  <li><a href="#atomic-vectors" id="toc-atomic-vectors" class="nav-link" data-scroll-target="#atomic-vectors">Atomic vectors</a></li>
+  <li><a href="#lists" id="toc-lists" class="nav-link" data-scroll-target="#lists">Lists</a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -323,7 +332,7 @@ Answer
 </div>
 </div>
 </div>
-<p>How did you feel about the questions on the pre-assessment? If the subject matter felt familiar (even if you didn’t get all the questions exactly right) I suggest you follow the lesson for <a href="#team-ctenophora">Team Ctenophora</a>. If the terms and concepts in the pre-assessment were new to you or if you want to revisit them in more detail, try the <a href="#team-porifera">Team Porifera</a> lesson.</p>
+<p>How did you feel about the questions on the pre-assessment? If the subject matter felt familiar (even if you didn’t get all the questions exactly right) I suggest you follow the lesson for <a href="https://www.notion.so/Why-did-you-do-it-that-way-team-Ctenophora-68bea38348ae49cc85b8aadb148fa163?pvs=21">team Ctenophora</a>. If the terms and concepts in the pre-assessment were new to you or if you want to revisit them in more detail, try the <a href="https://www.notion.so/Writing-R-code-from-scratch-team-Porifera-11be6a952e524009b83b230d0da1ea93?pvs=21">team Porifera</a> lesson.</p>
 </section>
 <section id="lessons" class="level1">
 <h1>Lessons</h1>
@@ -421,14 +430,14 @@ Answer
 <h3 class="anchored" data-anchor-id="team-ctenophora-1">Team Ctenophora</h3>
 <p><strong>Q1</strong></p>
 <p><em>Lookup tables</em> are a common use case for named vectors. Let’s say you’re surveying the avian community of a wetland. In your notebook, you recorded species by their 4-letter code: GREG for Great Egret, MALL for Mallard, MAWR for Marsh Wren, and KILL for Killdeer. You need a table of counts, but you need the table to show the full common name, not just the 4-letter code you used for convenience. Modify the code below to accomplish that task. First, make <code>species_code</code> a named vector, then modify the call to <code>table()</code> to use <code>species_code</code> as a lookup table that converts 4-letter codes to common names.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>species_codes <span class="ot">&lt;-</span> <span class="fu">c</span>(  </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Fill this in</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>sightings <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"GREG"</span>, <span class="st">"GREG"</span>, <span class="st">"MALL"</span>, <span class="st">"MAWR"</span>, <span class="st">"KILL"</span>, <span class="st">"GREG"</span>)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Modify this line to use species_codes so your counts have common names</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(sightings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>species_codes &lt;- c(  
+    # Fill this in
+)
+
+sightings = c("GREG", "GREG", "MALL", "MAWR", "KILL", "GREG")
+
+# Modify this line to use species_codes so your counts have common names
+table(sightings)</code></pre>
 <p><strong>Q2</strong></p>
 <p>These questions are about a built-in R class that is an extremely common source of confusion: <code>POSIXct</code>.</p>
 <ul>
@@ -483,8 +492,139 @@ Answer
 <li><p>Ask a colleague (i.e., your classmates)</p></li>
 </ol>
 <p>Congrats! You’re done with Week 2! Keep up the good work!</p>
+</section>
+</section>
+<section id="key-points" class="level1">
+<h1>Key points</h1>
+<section id="types" class="level2">
+<h2 class="anchored" data-anchor-id="types">Types</h2>
+<ul>
+<li><p>R has four important <em>atomic vectors</em>. These vectors hold data of the same <em>type</em>: logical (<code>TRUE</code>, <code>FALSE</code>), integer (<code>1L</code>, <code>2L</code>), double (<code>3.14</code>, <code>100.0</code>), and character (<code>"a"</code>, <code>"Homo sapiens"</code>).</p></li>
+<li><p>R holds mixed-type data in <em>lists</em>. For example, <code>dog &lt;- list(name = "Bowie", weight_lb = 80.0)</code> creates a list that describes my dog with both character and double values. Data frames are derived from lists.</p></li>
+</ul>
+</section>
+<section id="indexing" class="level2">
+<h2 class="anchored" data-anchor-id="indexing">Indexing</h2>
+<p>You access data in vectors using indexing.</p>
+<section id="atomic-vectors" class="level3">
+<h3 class="anchored" data-anchor-id="atomic-vectors">Atomic vectors</h3>
+<ul>
+<li><p>Index into atomic vectors with the <code>[</code> operator.</p></li>
+<li><p>There are three ways to index atomic vectors: position, logic, and name.</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a vector with names</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>bounding_box <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">xmin =</span> <span class="sc">-</span><span class="dv">122</span>, <span class="at">xmax =</span> <span class="sc">-</span><span class="dv">118</span>, <span class="at">ymin =</span> <span class="dv">33</span>, <span class="at">ymax =</span> <span class="dv">38</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Indexing by position:</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># One element</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>bounding_box[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>xmin 
+-122 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Two elements with :</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>bounding_box[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>xmin xmax 
+-122 -118 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Two elements with c()</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>bounding_box[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>xmin ymax 
+-122   38 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># All but one element with negative</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>bounding_box[<span class="sc">-</span><span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>xmax ymin ymax 
+-118   33   38 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Indexing by logic</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>bounding_box[<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>xmin 
+-122 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Usually create logic vector with comparison operator</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>is_negative <span class="ot">&lt;-</span> bounding_box <span class="sc">&lt;</span> <span class="dv">0</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>bounding_box[is_negative]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>xmin xmax 
+-122 -118 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Same as above, but in one line</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>bounding_box[bounding_box <span class="sc">&lt;</span> <span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>xmin xmax 
+-122 -118 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Indexing by name</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># One element</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>bounding_box[<span class="st">"xmin"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>xmin 
+-122 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Two elements with c()</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>bounding_box[<span class="fu">c</span>(<span class="st">"xmin"</span>, <span class="st">"xmax"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>xmin xmax 
+-122 -118 </code></pre>
+</div>
+</div>
+</section>
+<section id="lists" class="level3">
+<h3 class="anchored" data-anchor-id="lists">Lists</h3>
+<ul>
+<li><p>There are three operators for indexing into lists: <code>[</code>, <code>[[</code>, and <code>$</code>.</p></li>
+<li><p><code>[</code> subsets the list, yielding a shorter list. As with atomic vector indexing, can use position, logic, or name.</p></li>
+<li><p><code>[[</code> and <code>$</code> pull contents themselves out of the list. Only allows access from one element, by position or name.</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a list with names</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>dog <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">name =</span> <span class="st">"Bowie"</span>, </span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">weight_lb =</span> <span class="fl">80.0</span>, </span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">skills =</span> <span class="fu">c</span>(<span class="st">"nap"</span>, <span class="st">"eat"</span>, <span class="st">"more nap"</span>))</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset the list by position...</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>dog[<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$weight_lb
+[1] 80</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ... by logic ...</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>dog[<span class="fu">c</span>(<span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$weight_lb
+[1] 80</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ... or by name</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>dog[<span class="st">"weight_lb"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$weight_lb
+[1] 80</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pull contents from the list by position with [[ ...</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>dog[[<span class="dv">2</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 80</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ... by name with [[ ...</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>dog[[<span class="st">"weight_lb"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 80</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ... or by name with $</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>dog<span class="sc">$</span>weight_lb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 80</code></pre>
+</div>
+</div>
 
 
+</section>
 </section>
 </section>
 

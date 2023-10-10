@@ -72,7 +72,7 @@ What data structure would you use to hold objects that are different types? For 
 *list. "data frame" is partially correct, since data frames are a type of list.*
 :::
 
-How did you feel about the questions on the pre-assessment? If the subject matter felt familiar (even if you didn't get all the questions exactly right) I suggest you follow the lesson for [Team Ctenophora]. If the terms and concepts in the pre-assessment were new to you or if you want to revisit them in more detail, try the [Team Porifera] lesson.
+How did you feel about the questions on the pre-assessment? If the subject matter felt familiar (even if you didn't get all the questions exactly right) I suggest you follow the lesson for [team Ctenophora](https://www.notion.so/Why-did-you-do-it-that-way-team-Ctenophora-68bea38348ae49cc85b8aadb148fa163?pvs=21). If the terms and concepts in the pre-assessment were new to you or if you want to revisit them in more detail, try the [team Porifera](https://www.notion.so/Writing-R-code-from-scratch-team-Porifera-11be6a952e524009b83b230d0da1ea93?pvs=21) lesson.
 
 # Lessons
 
@@ -193,7 +193,7 @@ median_count <- median(quad_counts2)
 
 *Lookup tables* are a common use case for named vectors. Let's say you're surveying the avian community of a wetland. In your notebook, you recorded species by their 4-letter code: GREG for Great Egret, MALL for Mallard, MAWR for Marsh Wren, and KILL for Killdeer. You need a table of counts, but you need the table to show the full common name, not just the 4-letter code you used for convenience. Modify the code below to accomplish that task. First, make `species_code` a named vector, then modify the call to `table()` to use `species_code` as a lookup table that converts 4-letter codes to common names.
 
-``` r
+```         
 species_codes <- c(  
     # Fill this in
 )
@@ -275,3 +275,79 @@ Note: I'm deliberately not providing instructions for creating GitHub Issues. I 
 3.  Ask a colleague (i.e., your classmates)
 
 Congrats! You're done with Week 2! Keep up the good work!
+
+# Key points
+
+## Types
+
+-   R has four important *atomic vectors*. These vectors hold data of the same *type*: logical (`TRUE`, `FALSE`), integer (`1L`, `2L`), double (`3.14`, `100.0`), and character (`"a"`, `"Homo sapiens"`).
+
+-   R holds mixed-type data in *lists*. For example, `dog <- list(name = "Bowie", weight_lb = 80.0)` creates a list that describes my dog with both character and double values. Data frames are derived from lists.
+
+## Indexing
+
+You access data in vectors using indexing.
+
+### Atomic vectors
+
+-   Index into atomic vectors with the `[` operator.
+
+-   There are three ways to index atomic vectors: position, logic, and name.
+
+```{r}
+# Create a vector with names
+bounding_box <- c(xmin = -122, xmax = -118, ymin = 33, ymax = 38)
+
+# Indexing by position:
+# One element
+bounding_box[1]
+# Two elements with :
+bounding_box[1:2]
+# Two elements with c()
+bounding_box[c(1, 4)]
+# All but one element with negative
+bounding_box[-1]
+
+# Indexing by logic
+bounding_box[c(TRUE, FALSE, FALSE, FALSE)]
+# Usually create logic vector with comparison operator
+is_negative <- bounding_box < 0
+bounding_box[is_negative]
+# Same as above, but in one line
+bounding_box[bounding_box < 0]
+
+# Indexing by name
+# One element
+bounding_box["xmin"]
+# Two elements with c()
+bounding_box[c("xmin", "xmax")]
+```
+
+### Lists
+
+-   There are three operators for indexing into lists: `[`, `[[`, and `$`.
+
+-   `[` subsets the list, yielding a shorter list. As with atomic vector indexing, can use position, logic, or name.
+
+-    `[[` and `$` pull contents themselves out of the list. Only allows access from one element, by position or name.
+
+```{r}
+# Create a list with names
+dog <- list(name = "Bowie", 
+            weight_lb = 80.0, 
+            skills = c("nap", "eat", "more nap"))
+
+# Subset the list by position...
+dog[2]
+# ... by logic ...
+dog[c(FALSE, TRUE, FALSE)]
+# ... or by name
+dog["weight_lb"]
+
+# Pull contents from the list by position with [[ ...
+dog[[2]]
+# ... by name with [[ ...
+dog[["weight_lb"]]
+# ... or by name with $
+dog$weight_lb
+```

@@ -231,6 +231,20 @@
     "text": "Submission\n\nRender reports/index.qmd, which creates reports/index.html. Move reports/index.html to docs/.\nActivate your GitHub repository’s Pages. What do you have to do to make docs/index.html render on your Pages site?\nOpen an Issue in your repository on GitHub. Provide a link to your repo’s Pages site. It should look like yourusername.github.io/compthinking1. Tag me in your issue (my user name on GitHub is FlukeAndFeather). In the issue’s thread, tell me how you updated your computational project organization notes during this assessment..\n\nNote: I’m deliberately not providing instructions for creating GitHub Issues. I want you to rely on experimentation, the internet, and your peers. If you haven’t opened an issue before, try the following in this order:\n\nTry on your own\nAsk Google\nAsk a colleague (i.e., your classmates)\n\nCongrats! You’re done with Week 2! Keep up the good work!"
   },
   {
+    "objectID": "lessons/02_comp_thinking_1.html#types",
+    "href": "lessons/02_comp_thinking_1.html#types",
+    "title": "Computational thinking 1",
+    "section": "Types",
+    "text": "Types\n\nR has four important atomic vectors. These vectors hold data of the same type: logical (TRUE, FALSE), integer (1L, 2L), double (3.14, 100.0), and character (\"a\", \"Homo sapiens\").\nR holds mixed-type data in lists. For example, dog &lt;- list(name = \"Bowie\", weight_lb = 80.0) creates a list that describes my dog with both character and double values. Data frames are derived from lists."
+  },
+  {
+    "objectID": "lessons/02_comp_thinking_1.html#indexing",
+    "href": "lessons/02_comp_thinking_1.html#indexing",
+    "title": "Computational thinking 1",
+    "section": "Indexing",
+    "text": "Indexing\nYou access data in vectors using indexing.\n\nAtomic vectors\n\nIndex into atomic vectors with the [ operator.\nThere are three ways to index atomic vectors: position, logic, and name.\n\n\n# Create a vector with names\nbounding_box &lt;- c(xmin = -122, xmax = -118, ymin = 33, ymax = 38)\n\n# Indexing by position:\n# One element\nbounding_box[1]\n\nxmin \n-122 \n\n# Two elements with :\nbounding_box[1:2]\n\nxmin xmax \n-122 -118 \n\n# Two elements with c()\nbounding_box[c(1, 4)]\n\nxmin ymax \n-122   38 \n\n# All but one element with negative\nbounding_box[-1]\n\nxmax ymin ymax \n-118   33   38 \n\n# Indexing by logic\nbounding_box[c(TRUE, FALSE, FALSE, FALSE)]\n\nxmin \n-122 \n\n# Usually create logic vector with comparison operator\nis_negative &lt;- bounding_box &lt; 0\nbounding_box[is_negative]\n\nxmin xmax \n-122 -118 \n\n# Same as above, but in one line\nbounding_box[bounding_box &lt; 0]\n\nxmin xmax \n-122 -118 \n\n# Indexing by name\n# One element\nbounding_box[\"xmin\"]\n\nxmin \n-122 \n\n# Two elements with c()\nbounding_box[c(\"xmin\", \"xmax\")]\n\nxmin xmax \n-122 -118 \n\n\n\n\nLists\n\nThere are three operators for indexing into lists: [, [[, and $.\n[ subsets the list, yielding a shorter list. As with atomic vector indexing, can use position, logic, or name.\n[[ and $ pull contents themselves out of the list. Only allows access from one element, by position or name.\n\n\n# Create a list with names\ndog &lt;- list(name = \"Bowie\", \n            weight_lb = 80.0, \n            skills = c(\"nap\", \"eat\", \"more nap\"))\n\n# Subset the list by position...\ndog[2]\n\n$weight_lb\n[1] 80\n\n# ... by logic ...\ndog[c(FALSE, TRUE, FALSE)]\n\n$weight_lb\n[1] 80\n\n# ... or by name\ndog[\"weight_lb\"]\n\n$weight_lb\n[1] 80\n\n# Pull contents from the list by position with [[ ...\ndog[[2]]\n\n[1] 80\n\n# ... by name with [[ ...\ndog[[\"weight_lb\"]]\n\n[1] 80\n\n# ... or by name with $\ndog$weight_lb\n\n[1] 80"
+  },
+  {
     "objectID": "lessons/02a_quarto_essentials.html",
     "href": "lessons/02a_quarto_essentials.html",
     "title": "Quarto essentials",
