@@ -329,7 +329,7 @@ bounding_box[c("xmin", "xmax")]
 
 -   `[` subsets the list, yielding a shorter list. As with atomic vector indexing, can use position, logic, or name.
 
--    `[[` and `$` pull contents themselves out of the list. Only allows access from one element, by position or name.
+-   `[[` and `$` pull contents themselves out of the list. Only allows access from one element, by position or name.
 
 ```{r}
 # Create a list with names

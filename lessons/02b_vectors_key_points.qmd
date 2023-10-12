@@ -1,0 +1,390 @@
+---
+title: "Vector review"
+execute: 
+  eval: false
+---
+
+This lesson reviews the key points about vector from lesson *Computational Thinking 1*.
+
+# Types
+
+## *Atomic* *vectors*
+
+**Jargon:**
+
+-   *data structure*. The data you collect might be written on paper or bits collected by an instrument. But R is way too naïve to know anything about that. For R to do something useful with your data (transform it, fit a model to it, make a figure from it), you need to put your data into a *data structure*. R loves data structures, and if you choose the right *data structure* for your data then R will make your life way easier.
+
+-   *atomic vector*. Just like how atoms are the building blocks of matter, *atomic* *vectors* are the building blocks of data in R. They're the simplest kind of data structure R has. Think of them as variables in data you'd collect in the lab or field, like masses or times or counts. Everything in an *atomic* *vector* has to be the same type. Compare against *lists* (next section).
+
+-   *element*. Ok, the chemistry analogy breaks down here. Thanks for nothing, R. The individual bits and pieces of data structures are called *elements*. An atomic vector holding the values 0, -1, and 3.14 has three *elements*.
+
+**Q1:** There are four types we care about when it comes to R vectors. What are they?
+
+**Q2:** What are the types of each of these vectors? How many elements do they have? What R function tells you the number of elements?
+
+``` r
+sci_names <- c("Balaenoptera musculus", "Balaenoptera physalus", "Megaptera noveangliae")
+quadrat_counts <- c(12L, 0L, 0L, 3L, 0L, 10L)
+rained <- c(TRUE, TRUE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE)
+react_time_s <- c(0.13, 0.19, 0.15, 0.10, 0.15, 0.15, 0.15, 0.14)
+```
+
+## *Lists*
+
+**Jargon:**
+
+-   *list*. If atomic vectors are atoms, then *lists* are molecules. A *list* is a more flexible data structure than an atomic vector. They can be made from multiple types of atomic vectors, or even other *lists*! Data frames (more on those next week) are actually a special form of *lists*.
+
+Here's an example of how lists can be built from atomic vectors and/or other lists.
+
+``` r
+dog1 <- list(name = "Bowie", 
+             weight_lb = 80.0, 
+             skills = c("nap", "eat", "more nap"))
+dog2 <- list(name = "Lassie",
+             weight_lb = 65.0,
+             skills = c("save tommy", "bark", "acting"))
+dogs <- list(dog1, dog2)
+```
+
+::: callout-note
+Did you notice the different functions used to make atomic vectors and lists? `c()` for atomic vectors, `list()` for lists.
+:::
+
+**Q3:** In the code above, what do you think is the length of `dog1`? `dog2`? `dogs`?
+
+**Q4:** What's the type of `dog1`? `dog1` has three elements, called `name`, `weight_lb`, and `skills`. What are their types and lengths?
+
+# Indexing and subsetting
+
+**Jargon:**
+
+-   *index*. When you see *index*, think street address, not the index at the back of a book. The *index* is a location in a data structure. You're probably used to *indexing* with numbers (`foo[1:3]`), but you can also *index* with names and logic (more on that shortly).
+
+-   *subsetting*. Pulling out a part, or *subset*, of a data structure. Examples include *subsetting* the first element (`foo[1]`), all but the first element (`foo[-1]`), multiple elements (`foo[1:3]`), or even the same element multiple times (`foo[c(1, 1, 1)]`).
+
+## Atomic vectors
+
+If your data are in an atomic vector, then you can index in three different ways to get a subset.
+
+### Position
+
+Let's start with indexing by position.
+
+```{r}
+# Start with two vectors: species and migration distances
+species <- c("Arctic tern", "Sooty shearwater", "Adelie penguin")
+migration_km <- c(96000, 64000, 18000)
+
+# What will these do?
+species[1]
+migration_km[-1]
+migration_km[1:2]
+species[c(1, 1, 1)]
+i <- 3
+species[i]
+```
+
+**Q5:** How would you subset `migration_km` to get the second element?
+
+**Q6:** What are three ways to subset `migration_km` to get the first and second elements? Hint: use `:`, `c()`, and a negative number.
+
+**Q7:** How would you use the `length()` function to get the last element of a vector? Demonstrate with `species`.
+
+### Name
+
+Sometimes it's helpful to give the elements of your vectors names. That way you can find the data you want even if you don't know the position.
+
+```{r}
+# Instead of separate vectors for species and migration distances, we can
+# just name the elements of migration_km themselves.
+migration_km <- c(ArcticTern = 96000, SootyShearwater = 64000, AdeliePenguin = 18000)
+
+# One element by name
+migration_km["ArcticTern"]
+
+# Two elements by name (have to use c()! : won't work with names!)
+migration_km[c("ArcticTern", "SootyShearwater")]
+
+```
+
+::: callout-note
+When you use `c()` or `list()` to make a data structure, follow the pattern `c(name = value`). R understands the bit to the left of the `=` is a name from context, so `name` doesn't *have* to go in quotes unless it has a space in it. If you want `value` to be understood as text, then it would have to go in quotes. So this works `c(a = "b")` and this works `c("a" = "b")` but this doesn't `c(a = b)`.
+:::
+
+**Q8:** Why doesn't this work? `migration_km[ArcticTern]`
+
+**Q9:** Are `migration_km[3]` and `migration_km["AdeliePenguin"]` equivalent? What if I remove an element from `migration_km` or shuffle it first?
+
+**Q10:** Here's a deliberately tricky question. What does the following give you?
+
+```{r}
+ArcticTern <- "SootyShearwater"
+migration_km[ArcticTern]
+```
+
+::: callout-note
+You may have noticed that printing a named vector gives you both the names and the values, which might make it look like there are *two* vectors. But really it's just one. The names are basically decorative, displayed on top of the values. When it comes to the data, though, it's the value that matters.
+:::
+
+**Q11:** Below you see the result of subsetting a named vector. What's the *type* of the result - character or double?
+
+```{r}
+migration_km[1]
+```
+
+### Logic
+
+The third way to subset a vector is with a bunch of `TRUE`s and `FALSE`s. That might seem pointless on its own, but it becomes very useful when you use comparisons like `==` and `>` to generate the `TRUE`s and `FALSE`s for you.
+
+```{r}
+# Temperature at a site for the first ten days of February
+dates <- paste("Feb", 1:10)
+temp_F <- c(54.0, 53.8, 53.1, 54, 71.9, 72.0, 54.0, 53.3, 53.9, 53.1)
+
+# Use logic to subset the first and second temperatures
+# This is a silly way to do this
+temp_F[c(TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE)]
+# Slightly less silly, though still silly
+temp_F[c(rep(TRUE, 2), rep(FALSE, 8))]
+
+# Which days were warmer than the median?
+# This is typically how you'll subset by logic
+dates[temp_F > median(temp_F)]
+
+# Which days were "heat waves" (more than 2 standard deviations hotter 
+# than the median)
+is_heat_wave <- temp_F > ___ + ___
+heat_wave_dates <- dates[___]
+heat_wave_dates
+```
+
+**Q12:** Fill in the blanks above to figure out the heat wave dates. What were they?
+
+**Q13:** What's the type of `is_heat_wave`? Of `heat_wave_dates`?
+
+## Lists
+
+Lists are more flexible than atomic vectors, so subsetting gets a little more complicated. Subsetting an atomic vector always gives you an atomic vector of the same type, but since lists can hold multiple types they work a little differently.
+
+There are three ways to subset lists. `[` works similarly as it does with atomic vectors: you get a subset of the list and it's still a list. `[[` and `$` are a little different: they pull the contents out of a list. `[` might be more familiar, but most of the time `[[` and `$` do what you actually want them to do. Let's look at what that means in practice.
+
+### Subsetting with `[`
+
+```{r}
+# Remember our dogs?
+dog1 <- list(name = "Bowie", 
+             weight_lb = 80.0, 
+             skills = c("nap", "eat", "more nap"))
+dog2 <- list(name = "Lassie",
+             weight_lb = 65.0,
+             skills = c("save tommy", "bark", "acting"))
+dogs <- list(dog1, dog2)
+
+# Subsetting lists with `[` is very similar to atomic vectors, you're 
+# always getting a list back
+
+# Index by position
+dog1[1]
+dogs[1]
+
+# Index by name
+dog1["weight_lb"]
+dog2["skills"]
+
+# You can index by logic, too, but it's not terribly helpful here
+```
+
+::: callout-note
+Wow, lists print a lot differently than atomic vectors, don't they? That's the price of being flexible, you end up being more complicated. But they share their roots with atomic vectors. `[[1]]` means the element at position 1 and `$some_name` means the element with position `some_name`. Lists can contain other lists, so `[[1]]$some_name` means "in the first element, the element named `some_name`".
+:::
+
+**Q14:** What's the type of `dog1[1]`? `dog1[1:2]`? `dogs[2]`?
+
+### Subsetting with `[[` and `$`
+
+`[[` and `$` are how you pull the contents out of elements in a list. You can only do this on a single element, so some of the things you can do with `[` like `x[1:3]` and `x[c("a", "b")]` won't work.
+
+For the next examples, you'll need the `palmerpenguins` package installed.
+
+```{r}
+# Use `[[` to subset by position
+dog1[[2]]
+
+# Use `[[` to subset by name
+dog1[["weight_lb"]]
+
+# Use `$` to subset by name
+dog1$weight_lb
+```
+
+::: callout-note
+Did you notice the difference when subsetting by name with `[[` and `$`? `weight_lb` had to go in quotes with `[[`, but was unquoted with `$`. Subsetting with `$` is one of the few times you can use a name unquoted.
+:::
+
+**Q15:** Why doesn't `dog1[[weight_lb]]` work? Use the error message to explain why.
+
+**Q16:** What's the type of `dog1[[2]]`? How is it different than `dog1[2]`?
+
+#### A minute on data frames
+
+You may already be familiar with `$` if you've used it to subset columns from data frames. Data frames are a special type of list. The columns of the data frame are elements of the list. This kind of building complex data structures from simpler parts is a form of *abstraction*, which is key to solving problems computationally.
+
+For this section, install the `palmerpenguins` package if necessary.
+
+```{r}
+# install.packages("palmerpenguins")
+library(palmerpenguins)
+
+# penguins is a data frame, meaning it's a list
+typeof(penguins)
+
+# The elements of the list are the columns, so the length is the number of columns, not the number of rows.
+length(penguins)
+nrow(penguins)
+ncol(penguins)
+
+# Subsetting a column with $ and [[ returns *just* the column
+penguins$body_mass_g
+penguins[["body_mass_g"]]
+typeof(penguins$body_mass_g)
+
+# Remember subsetting a list with [ returns a shorter list, so 
+# subsetting a column with [ returns a data frame
+penguins["body_mass_g"]
+typeof(penguins["body_mass_g"])
+
+```
+
+**Q17:** `length(penguins)` giving you the number of columns instead of rows is pretty counterintuitive.Why would columns be the elements in the list instead of the rows? Use types in your answer. Are the types of the elements in columns one type or many? How about rows?
+
+**Q18:** If you know the name of the column you want to subset in advance, then `$` is convenient e.g., `penguins$body_mass_g`. But say the name of the column is in a variable e.g., `penguin_var <- "body_mass_g"`. How you would you use `penguin_var` to subset the `body_mass_g` column?
+
+# Exercises
+
+**E1:** Subset the second and fourth elements of `habitat` by position and by name.
+
+::: callout-tip
+Hint: `c()` is your friend for indexing!
+:::
+
+```{r}
+habitat <- c("intertidal", "chaparral", "urban", "redwood")
+habitat_by_position <- habitat[___]
+habitat_by_name <- habitat[___]
+```
+
+**E2:** Subset `habitat` to create a new vector that's the first element repeated four times and the second element repeated two times.
+
+```{r}
+habitat_repeats <- habitat[___]
+```
+
+**E3:** You're running an analysis that involves drawing a bunch of random samples. Use `sample()` to generate 10 numbers between 1 and 4, and subset `habitat` using those numbers.
+
+```{r}
+habitat_positions <- sample(___, size = ___, replace = TRUE)
+habitat_samples <- ___
+```
+
+**E3:** You've reorganized your code, and now you have a vector of species richness named by habitat. Draw 10 random samples again, but instead of indexing by position, index by name instead.
+
+::: callout-note
+Hint: Think about what the the first argument to `sample()` should be. It's the vector you're sampling from...
+:::
+
+```{r}
+species_richness <- c(intertidal = 12, 
+                      chaparral = 8,
+                      urban = 3,
+                      redwood = 5)
+habitat_names <- names(species_richness)
+names_samples <- sample(___, size = ___, replace = TRUE)
+richness_samples <- ___[___]
+```
+
+**E4:** `table()` is a built-in function that tells you how many times each value appears in a vector. Use the code chunk below to answer the following questions
+
+```{r}
+# Count up how many penguin observations were collected by year
+year_table <- table(penguins$year)
+
+# Index by position to get the number of penguins measured in 2009
+year_table[___]
+# Index by name to get the number of penguins measured in 2009
+year_table[___]
+```
+
+**E4.1:** When you print `year_table` at your console you'll see two rows of text - the names and values. What are the names and what are the values?
+
+**E4.2:** Fill in the blanks above to find the number of penguins measured in 2009 by *position* and by *name*.
+
+**E4.3:** What *type* do you think `year_table` is? Use `typeof()` to check your answer. Were you correct? Explain your reasoning.
+
+**E5:** Every object in R more complex than an atomic vector is a list. In this exercise, you'll use the elements in a linear regression model to find penguins with above-average mass for their size, then figure out which island has the chunkiest penguins
+
+```{r}
+# To get our Chunkiness Quotient (CQ), we regress body mass against 
+# flipper length. The residual is our CQ.
+
+# First, fit a linear model. This estimates mass relative to flipper 
+# length.
+cq_lm <- lm(penguins$body_mass_g ~ penguins$flipper_length_mm)
+
+# What are the model coefficients? Use `$` to subset them.
+# Hint: use the names() function to find what name to use
+cq_coef <- cq_lm$___
+```
+
+**E5.1:** Fill in the blank above to get the coefficients from the CQ model.
+
+**E5.2** How many elements are in `cq_coef`? What do they represent?
+
+```{r}
+# Use the model coefficients to get the predicted body mass for the
+# bird's flipper size.
+predicted_mass <- penguins$___ * cq_coef[___] + cq_coef[___]
+
+# CQ is the residual mass
+penguin_cq <- penguins$___ - ___
+```
+
+**E5.3** Fill in the blanks above to calculate CQ.
+
+```{r}
+# Figure out how many chunky penguins (CQ > 0) are at each island.
+is_chunky <- ___ > ___
+
+# Use indexing by logic to pull out the name of the island for each
+# chunky penguin
+island_by_chunk <- penguins$island[___]
+
+# Use table() to figure out which island has the most chunky penguins
+```
+
+**E5.4** Fill in the blanks above
+
+**E5.5** Which island has the most chunky penguins?
+
+**E6** In E5, we used flipper length as the basis for our Chunkiness Quotient. But there are other measurements in `penguins` we could have used, like bill length and bill depth. Rewrite the solution to E5 to choose the measurement dynamically.
+
+**E6.1** In the code chunk below, create a variable, `penguin_var`, and set its value to the name of the column in `penguins` with the bill length measurement.
+
+**E6.2** Change two other lines of code to use `penguin_var` instead of the hard-coded flipper length.
+
+::: callout-note
+Hint: remember one of the limitations of subsetting with `$` is you have to know the name of the element ahead of time. If the name of the element is in a variable, how do you subset instead?
+:::
+
+**E6.3** How many chunky penguins are there on Dream if you use bill depth instead of flipper length? How many chonksters are at Torgersen if you use bill length?
+
+```{r}
+# Change this line to answer E6.1
+cq_lm <- lm(penguins$body_mass_g ~ penguins$flipper_length_mm)
+cq_coef <- cq_lm$___
+predicted_mass <- penguins$flipper_length_mm * cq_coef[___] + cq_coef[___]
+penguin_cq <- penguins$___ - ___
+is_chunky <- ___ > ___
+island_by_chunk <- penguins$island[___]
+# Use table()
+```

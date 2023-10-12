@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data Science for Eco/Evo (Fall 23 BIOE215) - Vector review</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Data Science for Eco/Evo (Fall 23 BIOE215)</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../syllabus.html" rel="" target="">
+ <span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-lessons" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Lessons</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-lessons">    
+        <li>
+    <a class="dropdown-item" href="../lessons/01_comp_proj_org.html" rel="" target="">
+ <span class="dropdown-text">Computational project organization</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../lessons/02_comp_thinking_1.html" rel="" target="">
+ <span class="dropdown-text">Computational thinking 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../lessons/02b_vectors_key_points.html" rel="" target="">
+ <span class="dropdown-text">Vector review</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-discussions" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Discussions</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-discussions">    
+        <li>
+    <a class="dropdown-item" href="../discussions/02_open_data_1.html" rel="" target="">
+ <span class="dropdown-text">Open data 1</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#types" id="toc-types" class="nav-link active" data-scroll-target="#types">Types</a>
+  <ul class="collapse">
+  <li><a href="#atomic-vectors" id="toc-atomic-vectors" class="nav-link" data-scroll-target="#atomic-vectors"><em>Atomic</em> <em>vectors</em></a></li>
+  <li><a href="#lists" id="toc-lists" class="nav-link" data-scroll-target="#lists"><em>Lists</em></a></li>
+  </ul></li>
+  <li><a href="#indexing-and-subsetting" id="toc-indexing-and-subsetting" class="nav-link" data-scroll-target="#indexing-and-subsetting">Indexing and subsetting</a>
+  <ul class="collapse">
+  <li><a href="#atomic-vectors-1" id="toc-atomic-vectors-1" class="nav-link" data-scroll-target="#atomic-vectors-1">Atomic vectors</a>
+  <ul class="collapse">
+  <li><a href="#position" id="toc-position" class="nav-link" data-scroll-target="#position">Position</a></li>
+  <li><a href="#name" id="toc-name" class="nav-link" data-scroll-target="#name">Name</a></li>
+  <li><a href="#logic" id="toc-logic" class="nav-link" data-scroll-target="#logic">Logic</a></li>
+  </ul></li>
+  <li><a href="#lists-1" id="toc-lists-1" class="nav-link" data-scroll-target="#lists-1">Lists</a>
+  <ul class="collapse">
+  <li><a href="#subsetting-with" id="toc-subsetting-with" class="nav-link" data-scroll-target="#subsetting-with">Subsetting with <code>[</code></a></li>
+  <li><a href="#subsetting-with-and" id="toc-subsetting-with-and" class="nav-link" data-scroll-target="#subsetting-with-and">Subsetting with <code>[[</code> and <code>$</code></a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Vector review</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>This lesson reviews the key points about vector from lesson <em>Computational Thinking 1</em>.</p>
+<section id="types" class="level1">
+<h1>Types</h1>
+<section id="atomic-vectors" class="level2">
+<h2 class="anchored" data-anchor-id="atomic-vectors"><em>Atomic</em> <em>vectors</em></h2>
+<p><strong>Jargon:</strong></p>
+<ul>
+<li><p><em>data structure</em>. The data you collect might be written on paper or bits collected by an instrument. But R is way too naïve to know anything about that. For R to do something useful with your data (transform it, fit a model to it, make a figure from it), you need to put your data into a <em>data structure</em>. R loves data structures, and if you choose the right <em>data structure</em> for your data then R will make your life way easier.</p></li>
+<li><p><em>atomic vector</em>. Just like how atoms are the building blocks of matter, <em>atomic</em> <em>vectors</em> are the building blocks of data in R. They’re the simplest kind of data structure R has. Think of them as variables in data you’d collect in the lab or field, like masses or times or counts. Everything in an <em>atomic</em> <em>vector</em> has to be the same type. Compare against <em>lists</em> (next section).</p></li>
+<li><p><em>element</em>. Ok, the chemistry analogy breaks down here. Thanks for nothing, R. The individual bits and pieces of data structures are called <em>elements</em>. An atomic vector holding the values 0, -1, and 3.14 has three <em>elements</em>.</p></li>
+</ul>
+<p><strong>Q1:</strong> There are four types we care about when it comes to R vectors. What are they?</p>
+<p><strong>Q2:</strong> What are the types of each of these vectors? How many elements do they have? What R function tells you the number of elements?</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>sci_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Balaenoptera musculus"</span>, <span class="st">"Balaenoptera physalus"</span>, <span class="st">"Megaptera noveangliae"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>quadrat_counts <span class="ot">&lt;-</span> <span class="fu">c</span>(12L, 0L, 0L, 3L, 0L, 10L)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>rained <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>react_time_s <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.13</span>, <span class="fl">0.19</span>, <span class="fl">0.15</span>, <span class="fl">0.10</span>, <span class="fl">0.15</span>, <span class="fl">0.15</span>, <span class="fl">0.15</span>, <span class="fl">0.14</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="lists" class="level2">
+<h2 class="anchored" data-anchor-id="lists"><em>Lists</em></h2>
+<p><strong>Jargon:</strong></p>
+<ul>
+<li><em>list</em>. If atomic vectors are atoms, then <em>lists</em> are molecules. A <em>list</em> is a more flexible data structure than an atomic vector. They can be made from multiple types of atomic vectors, or even other <em>lists</em>! Data frames (more on those next week) are actually a special form of <em>lists</em>.</li>
+</ul>
+<p>Here’s an example of how lists can be built from atomic vectors and/or other lists.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>dog1 <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">name =</span> <span class="st">"Bowie"</span>, </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">weight_lb =</span> <span class="fl">80.0</span>, </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">skills =</span> <span class="fu">c</span>(<span class="st">"nap"</span>, <span class="st">"eat"</span>, <span class="st">"more nap"</span>))</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>dog2 <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">name =</span> <span class="st">"Lassie"</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">weight_lb =</span> <span class="fl">65.0</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">skills =</span> <span class="fu">c</span>(<span class="st">"save tommy"</span>, <span class="st">"bark"</span>, <span class="st">"acting"</span>))</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>dogs <span class="ot">&lt;-</span> <span class="fu">list</span>(dog1, dog2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Did you notice the different functions used to make atomic vectors and lists? <code>c()</code> for atomic vectors, <code>list()</code> for lists.</p>
+</div>
+</div>
+<p><strong>Q3:</strong> In the code above, what do you think is the length of <code>dog1</code>? <code>dog2</code>? <code>dogs</code>?</p>
+<p><strong>Q4:</strong> What’s the type of <code>dog1</code>? <code>dog1</code> has three elements, called <code>name</code>, <code>weight_lb</code>, and <code>skills</code>. What are their types and lengths?</p>
+</section>
+</section>
+<section id="indexing-and-subsetting" class="level1">
+<h1>Indexing and subsetting</h1>
+<p><strong>Jargon:</strong></p>
+<ul>
+<li><p><em>index</em>. When you see <em>index</em>, think street address, not the index at the back of a book. The <em>index</em> is a location in a data structure. You’re probably used to <em>indexing</em> with numbers (<code>foo[1:3]</code>), but you can also <em>index</em> with names and logic (more on that shortly).</p></li>
+<li><p><em>subsetting</em>. Pulling out a part, or <em>subset</em>, of a data structure. Examples include <em>subsetting</em> the first element (<code>foo[1]</code>), all but the first element (<code>foo[-1]</code>), multiple elements (<code>foo[1:3]</code>), or even the same element multiple times (<code>foo[c(1, 1, 1)]</code>).</p></li>
+</ul>
+<section id="atomic-vectors-1" class="level2">
+<h2 class="anchored" data-anchor-id="atomic-vectors-1">Atomic vectors</h2>
+<p>If your data are in an atomic vector, then you can index in three different ways to get a subset.</p>
+<section id="position" class="level3">
+<h3 class="anchored" data-anchor-id="position">Position</h3>
+<p>Let’s start with indexing by position.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Start with two vectors: species and migration distances</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>species <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Arctic tern"</span>, <span class="st">"Sooty shearwater"</span>, <span class="st">"Adelie penguin"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>migration_km <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">96000</span>, <span class="dv">64000</span>, <span class="dv">18000</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># What will these do?</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>species[<span class="dv">1</span>]</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>migration_km[<span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>migration_km[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>species[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)]</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>species[i]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Q5:</strong> How would you subset <code>migration_km</code> to get the second element?</p>
+<p><strong>Q6:</strong> What are three ways to subset <code>migration_km</code> to get the first and second elements? Hint: use <code>:</code>, <code>c()</code>, and a negative number.</p>
+<p><strong>Q7:</strong> How would you use the <code>length()</code> function to get the last element of a vector? Demonstrate with <code>species</code>.</p>
+</section>
+<section id="name" class="level3">
+<h3 class="anchored" data-anchor-id="name">Name</h3>
+<p>Sometimes it’s helpful to give the elements of your vectors names. That way you can find the data you want even if you don’t know the position.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instead of separate vectors for species and migration distances, we can</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># just name the elements of migration_km themselves.</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>migration_km <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">ArcticTern =</span> <span class="dv">96000</span>, <span class="at">SootyShearwater =</span> <span class="dv">64000</span>, <span class="at">AdeliePenguin =</span> <span class="dv">18000</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># One element by name</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>migration_km[<span class="st">"ArcticTern"</span>]</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Two elements by name (have to use c()! : won't work with names!)</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>migration_km[<span class="fu">c</span>(<span class="st">"ArcticTern"</span>, <span class="st">"SootyShearwater"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When you use <code>c()</code> or <code>list()</code> to make a data structure, follow the pattern <code>c(name = value</code>). R understands the bit to the left of the <code>=</code> is a name from context, so <code>name</code> doesn’t <em>have</em> to go in quotes unless it has a space in it. If you want <code>value</code> to be understood as text, then it would have to go in quotes. So this works <code>c(a = "b")</code> and this works <code>c("a" = "b")</code> but this doesn’t <code>c(a = b)</code>.</p>
+</div>
+</div>
+<p><strong>Q8:</strong> Why doesn’t this work? <code>migration_km[ArcticTern]</code></p>
+<p><strong>Q9:</strong> Are <code>migration_km[3]</code> and <code>migration_km["AdeliePenguin"]</code> equivalent? What if I remove an element from <code>migration_km</code> or shuffle it first?</p>
+<p><strong>Q10:</strong> Here’s a deliberately tricky question. What does the following give you?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ArcticTern <span class="ot">&lt;-</span> <span class="st">"SootyShearwater"</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>migration_km[ArcticTern]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You may have noticed that printing a named vector gives you both the names and the values, which might make it look like there are <em>two</em> vectors. But really it’s just one. The names are basically decorative, displayed on top of the values. When it comes to the data, though, it’s the value that matters.</p>
+</div>
+</div>
+<p><strong>Q11:</strong> Below you see the result of subsetting a named vector. What’s the <em>type</em> of the result - character or double?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>migration_km[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="logic" class="level3">
+<h3 class="anchored" data-anchor-id="logic">Logic</h3>
+<p>The third way to subset a vector is with a bunch of <code>TRUE</code>s and <code>FALSE</code>s. That might seem pointless on its own, but it becomes very useful when you use comparisons like <code>==</code> and <code>&gt;</code> to generate the <code>TRUE</code>s and <code>FALSE</code>s for you.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Temperature at a site for the first ten days of February</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>dates <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">"Feb"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>temp_F <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">54.0</span>, <span class="fl">53.8</span>, <span class="fl">53.1</span>, <span class="dv">54</span>, <span class="fl">71.9</span>, <span class="fl">72.0</span>, <span class="fl">54.0</span>, <span class="fl">53.3</span>, <span class="fl">53.9</span>, <span class="fl">53.1</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Use logic to subset the first and second temperatures</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># This is a silly way to do this</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>temp_F[<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>)]</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Slightly less silly, though still silly</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>temp_F[<span class="fu">c</span>(<span class="fu">rep</span>(<span class="cn">TRUE</span>, <span class="dv">2</span>), <span class="fu">rep</span>(<span class="cn">FALSE</span>, <span class="dv">8</span>))]</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Which days were warmer than the median?</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co"># This is typically how you'll subset by logic</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>dates[temp_F <span class="sc">&gt;</span> <span class="fu">median</span>(temp_F)]</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Which days were "heat waves" (more than 2 standard deviations hotter </span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co"># than the median)</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>is_heat_wave <span class="ot">&lt;-</span> temp_F <span class="sc">&gt;</span> ___ <span class="sc">+</span> ___</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>heat_wave_dates <span class="ot">&lt;-</span> dates[___]</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>heat_wave_dates</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Q12:</strong> Fill in the blanks above to figure out the heat wave dates. What were they?</p>
+<p><strong>Q13:</strong> What’s the type of <code>is_heat_wave</code>? Of <code>heat_wave_dates</code>?</p>
+</section>
+</section>
+<section id="lists-1" class="level2">
+<h2 class="anchored" data-anchor-id="lists-1">Lists</h2>
+<p>Lists are more flexible than atomic vectors, so subsetting gets a little more complicated. Subsetting an atomic vector always gives you an atomic vector of the same type, but since lists can hold multiple types they work a little differently.</p>
+<p>There are three ways to subset lists. <code>[</code> works similarly as it does with atomic vectors: you get a subset of the list and it’s still a list. <code>[[</code> and <code>$</code> are a little different: they pull the contents out of a list. <code>[</code> might be more familiar, but most of the time <code>[[</code> and <code>$</code> do what you actually want them to do. Let’s look at what that means in practice.</p>
+<section id="subsetting-with" class="level3">
+<h3 class="anchored" data-anchor-id="subsetting-with">Subsetting with <code>[</code></h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remember our dogs?</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>dog1 <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">name =</span> <span class="st">"Bowie"</span>, </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">weight_lb =</span> <span class="fl">80.0</span>, </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">skills =</span> <span class="fu">c</span>(<span class="st">"nap"</span>, <span class="st">"eat"</span>, <span class="st">"more nap"</span>))</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>dog2 <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">name =</span> <span class="st">"Lassie"</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">weight_lb =</span> <span class="fl">65.0</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">skills =</span> <span class="fu">c</span>(<span class="st">"save tommy"</span>, <span class="st">"bark"</span>, <span class="st">"acting"</span>))</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>dogs <span class="ot">&lt;-</span> <span class="fu">list</span>(dog1, dog2)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Subsetting lists with `[` is very similar to atomic vectors, you're </span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co"># always getting a list back</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Index by position</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>dog1[<span class="dv">1</span>]</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>dogs[<span class="dv">1</span>]</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Index by name</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>dog1[<span class="st">"weight_lb"</span>]</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>dog2[<span class="st">"skills"</span>]</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="co"># You can index by logic, too, but it's not terribly helpful here</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Wow, lists print a lot differently than atomic vectors, don’t they? That’s the price of being flexible, you end up being more complicated. But they share their roots with atomic vectors. <code>[[1]]</code> means the element at position 1 and <code>$some_name</code> means the element with position <code>some_name</code>. Lists can contain other lists, so <code>[[1]]$some_name</code> means “in the first element, the element named <code>some_name</code>”.</p>
+</div>
+</div>
+<p><strong>Q14:</strong> What’s the type of <code>dog1[1]</code>? <code>dog1[1:2]</code>? <code>dogs[2]</code>?</p>
+</section>
+<section id="subsetting-with-and" class="level3">
+<h3 class="anchored" data-anchor-id="subsetting-with-and">Subsetting with <code>[[</code> and <code>$</code></h3>
+<p><code>[[</code> and <code>$</code> are how you pull the contents out of elements in a list. You can only do this on a single element, so some of the things you can do with <code>[</code> like <code>x[1:3]</code> and <code>x[c("a", "b")]</code> won’t work.</p>
+<p>For the next examples, you’ll need the <code>palmerpenguins</code> package installed.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use `[[` to subset by position</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>dog1[[<span class="dv">2</span>]]</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Use `[[` to subset by name</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>dog1[[<span class="st">"weight_lb"</span>]]</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Use `$` to subset by name</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>dog1<span class="sc">$</span>weight_lb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Did you notice the difference when subsetting by name with <code>[[</code> and <code>$</code>? <code>weight_lb</code> had to go in quotes with <code>[[</code>, but was unquoted with <code>$</code>. Subsetting with <code>$</code> is one of the few times you can use a name unquoted.</p>
+</div>
+</div>
+<p><strong>Q15:</strong> Why doesn’t <code>dog1[[weight_lb]]</code> work? Use the error message to explain why.</p>
+<p><strong>Q16:</strong> What’s the type of <code>dog1[[2]]</code>? How is it different than <code>dog1[2]</code>?</p>
+<section id="a-minute-on-data-frames" class="level4">
+<h4 class="anchored" data-anchor-id="a-minute-on-data-frames">A minute on data frames</h4>
+<p>You may already be familiar with <code>$</code> if you’ve used it to subset columns from data frames. Data frames are a special type of list. The columns of the data frame are elements of the list. This kind of building complex data structures from simpler parts is a form of <em>abstraction</em>, which is key to solving problems computationally.</p>
+<p>For this section, install the <code>palmerpenguins</code> package if necessary.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("palmerpenguins")</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># penguins is a data frame, meaning it's a list</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(penguins)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># The elements of the list are the columns, so the length is the number of columns, not the number of rows.</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(penguins)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(penguins)</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(penguins)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Subsetting a column with $ and [[ returns *just* the column</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>penguins<span class="sc">$</span>body_mass_g</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>penguins[[<span class="st">"body_mass_g"</span>]]</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(penguins<span class="sc">$</span>body_mass_g)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Remember subsetting a list with [ returns a shorter list, so </span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co"># subsetting a column with [ returns a data frame</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>penguins[<span class="st">"body_mass_g"</span>]</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(penguins[<span class="st">"body_mass_g"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Q17:</strong> <code>length(penguins)</code> giving you the number of columns instead of rows is pretty counterintuitive.Why would columns be the elements in the list instead of the rows? Use types in your answer. Are the types of the elements in columns one type or many? How about rows?</p>
+<p><strong>Q18:</strong> If you know the name of the column you want to subset in advance, then <code>$</code> is convenient e.g., <code>penguins$body_mass_g</code>. But say the name of the column is in a variable e.g., <code>penguin_var &lt;- "body_mass_g"</code>. How you would you use <code>penguin_var</code> to subset the <code>body_mass_g</code> column?</p>
+</section>
+</section>
+</section>
+</section>
+<section id="exercises" class="level1">
+<h1>Exercises</h1>
+<p><strong>E1:</strong> Subset the second and fourth elements of <code>habitat</code> by position and by name.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Hint: <code>c()</code> is your friend for indexing!</p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>habitat <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"intertidal"</span>, <span class="st">"chaparral"</span>, <span class="st">"urban"</span>, <span class="st">"redwood"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>habitat_by_position <span class="ot">&lt;-</span> habitat[___]</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>habitat_by_name <span class="ot">&lt;-</span> habitat[___]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>E2:</strong> Subset <code>habitat</code> to create a new vector that’s the first element repeated four times and the second element repeated two times.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>habitat_repeats <span class="ot">&lt;-</span> habitat[___]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>E3:</strong> You’re running an analysis that involves drawing a bunch of random samples. Use <code>sample()</code> to generate 10 numbers between 1 and 4, and subset <code>habitat</code> using those numbers.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>habitat_positions <span class="ot">&lt;-</span> <span class="fu">sample</span>(___, <span class="at">size =</span> ___, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>habitat_samples <span class="ot">&lt;-</span> ___</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>E3:</strong> You’ve reorganized your code, and now you have a vector of species richness named by habitat. Draw 10 random samples again, but instead of indexing by position, index by name instead.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Hint: Think about what the the first argument to <code>sample()</code> should be. It’s the vector you’re sampling from…</p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>species_richness <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">intertidal =</span> <span class="dv">12</span>, </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">chaparral =</span> <span class="dv">8</span>,</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">urban =</span> <span class="dv">3</span>,</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">redwood =</span> <span class="dv">5</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>habitat_names <span class="ot">&lt;-</span> <span class="fu">names</span>(species_richness)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>names_samples <span class="ot">&lt;-</span> <span class="fu">sample</span>(___, <span class="at">size =</span> ___, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>richness_samples <span class="ot">&lt;-</span> ___[___]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>E4:</strong> <code>table()</code> is a built-in function that tells you how many times each value appears in a vector. Use the code chunk below to answer the following questions</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Count up how many penguin observations were collected by year</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>year_table <span class="ot">&lt;-</span> <span class="fu">table</span>(penguins<span class="sc">$</span>year)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Index by position to get the number of penguins measured in 2009</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>year_table[___]</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Index by name to get the number of penguins measured in 2009</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>year_table[___]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>E4.1:</strong> When you print <code>year_table</code> at your console you’ll see two rows of text - the names and values. What are the names and what are the values?</p>
+<p><strong>E4.2:</strong> Fill in the blanks above to find the number of penguins measured in 2009 by <em>position</em> and by <em>name</em>.</p>
+<p><strong>E4.3:</strong> What <em>type</em> do you think <code>year_table</code> is? Use <code>typeof()</code> to check your answer. Were you correct? Explain your reasoning.</p>
+<p><strong>E5:</strong> Every object in R more complex than an atomic vector is a list. In this exercise, you’ll use the elements in a linear regression model to find penguins with above-average mass for their size, then figure out which island has the chunkiest penguins</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># To get our Chunkiness Quotient (CQ), we regress body mass against </span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># flipper length. The residual is our CQ.</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># First, fit a linear model. This estimates mass relative to flipper </span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co"># length.</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>cq_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(penguins<span class="sc">$</span>body_mass_g <span class="sc">~</span> penguins<span class="sc">$</span>flipper_length_mm)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co"># What are the model coefficients? Use `$` to subset them.</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Hint: use the names() function to find what name to use</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>cq_coef <span class="ot">&lt;-</span> cq_lm<span class="sc">$</span>___</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>E5.1:</strong> Fill in the blank above to get the coefficients from the CQ model.</p>
+<p><strong>E5.2</strong> How many elements are in <code>cq_coef</code>? What do they represent?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the model coefficients to get the predicted body mass for the</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># bird's flipper size.</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>predicted_mass <span class="ot">&lt;-</span> penguins<span class="sc">$</span>___ <span class="sc">*</span> cq_coef[___] <span class="sc">+</span> cq_coef[___]</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co"># CQ is the residual mass</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>penguin_cq <span class="ot">&lt;-</span> penguins<span class="sc">$</span>___ <span class="sc">-</span> ___</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>E5.3</strong> Fill in the blanks above to calculate CQ.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Figure out how many chunky penguins (CQ &gt; 0) are at each island.</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>is_chunky <span class="ot">&lt;-</span> ___ <span class="sc">&gt;</span> ___</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Use indexing by logic to pull out the name of the island for each</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co"># chunky penguin</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>island_by_chunk <span class="ot">&lt;-</span> penguins<span class="sc">$</span>island[___]</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Use table() to figure out which island has the most chunky penguins</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>E5.4</strong> Fill in the blanks above</p>
+<p><strong>E5.5</strong> Which island has the most chunky penguins?</p>
+<p><strong>E6</strong> In E5, we used flipper length as the basis for our Chunkiness Quotient. But there are other measurements in <code>penguins</code> we could have used, like bill length and bill depth. Rewrite the solution to E5 to choose the measurement dynamically.</p>
+<p><strong>E6.1</strong> In the code chunk below, create a variable, <code>penguin_var</code>, and set its value to the name of the column in <code>penguins</code> with the bill length measurement.</p>
+<p><strong>E6.2</strong> Change two other lines of code to use <code>penguin_var</code> instead of the hard-coded flipper length.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Hint: remember one of the limitations of subsetting with <code>$</code> is you have to know the name of the element ahead of time. If the name of the element is in a variable, how do you subset instead?</p>
+</div>
+</div>
+<p><strong>E6.3</strong> How many chunky penguins are there on Dream if you use bill depth instead of flipper length? How many chonksters are at Torgersen if you use bill length?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Change this line to answer E6.1</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>cq_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(penguins<span class="sc">$</span>body_mass_g <span class="sc">~</span> penguins<span class="sc">$</span>flipper_length_mm)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>cq_coef <span class="ot">&lt;-</span> cq_lm<span class="sc">$</span>___</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>predicted_mass <span class="ot">&lt;-</span> penguins<span class="sc">$</span>flipper_length_mm <span class="sc">*</span> cq_coef[___] <span class="sc">+</span> cq_coef[___]</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>penguin_cq <span class="ot">&lt;-</span> penguins<span class="sc">$</span>___ <span class="sc">-</span> ___</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>is_chunky <span class="ot">&lt;-</span> ___ <span class="sc">&gt;</span> ___</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>island_by_chunk <span class="ot">&lt;-</span> penguins<span class="sc">$</span>island[___]</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Use table()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
