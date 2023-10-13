@@ -262,7 +262,7 @@ typeof(penguins["body_mass_g"])
 
 # Exercises
 
-**E1:** Subset the second and fourth elements of `habitat` by position and by name.
+**E1:** Subset the second and fourth elements of `habitat` by position.
 
 ::: callout-tip
 Hint: `c()` is your friend for indexing!
@@ -271,7 +271,6 @@ Hint: `c()` is your friend for indexing!
 ```{r}
 habitat <- c("intertidal", "chaparral", "urban", "redwood")
 habitat_by_position <- habitat[___]
-habitat_by_name <- habitat[___]
 ```
 
 **E2:** Subset `habitat` to create a new vector that's the first element repeated four times and the second element repeated two times.
