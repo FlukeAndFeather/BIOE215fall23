@@ -1,0 +1,74 @@
+---
+title: "Working with data"
+format: 
+  html:
+    toc: true
+    toc-depth: 3
+editor: visual
+---
+
+# Brainstorm
+
+-   Data frames. They're lists, but special
+
+-   *Tabular data*
+
+    -   What does good data look like? (get to this after showcasing some clean data)
+
+-   Tidyverse - dplyr, readr, tidyr, etc
+
+-   Basic verbs
+
+    -   mutate - add/change column
+
+    -   select - subset columns
+
+    -   filter - subset rows
+
+    -   group_by and summarize - aggregate
+
+-   Utility verbs
+
+    -   arrange - sorting
+
+    -   distinct - unique combinations
+
+    -   count - counts of combinations
+
+-   Advanced verbs
+
+    -   \[left,right,full\]\_join - joining tables
+
+    -   \[semi,anti\]\_join - filter with tables
+
+    -   pivot_longer
+
+    -   pivot_wider
+
+-   Pipes!
+
+## Data
+
+Small Mammal Exclosure Study (SMES) Vegetation Data from the Chihuahuan Desert Grassland and Shrubland at the Sevilleta National Wildlife Refuge, New Mexico (1995-2009)
+
+Identifier: knb-lter-sev.97.182102
+
+```{r}
+#install.packages("dataone")
+download.file("https://portal.edirepository.org/nis/dataviewer?packageid=knb-lter-sev.97.182102&entityid=79b6824dc326ff6b5b40eb4aa51a534a", 
+              "data/sev097_smesquad_20201203.csv")
+```
+
+```{r}
+library(here)
+library(tidyverse)
+smes_quads <- read_csv(here("data/sev097_smesquad_20201203.csv"))
+```
+
+USDA plant list
+
+<https://plants.sc.egov.usda.gov/home/downloads>
+
+```{r}
+plantschecklist <- read_csv(here("data/completeplantschecklist.txt"))
+```
