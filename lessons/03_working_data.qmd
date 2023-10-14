@@ -54,7 +54,7 @@ Small Mammal Exclosure Study (SMES) Vegetation Data from the Chihuahuan Desert G
 Identifier: knb-lter-sev.97.182102
 
 ```{r}
-#install.packages("dataone")
+#| eval: false
 download.file("https://portal.edirepository.org/nis/dataviewer?packageid=knb-lter-sev.97.182102&entityid=79b6824dc326ff6b5b40eb4aa51a534a", 
               "data/sev097_smesquad_20201203.csv")
 ```
@@ -65,10 +65,32 @@ library(tidyverse)
 smes_quads <- read_csv(here("data/sev097_smesquad_20201203.csv"))
 ```
 
+-   How many rows and columns?
+
+-   What are the *types* of the columns?
+
+-   What does the `kartez` column contain? Hint: check out the dataset's [metadata](https://portal.edirepository.org/nis/mapbrowse?packageid=knb-lter-sev.97.182102).
+
 USDA plant list
 
 <https://plants.sc.egov.usda.gov/home/downloads>
 
 ```{r}
 plantschecklist <- read_csv(here("data/completeplantschecklist.txt"))
+```
+
+**Are the plant codes in the USDA plant list?**
+
+```{r}
+mutate(smes_quads, 
+       in_checklist = kartez %in% plantschecklist$Symbol)
+
+mutate(smes_quads, 
+       in_checklist = kartez %in% plantschecklist$Symbol) %>% 
+  count(in_checklist)
+```
+
+```{r}
+library(plantR)
+
 ```
