@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Science for Eco/Evo (Fall 23 BIOE215)</title>
+<title>Data Science for Eco/Evo (Fall 23 BIOE215) - Open tools</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,25 +20,44 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -61,7 +80,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -71,7 +90,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Data Science for Eco/Evo (Fall 23 BIOE215)</span>
     </a>
   </div>
@@ -82,15 +101,15 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="../index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html" rel="" target="">
+    <a class="nav-link" href="../about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./syllabus.html" rel="" target="">
+    <a class="nav-link" href="../syllabus.html" rel="" target="">
  <span class="menu-text">Syllabus</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -99,19 +118,19 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-lessons">    
         <li>
-    <a class="dropdown-item" href="./lessons/01_comp_proj_org.html" rel="" target="">
+    <a class="dropdown-item" href="../lessons/01_comp_proj_org.html" rel="" target="">
  <span class="dropdown-text">Computational project organization</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./lessons/02_comp_thinking_1.html" rel="" target="">
+    <a class="dropdown-item" href="../lessons/02_comp_thinking_1.html" rel="" target="">
  <span class="dropdown-text">Computational thinking 1</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./lessons/02b_vectors_key_points.html" rel="" target="">
+    <a class="dropdown-item" href="../lessons/02b_vectors_key_points.html" rel="" target="">
  <span class="dropdown-text">Vector review</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./lessons/03_working_data.html" rel="" target="">
+    <a class="dropdown-item" href="../lessons/03_working_data.html" rel="" target="">
  <span class="dropdown-text">Working with data</span></a>
   </li>  
     </ul>
@@ -122,11 +141,11 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-discussions">    
         <li>
-    <a class="dropdown-item" href="./discussions/02_open_data_1.html" rel="" target="">
+    <a class="dropdown-item" href="../discussions/02_open_data_1.html" rel="" target="">
  <span class="dropdown-text">Open data 1</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./discussions/03_open_tools.html" rel="" target="">
+    <a class="dropdown-item" href="../discussions/03_open_tools.html" rel="" target="">
  <span class="dropdown-text">Open tools</span></a>
   </li>  
     </ul>
@@ -143,25 +162,14 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#course" id="toc-course" class="nav-link active" data-scroll-target="#course">Course</a></li>
-  <li><a href="#instructor" id="toc-instructor" class="nav-link" data-scroll-target="#instructor">Instructor</a></li>
-  <li><a href="#location" id="toc-location" class="nav-link" data-scroll-target="#location">Location</a></li>
-  <li><a href="#times" id="toc-times" class="nav-link" data-scroll-target="#times">Times</a></li>
-  <li><a href="#office-hours" id="toc-office-hours" class="nav-link" data-scroll-target="#office-hours">Office Hours</a></li>
-  <li><a href="#course-description" id="toc-course-description" class="nav-link" data-scroll-target="#course-description">Course Description</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Data Science for Eco/Evo (Fall 23 BIOE215)</h1>
+<h1 class="title">Open tools</h1>
 </div>
 
 
@@ -176,39 +184,28 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Welcome to <em>Data Science for Eco/Evo</em>! I’m excited to have you in class and hope this course helps you reach your research goals. On this website, you’ll find course logistics, schedule, and lessons. You’ll use GitHub for submitting assessments.</p>
-<section id="course" class="level2">
-<h2 class="anchored" data-anchor-id="course">Course</h2>
-<p>Data Science for Eco/Evo</p>
-<p>BIOE215, 3 Credits, Fall 2023</p>
-</section>
-<section id="instructor" class="level2">
-<h2 class="anchored" data-anchor-id="instructor">Instructor</h2>
-<p>Dr.&nbsp;Max Czapanskiy (he/they)</p>
-<p>Email: <a href="mailto:mczapans@ucsc.edu">mczapans@ucsc.edu</a></p>
-</section>
-<section id="location" class="level2">
-<h2 class="anchored" data-anchor-id="location">Location</h2>
-<p>CoastBio 115</p>
-</section>
-<section id="times" class="level2">
-<h2 class="anchored" data-anchor-id="times">Times</h2>
-<p>Mondays, 3:30-5:30 pm</p>
-</section>
-<section id="office-hours" class="level2">
-<h2 class="anchored" data-anchor-id="office-hours">Office Hours</h2>
-<p>Times: Thursdays 3:30-5:30 pm</p>
-<p>Location: CoastBio Otter Conference Room</p>
-<p>Or by appointment<em>.</em></p>
-</section>
-<section id="course-description" class="level2">
-<h2 class="anchored" data-anchor-id="course-description">Course Description</h2>
-<p>This course will aim to be practical and provide structure for learning the computational skills most eco/evo grad students have to pick up on their own. Topics will include programming best practices in R, organizing data and computational projects, and planning for reproducibility. This is a chance to gain knowledge and experience with the nuts and bolts of making your science work in code, without trying to learn generalized linear models at the same time. The course structure will be self-directed for weeks 1-6, followed by a final project in weeks 7-10.</p>
+<p>For this week you read <span class="citation" data-cites="lowndes2017">Lowndes et al. (<a href="#ref-lowndes2017" role="doc-biblioref">2017</a>)</span> and <span class="citation" data-cites="marwick2018">Marwick, Boettiger, and Mullen (<a href="#ref-marwick2018" role="doc-biblioref">2018</a>)</span> about open tools.</p>
+<p>Our discussion today will follow the <strong><em>Hatful of Quotes</em></strong> format <span class="citation" data-cites="brookfield2016">(<a href="#ref-brookfield2016" role="doc-biblioref">Brookfield and Preskill 2016</a>)</span>. Here’s how it works.</p>
+<ol type="1">
+<li>I’ve printed salient quotes from both papers on slips of paper and put them in a “hat”.</li>
+<li>You’ll randomly draw a quote and take two minutes to think about it on your own. How does the quote relate to the rest of the paper? The other paper? The other content in this course? Your own experiences as a scientist?</li>
+<li>We hold a group conversation. When it’s your turn to speak, read your quote and share your thoughts. If your quote has already been read, you can affirm, build on, or contradict earlier comments (respectfully).</li>
+</ol>
 
 
-</section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-brookfield2016" class="csl-entry" role="listitem">
+Brookfield, Stephen D, and Stephen Preskill. 2016. <em>The Discussion Book</em>. London, England: Jossey-Bass.
+</div>
+<div id="ref-lowndes2017" class="csl-entry" role="listitem">
+Lowndes, Julia S. Stewart, Benjamin D. Best, Courtney Scarborough, Jamie C. Afflerbach, Melanie R. Frazier, Casey C. O’Hara, Ning Jiang, and Benjamin S. Halpern. 2017. <span>“Our Path to Better Science in Less Time Using Open Data Science Tools.”</span> <em>Nature Ecology &amp; Evolution</em> 1 (6). <a href="https://doi.org/10.1038/s41559-017-0160">https://doi.org/10.1038/s41559-017-0160</a>.
+</div>
+<div id="ref-marwick2018" class="csl-entry" role="listitem">
+Marwick, Ben, Carl Boettiger, and Lincoln Mullen. 2018. <span>“Packaging Data Analytical Work Reproducibly Using R (and Friends).”</span> <em>The American Statistician</em> 72 (1): 80–88. <a href="https://doi.org/10.1080/00031305.2017.1375986">https://doi.org/10.1080/00031305.2017.1375986</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

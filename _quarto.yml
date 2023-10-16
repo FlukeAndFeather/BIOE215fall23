@@ -19,6 +19,7 @@ website:
       - text: "Discussions"
         menu:
           - discussions/02_open_data_1.qmd
+          - discussions/03_open_tools.qmd
   
 format:
   html:

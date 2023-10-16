@@ -1,0 +1,13 @@
+---
+title: "Open tools"
+format: html
+bibliography: references.bib
+---
+
+For this week you read @lowndes2017 and @marwick2018 about open tools.
+
+Our discussion today will follow the ***Hatful of Quotes*** format [@brookfield2016]. Here's how it works.
+
+1.  I've printed salient quotes from both papers on slips of paper and put them in a "hat".
+2.  You'll randomly draw a quote and take two minutes to think about it on your own. How does the quote relate to the rest of the paper? The other paper? The other content in this course? Your own experiences as a scientist?
+3.  We hold a group conversation. When it's your turn to speak, read your quote and share your thoughts. If your quote has already been read, you can affirm, build on, or contradict earlier comments (respectfully).
