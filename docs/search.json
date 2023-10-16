@@ -175,6 +175,27 @@
     "text": "Indexing\nYou access data in vectors using indexing.\n\nAtomic vectors\n\nIndex into atomic vectors with the [ operator.\nThere are three ways to index atomic vectors: position, logic, and name.\n\n\n# Create a vector with names\nbounding_box &lt;- c(xmin = -122, xmax = -118, ymin = 33, ymax = 38)\n\n# Indexing by position:\n# One element\nbounding_box[1]\n\nxmin \n-122 \n\n# Two elements with :\nbounding_box[1:2]\n\nxmin xmax \n-122 -118 \n\n# Two elements with c()\nbounding_box[c(1, 4)]\n\nxmin ymax \n-122   38 \n\n# All but one element with negative\nbounding_box[-1]\n\nxmax ymin ymax \n-118   33   38 \n\n# Indexing by logic\nbounding_box[c(TRUE, FALSE, FALSE, FALSE)]\n\nxmin \n-122 \n\n# Usually create logic vector with comparison operator\nis_negative &lt;- bounding_box &lt; 0\nbounding_box[is_negative]\n\nxmin xmax \n-122 -118 \n\n# Same as above, but in one line\nbounding_box[bounding_box &lt; 0]\n\nxmin xmax \n-122 -118 \n\n# Indexing by name\n# One element\nbounding_box[\"xmin\"]\n\nxmin \n-122 \n\n# Two elements with c()\nbounding_box[c(\"xmin\", \"xmax\")]\n\nxmin xmax \n-122 -118 \n\n\n\n\nLists\n\nThere are three operators for indexing into lists: [, [[, and $.\n[ subsets the list, yielding a shorter list. As with atomic vector indexing, can use position, logic, or name.\n[[ and $ pull contents themselves out of the list. Only allows access from one element, by position or name.\n\n\n# Create a list with names\ndog &lt;- list(name = \"Bowie\", \n            weight_lb = 80.0, \n            skills = c(\"nap\", \"eat\", \"more nap\"))\n\n# Subset the list by position...\ndog[2]\n\n$weight_lb\n[1] 80\n\n# ... by logic ...\ndog[c(FALSE, TRUE, FALSE)]\n\n$weight_lb\n[1] 80\n\n# ... or by name\ndog[\"weight_lb\"]\n\n$weight_lb\n[1] 80\n\n# Pull contents from the list by position with [[ ...\ndog[[2]]\n\n[1] 80\n\n# ... by name with [[ ...\ndog[[\"weight_lb\"]]\n\n[1] 80\n\n# ... or by name with $\ndog$weight_lb\n\n[1] 80"
   },
   {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Your instructor, Max, is a postdoc with NOAA’s Southwest Fisheries Science Center. They began their career as a software engineer at Microsoft then spent ten years as a field ecologist (seabirds, mostly) and ecological data scientist (whales, mostly). His current research is on advancing open science practices in marine ecology. But more than research, their real passion is teaching (specifically, teaching data science to biologists) so they’re grateful for the opportunity to teach Data Science for Eco/Evo this quarter! In his free time, he’s a baker, a runner, and dog drummer (that’s when you drum on the side of your dog as loud as you can).\nYou can check out their personal website at www.flukeandfeather.com."
+  },
+  {
+    "objectID": "about.html#max-czapanskiy-hethey",
+    "href": "about.html#max-czapanskiy-hethey",
+    "title": "About",
+    "section": "",
+    "text": "Your instructor, Max, is a postdoc with NOAA’s Southwest Fisheries Science Center. They began their career as a software engineer at Microsoft then spent ten years as a field ecologist (seabirds, mostly) and ecological data scientist (whales, mostly). His current research is on advancing open science practices in marine ecology. But more than research, their real passion is teaching (specifically, teaching data science to biologists) so they’re grateful for the opportunity to teach Data Science for Eco/Evo this quarter! In his free time, he’s a baker, a runner, and dog drummer (that’s when you drum on the side of your dog as loud as you can).\nYou can check out their personal website at www.flukeandfeather.com."
+  },
+  {
+    "objectID": "discussions/02_open_data_1.html",
+    "href": "discussions/02_open_data_1.html",
+    "title": "Open data 1",
+    "section": "",
+    "text": "For this week you read Vines et al. (2014) and Wilkinson et al. (2016) about open data.\nOur discussion today will follow the Snowballing format (Brookfield and Preskill 2016). Here’s how it works.\n\nYou’re presented with two discussion questions.\n\nThink of a time you tried to use data from another scientist, lab, paper, etc. What challenges did you encounter trying to use those data? Conversely, what did the data provider do that made your science easier?\nWhat challenges do you anticipate encountering if/when you share your own data? What would you need to learn or what systems would have to change to make sharing data easier?\n\nTake two minutes to reflect and make a note of your thoughts.\nFind a partner. For three minutes, take turns sharing your thoughts. What did you have in common? What was different? How would you synthesize your two points of view?\nNow your pair finds another pair. For another three minutes, repeat step 3 with the larger group. As the group expands, be mindful of everyone’s participation. A little bit of silence can go a long way to giving everyone a chance to participate.\nRepeat step 4 until the whole group is discussing together.\n\n\n\n\n\nReferences\n\nBrookfield, Stephen D, and Stephen Preskill. 2016. The Discussion Book. London, England: Jossey-Bass.\n\n\nVines, Timothy H., Arianne Y.K. Albert, Rose L. Andrew, Florence Débarre, Dan G. Bock, Michelle T. Franklin, Kimberly J. Gilbert, Jean-Sébastien Moore, Sébastien Renaut, and Diana J. Rennison. 2014. “The Availability of Research Data Declines Rapidly with Article Age.” Current Biology 24 (1): 94–97. https://doi.org/10.1016/j.cub.2013.11.014.\n\n\nWilkinson, Mark D., Michel Dumontier, IJsbrand Jan Aalbersberg, Gabrielle Appleton, Myles Axton, Arie Baak, Niklas Blomberg, et al. 2016. “The FAIR Guiding Principles for Scientific Data Management and Stewardship.” Scientific Data 3 (1). https://doi.org/10.1038/sdata.2016.18."
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Data Science for Eco/Evo (Fall 23 BIOE215)",
@@ -224,25 +245,123 @@
     "text": "Course Description\nThis course will aim to be practical and provide structure for learning the computational skills most eco/evo grad students have to pick up on their own. Topics will include programming best practices in R, organizing data and computational projects, and planning for reproducibility. This is a chance to gain knowledge and experience with the nuts and bolts of making your science work in code, without trying to learn generalized linear models at the same time. The course structure will be self-directed for weeks 1-6, followed by a final project in weeks 7-10."
   },
   {
-    "objectID": "discussions/02_open_data_1.html",
-    "href": "discussions/02_open_data_1.html",
-    "title": "Open data 1",
+    "objectID": "lessons/03_working_data.html",
+    "href": "lessons/03_working_data.html",
+    "title": "Working with data",
     "section": "",
-    "text": "For this week you read Vines et al. (2014) and Wilkinson et al. (2016) about open data.\nOur discussion today will follow the Snowballing format (Brookfield and Preskill 2016). Here’s how it works.\n\nYou’re presented with two discussion questions.\n\nThink of a time you tried to use data from another scientist, lab, paper, etc. What challenges did you encounter trying to use those data? Conversely, what did the data provider do that made your science easier?\nWhat challenges do you anticipate encountering if/when you share your own data? What would you need to learn or what systems would have to change to make sharing data easier?\n\nTake two minutes to reflect and make a note of your thoughts.\nFind a partner. For three minutes, take turns sharing your thoughts. What did you have in common? What was different? How would you synthesize your two points of view?\nNow your pair finds another pair. For another three minutes, repeat step 3 with the larger group. As the group expands, be mindful of everyone’s participation. A little bit of silence can go a long way to giving everyone a chance to participate.\nRepeat step 4 until the whole group is discussing together.\n\n\n\n\n\nReferences\n\nBrookfield, Stephen D, and Stephen Preskill. 2016. The Discussion Book. London, England: Jossey-Bass.\n\n\nVines, Timothy H., Arianne Y.K. Albert, Rose L. Andrew, Florence Débarre, Dan G. Bock, Michelle T. Franklin, Kimberly J. Gilbert, Jean-Sébastien Moore, Sébastien Renaut, and Diana J. Rennison. 2014. “The Availability of Research Data Declines Rapidly with Article Age.” Current Biology 24 (1): 94–97. https://doi.org/10.1016/j.cub.2013.11.014.\n\n\nWilkinson, Mark D., Michel Dumontier, IJsbrand Jan Aalbersberg, Gabrielle Appleton, Myles Axton, Arie Baak, Niklas Blomberg, et al. 2016. “The FAIR Guiding Principles for Scientific Data Management and Stewardship.” Scientific Data 3 (1). https://doi.org/10.1038/sdata.2016.18."
+    "text": "What it is\n\nRows = observations, columns = variables, cells = individual observations (Broman and Woo 2018)\nSpreadsheets and relational databases\n\nWhat it isn’t\n\nGeospatial data (vectors and rasters)\nPhylogenetic data (trees)"
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "Your instructor, Max, is a postdoc with NOAA’s Southwest Fisheries Science Center. They began their career as a software engineer at Microsoft then spent ten years as a field ecologist (seabirds, mostly) and ecological data scientist (whales, mostly). His current research is on advancing open science practices in marine ecology. But more than research, their real passion is teaching (specifically, teaching data science to biologists) so they’re grateful for the opportunity to teach Data Science for Eco/Evo this quarter! In his free time, he’s a baker, a runner, and dog drummer (that’s when you drum on the side of your dog as loud as you can).\nYou can check out their personal website at www.flukeandfeather.com."
+    "objectID": "lessons/03_working_data.html#core-principles",
+    "href": "lessons/03_working_data.html#core-principles",
+    "title": "Working with data",
+    "section": "Core principles",
+    "text": "Core principles\n\n\n\nFrom R for Data Science (2e) Section 1.1\n\n\n\nUse similar patterns and conventions for every step of the data science workflow\nEmphasis on data frames, the ubiquitous data structure in R for tabular data\nTidy data. Rows = observations, columns = variables, cells = individual observations (Broman and Woo 2018)\n%&gt;% Pipe friendly! More on that shortly."
   },
   {
-    "objectID": "about.html#max-czapanskiy-hethey",
-    "href": "about.html#max-czapanskiy-hethey",
-    "title": "About",
-    "section": "",
-    "text": "Your instructor, Max, is a postdoc with NOAA’s Southwest Fisheries Science Center. They began their career as a software engineer at Microsoft then spent ten years as a field ecologist (seabirds, mostly) and ecological data scientist (whales, mostly). His current research is on advancing open science practices in marine ecology. But more than research, their real passion is teaching (specifically, teaching data science to biologists) so they’re grateful for the opportunity to teach Data Science for Eco/Evo this quarter! In his free time, he’s a baker, a runner, and dog drummer (that’s when you drum on the side of your dog as loud as you can).\nYou can check out their personal website at www.flukeandfeather.com."
+    "objectID": "lessons/03_working_data.html#load-the-data",
+    "href": "lessons/03_working_data.html#load-the-data",
+    "title": "Working with data",
+    "section": "Load the data",
+    "text": "Load the data\nRead and inspect\n\nsurveys &lt;- read_csv(\"data/portal_data_joined.csv\")\nhead(surveys)\nsummary(surveys)\n\nQ1: What’s the type of column species_id? Of hindfoot_length?\nQ2: How many rows and columns are in surveys?"
+  },
+  {
+    "objectID": "lessons/03_working_data.html#selecting-columns-and-filtering-rows",
+    "href": "lessons/03_working_data.html#selecting-columns-and-filtering-rows",
+    "title": "Working with data",
+    "section": "selecting columns and filtering rows",
+    "text": "selecting columns and filtering rows\n\n\n\n\n\n\nImportant\n\n\n\nMany tidyverse functions let you treat columns in a data frame as variables. In the following sections, notice we’re not putting column names in quotes.\n\n\nHow do I keep a few columns?\n\nselect(surveys, plot_id, species_id, weight)\nselect(surveys, plot_id, species_id, weight_g = weight)\n\nHow do I remove a few columns?\n\nselect(surveys, -record_id, -species_id)\n\nHow do I keep rows based on a condition?\n\nfilter(surveys, year == 1995)\nfilter(surveys, year == 1995, plot_id == 7)\nfilter(surveys, month == 2 | day == 20)\n\nQ3: filter() surveys to records collected in November where hindfoot_length is greater than 36.0\nQ4: Fix these errors\n\nfilter(surveys, year = 1995)\nfilter(surveys, polt_id == 2)"
+  },
+  {
+    "objectID": "lessons/03_working_data.html#pipes",
+    "href": "lessons/03_working_data.html#pipes",
+    "title": "Working with data",
+    "section": "Pipes %>%",
+    "text": "Pipes %&gt;%\nFor a sequence of transformations, use pipes for readability\n\n# Filter then select without pipes, two ways\n# First way\nselect(filter(surveys, year == 1995), plot_id, species_id, weight)\n# Second way\nsurveys_1995 &lt;- filter(surveys, year == 1995)\nsurveys_psw &lt;- select(surveys_1995, plot_id, species_id, weight)\n\nInstead, use pipes! Read them aloud as “then”.\n\nsurveys_psw &lt;- surveys_1995 %&gt;% \n  filter(year == 1995) %&gt;% \n  select(plot_id, species_id, weight)\n\nUnder the hood, the left hand side of the pipe becomes the first argument on the right hand side.\nQ5: Use pipes to subset surveys to animals collected before 1995 retaining just the columns year, sex, and weight"
+  },
+  {
+    "objectID": "lessons/03_working_data.html#addchange-columns-with-mutate",
+    "href": "lessons/03_working_data.html#addchange-columns-with-mutate",
+    "title": "Working with data",
+    "section": "Add/change columns with mutate",
+    "text": "Add/change columns with mutate\nAdd a column\n\nsurveys %&gt;% \n  mutate(weight_kg = weight / 1000)\n\nAdd multiple columns based on each other\n\nsurveys %&gt;% \n  mutate(weight_kg = weight / 1000,\n         weight_lb = weight_kg * 2.2)\n\nSo many NAs! Add a filter before mutate.\n\nsurveys %&gt;% \n  filter(!is.na(weight)) %&gt;% \n  mutate(weight_kg = weight / 1000,\n         weight_lb = weight_kg * 2.2)\n\nConvert year, month, and day to dates\n\nsurveys %&gt;% \n  select(year, month, day) %&gt;% \n  mutate(date_str = paste(year, month, day, sep = \"-\"),\n         date = as.Date(date_str))\n\nQ6: Create a new data frame from the surveys data that meets the following criteria: contains only the species_id column and a new column called hindfoot_cm containing the hindfoot_length values (currently in mm) converted to centimeters. In this hindfoot_cm column, there are no NAs and all values are less than 3.\nHint: think about how the commands should be ordered to produce this data frame!"
+  },
+  {
+    "objectID": "lessons/03_working_data.html#split-apply-combine-with-summarize",
+    "href": "lessons/03_working_data.html#split-apply-combine-with-summarize",
+    "title": "Working with data",
+    "section": "Split-apply-combine with summarize",
+    "text": "Split-apply-combine with summarize\nWhat’s the average weight of the observed animals by sex?\n\nsurveys %&gt;% \n  group_by(sex) %&gt;% \n  summarize(mean_weight = mean(weight, na.rm = TRUE))\n\nGroup by multiple columns, e.g. sex and species.\n\nsurveys %&gt;% \n  group_by(species_id, sex) %&gt;% \n  summarize(mean_weight = mean(weight, na.rm = TRUE))\n\n\n\n\n\n\n\nNote\n\n\n\nNotice the warning message: our output is still grouped by species_id. By default, summarize() only removes one level of grouping. This usually leads to unexpected results. As the warning suggests, use .groups to drop all groups.\n\n\n\nsurveys %&gt;% \n  group_by(species_id, sex) %&gt;% \n  summarize(mean_weight = mean(weight, na.rm = TRUE),\n            .groups = \"drop\")\n\nNaN is the result of calling mean() on an empty vector. Let’s remove NAs before summarizing.\n\nsurveys %&gt;% \n  filter(!is.na(weight)) %&gt;% \n  group_by(species_id, sex) %&gt;% \n  summarize(mean_weight = mean(weight),\n            .groups = \"drop\")\n\nCan also generate multiple summaries per group.\n\nsurveys %&gt;% \n  filter(!is.na(weight)) %&gt;% \n  group_by(species_id, sex) %&gt;% \n  summarize(mean_weight = mean(weight),\n            min_weight = min(weight),\n            .groups = \"drop\")"
+  },
+  {
+    "objectID": "lessons/03_working_data.html#sort-with-arrange",
+    "href": "lessons/03_working_data.html#sort-with-arrange",
+    "title": "Working with data",
+    "section": "Sort with arrange",
+    "text": "Sort with arrange\n\nsurveys %&gt;% \n  filter(!is.na(weight)) %&gt;% \n  group_by(species_id, sex) %&gt;% \n  summarize(mean_weight = mean(weight),\n            min_weight = min(weight),\n            .groups = \"drop\") %&gt;% \n  arrange(desc(mean_weight))"
+  },
+  {
+    "objectID": "lessons/03_working_data.html#utility-functions",
+    "href": "lessons/03_working_data.html#utility-functions",
+    "title": "Working with data",
+    "section": "Utility functions",
+    "text": "Utility functions\ncount(), drop_na()\ncount() is a shortcut to getting the size of groups\n\nsurveys %&gt;% \n  count(sex, species) %&gt;% \n  arrange(species, desc(n))\n\ndrop_na() is a shortcut for removing rows with missing values\n\nsurveys %&gt;% \n  drop_na(weight, sex) %&gt;% \n  group_by(species_id, sex) %&gt;% \n  summarize(mean_weight = mean(weight),\n            min_weight = min(weight),\n            .groups = \"drop\") %&gt;% \n  arrange(desc(mean_weight))\n\nQ7: How many animals were caught in each plot_type surveyed?\nQ8: Use group_by() and summarize() to find the mean, min, and max hindfoot length for each species (using species_id). Also add the number of observations (hint: see ?n).\nQ9: What was the heaviest animal measured in each year? Return the columns year, genus, species_id, and weight."
+  },
+  {
+    "objectID": "lessons/03_working_data.html#joining-data",
+    "href": "lessons/03_working_data.html#joining-data",
+    "title": "Working with data",
+    "section": "Joining data",
+    "text": "Joining data\nJoining columns: left_join(), inner_join()\nSay we have more information about some of our taxa.\n\ncount(surveys, taxa)\ntaxa_iucn &lt;- data.frame(\n  taxa = c(\"Bird\", \"Rabbit\", \"Rodent\"),\n  iucn = c(\"NT\", \"LC\", \"LC\")\n)\ntaxa_iucn\n\nLeft join surveys with taxa info by their shared column (the “key”)\n\nsurveys_iucn &lt;- left_join(surveys, taxa_iucn, by = \"taxa\")\nhead(surveys_iucn)\n\nQ10: How many records were there for NT and LC taxa?\nleft_join() keeps everything from the left. So surveys_iucn has NAs for iucn when taxa wasn’t in taxa_iucn.\nQ11: What kind of taxa do the NAs in iucn correspond to?\ninner_join() only keeps records where the key is in both tables.\n\nsurveys_iucn2 &lt;- inner_join(surveys, taxa_iucn, by = \"taxa\")\n\nQ12: How many rows are in surveys_iucn2? What rows are in surveys_iucn that aren’t in surveys_iucn2?"
+  },
+  {
+    "objectID": "lessons/03_working_data.html#wrapping-up",
+    "href": "lessons/03_working_data.html#wrapping-up",
+    "title": "Working with data",
+    "section": "Wrapping up",
+    "text": "Wrapping up\nSave all your changes to scratch/lesson3.R. Commit and push."
+  },
+  {
+    "objectID": "lessons/03_working_data.html#download-data",
+    "href": "lessons/03_working_data.html#download-data",
+    "title": "Working with data",
+    "section": "Download data",
+    "text": "Download data\nFor this assessment, we’ll use the breeding bird phenology from Hällfors et al. (2020a). Their data are on Dryad (Hällfors et al. 2020b). We’ll complement that with the AVONET (Tobias et al. 2022) database of bird functional traits, which is on Figshare.\nDownload the Dryad dataset. Copy “73_species.csv” and “Traits_73_species.csv” to your data/ folder.\nFrom the AVONET database on Figshare, download “AVONET Supplementary dataset 1.xlsx” do your data/ folder."
+  },
+  {
+    "objectID": "lessons/03_working_data.html#read-data",
+    "href": "lessons/03_working_data.html#read-data",
+    "title": "Working with data",
+    "section": "Read data",
+    "text": "Read data\nIn your Quarto document, add a code chunk that loads the tidyverse and reads the data.\n\nUse read_csv() to read “73_species.csv” and assign it to a variable called bor_nestlings.\nUse read_csv() to read “Traits_73_species.csv” and assign it to a variable called bor_traits.\nUse readxl::read_excel() to read the “AVONET1_BirdLife” sheet from “AVONET Supplementary dataset 1.xlsx” and assign it to a variable called avonet.\n\n\n\n\n\n\n\nTip\n\n\n\nSee ?readxl::read_excel for info on how to read a specific sheet from an Excel workbook."
+  },
+  {
+    "objectID": "lessons/03_working_data.html#explore",
+    "href": "lessons/03_working_data.html#explore",
+    "title": "Working with data",
+    "section": "Explore",
+    "text": "Explore\nWe’ll explore the boreal bird nestling data together. Follow along in your Quarto document.\nAre nestlings showing up earlier in the year over time?\n\nall_birds_trend &lt;- bor_nestlings %&gt;% \n  group_by(Year) %&gt;% \n  summarize(mean_doy = mean(Dayofyear))\n\nggplot(all_birds_trend, aes(Year, mean_doy)) + \n  geom_point() +\n  geom_smooth(method = \"lm\")\n\n\n\n\n\n\n\nNote\n\n\n\nThis may be your first time using ggplot. I’ll give you the ggplot code you need for today. You’ll learn more about it next week.\n\n\nThat combines 73 species. Let’s see the breakdown by species.\n\nspecies_trends &lt;- bor_nestlings %&gt;% \n  group_by(Year, Species) %&gt;% \n  summarize(mean_doy = mean(Dayofyear),\n            .groups = \"drop\")\n\nggplot(species_trends, aes(Year, mean_doy, color = Species)) + \n  geom_point() +\n  geom_smooth(method = \"lm\")\n\nSo chaotic! What if we just look at the 5 most data-rich species?\n\ndata_richness &lt;- bor_nestlings %&gt;% \n  count(Species)\n\nmost_rich &lt;- data_richness %&gt;% \n  arrange(desc(n)) %&gt;% \n  slice(1:5)\n\nmost_rich_trends &lt;- bor_nestlings %&gt;% \n  filter(Species %in% most_rich$Species) %&gt;% \n  group_by(Species, Year) %&gt;% \n  summarize(mean_doy = mean(Dayofyear), \n            .groups = \"drop\")\n\nggplot(most_rich_trends, aes(Year, mean_doy, color = Species)) +\n  geom_point() +\n  geom_smooth(method = \"lm\")\n\nA general pattern, with one conflicting example. What species have the strongest trends?\n\n# I'm giving you a *function* to help here. You'll learn more about those next week.\n\n# Finds the slope of the relationship between y and x\ntrend &lt;- function(x, y) {\n  xy_lm &lt;- lm(y ~ x)\n  coef(xy_lm)[2]\n}\n\n# Calculate the trend for all species\nbor_trends &lt;- bor_by_year %&gt;% \n  group_by(Species) %&gt;% \n  summarize(doy_trend = trend(Year, mean_doy))\n\nSpot check two species\n\nsoi &lt;- c(\"ARDCIN\", \"LARMIN\")\nbor_by_year %&gt;% \n  filter(Species %in% soi) %&gt;% \n  ggplot(aes(Year, mean_doy, color = Species)) +\n  geom_point() +\n  geom_smooth(method = \"lm\")"
+  },
+  {
+    "objectID": "lessons/03_working_data.html#your-turn",
+    "href": "lessons/03_working_data.html#your-turn",
+    "title": "Working with data",
+    "section": "Your turn",
+    "text": "Your turn\nFind the species with the most positive and most negative trends, then plot just those.\n\nnrow_bor_trends &lt;- nrow(bor_trends) # Use this later\nbor_extreme &lt;- bor_trends %&gt;% \n  # Sort by the day of year trend\n  ___(___) %&gt;% \n  # Keep just the first (most negative trend) and last (most positive trend) rows\n  slice(c(___, ___))\n\n# Now plot them\nbor_by_year %&gt;% \n  filter(Species %in% ___) %&gt;% \n  ggplot(aes(Year, mean_doy, color = Species)) + \n    geom_point() +\n    geom_smooth(method = \"lm\")"
+  },
+  {
+    "objectID": "lessons/03_working_data.html#bring-in-more-data",
+    "href": "lessons/03_working_data.html#bring-in-more-data",
+    "title": "Working with data",
+    "section": "Bring in more data",
+    "text": "Bring in more data\nNext we’re going to test the hypothesis that smaller birds have more flexible phenology, i.e. the absolute value of the trend is correlated with smaller body sizes.\nTo test our hypothesis, we need to add AVONET data to our phenology data by joining. The keys are a bit tricky here!\nbor_nestlings has a column called Species with a 6-letter code.\nbor_traits has a column called Abbreviation with the 6-letter code and a column called `Scientific name` with the binomial name.\navonet has column called Species1 with the binomial name.\nWe need to join bor_nestlings to bor_traits, then join with avonet.\nWelcome to data in the real world!\n\n# First, select and rename important columns\navonet_size &lt;- select(avonet, SciName = Species1, Mass_g = Mass)\nbor_sciname &lt;- select(bor_traits, \n                      Species = Abbreviation, \n                      SciName = `Scientific name`)\n\nNow join them all together.\n\nbor_trends_size &lt;- bor_trends %&gt;% \n  left_join(___, by = ___) %&gt;% \n  left_join(___, by = ___) %&gt;% \n  mutate(abs_trend = abs(doy_trend))\n\n# Plot it\nggplot(bor_trends_size, aes(Mass_g, abs_trend)) +\n  geom_point() +\n  geom_smooth(method = \"lm\")\n\nThat’s kind of hard to interpret. Make a new variable, bor_trends_size2, that removes the missing values in Mass_g and keeps only birds smaller than 2000 g with an absolute trend less than 1.\n\nbor_trends_size2 &lt;- ???\n  \nggplot(bor_trends_size2, aes(Mass_g, abs_trend)) +\n  geom_point() +\n  geom_smooth(method = \"lm\")\n\nIs our hypothesis supported?"
+  },
+  {
+    "objectID": "lessons/03_working_data.html#submission",
+    "href": "lessons/03_working_data.html#submission",
+    "title": "Working with data",
+    "section": "Submission",
+    "text": "Submission\n\nRender index.qmd, which produces reports/index.html. Move your HTML file to docs/.\nEnable GitHub pages for your repo.\nCommit your changes and push.\nOpen an issue and tag me in it."
   },
   {
     "objectID": "lessons/02b_vectors_key_points.html",

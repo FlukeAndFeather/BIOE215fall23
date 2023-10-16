@@ -15,6 +15,7 @@ website:
           - lessons/01_comp_proj_org.qmd
           - lessons/02_comp_thinking_1.qmd
           - lessons/02b_vectors_key_points.qmd
+          - lessons/03_working_data.qmd
       - text: "Discussions"
         menu:
           - discussions/02_open_data_1.qmd
