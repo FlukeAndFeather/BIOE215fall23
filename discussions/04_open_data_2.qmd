@@ -1,0 +1,17 @@
+---
+title: "Open data 2"
+format: html
+bibliography: references.bib
+---
+
+For this week you read @roche2022. You also submitted a PDF of your candidate replication paper on Canvas.
+
+In today's discussion, you'll form final project groups of 3-4 students. Share your candidate paper with your group and explain the figure/table you'd like to replicate.
+
+::: callout-important
+Choose just *one* figure or table! It should be the key finding of the paper. You don't need to replicate the whole thing start to finish.
+:::
+
+Working together, go through each paper and make a list of data you would need to replicate the figure. Be specific! What tables of data would you need? What columns and rows would need to be in those tables?
+
+Next week, you'll use the metrics in Table 1 of @roche2022 to assess the *completeness* and *reusability* of the data in the paper you've chosen. The data requirements you come up with today will guide that exercise.

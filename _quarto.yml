@@ -20,7 +20,7 @@ website:
         menu:
           - discussions/02_open_data_1.qmd
           - discussions/03_open_tools.qmd
-  
+          - discussions/04_open_data_2.qmd
 format:
   html:
     theme: cosmo
