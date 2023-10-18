@@ -163,7 +163,7 @@ surveys_psw <- select(surveys_1995, plot_id, species_id, weight)
 Instead, use pipes! Read them aloud as "then".
 
 ```{r}
-surveys_psw <- surveys_1995 %>% 
+surveys_psw <- surveys %>% 
   filter(year == 1995) %>% 
   select(plot_id, species_id, weight)
 ```

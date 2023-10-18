@@ -291,7 +291,7 @@
     "href": "lessons/03_working_data.html#pipes",
     "title": "Working with data",
     "section": "Pipes %>%",
-    "text": "Pipes %&gt;%\nFor a sequence of transformations, use pipes for readability\n\n# Filter then select without pipes, two ways\n# First way\nselect(filter(surveys, year == 1995), plot_id, species_id, weight)\n# Second way\nsurveys_1995 &lt;- filter(surveys, year == 1995)\nsurveys_psw &lt;- select(surveys_1995, plot_id, species_id, weight)\n\nInstead, use pipes! Read them aloud as “then”.\n\nsurveys_psw &lt;- surveys_1995 %&gt;% \n  filter(year == 1995) %&gt;% \n  select(plot_id, species_id, weight)\n\nUnder the hood, the left hand side of the pipe becomes the first argument on the right hand side.\nQ5: Use pipes to subset surveys to animals collected before 1995 retaining just the columns year, sex, and weight"
+    "text": "Pipes %&gt;%\nFor a sequence of transformations, use pipes for readability\n\n# Filter then select without pipes, two ways\n# First way\nselect(filter(surveys, year == 1995), plot_id, species_id, weight)\n# Second way\nsurveys_1995 &lt;- filter(surveys, year == 1995)\nsurveys_psw &lt;- select(surveys_1995, plot_id, species_id, weight)\n\nInstead, use pipes! Read them aloud as “then”.\n\nsurveys_psw &lt;- surveys %&gt;% \n  filter(year == 1995) %&gt;% \n  select(plot_id, species_id, weight)\n\nUnder the hood, the left hand side of the pipe becomes the first argument on the right hand side.\nQ5: Use pipes to subset surveys to animals collected before 1995 retaining just the columns year, sex, and weight"
   },
   {
     "objectID": "lessons/03_working_data.html#addchange-columns-with-mutate",
