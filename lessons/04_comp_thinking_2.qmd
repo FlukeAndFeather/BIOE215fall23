@@ -1,0 +1,25 @@
+---
+title: "Computational thinking 2"
+format: 
+  html:
+    toc: true
+    toc-depth: 3
+editor: visual
+execute: 
+  eval: false
+bibliography: references.bib
+---
+
+# Let's put the *fun* in functions
+
+No I will not apologize.
+
+Data are nouns. Functions are verbs. Together they make sentences.
+
+In Week 2 you learned how R organizes information in *data structures*. Then in Week 3 you used `tidyverse` functions to manipulate *data frames*. Now you're going to learn how to write your own functions.
+
+## Functions *do* things
+
+This is where programming gets fun. Computational thinking is all about breaking problems down into manageable pieces, solving them individually, then re-assembling them into a solution. Functions are both how you solve individual problems *and* how you reassemble them.
+
+![Just as the crown once gave Prince John a feeling of power, functions will do the same for you.](/img/power.jpg){fig-alt="Prince John from Disney's Robin Hood clutching his fists and wearing a crown. The text reads \"Power, Hiss. Power!\"" width="375"}
