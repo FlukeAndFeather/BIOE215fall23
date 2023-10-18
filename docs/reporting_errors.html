@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Science for Eco/Evo (Fall 23 BIOE215) - Quarto essentials</title>
+<title>Data Science for Eco/Evo (Fall 23 BIOE215) - Reporting errors</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,22 +23,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -61,7 +61,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -71,7 +71,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Data Science for Eco/Evo (Fall 23 BIOE215)</span>
     </a>
   </div>
@@ -82,15 +82,15 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html" rel="" target="">
+    <a class="nav-link" href="./index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../about.html" rel="" target="">
+    <a class="nav-link" href="./about.html" rel="" target="">
  <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../syllabus.html" rel="" target="">
+    <a class="nav-link" href="./syllabus.html" rel="" target="">
  <span class="menu-text">Syllabus</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -99,19 +99,19 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-lessons">    
         <li>
-    <a class="dropdown-item" href="../lessons/01_comp_proj_org.html" rel="" target="">
+    <a class="dropdown-item" href="./lessons/01_comp_proj_org.html" rel="" target="">
  <span class="dropdown-text">Computational project organization</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../lessons/02_comp_thinking_1.html" rel="" target="">
+    <a class="dropdown-item" href="./lessons/02_comp_thinking_1.html" rel="" target="">
  <span class="dropdown-text">Computational thinking 1</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../lessons/02b_vectors_key_points.html" rel="" target="">
+    <a class="dropdown-item" href="./lessons/02b_vectors_key_points.html" rel="" target="">
  <span class="dropdown-text">Vector review</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../lessons/03_working_data.html" rel="" target="">
+    <a class="dropdown-item" href="./lessons/03_working_data.html" rel="" target="">
  <span class="dropdown-text">Working with data</span></a>
   </li>  
     </ul>
@@ -122,21 +122,21 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-discussions">    
         <li>
-    <a class="dropdown-item" href="../discussions/02_open_data_1.html" rel="" target="">
+    <a class="dropdown-item" href="./discussions/02_open_data_1.html" rel="" target="">
  <span class="dropdown-text">Open data 1</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../discussions/03_open_tools.html" rel="" target="">
+    <a class="dropdown-item" href="./discussions/03_open_tools.html" rel="" target="">
  <span class="dropdown-text">Open tools</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../discussions/04_open_data_2.html" rel="" target="">
+    <a class="dropdown-item" href="./discussions/04_open_data_2.html" rel="" target="">
  <span class="dropdown-text">Open data 2</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="../reporting_errors.html" rel="" target="">
+    <a class="nav-link active" href="./reporting_errors.html" rel="" target="" aria-current="page">
  <span class="menu-text">Reporting errors</span></a>
   </li>  
 </ul>
@@ -155,8 +155,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#if-youve-used-r-markdown-before" id="toc-if-youve-used-r-markdown-before" class="nav-link active" data-scroll-target="#if-youve-used-r-markdown-before">If you've used R Markdown before…</a></li>
-  <li><a href="#if-youre-brand-new-to-literate-programming" id="toc-if-youre-brand-new-to-literate-programming" class="nav-link" data-scroll-target="#if-youre-brand-new-to-literate-programming">If you're brand new to literate programming…</a></li>
+  <li><a href="#why-not-just-email" id="toc-why-not-just-email" class="nav-link active" data-scroll-target="#why-not-just-email">Why not just email?</a></li>
   </ul>
 </nav>
     </div>
@@ -165,7 +164,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Quarto essentials</h1>
+<h1 class="title">Reporting errors</h1>
 </div>
 
 
@@ -180,21 +179,27 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Quarto documents combine text, code, and results (e.g., figures and tables). They're a type of <strong>literate programming</strong>, which differs from scripts because they're intended for a human audience over computation. You'll use Quarto documents for assessments and your final project. Quarto is an extremely powerful data science platform: you can dynamically create PDFs, Word documents, and even websites in Quarto, plus they support R, Python, and other data science programming languages. For now, you just need to know the essentials. Ask yourself the following questions to see if you need this lesson.</p>
-<p><em>Can you…</em></p>
-<ul>
-<li><p>Create a Quarto document in RStudio and render it to HTML?</p></li>
-<li><p>Format text with Markdown and insert code chunks?</p></li>
-<li><p>Recognize a YAML header and change options to customize your document?</p></li>
-</ul>
-<p>If you answered yes to all these questions, skip this lesson. Otherwise, choose one of the two options below.</p>
-<section id="if-youve-used-r-markdown-before" class="level2">
-<h2 class="anchored" data-anchor-id="if-youve-used-r-markdown-before">If you've used R Markdown before…</h2>
-<p>If you've used R Markdown documents before, then you're already familiar with literate programming (though the terminology may be new to you). Quarto is extremely similar to R Markdown, but redesigned for consistency. Read <a href="https://www.apreshill.com/blog/2022-04-we-dont-talk-about-quarto/"><em>We don't talk about Quarto</em></a> by Alison Hill to learn what's the same and what's different.</p>
-</section>
-<section id="if-youre-brand-new-to-literate-programming" class="level2">
-<h2 class="anchored" data-anchor-id="if-youre-brand-new-to-literate-programming">If you're brand new to literate programming…</h2>
-<p>If Quarto and R Markdown are unfamiliar to you, I recommend <a href="https://r4ds.hadley.nz/quarto.html">Chapter 29: Quarto</a>, sections 29.1-29.5 (<em>Introduction</em> through <em>Code chunks</em>), in <em>R 4 Data Science</em> by Hadley Wickham. You'll learn the basics of creating Quarto documents, editing in both <em>Visual</em> and <em>Source</em> modes, and adding code chunks.</p>
+<p>If you’re struggling with a lesson, exercise, or assessment then there’s a decent chance I made a mistake when I created the materials. Thank you in advance for letting me know! Here’s what I would like you to do.</p>
+<ol type="1">
+<li>Point your browser to the course website’s GitHub repo <a href="https://github.com/FlukeAndFeather/BIOE215fall23" class="uri">https://github.com/FlukeAndFeather/BIOE215fall23</a>.</li>
+<li>Navigate to the file where you found the error. For example, an error in the <a href="https://flukeandfeather.github.io/BIOE215fall23/lessons/03_working_data.html">Working with Data</a> lesson would be in <a href="https://github.com/FlukeAndFeather/BIOE215fall23/blob/main/lessons/03_working_data.qmd">lessons/03_working_data.qmd</a>.</li>
+<li>Find the line where the error originated. Use your browser’s find function to jump straight to the relevant line. You don’t have to be 100% correct! Even if you’re not sure you’ve identified the right line of code, finding something in the general area is helpful.</li>
+<li>Click on the line number, then <strong>…</strong>, then <strong>Reference in new issue</strong>.<br>
+<img src="img/create_issue.jpg" class="img-fluid"></li>
+<li>You should see the new issue page. Give it a concise title (e.g., “Wrong data frame name in Lesson 3”) and briefly describe the error.</li>
+<li>Click on <strong>Submit new issue</strong> (green button).</li>
+</ol>
+<p>That’s it! I’ll receive an alert that you’ve found an issue. When I fix it, the code change will be linked to your issue.</p>
+<p>Here’s a screencast of me opening an issue and fixing an error that a student discovered.</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://player.vimeo.com/video/875734369" frameborder="0" allow="autoplay; title=" "="" fullscreen;="" picture-in-picture"="" allowfullscreen=""></iframe></div>
+<section id="why-not-just-email" class="level2">
+<h2 class="anchored" data-anchor-id="why-not-just-email">Why not just email?</h2>
+<p>This might seem like a lot of work. But I’d like you to try this for a few reasons.</p>
+<ol type="1">
+<li>Get more comfortable navigating GitHub repos</li>
+<li>Learn how to use Issues, a great project management tool</li>
+<li>If/when other students run into the same error, they’ll see that it is in fact an error, which is helpful for everyone’s sanity</li>
+</ol>
 
 
 </section>

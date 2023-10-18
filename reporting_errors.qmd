@@ -1,0 +1,27 @@
+---
+title: "Reporting errors"
+---
+
+If you're struggling with a lesson, exercise, or assessment then there's a decent chance I made a mistake when I created the materials. Thank you in advance for letting me know! Here's what I would like you to do.
+
+1.  Point your browser to the course website's GitHub repo <https://github.com/FlukeAndFeather/BIOE215fall23>.
+2.  Navigate to the file where you found the error. For example, an error in the [Working with Data](https://flukeandfeather.github.io/BIOE215fall23/lessons/03_working_data.html) lesson would be in [lessons/03_working_data.qmd](https://github.com/FlukeAndFeather/BIOE215fall23/blob/main/lessons/03_working_data.qmd).
+3.  Find the line where the error originated. Use your browser's find function to jump straight to the relevant line. You don't have to be 100% correct! Even if you're not sure you've identified the right line of code, finding something in the general area is helpful.
+4.  Click on the line number, then **...**, then **Reference in new issue**.\
+    ![](img/create_issue.jpg)
+5.  You should see the new issue page. Give it a concise title (e.g., "Wrong data frame name in Lesson 3") and briefly describe the error.
+6.  Click on **Submit new issue** (green button).
+
+That's it! I'll receive an alert that you've found an issue. When I fix it, the code change will be linked to your issue.
+
+Here's a screencast of me opening an issue and fixing an error that a student discovered.
+
+{{< video https://vimeo.com/875734369 >}}
+
+## Why not just email?
+
+This might seem like a lot of work. But I'd like you to try this for a few reasons.
+
+1.  Get more comfortable navigating GitHub repos
+2.  Learn how to use Issues, a great project management tool
+3.  If/when other students run into the same error, they'll see that it is in fact an error, which is helpful for everyone's sanity
