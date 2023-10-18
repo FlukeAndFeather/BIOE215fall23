@@ -1,108 +1,282 @@
 [
   {
-    "objectID": "syllabus.html",
-    "href": "syllabus.html",
-    "title": "Syllabus",
+    "objectID": "reporting_errors.html",
+    "href": "reporting_errors.html",
+    "title": "Reporting errors",
     "section": "",
-    "text": "Data Science for Eco/Evo\nBIOE215, 3 Credits, Fall 2023"
+    "text": "If you’re struggling with a lesson, exercise, or assessment then there’s a decent chance I made a mistake when I created the materials. Thank you in advance for letting me know! Here’s what I would like you to do.\nThat’s it! I’ll receive an alert that you’ve found an issue. When I fix it, the code change will be linked to your issue.\nHere’s a screencast of me opening an issue and fixing an error that a student discovered."
   },
   {
-    "objectID": "syllabus.html#course",
-    "href": "syllabus.html#course",
-    "title": "Syllabus",
-    "section": "",
-    "text": "Data Science for Eco/Evo\nBIOE215, 3 Credits, Fall 2023"
+    "objectID": "reporting_errors.html#why-not-just-email",
+    "href": "reporting_errors.html#why-not-just-email",
+    "title": "Reporting errors",
+    "section": "Why not just email?",
+    "text": "Why not just email?\nThis might seem like a lot of work. But I’d like you to try this for a few reasons.\n\nGet more comfortable navigating GitHub repos\nLearn how to use Issues, a great project management tool\nIf/when other students run into the same error, they’ll see that it is in fact an error, which is helpful for everyone’s sanity"
   },
   {
-    "objectID": "syllabus.html#instructor",
-    "href": "syllabus.html#instructor",
-    "title": "Syllabus",
+    "objectID": "lessons/02a_quarto_essentials.html",
+    "href": "lessons/02a_quarto_essentials.html",
+    "title": "Quarto essentials",
+    "section": "",
+    "text": "Quarto documents combine text, code, and results (e.g., figures and tables). They're a type of literate programming, which differs from scripts because they're intended for a human audience over computation. You'll use Quarto documents for assessments and your final project. Quarto is an extremely powerful data science platform: you can dynamically create PDFs, Word documents, and even websites in Quarto, plus they support R, Python, and other data science programming languages. For now, you just need to know the essentials. Ask yourself the following questions to see if you need this lesson.\nCan you…\nIf you answered yes to all these questions, skip this lesson. Otherwise, choose one of the two options below."
+  },
+  {
+    "objectID": "lessons/02a_quarto_essentials.html#if-youve-used-r-markdown-before",
+    "href": "lessons/02a_quarto_essentials.html#if-youve-used-r-markdown-before",
+    "title": "Quarto essentials",
+    "section": "If you've used R Markdown before…",
+    "text": "If you've used R Markdown before…\nIf you've used R Markdown documents before, then you're already familiar with literate programming (though the terminology may be new to you). Quarto is extremely similar to R Markdown, but redesigned for consistency. Read We don't talk about Quarto by Alison Hill to learn what's the same and what's different."
+  },
+  {
+    "objectID": "lessons/02a_quarto_essentials.html#if-youre-brand-new-to-literate-programming",
+    "href": "lessons/02a_quarto_essentials.html#if-youre-brand-new-to-literate-programming",
+    "title": "Quarto essentials",
+    "section": "If you're brand new to literate programming…",
+    "text": "If you're brand new to literate programming…\nIf Quarto and R Markdown are unfamiliar to you, I recommend Chapter 29: Quarto, sections 29.1-29.5 (Introduction through Code chunks), in R 4 Data Science by Hadley Wickham. You'll learn the basics of creating Quarto documents, editing in both Visual and Source modes, and adding code chunks."
+  },
+  {
+    "objectID": "lessons/02b_vectors_key_points.html",
+    "href": "lessons/02b_vectors_key_points.html",
+    "title": "Vector review",
+    "section": "",
+    "text": "This lesson reviews the key points about vector from lesson Computational Thinking 1."
+  },
+  {
+    "objectID": "lessons/02b_vectors_key_points.html#atomic-vectors",
+    "href": "lessons/02b_vectors_key_points.html#atomic-vectors",
+    "title": "Vector review",
+    "section": "Atomic vectors",
+    "text": "Atomic vectors\nJargon:\n\ndata structure. The data you collect might be written on paper or bits collected by an instrument. But R is way too naïve to know anything about that. For R to do something useful with your data (transform it, fit a model to it, make a figure from it), you need to put your data into a data structure. R loves data structures, and if you choose the right data structure for your data then R will make your life way easier.\natomic vector. Just like how atoms are the building blocks of matter, atomic vectors are the building blocks of data in R. They’re the simplest kind of data structure R has. Think of them as variables in data you’d collect in the lab or field, like masses or times or counts. Everything in an atomic vector has to be the same type. Compare against lists (next section).\nelement. Ok, the chemistry analogy breaks down here. Thanks for nothing, R. The individual bits and pieces of data structures are called elements. An atomic vector holding the values 0, -1, and 3.14 has three elements.\n\nQ1: There are four types we care about when it comes to R vectors. What are they?\nQ2: What are the types of each of these vectors? How many elements do they have? What R function tells you the number of elements?\nsci_names &lt;- c(\"Balaenoptera musculus\", \"Balaenoptera physalus\", \"Megaptera noveangliae\")\nquadrat_counts &lt;- c(12L, 0L, 0L, 3L, 0L, 10L)\nrained &lt;- c(TRUE, TRUE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE)\nreact_time_s &lt;- c(0.13, 0.19, 0.15, 0.10, 0.15, 0.15, 0.15, 0.14)"
+  },
+  {
+    "objectID": "lessons/02b_vectors_key_points.html#lists",
+    "href": "lessons/02b_vectors_key_points.html#lists",
+    "title": "Vector review",
+    "section": "Lists",
+    "text": "Lists\nJargon:\n\nlist. If atomic vectors are atoms, then lists are molecules. A list is a more flexible data structure than an atomic vector. They can be made from multiple types of atomic vectors, or even other lists! Data frames (more on those next week) are actually a special form of lists.\n\nHere’s an example of how lists can be built from atomic vectors and/or other lists.\ndog1 &lt;- list(name = \"Bowie\", \n             weight_lb = 80.0, \n             skills = c(\"nap\", \"eat\", \"more nap\"))\ndog2 &lt;- list(name = \"Lassie\",\n             weight_lb = 65.0,\n             skills = c(\"save tommy\", \"bark\", \"acting\"))\ndogs &lt;- list(dog1, dog2)\n\n\n\n\n\n\nNote\n\n\n\nDid you notice the different functions used to make atomic vectors and lists? c() for atomic vectors, list() for lists.\n\n\nQ3: In the code above, what do you think is the length of dog1? dog2? dogs?\nQ4: What’s the type of dog1? dog1 has three elements, called name, weight_lb, and skills. What are their types and lengths?"
+  },
+  {
+    "objectID": "lessons/02b_vectors_key_points.html#atomic-vectors-1",
+    "href": "lessons/02b_vectors_key_points.html#atomic-vectors-1",
+    "title": "Vector review",
+    "section": "Atomic vectors",
+    "text": "Atomic vectors\nIf your data are in an atomic vector, then you can index in three different ways to get a subset.\n\nPosition\nLet’s start with indexing by position.\n\n# Start with two vectors: species and migration distances\nspecies &lt;- c(\"Arctic tern\", \"Sooty shearwater\", \"Adelie penguin\")\nmigration_km &lt;- c(96000, 64000, 18000)\n\n# What will these do?\nspecies[1]\nmigration_km[-1]\nmigration_km[1:2]\nspecies[c(1, 1, 1)]\ni &lt;- 3\nspecies[i]\n\nQ5: How would you subset migration_km to get the second element?\nQ6: What are three ways to subset migration_km to get the first and second elements? Hint: use :, c(), and a negative number.\nQ7: How would you use the length() function to get the last element of a vector? Demonstrate with species.\n\n\nName\nSometimes it’s helpful to give the elements of your vectors names. That way you can find the data you want even if you don’t know the position.\n\n# Instead of separate vectors for species and migration distances, we can\n# just name the elements of migration_km themselves.\nmigration_km &lt;- c(ArcticTern = 96000, SootyShearwater = 64000, AdeliePenguin = 18000)\n\n# One element by name\nmigration_km[\"ArcticTern\"]\n\n# Two elements by name (have to use c()! : won't work with names!)\nmigration_km[c(\"ArcticTern\", \"SootyShearwater\")]\n\n\n\n\n\n\n\nNote\n\n\n\nWhen you use c() or list() to make a data structure, follow the pattern c(name = value). R understands the bit to the left of the = is a name from context, so name doesn’t have to go in quotes unless it has a space in it. If you want value to be understood as text, then it would have to go in quotes. So this works c(a = \"b\") and this works c(\"a\" = \"b\") but this doesn’t c(a = b).\n\n\nQ8: Why doesn’t this work? migration_km[ArcticTern]\nQ9: Are migration_km[3] and migration_km[\"AdeliePenguin\"] equivalent? What if I remove an element from migration_km or shuffle it first?\nQ10: Here’s a deliberately tricky question. What does the following give you?\n\nArcticTern &lt;- \"SootyShearwater\"\nmigration_km[ArcticTern]\n\n\n\n\n\n\n\nNote\n\n\n\nYou may have noticed that printing a named vector gives you both the names and the values, which might make it look like there are two vectors. But really it’s just one. The names are basically decorative, displayed on top of the values. When it comes to the data, though, it’s the value that matters.\n\n\nQ11: Below you see the result of subsetting a named vector. What’s the type of the result - character or double?\n\nmigration_km[1]\n\n\n\nLogic\nThe third way to subset a vector is with a bunch of TRUEs and FALSEs. That might seem pointless on its own, but it becomes very useful when you use comparisons like == and &gt; to generate the TRUEs and FALSEs for you.\n\n# Temperature at a site for the first ten days of February\ndates &lt;- paste(\"Feb\", 1:10)\ntemp_F &lt;- c(54.0, 53.8, 53.1, 54, 71.9, 72.0, 54.0, 53.3, 53.9, 53.1)\n\n# Use logic to subset the first and second temperatures\n# This is a silly way to do this\ntemp_F[c(TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE)]\n# Slightly less silly, though still silly\ntemp_F[c(rep(TRUE, 2), rep(FALSE, 8))]\n\n# Which days were warmer than the median?\n# This is typically how you'll subset by logic\ndates[temp_F &gt; median(temp_F)]\n\n# Which days were \"heat waves\" (more than 2 standard deviations hotter \n# than the median)\nis_heat_wave &lt;- temp_F &gt; ___ + ___\nheat_wave_dates &lt;- dates[___]\nheat_wave_dates\n\nQ12: Fill in the blanks above to figure out the heat wave dates. What were they?\nQ13: What’s the type of is_heat_wave? Of heat_wave_dates?"
+  },
+  {
+    "objectID": "lessons/02b_vectors_key_points.html#lists-1",
+    "href": "lessons/02b_vectors_key_points.html#lists-1",
+    "title": "Vector review",
+    "section": "Lists",
+    "text": "Lists\nLists are more flexible than atomic vectors, so subsetting gets a little more complicated. Subsetting an atomic vector always gives you an atomic vector of the same type, but since lists can hold multiple types they work a little differently.\nThere are three ways to subset lists. [ works similarly as it does with atomic vectors: you get a subset of the list and it’s still a list. [[ and $ are a little different: they pull the contents out of a list. [ might be more familiar, but most of the time [[ and $ do what you actually want them to do. Let’s look at what that means in practice.\n\nSubsetting with [\n\n# Remember our dogs?\ndog1 &lt;- list(name = \"Bowie\", \n             weight_lb = 80.0, \n             skills = c(\"nap\", \"eat\", \"more nap\"))\ndog2 &lt;- list(name = \"Lassie\",\n             weight_lb = 65.0,\n             skills = c(\"save tommy\", \"bark\", \"acting\"))\ndogs &lt;- list(dog1, dog2)\n\n# Subsetting lists with `[` is very similar to atomic vectors, you're \n# always getting a list back\n\n# Index by position\ndog1[1]\ndogs[1]\n\n# Index by name\ndog1[\"weight_lb\"]\ndog2[\"skills\"]\n\n# You can index by logic, too, but it's not terribly helpful here\n\n\n\n\n\n\n\nNote\n\n\n\nWow, lists print a lot differently than atomic vectors, don’t they? That’s the price of being flexible, you end up being more complicated. But they share their roots with atomic vectors. [[1]] means the element at position 1 and $some_name means the element with position some_name. Lists can contain other lists, so [[1]]$some_name means “in the first element, the element named some_name”.\n\n\nQ14: What’s the type of dog1[1]? dog1[1:2]? dogs[2]?\n\n\nSubsetting with [[ and $\n[[ and $ are how you pull the contents out of elements in a list. You can only do this on a single element, so some of the things you can do with [ like x[1:3] and x[c(\"a\", \"b\")] won’t work.\nFor the next examples, you’ll need the palmerpenguins package installed.\n\n# Use `[[` to subset by position\ndog1[[2]]\n\n# Use `[[` to subset by name\ndog1[[\"weight_lb\"]]\n\n# Use `$` to subset by name\ndog1$weight_lb\n\n\n\n\n\n\n\nNote\n\n\n\nDid you notice the difference when subsetting by name with [[ and $? weight_lb had to go in quotes with [[, but was unquoted with $. Subsetting with $ is one of the few times you can use a name unquoted.\n\n\nQ15: Why doesn’t dog1[[weight_lb]] work? Use the error message to explain why.\nQ16: What’s the type of dog1[[2]]? How is it different than dog1[2]?\n\nA minute on data frames\nYou may already be familiar with $ if you’ve used it to subset columns from data frames. Data frames are a special type of list. The columns of the data frame are elements of the list. This kind of building complex data structures from simpler parts is a form of abstraction, which is key to solving problems computationally.\nFor this section, install the palmerpenguins package if necessary.\n\n# install.packages(\"palmerpenguins\")\nlibrary(palmerpenguins)\n\n# penguins is a data frame, meaning it's a list\ntypeof(penguins)\n\n# The elements of the list are the columns, so the length is the number of columns, not the number of rows.\nlength(penguins)\nnrow(penguins)\nncol(penguins)\n\n# Subsetting a column with $ and [[ returns *just* the column\npenguins$body_mass_g\npenguins[[\"body_mass_g\"]]\ntypeof(penguins$body_mass_g)\n\n# Remember subsetting a list with [ returns a shorter list, so \n# subsetting a column with [ returns a data frame\npenguins[\"body_mass_g\"]\ntypeof(penguins[\"body_mass_g\"])\n\nQ17: length(penguins) giving you the number of columns instead of rows is pretty counterintuitive.Why would columns be the elements in the list instead of the rows? Use types in your answer. Are the types of the elements in columns one type or many? How about rows?\nQ18: If you know the name of the column you want to subset in advance, then $ is convenient e.g., penguins$body_mass_g. But say the name of the column is in a variable e.g., penguin_var &lt;- \"body_mass_g\". How you would you use penguin_var to subset the body_mass_g column?"
+  },
+  {
+    "objectID": "lessons/03_working_data.html",
+    "href": "lessons/03_working_data.html",
+    "title": "Working with data",
+    "section": "",
+    "text": "What it is\n\nRows = observations, columns = variables, cells = individual observations (Broman and Woo 2018)\nSpreadsheets and relational databases\n\nWhat it isn’t\n\nGeospatial data (vectors and rasters)\nPhylogenetic data (trees)"
+  },
+  {
+    "objectID": "lessons/03_working_data.html#core-principles",
+    "href": "lessons/03_working_data.html#core-principles",
+    "title": "Working with data",
+    "section": "Core principles",
+    "text": "Core principles\n\n\n\nFrom R for Data Science (2e) Section 1.1\n\n\n\nUse similar patterns and conventions for every step of the data science workflow\nEmphasis on data frames, the ubiquitous data structure in R for tabular data\nTidy data. Rows = observations, columns = variables, cells = individual observations (Broman and Woo 2018)\n%&gt;% Pipe friendly! More on that shortly."
+  },
+  {
+    "objectID": "lessons/03_working_data.html#load-the-data",
+    "href": "lessons/03_working_data.html#load-the-data",
+    "title": "Working with data",
+    "section": "Load the data",
+    "text": "Load the data\nRead and inspect\n\nsurveys &lt;- read_csv(\"data/portal_data_joined.csv\")\nhead(surveys)\nsummary(surveys)\n\nQ1: What’s the type of column species_id? Of hindfoot_length?\nQ2: How many rows and columns are in surveys?"
+  },
+  {
+    "objectID": "lessons/03_working_data.html#selecting-columns-and-filtering-rows",
+    "href": "lessons/03_working_data.html#selecting-columns-and-filtering-rows",
+    "title": "Working with data",
+    "section": "selecting columns and filtering rows",
+    "text": "selecting columns and filtering rows\n\n\n\n\n\n\nImportant\n\n\n\nMany tidyverse functions let you treat columns in a data frame as variables. In the following sections, notice we’re not putting column names in quotes.\n\n\nHow do I keep a few columns?\n\nselect(surveys, plot_id, species_id, weight)\nselect(surveys, plot_id, species_id, weight_g = weight)\n\nHow do I remove a few columns?\n\nselect(surveys, -record_id, -species_id)\n\nHow do I keep rows based on a condition?\n\nfilter(surveys, year == 1995)\nfilter(surveys, year == 1995, plot_id == 7)\nfilter(surveys, month == 2 | day == 20)\n\nQ3: filter() surveys to records collected in November where hindfoot_length is greater than 36.0\nQ4: Fix these errors\n\nfilter(surveys, year = 1995)\nfilter(surveys, polt_id == 2)"
+  },
+  {
+    "objectID": "lessons/03_working_data.html#pipes",
+    "href": "lessons/03_working_data.html#pipes",
+    "title": "Working with data",
+    "section": "Pipes %>%",
+    "text": "Pipes %&gt;%\nFor a sequence of transformations, use pipes for readability\n\n# Filter then select without pipes, two ways\n# First way\nselect(filter(surveys, year == 1995), plot_id, species_id, weight)\n# Second way\nsurveys_1995 &lt;- filter(surveys, year == 1995)\nsurveys_psw &lt;- select(surveys_1995, plot_id, species_id, weight)\n\nInstead, use pipes! Read them aloud as “then”.\n\nsurveys_psw &lt;- surveys %&gt;% \n  filter(year == 1995) %&gt;% \n  select(plot_id, species_id, weight)\n\nUnder the hood, the left hand side of the pipe becomes the first argument on the right hand side.\nQ5: Use pipes to subset surveys to animals collected before 1995 retaining just the columns year, sex, and weight"
+  },
+  {
+    "objectID": "lessons/03_working_data.html#addchange-columns-with-mutate",
+    "href": "lessons/03_working_data.html#addchange-columns-with-mutate",
+    "title": "Working with data",
+    "section": "Add/change columns with mutate",
+    "text": "Add/change columns with mutate\nAdd a column\n\nsurveys %&gt;% \n  mutate(weight_kg = weight / 1000)\n\nAdd multiple columns based on each other\n\nsurveys %&gt;% \n  mutate(weight_kg = weight / 1000,\n         weight_lb = weight_kg * 2.2)\n\nSo many NAs! Add a filter before mutate.\n\nsurveys %&gt;% \n  filter(!is.na(weight)) %&gt;% \n  mutate(weight_kg = weight / 1000,\n         weight_lb = weight_kg * 2.2)\n\nConvert year, month, and day to dates\n\nsurveys %&gt;% \n  select(year, month, day) %&gt;% \n  mutate(date_str = paste(year, month, day, sep = \"-\"),\n         date = as.Date(date_str))\n\nQ6: Create a new data frame from the surveys data that meets the following criteria: contains only the species_id column and a new column called hindfoot_cm containing the hindfoot_length values (currently in mm) converted to centimeters. In this hindfoot_cm column, there are no NAs and all values are less than 3.\nHint: think about how the commands should be ordered to produce this data frame!"
+  },
+  {
+    "objectID": "lessons/03_working_data.html#split-apply-combine-with-summarize",
+    "href": "lessons/03_working_data.html#split-apply-combine-with-summarize",
+    "title": "Working with data",
+    "section": "Split-apply-combine with summarize",
+    "text": "Split-apply-combine with summarize\nWhat’s the average weight of the observed animals by sex?\n\nsurveys %&gt;% \n  group_by(sex) %&gt;% \n  summarize(mean_weight = mean(weight, na.rm = TRUE))\n\nGroup by multiple columns, e.g. sex and species.\n\nsurveys %&gt;% \n  group_by(species_id, sex) %&gt;% \n  summarize(mean_weight = mean(weight, na.rm = TRUE))\n\n\n\n\n\n\n\nNote\n\n\n\nNotice the warning message: our output is still grouped by species_id. By default, summarize() only removes one level of grouping. This usually leads to unexpected results. As the warning suggests, use .groups to drop all groups.\n\n\n\nsurveys %&gt;% \n  group_by(species_id, sex) %&gt;% \n  summarize(mean_weight = mean(weight, na.rm = TRUE),\n            .groups = \"drop\")\n\nNaN is the result of calling mean() on an empty vector. Let’s remove NAs before summarizing.\n\nsurveys %&gt;% \n  filter(!is.na(weight)) %&gt;% \n  group_by(species_id, sex) %&gt;% \n  summarize(mean_weight = mean(weight),\n            .groups = \"drop\")\n\nCan also generate multiple summaries per group.\n\nsurveys %&gt;% \n  filter(!is.na(weight)) %&gt;% \n  group_by(species_id, sex) %&gt;% \n  summarize(mean_weight = mean(weight),\n            min_weight = min(weight),\n            .groups = \"drop\")"
+  },
+  {
+    "objectID": "lessons/03_working_data.html#sort-with-arrange",
+    "href": "lessons/03_working_data.html#sort-with-arrange",
+    "title": "Working with data",
+    "section": "Sort with arrange",
+    "text": "Sort with arrange\n\nsurveys %&gt;% \n  filter(!is.na(weight)) %&gt;% \n  group_by(species_id, sex) %&gt;% \n  summarize(mean_weight = mean(weight),\n            min_weight = min(weight),\n            .groups = \"drop\") %&gt;% \n  arrange(desc(mean_weight))"
+  },
+  {
+    "objectID": "lessons/03_working_data.html#utility-functions",
+    "href": "lessons/03_working_data.html#utility-functions",
+    "title": "Working with data",
+    "section": "Utility functions",
+    "text": "Utility functions\ncount(), drop_na()\ncount() is a shortcut to getting the size of groups\n\nsurveys %&gt;% \n  count(sex, species) %&gt;% \n  arrange(species, desc(n))\n\ndrop_na() is a shortcut for removing rows with missing values\n\nsurveys %&gt;% \n  drop_na(weight, sex) %&gt;% \n  group_by(species_id, sex) %&gt;% \n  summarize(mean_weight = mean(weight),\n            min_weight = min(weight),\n            .groups = \"drop\") %&gt;% \n  arrange(desc(mean_weight))\n\nQ7: How many animals were caught in each plot_type surveyed?\nQ8: Use group_by() and summarize() to find the mean, min, and max hindfoot length for each species (using species_id). Also add the number of observations (hint: see ?n).\nQ9: What was the heaviest animal measured in each year? Return the columns year, genus, species_id, and weight."
+  },
+  {
+    "objectID": "lessons/03_working_data.html#joining-data",
+    "href": "lessons/03_working_data.html#joining-data",
+    "title": "Working with data",
+    "section": "Joining data",
+    "text": "Joining data\nJoining columns: left_join(), inner_join()\nSay we have more information about some of our taxa.\n\ncount(surveys, taxa)\ntaxa_iucn &lt;- data.frame(\n  taxa = c(\"Bird\", \"Rabbit\", \"Rodent\"),\n  iucn = c(\"NT\", \"LC\", \"LC\")\n)\ntaxa_iucn\n\nLeft join surveys with taxa info by their shared column (the “key”)\n\nsurveys_iucn &lt;- left_join(surveys, taxa_iucn, by = \"taxa\")\nhead(surveys_iucn)\n\nQ10: How many records were there for NT and LC taxa?\nleft_join() keeps everything from the left. So surveys_iucn has NAs for iucn when taxa wasn’t in taxa_iucn.\nQ11: What kind of taxa do the NAs in iucn correspond to?\ninner_join() only keeps records where the key is in both tables.\n\nsurveys_iucn2 &lt;- inner_join(surveys, taxa_iucn, by = \"taxa\")\n\nQ12: How many rows are in surveys_iucn2? What rows are in surveys_iucn that aren’t in surveys_iucn2?"
+  },
+  {
+    "objectID": "lessons/03_working_data.html#wrapping-up",
+    "href": "lessons/03_working_data.html#wrapping-up",
+    "title": "Working with data",
+    "section": "Wrapping up",
+    "text": "Wrapping up\nSave all your changes to scratch/lesson3.R. Commit and push."
+  },
+  {
+    "objectID": "lessons/03_working_data.html#download-data",
+    "href": "lessons/03_working_data.html#download-data",
+    "title": "Working with data",
+    "section": "Download data",
+    "text": "Download data\nFor this assessment, we’ll use the breeding bird phenology from Hällfors et al. (2020a). Their data are on Dryad (Hällfors et al. 2020b). We’ll complement that with the AVONET (Tobias et al. 2022) database of bird functional traits, which is on Figshare.\nDownload the Dryad dataset. Copy “73_species.csv” and “Traits_73_species.csv” to your data/ folder.\nFrom the AVONET database on Figshare, download “AVONET Supplementary dataset 1.xlsx” do your data/ folder."
+  },
+  {
+    "objectID": "lessons/03_working_data.html#read-data",
+    "href": "lessons/03_working_data.html#read-data",
+    "title": "Working with data",
+    "section": "Read data",
+    "text": "Read data\nIn your Quarto document, add a code chunk that loads the tidyverse and reads the data.\n\nUse read_csv() to read “73_species.csv” and assign it to a variable called bor_nestlings.\nUse read_csv() to read “Traits_73_species.csv” and assign it to a variable called bor_traits.\nUse readxl::read_excel() to read the “AVONET1_BirdLife” sheet from “AVONET Supplementary dataset 1.xlsx” and assign it to a variable called avonet.\n\n\n\n\n\n\n\nTip\n\n\n\nSee ?readxl::read_excel for info on how to read a specific sheet from an Excel workbook."
+  },
+  {
+    "objectID": "lessons/03_working_data.html#explore",
+    "href": "lessons/03_working_data.html#explore",
+    "title": "Working with data",
+    "section": "Explore",
+    "text": "Explore\nWe’ll explore the boreal bird nestling data together. Follow along in your Quarto document.\nAre nestlings showing up earlier in the year over time?\n\nall_birds_trend &lt;- bor_nestlings %&gt;% \n  group_by(Year) %&gt;% \n  summarize(mean_doy = mean(Dayofyear))\n\nggplot(all_birds_trend, aes(Year, mean_doy)) + \n  geom_point() +\n  geom_smooth(method = \"lm\")\n\n\n\n\n\n\n\nNote\n\n\n\nThis may be your first time using ggplot. I’ll give you the ggplot code you need for today. You’ll learn more about it next week.\n\n\nThat combines 73 species. Let’s see the breakdown by species.\n\nspecies_trends &lt;- bor_nestlings %&gt;% \n  group_by(Year, Species) %&gt;% \n  summarize(mean_doy = mean(Dayofyear),\n            .groups = \"drop\")\n\nggplot(species_trends, aes(Year, mean_doy, color = Species)) + \n  geom_point() +\n  geom_smooth(method = \"lm\")\n\nSo chaotic! What if we just look at the 5 most data-rich species?\n\ndata_richness &lt;- bor_nestlings %&gt;% \n  count(Species)\n\nmost_rich &lt;- data_richness %&gt;% \n  arrange(desc(n)) %&gt;% \n  slice(1:5)\n\nmost_rich_trends &lt;- bor_nestlings %&gt;% \n  filter(Species %in% most_rich$Species) %&gt;% \n  group_by(Species, Year) %&gt;% \n  summarize(mean_doy = mean(Dayofyear), \n            .groups = \"drop\")\n\nggplot(most_rich_trends, aes(Year, mean_doy, color = Species)) +\n  geom_point() +\n  geom_smooth(method = \"lm\")\n\nA general pattern, with one conflicting example. What species have the strongest trends?\n\n# I'm giving you a *function* to help here. You'll learn more about those next week.\n\n# Finds the slope of the relationship between y and x\ntrend &lt;- function(x, y) {\n  xy_lm &lt;- lm(y ~ x)\n  coef(xy_lm)[2]\n}\n\n# Calculate the trend for all species\nbor_trends &lt;- bor_by_year %&gt;% \n  group_by(Species) %&gt;% \n  summarize(doy_trend = trend(Year, mean_doy))\n\nSpot check two species\n\nsoi &lt;- c(\"ARDCIN\", \"LARMIN\")\nbor_by_year %&gt;% \n  filter(Species %in% soi) %&gt;% \n  ggplot(aes(Year, mean_doy, color = Species)) +\n  geom_point() +\n  geom_smooth(method = \"lm\")"
+  },
+  {
+<<<<<<< HEAD
+    "objectID": "lessons/03_working_data.html",
+    "href": "lessons/03_working_data.html",
+    "title": "Working with data",
+=======
+    "objectID": "lessons/03_working_data.html#your-turn",
+    "href": "lessons/03_working_data.html#your-turn",
+    "title": "Working with data",
+    "section": "Your turn",
+    "text": "Your turn\nFind the species with the most positive and most negative trends, then plot just those.\n\nnrow_bor_trends &lt;- nrow(bor_trends) # Use this later\nbor_extreme &lt;- bor_trends %&gt;% \n  # Sort by the day of year trend\n  ___(___) %&gt;% \n  # Keep just the first (most negative trend) and last (most positive trend) rows\n  slice(c(___, ___))\n\n# Now plot them\nbor_by_year %&gt;% \n  filter(Species %in% ___) %&gt;% \n  ggplot(aes(Year, mean_doy, color = Species)) + \n    geom_point() +\n    geom_smooth(method = \"lm\")"
+  },
+  {
+    "objectID": "lessons/03_working_data.html#bring-in-more-data",
+    "href": "lessons/03_working_data.html#bring-in-more-data",
+    "title": "Working with data",
+    "section": "Bring in more data",
+    "text": "Bring in more data\nNext we’re going to test the hypothesis that smaller birds have more flexible phenology, i.e. the absolute value of the trend is correlated with smaller body sizes.\nTo test our hypothesis, we need to add AVONET data to our phenology data by joining. The keys are a bit tricky here!\nbor_nestlings has a column called Species with a 6-letter code.\nbor_traits has a column called Abbreviation with the 6-letter code and a column called `Scientific name` with the binomial name.\navonet has column called Species1 with the binomial name.\nWe need to join bor_nestlings to bor_traits, then join with avonet.\nWelcome to data in the real world!\n\n# First, select and rename important columns\navonet_size &lt;- select(avonet, SciName = Species1, Mass_g = Mass)\nbor_sciname &lt;- select(bor_traits, \n                      Species = Abbreviation, \n                      SciName = `Scientific name`)\n\nNow join them all together.\n\nbor_trends_size &lt;- bor_trends %&gt;% \n  left_join(___, by = ___) %&gt;% \n  left_join(___, by = ___) %&gt;% \n  mutate(abs_trend = abs(doy_trend))\n\n# Plot it\nggplot(bor_trends_size, aes(Mass_g, abs_trend)) +\n  geom_point() +\n  geom_smooth(method = \"lm\")\n\nThat’s kind of hard to interpret. Make a new variable, bor_trends_size2, that removes the missing values in Mass_g and keeps only birds smaller than 2000 g with an absolute trend less than 1.\n\nbor_trends_size2 &lt;- ???\n  \nggplot(bor_trends_size2, aes(Mass_g, abs_trend)) +\n  geom_point() +\n  geom_smooth(method = \"lm\")\n\nIs our hypothesis supported?"
+  },
+  {
+    "objectID": "lessons/03_working_data.html#submission",
+    "href": "lessons/03_working_data.html#submission",
+    "title": "Working with data",
+    "section": "Submission",
+    "text": "Submission\n\nRender index.qmd, which produces reports/index.html. Move your HTML file to docs/.\nEnable GitHub pages for your repo.\nCommit your changes and push.\nOpen an issue and tag me in it."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Data Science for Eco/Evo (Fall 23 BIOE215)",
+    "section": "",
+    "text": "Welcome to Data Science for Eco/Evo! I’m excited to have you in class and hope this course helps you reach your research goals. On this website, you’ll find course logistics, schedule, and lessons. You’ll use GitHub for submitting assessments."
+  },
+  {
+    "objectID": "index.html#course",
+    "href": "index.html#course",
+    "title": "Data Science for Eco/Evo (Fall 23 BIOE215)",
+    "section": "Course",
+    "text": "Course\nData Science for Eco/Evo\nBIOE215, 3 Credits, Fall 2023"
+  },
+  {
+    "objectID": "index.html#instructor",
+    "href": "index.html#instructor",
+    "title": "Data Science for Eco/Evo (Fall 23 BIOE215)",
     "section": "Instructor",
     "text": "Instructor\nDr. Max Czapanskiy (he/they)\nEmail: mczapans@ucsc.edu"
   },
   {
-    "objectID": "syllabus.html#location",
-    "href": "syllabus.html#location",
-    "title": "Syllabus",
+    "objectID": "index.html#location",
+    "href": "index.html#location",
+    "title": "Data Science for Eco/Evo (Fall 23 BIOE215)",
     "section": "Location",
     "text": "Location\nCoastBio 115"
   },
   {
-    "objectID": "syllabus.html#times",
-    "href": "syllabus.html#times",
-    "title": "Syllabus",
+    "objectID": "index.html#times",
+    "href": "index.html#times",
+    "title": "Data Science for Eco/Evo (Fall 23 BIOE215)",
     "section": "Times",
     "text": "Times\nMondays, 3:30-5:30 pm"
   },
   {
-    "objectID": "syllabus.html#office-hours",
-    "href": "syllabus.html#office-hours",
-    "title": "Syllabus",
+    "objectID": "index.html#office-hours",
+    "href": "index.html#office-hours",
+    "title": "Data Science for Eco/Evo (Fall 23 BIOE215)",
     "section": "Office Hours",
     "text": "Office Hours\nTimes: Thursdays 3:30-5:30 pm\nLocation: CoastBio Otter Conference Room\nOr by appointment."
   },
   {
-    "objectID": "syllabus.html#course-description",
-    "href": "syllabus.html#course-description",
-    "title": "Syllabus",
+    "objectID": "index.html#course-description",
+    "href": "index.html#course-description",
+    "title": "Data Science for Eco/Evo (Fall 23 BIOE215)",
     "section": "Course Description",
     "text": "Course Description\nThis course will aim to be practical and provide structure for learning the computational skills most eco/evo grad students have to pick up on their own. Topics will include programming best practices in R, organizing data and computational projects, and planning for reproducibility. This is a chance to gain knowledge and experience with the nuts and bolts of making your science work in code, without trying to learn generalized linear models at the same time. The course structure will be self-directed for weeks 1-6, followed by a final project in weeks 7-10."
   },
   {
-    "objectID": "syllabus.html#schedule",
-    "href": "syllabus.html#schedule",
-    "title": "Syllabus",
-    "section": "Schedule",
-    "text": "Schedule\nWeek 1: Computational project organization\nWeek 2: Computational thinking I\nWeek 3: Working with data\nWeek 4: Computational thinking II\nWeek 5: Troubleshooting\nWeek 6: Wrap up self-directed portion of class\nWeeks 7-9: Final projects\nWeek 10: Communities of practice"
-  },
-  {
-    "objectID": "syllabus.html#how-class-works",
-    "href": "syllabus.html#how-class-works",
-    "title": "Syllabus",
-    "section": "How class works",
-    "text": "How class works\nThe class format is self-paced with an emphasis on small-group learning. Each class will begin with a short discussion on the assigned readings, then we’ll break out into groups. I will require everyone to complete some lessons start to finish (for example, the project organization lesson). Other lessons will let you jump in at the point appropriate to your level of experience.\nAfter week 6, class time will be devoted to your final projects. These will be replication studies. You and your group will find a paper that you want to replicate some part of, either a figure or a table. Using the skills you’ve learned in this class, you will create a stand-alone analysis that replicates their work. I will encourage all groups to submit their replication to an appropriate journal such as Re-Science C.\nThis class covers computational thinking, programming in base R and the tidyverse, project organization and management, and open science practices. You all probably have very different levels of preparation in these areas. For example, if you have more base R programming experience, I’ll suggest you tackle advanced lessons like functional programming. If you feel your foundation is a little patchy, I’ll suggest you deepen your understanding of the core data structures. This means most students will complete somewhat distinct subsets of the available material. That’s by design! You’re not expected to do the same lessons as everyone else. You are expected to do the lessons that best support your growth as a scientist. Speaking of expectations…"
-  },
-  {
-    "objectID": "syllabus.html#course-expectations",
-    "href": "syllabus.html#course-expectations",
-    "title": "Syllabus",
-    "section": "Course Expectations",
-    "text": "Course Expectations\nThis course offers more material than can be covered in the time allocated and students should not expect to complete all of it! Biology grad students have diverse backgrounds, training, and experience with computational skills. Some of the available material will be too basic or too advanced for you at this time. With help from the instructor, you will identify what content will contribute most to your academic and professional success.\n\nWhat you can expect from your instructor\nThe instructor is here to support your learning and provide you with guidance as you develop your understanding of and skills in data science. I strive for an inclusive and collaborative classroom and welcome any suggestions for improvement. I will do my best to provide useful content, rapid feedback, and enthusiastic support, so let me know if I can do anything more. I highly encourage everyone to visit me in office hours or to set up a meeting, even if you don’t feel that you have questions. I want to get to know you and support you in this learning experience!\n\n\nWhat your instructor expects from you\nI expect you to attend class regularly, complete the self-guided material at the pace that works best for you, and contribute to your group’s final project. Your learning depends on your own preparation and engagement as well as that of your fellow students. I encourage you to rely on each other, as well as the instructor, for problem solving and finding solutions. Teaching reinforces learning, so after you complete lessons be prepared to assist other students with that material. Each member of this class has different ideas and perspectives that will enrich the experience for everyone else, so I ask you to be respectful and thoughtful in your interactions. To get the most out of the class, you should be prepared to share your ideas, ask questions, listen actively and collaborate effectively during small group work. Never hesitate to email your instructors, stop by office hours, or set up a meeting. This class should challenge you, but I believe everyone has the ability to succeed with some effort."
-  },
-  {
-    "objectID": "syllabus.html#why-isnt-there-a-remote-option",
-    "href": "syllabus.html#why-isnt-there-a-remote-option",
-    "title": "Syllabus",
-    "section": "Why isn’t there a remote option?",
-    "text": "Why isn’t there a remote option?\nRemote options have become standard for most classes and I wish I could offer one for this course. However, the structure of the class does not lend itself to hybrid formats because of the emphasis on peer learning and 1-on-1 coaching from the instructor. In the future, I hope to offer online and in-person versions of the course. For now, I only have resources to support the in-person version.\nFor the same reason, I can’t support auditing the class at this time. However, I am happy to share the educational materials with anyone who’s interested. I will try to connect these students so you can form a study group. If that happens, I will add additional office hours to meet with you."
-  },
-  {
-    "objectID": "lessons/01_comp_proj_org.html",
-    "href": "lessons/01_comp_proj_org.html",
-    "title": "Computational project organization",
+    "objectID": "discussions/02_open_data_1.html",
+    "href": "discussions/02_open_data_1.html",
+    "title": "Open data 1",
+>>>>>>> main
     "section": "",
-    "text": "Students will be able to:\n\nDescribe the relationship between RStudio project, git repo, and GitHub repo\nOrganize files and folders to maximize reproducibility and collaboration\nCreate a project website on GitHub"
+    "text": "For this week you read Vines et al. (2014) and Wilkinson et al. (2016) about open data.\nOur discussion today will follow the Snowballing format (Brookfield and Preskill 2016). Here’s how it works.\n\nYou’re presented with two discussion questions.\n\nThink of a time you tried to use data from another scientist, lab, paper, etc. What challenges did you encounter trying to use those data? Conversely, what did the data provider do that made your science easier?\nWhat challenges do you anticipate encountering if/when you share your own data? What would you need to learn or what systems would have to change to make sharing data easier?\n\nTake two minutes to reflect and make a note of your thoughts.\nFind a partner. For three minutes, take turns sharing your thoughts. What did you have in common? What was different? How would you synthesize your two points of view?\nNow your pair finds another pair. For another three minutes, repeat step 3 with the larger group. As the group expands, be mindful of everyone’s participation. A little bit of silence can go a long way to giving everyone a chance to participate.\nRepeat step 4 until the whole group is discussing together.\n\n\n\n\n\nReferences\n\nBrookfield, Stephen D, and Stephen Preskill. 2016. The Discussion Book. London, England: Jossey-Bass.\n\n\nVines, Timothy H., Arianne Y.K. Albert, Rose L. Andrew, Florence Débarre, Dan G. Bock, Michelle T. Franklin, Kimberly J. Gilbert, Jean-Sébastien Moore, Sébastien Renaut, and Diana J. Rennison. 2014. “The Availability of Research Data Declines Rapidly with Article Age.” Current Biology 24 (1): 94–97. https://doi.org/10.1016/j.cub.2013.11.014.\n\n\nWilkinson, Mark D., Michel Dumontier, IJsbrand Jan Aalbersberg, Gabrielle Appleton, Myles Axton, Arie Baak, Niklas Blomberg, et al. 2016. “The FAIR Guiding Principles for Scientific Data Management and Stewardship.” Scientific Data 3 (1). https://doi.org/10.1038/sdata.2016.18."
   },
   {
-    "objectID": "lessons/01_comp_proj_org.html#student-learning-objectives",
-    "href": "lessons/01_comp_proj_org.html#student-learning-objectives",
-    "title": "Computational project organization",
+    "objectID": "discussions/03_open_tools.html",
+    "href": "discussions/03_open_tools.html",
+    "title": "Open tools",
     "section": "",
-    "text": "Students will be able to:\n\nDescribe the relationship between RStudio project, git repo, and GitHub repo\nOrganize files and folders to maximize reproducibility and collaboration\nCreate a project website on GitHub"
+    "text": "For this week you read Lowndes et al. (2017) and Marwick, Boettiger, and Mullen (2018) about open tools.\nOur discussion today will follow the Hatful of Quotes format (Brookfield and Preskill 2016). Here’s how it works.\n\nI’ve printed salient quotes from both papers on slips of paper and put them in a “hat”.\nYou’ll randomly draw a quote and take two minutes to think about it on your own. How does the quote relate to the rest of the paper? The other paper? The other content in this course? Your own experiences as a scientist?\nWe hold a group conversation. When it’s your turn to speak, read your quote and share your thoughts. If your quote has already been read, you can affirm, build on, or contradict earlier comments (respectfully).\n\n\n\n\n\nReferences\n\nBrookfield, Stephen D, and Stephen Preskill. 2016. The Discussion Book. London, England: Jossey-Bass.\n\n\nLowndes, Julia S. Stewart, Benjamin D. Best, Courtney Scarborough, Jamie C. Afflerbach, Melanie R. Frazier, Casey C. O’Hara, Ning Jiang, and Benjamin S. Halpern. 2017. “Our Path to Better Science in Less Time Using Open Data Science Tools.” Nature Ecology & Evolution 1 (6). https://doi.org/10.1038/s41559-017-0160.\n\n\nMarwick, Ben, Carl Boettiger, and Lincoln Mullen. 2018. “Packaging Data Analytical Work Reproducibly Using R (and Friends).” The American Statistician 72 (1): 80–88. https://doi.org/10.1080/00031305.2017.1375986."
   },
   {
-    "objectID": "lessons/01_comp_proj_org.html#todays-lesson",
-    "href": "lessons/01_comp_proj_org.html#todays-lesson",
-    "title": "Computational project organization",
-    "section": "Today’s lesson",
-    "text": "Today’s lesson\ntl;dr Each of your analyses should have a standalone directory with all the code and data necessary to produce your results.\nThis lesson has readings, an exercise, and an assessment. Feel free to jump around and do them in whatever order works best for you. I suggest the following order:\n\nRead Bryan (2017) about project-oriented workflows\nIf you’re new to git, read Bryan (2018) about version control and scientific analysis. Consider yourself familiar with git if you know what commit, push, and pull do. If that’s the case, read Braga et al. (2023) about using GitHub for managing scientific projects.\nComplete the Exercise\nComplete the Assessment\n\nBut first, watch this Tik Tok\n\n\nReadings\nThe readings will help clarify why the skills you’re learning will improve your productivity and make your science easier to share, reproduce, and collaborate on.\n\nProject workflows\n\n(Bryan 2017)\nOptionally: chapter 3 of (British Ecological Society and Cooper 2018) Organising projects for reproducibility\n\n\n\nVersion Control\n\n(Bryan 2018) if you’re new to version control\n(Braga et al. 2023) if you already have some experience\n\n\n\n\nExercise\nIn this exercise you’re going to set up an analysis to take advantage of project organization tools in RStudio, git, and GitHub. We’ll use this framework for exercises and assessments throughout the rest of the course.\n\nGoals\n\nCreate an RStudio project and git repository on your computer\nCreate a corresponding GitHub repository online\nSet up an analysis-friendly folder structure\nActivate GitHub pages to give your project a website\n\n\n\nStep 1: Create an RStudio project and git repository\nOpen RStudio. From the top menu, click on File &gt; New Project to launch the New Project Wizard.\nChoose New Directory &gt; New Project. You should now see the Create New Project prompt.\n\nThe Directory name is the name of your project. Call it “bioe215lesson1”. When it comes to project directory naming, there are a couple of best practices to follow. Stick to letters and numbers, and avoid special characters like spaces, underscores, and dashes. This ensures your directory name will be compatible with the naming requirements for R, git, and GitHub.\nNext you’ll choose where to put your project on your computer. In the screenshot above, Create project as subdirectory of: is set to /Users/frank/Documents/GitHub, which is where I keep projects on my computer. Yours may default to somewhere unhelpful. I suggest creating a subfolder in your “Documents” directory called “GitHub”, then use the “Browse…” button to navigate there.\nMake sure the check box for Create a git repository is checked.\nClick on Create Project.\n\nOnce RStudio finishes creating your project, you should see something like the screenshot above. Make sure you see both the git pane and the project name. Let the instructor know when you’re done with this step so they can check everything looks right.\n\n\nStep 2: Create a GitHub repository\nRStudio projects and git repos both live locally on your computer. GitHub repos are remote repositories on the internet. Now you’re going to create a remote GitHub repository.\nFirst, install the usethis package, which has helpful functions for project organization and management. At the R console, run install.packages(\"usethis\").\nIf you don’t have a GitHub account yet, now’s the time to create one. Go to github.com and create an account.\nMake sure git is configured on your machine to have the correct user name and email. In the Terminal pane (not the Console pane)1, run git config --list. Your user.name should be your name and user.email should be the same email you used with your GitHub account. If they’re not configured correctly, run the following R command in the Console. Change YOURNAME and YOUREMAIL accordingly. This is a one-time setup command, you won’t have to do it again until you replace your computer.\nusethis::use_git_config(user.name = \"YOURNAME\", user.email = \"YOUREMAIL\")\n[Is the double colon :: unfamiliar? This operator tells R to look for a function in a certain package. So this command uses the use_git_config() function from the usethis package. Alternatively, you can call library(usethis) and then call the function directly.]\nThe last step before you can connect RStudio to GitHub is saving your credentials. The safest way to do that is with Personal Access Tokens, or PATs. These tell GitHub you are who you say you are and prevent anyone else from messing with your remote repositories2. If you know you already have a PAT, continue to the next step. This is easy to do with usethis. Call usethis::create_github_token(), which will launch GitHub in your web browser. Give your token the name “RSTUDIO” and change the Expiration from 30 days to 90 days. Scroll all the way to the bottom and click the green Generate token button.\n\nYou should see a long line of text with a green check mark next to it. That’s your token. Copy it, then go back to RStudio. At the Console, run gitcreds::gitcreds_set(). You’ll get a prompt to ? Enter new password or token:. Paste your token and click enter. Now RStudio and GitHub can talk to each other3.\nAll that’s left to do now is creating your GitHub repo. usethis helps automate this step. First, call usethis::use_git() and commit the uncommitted files. Then call usethis::git_default_branch_rename()4. Finally, call usethis::use_github(). You should now see your GitHub repository in your browser. Once again, let the instructor know when you’re done with this step so they can check everything looks right.\n\n\nStep 3: Set up folder structure\nThere are a lot of ways you can organize a computational project. It’s less important which system you use than it is to use a system consistently. Consistency reduces headaches! In this exercise, you’re going to use a modified version of the system described by Annna Krystalli in the Organising projects for reproducibility chapter of British Ecological Society and Cooper (2018) (some of the following comes from there verbatim). Create the following folders in your project.\n\nThe data folder contains all input data (and metadata) used in the analysis.\nThe paper folder contains the manuscript.\nThe figs directory contains figures generated by the analysis.\nThe output folder contains any type of intermediate or output files (e.g. simulation outputs, models, processed datasets, etc.). You might separate this and also have a cleaned-data folder.\nThe R directory contains R scripts with function definitions.\nThe reports folder contains Quarto documents5 that describe the analysis or report on results.\nThe docs folder contains the rendered versions of the reports.\nThe scratch folder contains early prototypes and other code I don’t fully understand yet.\nThe scripts that actually do things are stored in the root directory, but if your project has many scripts, you might want to organize them in a directory of their own.\n\nHere’s an example of what your project could look like when you’re done. Notice the numbered scripts: these run the steps of your analysis in order. The rest of the folders hold the components of your analysis so they’re easy to find.\n\nThe biggest benefit of adopting this system is the cognitive space it frees up in your brain. Any brainpower you were devoting to figuring out where to put a file or where to find something can now be reallocated to your actual science.\nA quick note about data. If your raw data are small (&lt;100 MB) and you have permission to make them public6, then it’s ok to store them on GitHub. If they’re big or private, you’ll need to keep them off GitHub. That’s what the .gitignore file is for. If necessary, call usethis::use_git_ignore(\"data/*\"), which will add your data/ directory to .gitignore and keep it out of GitHub.\n\n\nStep 4: Activate GitHub pages\nGitHub has an option for creating a website out of your repository. This is an incredible feature for working with collaborators! You can put your methods and results in Quarto documents that GitHub serves for you. Compared to email threads, a project website does a much better job keeping co-authors in the loop and getting new collaborators up to speed. The folder organization system you created in Step 3 makes this pretty simple.\nLet’s start with create a simple README. GitHub will turn everything in your docs/ directory into the project website. By default, anything called “index” will be your landing page. Create a text file called docs/index.md. The “.md” suffix stands for Markdown. You’ll learn more about Markdown next week. For now, it’s enough to know Markdown is a text-only format that allows basic formatting. When you open index.md, you’ll see RStudio’s visual editor. At the top of the editor, switch from Visual to Source. Add the following text.\n# README\n\nThis is my project website for the Computational Project Organization lesson of *Data Science for Eco/Evo*.\n\nThe reading assessment answers are [here](assessment.md).\n\nMy project organization notes are [here](proj_org_notes.md).\nYour editor should look like this.\n\nHere’s what the special characters do:\n\n# creates a header\n*text* puts text in italics\n[text](url) creates a link\n\nYou’ll create assessment.md and proj_org_notes.md in the assessment.\nLet’s see it in action. First, activate Pages on GitHub. go to your GitHub repo in your browser. Click on Settings and choose Pages under Code and automation. Under Source it should say Deploy from a branch. Under Branch, change None to main and the directory from / (root) to /docs. Click Save.\nNow you need to give GitHub something to deploy. Go back to RStudio and commit all your new and changed files. To do this, go to the Git pane. You’ll see a list of new and modified files. Check the boxes next to all of them to stage the files. This tells git you’d like to commit them. Click on the Commit button to launch the Review Changes dialog and add a commit message. As a rule of thumb, keep commit messages short (&lt;50 characters). Click the Commit button, then click the Push button.\nIt will take GitHub a minute or two to render your site. Return to your GitHub repo in your browser and switch to the Actions tab. You’ll see a job running called pages build and deployment with a yellow dot next to it. Click on the job and wait for the steps to all turn green.\n\nClick on the link under deploy. Notice the url, it’s [yourgithubname].github.io/[yourreponame]. That’s the pattern GitHub pages uses. You should see your README rendered in all its glory. Call the instructor over for debugging if necessary followed by a high five.\n\n\n\nAssessment\n\nReading questions\nAnswer the following questions about the reading. Create a markdown file called docs/reading.md. Put your answers to the following questions in that file.\n\nProject workflows\nBryan (2017)\n\nWhat problems can setwd() cause in your scripts and how do RStudio projects address them?\nWhen you call rm(list=ls()), what is removed from your environment? What’s left over that restarting your R session would remove? What’s the keyboard shortcut for restarting your R session?\n\n\n\nVersion control\nYou either read Bryan (2018) or Braga et al. (2023). Answer the questions for the paper you read.\nBryan (2018)\n\nThe basic git commands are commit, push, and pull. Which commands change happen locally (i.e., on your computer)? Which happen remotely?\nWhy do diffs work for source code (e.g., .R files) but not Word documents (i.e., .docx files)?\nWhy is Markdown useful for GitHub repos?\n\nBraga et al. (2023)\n\nImagine you’re working with a few collaborators on an analysis. Come up with two examples of Issues you might open. How would using Issues differ from communicating over email?\nWhat are three ways GitHub features can promote open science practices?\n\n\n\n\nProject organization notes\nYou were (probably) exposed to a lot of new material in this lesson. In this part of the assessment, you’ll create a cheat sheet for yourself. Create a markdown file called docs/proj_org_notes.md. In that file, create a short document you can use to guide you when you create your next analysis project. Consider which steps only need to be configured once versus which have to be repeated for every project. If there were steps you found counterintuitive or confusing today, make a note of why you did them or how you figured them out.\n\n\nSubmission\nSubmit your assessment by emailing your GitHub pages url to mczapans [at] ucsc [dot] edu7."
+    "objectID": "discussions/04_open_data_2.html",
+    "href": "discussions/04_open_data_2.html",
+    "title": "Open data 2",
+    "section": "",
+    "text": "For this week you read Roche et al. (2022). You also submitted a PDF of your candidate replication paper on Canvas.\nIn today’s discussion, you’ll form final project groups of 3-4 students. Share your candidate paper with your group and explain the figure/table you’d like to replicate.\n\n\n\n\n\n\nImportant\n\n\n\nChoose just one figure or table! It should be the key finding of the paper. You don’t need to replicate the whole thing start to finish.\n\n\nWorking together, go through each paper and make a list of data you would need to replicate the figure. Be specific! What tables of data would you need? What columns and rows would need to be in those tables?\nNext week, you’ll use the metrics in Table 1 of Roche et al. (2022) to assess the completeness and reusability of the data in the paper you’ve chosen. The data requirements you come up with today will guide that exercise.\n\n\n\n\nReferences\n\nRoche, Dominique G., Ilias Berberi, Fares Dhane, Félix Lauzon, Sandrine Soeharjono, Roslyn Dakin, and Sandra A. Binning. 2022. “Slow Improvement to the Archiving Quality of Open Datasets Shared by Researchers in Ecology and Evolution.” Proceedings of the Royal Society B: Biological Sciences 289 (1975). https://doi.org/10.1098/rspb.2021.2780."
   },
   {
-    "objectID": "lessons/01_comp_proj_org.html#footnotes",
-    "href": "lessons/01_comp_proj_org.html#footnotes",
-    "title": "Computational project organization",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nIf you can’t find the Terminal pane, ask your instructor for help. Sometimes it needs to be activated the first time you use it.↩︎\nThe internet is full of vandals. C’est la vie.↩︎\nPATs are kind of like your git configuration in that they’re “set it and forget it” commands. You will only need to update your PAT every three months if you set Expiration to 90 days. The rest of the time you don’t need to think about it. And if you’re wondering why we set PATs to expire at all, see the previous footnote about vandals.↩︎\nWe won’t cover branches in this course, but they’re an important part of version control. Suffice to say, every repo has a main branch which by default is called “master”. That’s racist terminology, so there’s a concerted effort to use “main” instead.↩︎\n“Quarto, what’s that?” you might say. Quarto documents combine text, code, figures, and tables. They’re extremely useful for scientific analyses and writing! You’ll learn more about them next week. If you’re familiar with RMarkdown, Quarto is its next evolutionary step.↩︎\nIf you hold the rights to your data and they’re safe to put online (i.e., nothing sensitive), I strongly encourage you to make them public from the start. You might worry about getting scooped, which is understandable. But in my experience publishing datasets, it’s incredibly difficult to get other scientists to look at your data when you’re literally advertising them. In my opinion, the advantages of making data public far outweigh the risks. It facilitates collaboration and makes it easier to publish your data when you wrap up your project.↩︎\nTBH I haven’t figured out yet how to access UCSC’s Canvas as an instructor. You’ll submit future assessments through Canvas once I figure that out.↩︎"
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Your instructor, Max, is a postdoc with NOAA’s Southwest Fisheries Science Center. They began their career as a software engineer at Microsoft then spent ten years as a field ecologist (seabirds, mostly) and ecological data scientist (whales, mostly). His current research is on advancing open science practices in marine ecology. But more than research, their real passion is teaching (specifically, teaching data science to biologists) so they’re grateful for the opportunity to teach Data Science for Eco/Evo this quarter! In his free time, he’s a baker, a runner, and dog drummer (that’s when you drum on the side of your dog as loud as you can).\nYou can check out their personal website at www.flukeandfeather.com."
+  },
+  {
+    "objectID": "about.html#max-czapanskiy-hethey",
+    "href": "about.html#max-czapanskiy-hethey",
+    "title": "About",
+    "section": "",
+    "text": "Your instructor, Max, is a postdoc with NOAA’s Southwest Fisheries Science Center. They began their career as a software engineer at Microsoft then spent ten years as a field ecologist (seabirds, mostly) and ecological data scientist (whales, mostly). His current research is on advancing open science practices in marine ecology. But more than research, their real passion is teaching (specifically, teaching data science to biologists) so they’re grateful for the opportunity to teach Data Science for Eco/Evo this quarter! In his free time, he’s a baker, a runner, and dog drummer (that’s when you drum on the side of your dog as loud as you can).\nYou can check out their personal website at www.flukeandfeather.com."
   },
   {
     "objectID": "lessons/02_comp_thinking_1.html",
@@ -175,125 +349,21 @@
     "text": "Indexing\nYou access data in vectors using indexing.\n\nAtomic vectors\n\nIndex into atomic vectors with the [ operator.\nThere are three ways to index atomic vectors: position, logic, and name.\n\n\n# Create a vector with names\nbounding_box &lt;- c(xmin = -122, xmax = -118, ymin = 33, ymax = 38)\n\n# Indexing by position:\n# One element\nbounding_box[1]\n\nxmin \n-122 \n\n# Two elements with :\nbounding_box[1:2]\n\nxmin xmax \n-122 -118 \n\n# Two elements with c()\nbounding_box[c(1, 4)]\n\nxmin ymax \n-122   38 \n\n# All but one element with negative\nbounding_box[-1]\n\nxmax ymin ymax \n-118   33   38 \n\n# Indexing by logic\nbounding_box[c(TRUE, FALSE, FALSE, FALSE)]\n\nxmin \n-122 \n\n# Usually create logic vector with comparison operator\nis_negative &lt;- bounding_box &lt; 0\nbounding_box[is_negative]\n\nxmin xmax \n-122 -118 \n\n# Same as above, but in one line\nbounding_box[bounding_box &lt; 0]\n\nxmin xmax \n-122 -118 \n\n# Indexing by name\n# One element\nbounding_box[\"xmin\"]\n\nxmin \n-122 \n\n# Two elements with c()\nbounding_box[c(\"xmin\", \"xmax\")]\n\nxmin xmax \n-122 -118 \n\n\n\n\nLists\n\nThere are three operators for indexing into lists: [, [[, and $.\n[ subsets the list, yielding a shorter list. As with atomic vector indexing, can use position, logic, or name.\n[[ and $ pull contents themselves out of the list. Only allows access from one element, by position or name.\n\n\n# Create a list with names\ndog &lt;- list(name = \"Bowie\", \n            weight_lb = 80.0, \n            skills = c(\"nap\", \"eat\", \"more nap\"))\n\n# Subset the list by position...\ndog[2]\n\n$weight_lb\n[1] 80\n\n# ... by logic ...\ndog[c(FALSE, TRUE, FALSE)]\n\n$weight_lb\n[1] 80\n\n# ... or by name\ndog[\"weight_lb\"]\n\n$weight_lb\n[1] 80\n\n# Pull contents from the list by position with [[ ...\ndog[[2]]\n\n[1] 80\n\n# ... by name with [[ ...\ndog[[\"weight_lb\"]]\n\n[1] 80\n\n# ... or by name with $\ndog$weight_lb\n\n[1] 80"
   },
   {
-    "objectID": "lessons/03_working_data.html",
-    "href": "lessons/03_working_data.html",
-    "title": "Working with data",
+    "objectID": "lessons/01_comp_proj_org.html",
+    "href": "lessons/01_comp_proj_org.html",
+    "title": "Computational project organization",
     "section": "",
-    "text": "What it is\n\nRows = observations, columns = variables, cells = individual observations (Broman and Woo 2018)\nSpreadsheets and relational databases\n\nWhat it isn’t\n\nGeospatial data (vectors and rasters)\nPhylogenetic data (trees)"
+    "text": "Students will be able to:\n\nDescribe the relationship between RStudio project, git repo, and GitHub repo\nOrganize files and folders to maximize reproducibility and collaboration\nCreate a project website on GitHub"
   },
   {
-    "objectID": "lessons/03_working_data.html#core-principles",
-    "href": "lessons/03_working_data.html#core-principles",
-    "title": "Working with data",
-    "section": "Core principles",
-    "text": "Core principles\n\n\n\nFrom R for Data Science (2e) Section 1.1\n\n\n\nUse similar patterns and conventions for every step of the data science workflow\nEmphasis on data frames, the ubiquitous data structure in R for tabular data\nTidy data. Rows = observations, columns = variables, cells = individual observations (Broman and Woo 2018)\n%&gt;% Pipe friendly! More on that shortly."
+    "objectID": "lessons/01_comp_proj_org.html#student-learning-objectives",
+    "href": "lessons/01_comp_proj_org.html#student-learning-objectives",
+    "title": "Computational project organization",
+    "section": "",
+    "text": "Students will be able to:\n\nDescribe the relationship between RStudio project, git repo, and GitHub repo\nOrganize files and folders to maximize reproducibility and collaboration\nCreate a project website on GitHub"
   },
   {
-    "objectID": "lessons/03_working_data.html#load-the-data",
-    "href": "lessons/03_working_data.html#load-the-data",
-    "title": "Working with data",
-    "section": "Load the data",
-    "text": "Load the data\nRead and inspect\n\nsurveys &lt;- read_csv(\"data/portal_data_joined.csv\")\nhead(surveys)\nsummary(surveys)\n\nQ1: What’s the type of column species_id? Of hindfoot_length?\nQ2: How many rows and columns are in surveys?"
-  },
-  {
-    "objectID": "lessons/03_working_data.html#selecting-columns-and-filtering-rows",
-    "href": "lessons/03_working_data.html#selecting-columns-and-filtering-rows",
-    "title": "Working with data",
-    "section": "selecting columns and filtering rows",
-    "text": "selecting columns and filtering rows\n\n\n\n\n\n\nImportant\n\n\n\nMany tidyverse functions let you treat columns in a data frame as variables. In the following sections, notice we’re not putting column names in quotes.\n\n\nHow do I keep a few columns?\n\nselect(surveys, plot_id, species_id, weight)\nselect(surveys, plot_id, species_id, weight_g = weight)\n\nHow do I remove a few columns?\n\nselect(surveys, -record_id, -species_id)\n\nHow do I keep rows based on a condition?\n\nfilter(surveys, year == 1995)\nfilter(surveys, year == 1995, plot_id == 7)\nfilter(surveys, month == 2 | day == 20)\n\nQ3: filter() surveys to records collected in November where hindfoot_length is greater than 36.0\nQ4: Fix these errors\n\nfilter(surveys, year = 1995)\nfilter(surveys, polt_id == 2)"
-  },
-  {
-    "objectID": "lessons/03_working_data.html#pipes",
-    "href": "lessons/03_working_data.html#pipes",
-    "title": "Working with data",
-    "section": "Pipes %>%",
-    "text": "Pipes %&gt;%\nFor a sequence of transformations, use pipes for readability\n\n# Filter then select without pipes, two ways\n# First way\nselect(filter(surveys, year == 1995), plot_id, species_id, weight)\n# Second way\nsurveys_1995 &lt;- filter(surveys, year == 1995)\nsurveys_psw &lt;- select(surveys_1995, plot_id, species_id, weight)\n\nInstead, use pipes! Read them aloud as “then”.\n\nsurveys_psw &lt;- surveys_1995 %&gt;% \n  filter(year == 1995) %&gt;% \n  select(plot_id, species_id, weight)\n\nUnder the hood, the left hand side of the pipe becomes the first argument on the right hand side.\nQ5: Use pipes to subset surveys to animals collected before 1995 retaining just the columns year, sex, and weight"
-  },
-  {
-    "objectID": "lessons/03_working_data.html#addchange-columns-with-mutate",
-    "href": "lessons/03_working_data.html#addchange-columns-with-mutate",
-    "title": "Working with data",
-    "section": "Add/change columns with mutate",
-    "text": "Add/change columns with mutate\nAdd a column\n\nsurveys %&gt;% \n  mutate(weight_kg = weight / 1000)\n\nAdd multiple columns based on each other\n\nsurveys %&gt;% \n  mutate(weight_kg = weight / 1000,\n         weight_lb = weight_kg * 2.2)\n\nSo many NAs! Add a filter before mutate.\n\nsurveys %&gt;% \n  filter(!is.na(weight)) %&gt;% \n  mutate(weight_kg = weight / 1000,\n         weight_lb = weight_kg * 2.2)\n\nConvert year, month, and day to dates\n\nsurveys %&gt;% \n  select(year, month, day) %&gt;% \n  mutate(date_str = paste(year, month, day, sep = \"-\"),\n         date = as.Date(date_str))\n\nQ6: Create a new data frame from the surveys data that meets the following criteria: contains only the species_id column and a new column called hindfoot_cm containing the hindfoot_length values (currently in mm) converted to centimeters. In this hindfoot_cm column, there are no NAs and all values are less than 3.\nHint: think about how the commands should be ordered to produce this data frame!"
-  },
-  {
-    "objectID": "lessons/03_working_data.html#split-apply-combine-with-summarize",
-    "href": "lessons/03_working_data.html#split-apply-combine-with-summarize",
-    "title": "Working with data",
-    "section": "Split-apply-combine with summarize",
-    "text": "Split-apply-combine with summarize\nWhat’s the average weight of the observed animals by sex?\n\nsurveys %&gt;% \n  group_by(sex) %&gt;% \n  summarize(mean_weight = mean(weight, na.rm = TRUE))\n\nGroup by multiple columns, e.g. sex and species.\n\nsurveys %&gt;% \n  group_by(species_id, sex) %&gt;% \n  summarize(mean_weight = mean(weight, na.rm = TRUE))\n\n\n\n\n\n\n\nNote\n\n\n\nNotice the warning message: our output is still grouped by species_id. By default, summarize() only removes one level of grouping. This usually leads to unexpected results. As the warning suggests, use .groups to drop all groups.\n\n\n\nsurveys %&gt;% \n  group_by(species_id, sex) %&gt;% \n  summarize(mean_weight = mean(weight, na.rm = TRUE),\n            .groups = \"drop\")\n\nNaN is the result of calling mean() on an empty vector. Let’s remove NAs before summarizing.\n\nsurveys %&gt;% \n  filter(!is.na(weight)) %&gt;% \n  group_by(species_id, sex) %&gt;% \n  summarize(mean_weight = mean(weight),\n            .groups = \"drop\")\n\nCan also generate multiple summaries per group.\n\nsurveys %&gt;% \n  filter(!is.na(weight)) %&gt;% \n  group_by(species_id, sex) %&gt;% \n  summarize(mean_weight = mean(weight),\n            min_weight = min(weight),\n            .groups = \"drop\")"
-  },
-  {
-    "objectID": "lessons/03_working_data.html#sort-with-arrange",
-    "href": "lessons/03_working_data.html#sort-with-arrange",
-    "title": "Working with data",
-    "section": "Sort with arrange",
-    "text": "Sort with arrange\n\nsurveys %&gt;% \n  filter(!is.na(weight)) %&gt;% \n  group_by(species_id, sex) %&gt;% \n  summarize(mean_weight = mean(weight),\n            min_weight = min(weight),\n            .groups = \"drop\") %&gt;% \n  arrange(desc(mean_weight))"
-  },
-  {
-    "objectID": "lessons/03_working_data.html#utility-functions",
-    "href": "lessons/03_working_data.html#utility-functions",
-    "title": "Working with data",
-    "section": "Utility functions",
-    "text": "Utility functions\ncount(), drop_na()\ncount() is a shortcut to getting the size of groups\n\nsurveys %&gt;% \n  count(sex, species) %&gt;% \n  arrange(species, desc(n))\n\ndrop_na() is a shortcut for removing rows with missing values\n\nsurveys %&gt;% \n  drop_na(weight, sex) %&gt;% \n  group_by(species_id, sex) %&gt;% \n  summarize(mean_weight = mean(weight),\n            min_weight = min(weight),\n            .groups = \"drop\") %&gt;% \n  arrange(desc(mean_weight))\n\nQ7: How many animals were caught in each plot_type surveyed?\nQ8: Use group_by() and summarize() to find the mean, min, and max hindfoot length for each species (using species_id). Also add the number of observations (hint: see ?n).\nQ9: What was the heaviest animal measured in each year? Return the columns year, genus, species_id, and weight."
-  },
-  {
-    "objectID": "lessons/03_working_data.html#joining-data",
-    "href": "lessons/03_working_data.html#joining-data",
-    "title": "Working with data",
-    "section": "Joining data",
-    "text": "Joining data\nJoining columns: left_join(), inner_join()\nSay we have more information about some of our taxa.\n\ncount(surveys, taxa)\ntaxa_iucn &lt;- data.frame(\n  taxa = c(\"Bird\", \"Rabbit\", \"Rodent\"),\n  iucn = c(\"NT\", \"LC\", \"LC\")\n)\ntaxa_iucn\n\nLeft join surveys with taxa info by their shared column (the “key”)\n\nsurveys_iucn &lt;- left_join(surveys, taxa_iucn, by = \"taxa\")\nhead(surveys_iucn)\n\nQ10: How many records were there for NT and LC taxa?\nleft_join() keeps everything from the left. So surveys_iucn has NAs for iucn when taxa wasn’t in taxa_iucn.\nQ11: What kind of taxa do the NAs in iucn correspond to?\ninner_join() only keeps records where the key is in both tables.\n\nsurveys_iucn2 &lt;- inner_join(surveys, taxa_iucn, by = \"taxa\")\n\nQ12: How many rows are in surveys_iucn2? What rows are in surveys_iucn that aren’t in surveys_iucn2?"
-  },
-  {
-    "objectID": "lessons/03_working_data.html#wrapping-up",
-    "href": "lessons/03_working_data.html#wrapping-up",
-    "title": "Working with data",
-    "section": "Wrapping up",
-    "text": "Wrapping up\nSave all your changes to scratch/lesson3.R. Commit and push."
-  },
-  {
-    "objectID": "lessons/03_working_data.html#download-data",
-    "href": "lessons/03_working_data.html#download-data",
-    "title": "Working with data",
-    "section": "Download data",
-    "text": "Download data\nFor this assessment, we’ll use the breeding bird phenology from Hällfors et al. (2020a). Their data are on Dryad (Hällfors et al. 2020b). We’ll complement that with the AVONET (Tobias et al. 2022) database of bird functional traits, which is on Figshare.\nDownload the Dryad dataset. Copy “73_species.csv” and “Traits_73_species.csv” to your data/ folder.\nFrom the AVONET database on Figshare, download “AVONET Supplementary dataset 1.xlsx” do your data/ folder."
-  },
-  {
-    "objectID": "lessons/03_working_data.html#read-data",
-    "href": "lessons/03_working_data.html#read-data",
-    "title": "Working with data",
-    "section": "Read data",
-    "text": "Read data\nIn your Quarto document, add a code chunk that loads the tidyverse and reads the data.\n\nUse read_csv() to read “73_species.csv” and assign it to a variable called bor_nestlings.\nUse read_csv() to read “Traits_73_species.csv” and assign it to a variable called bor_traits.\nUse readxl::read_excel() to read the “AVONET1_BirdLife” sheet from “AVONET Supplementary dataset 1.xlsx” and assign it to a variable called avonet.\n\n\n\n\n\n\n\nTip\n\n\n\nSee ?readxl::read_excel for info on how to read a specific sheet from an Excel workbook."
-  },
-  {
-    "objectID": "lessons/03_working_data.html#explore",
-    "href": "lessons/03_working_data.html#explore",
-    "title": "Working with data",
-    "section": "Explore",
-    "text": "Explore\nWe’ll explore the boreal bird nestling data together. Follow along in your Quarto document.\nAre nestlings showing up earlier in the year over time?\n\nall_birds_trend &lt;- bor_nestlings %&gt;% \n  group_by(Year) %&gt;% \n  summarize(mean_doy = mean(Dayofyear))\n\nggplot(all_birds_trend, aes(Year, mean_doy)) + \n  geom_point() +\n  geom_smooth(method = \"lm\")\n\n\n\n\n\n\n\nNote\n\n\n\nThis may be your first time using ggplot. I’ll give you the ggplot code you need for today. You’ll learn more about it next week.\n\n\nThat combines 73 species. Let’s see the breakdown by species.\n\nspecies_trends &lt;- bor_nestlings %&gt;% \n  group_by(Year, Species) %&gt;% \n  summarize(mean_doy = mean(Dayofyear),\n            .groups = \"drop\")\n\nggplot(species_trends, aes(Year, mean_doy, color = Species)) + \n  geom_point() +\n  geom_smooth(method = \"lm\")\n\nSo chaotic! What if we just look at the 5 most data-rich species?\n\ndata_richness &lt;- bor_nestlings %&gt;% \n  count(Species)\n\nmost_rich &lt;- data_richness %&gt;% \n  arrange(desc(n)) %&gt;% \n  slice(1:5)\n\nmost_rich_trends &lt;- bor_nestlings %&gt;% \n  filter(Species %in% most_rich$Species) %&gt;% \n  group_by(Species, Year) %&gt;% \n  summarize(mean_doy = mean(Dayofyear), \n            .groups = \"drop\")\n\nggplot(most_rich_trends, aes(Year, mean_doy, color = Species)) +\n  geom_point() +\n  geom_smooth(method = \"lm\")\n\nA general pattern, with one conflicting example. What species have the strongest trends?\n\n# I'm giving you a *function* to help here. You'll learn more about those next week.\n\n# Finds the slope of the relationship between y and x\ntrend &lt;- function(x, y) {\n  xy_lm &lt;- lm(y ~ x)\n  coef(xy_lm)[2]\n}\n\n# Calculate the trend for all species\nbor_trends &lt;- bor_by_year %&gt;% \n  group_by(Species) %&gt;% \n  summarize(doy_trend = trend(Year, mean_doy))\n\nSpot check two species\n\nsoi &lt;- c(\"ARDCIN\", \"LARMIN\")\nbor_by_year %&gt;% \n  filter(Species %in% soi) %&gt;% \n  ggplot(aes(Year, mean_doy, color = Species)) +\n  geom_point() +\n  geom_smooth(method = \"lm\")"
-  },
-  {
-    "objectID": "lessons/03_working_data.html#your-turn",
-    "href": "lessons/03_working_data.html#your-turn",
-    "title": "Working with data",
-    "section": "Your turn",
-    "text": "Your turn\nFind the species with the most positive and most negative trends, then plot just those.\n\nnrow_bor_trends &lt;- nrow(bor_trends) # Use this later\nbor_extreme &lt;- bor_trends %&gt;% \n  # Sort by the day of year trend\n  ___(___) %&gt;% \n  # Keep just the first (most negative trend) and last (most positive trend) rows\n  slice(c(___, ___))\n\n# Now plot them\nbor_by_year %&gt;% \n  filter(Species %in% ___) %&gt;% \n  ggplot(aes(Year, mean_doy, color = Species)) + \n    geom_point() +\n    geom_smooth(method = \"lm\")"
-  },
-  {
-    "objectID": "lessons/03_working_data.html#bring-in-more-data",
-    "href": "lessons/03_working_data.html#bring-in-more-data",
-    "title": "Working with data",
-    "section": "Bring in more data",
-    "text": "Bring in more data\nNext we’re going to test the hypothesis that smaller birds have more flexible phenology, i.e. the absolute value of the trend is correlated with smaller body sizes.\nTo test our hypothesis, we need to add AVONET data to our phenology data by joining. The keys are a bit tricky here!\nbor_nestlings has a column called Species with a 6-letter code.\nbor_traits has a column called Abbreviation with the 6-letter code and a column called `Scientific name` with the binomial name.\navonet has column called Species1 with the binomial name.\nWe need to join bor_nestlings to bor_traits, then join with avonet.\nWelcome to data in the real world!\n\n# First, select and rename important columns\navonet_size &lt;- select(avonet, SciName = Species1, Mass_g = Mass)\nbor_sciname &lt;- select(bor_traits, \n                      Species = Abbreviation, \n                      SciName = `Scientific name`)\n\nNow join them all together.\n\nbor_trends_size &lt;- bor_trends %&gt;% \n  left_join(___, by = ___) %&gt;% \n  left_join(___, by = ___) %&gt;% \n  mutate(abs_trend = abs(doy_trend))\n\n# Plot it\nggplot(bor_trends_size, aes(Mass_g, abs_trend)) +\n  geom_point() +\n  geom_smooth(method = \"lm\")\n\nThat’s kind of hard to interpret. Make a new variable, bor_trends_size2, that removes the missing values in Mass_g and keeps only birds smaller than 2000 g with an absolute trend less than 1.\n\nbor_trends_size2 &lt;- ???\n  \nggplot(bor_trends_size2, aes(Mass_g, abs_trend)) +\n  geom_point() +\n  geom_smooth(method = \"lm\")\n\nIs our hypothesis supported?"
-  },
-  {
-    "objectID": "lessons/03_working_data.html#submission",
-    "href": "lessons/03_working_data.html#submission",
-    "title": "Working with data",
-    "section": "Submission",
-    "text": "Submission\n\nRender index.qmd, which produces reports/index.html. Move your HTML file to docs/.\nEnable GitHub pages for your repo.\nCommit your changes and push.\nOpen an issue and tag me in it."
-  },
-  {
+<<<<<<< HEAD
     "objectID": "index.html",
     "href": "index.html",
     "title": "Data Science for Eco/Evo (Fall 23 BIOE215)",
@@ -423,56 +493,96 @@
     "objectID": "lessons/02b_vectors_key_points.html",
     "href": "lessons/02b_vectors_key_points.html",
     "title": "Vector review",
+=======
+    "objectID": "lessons/01_comp_proj_org.html#todays-lesson",
+    "href": "lessons/01_comp_proj_org.html#todays-lesson",
+    "title": "Computational project organization",
+    "section": "Today’s lesson",
+    "text": "Today’s lesson\ntl;dr Each of your analyses should have a standalone directory with all the code and data necessary to produce your results.\nThis lesson has readings, an exercise, and an assessment. Feel free to jump around and do them in whatever order works best for you. I suggest the following order:\n\nRead Bryan (2017) about project-oriented workflows\nIf you’re new to git, read Bryan (2018) about version control and scientific analysis. Consider yourself familiar with git if you know what commit, push, and pull do. If that’s the case, read Braga et al. (2023) about using GitHub for managing scientific projects.\nComplete the Exercise\nComplete the Assessment\n\nBut first, watch this Tik Tok\n\n\nReadings\nThe readings will help clarify why the skills you’re learning will improve your productivity and make your science easier to share, reproduce, and collaborate on.\n\nProject workflows\n\n(Bryan 2017)\nOptionally: chapter 3 of (British Ecological Society and Cooper 2018) Organising projects for reproducibility\n\n\n\nVersion Control\n\n(Bryan 2018) if you’re new to version control\n(Braga et al. 2023) if you already have some experience\n\n\n\n\nExercise\nIn this exercise you’re going to set up an analysis to take advantage of project organization tools in RStudio, git, and GitHub. We’ll use this framework for exercises and assessments throughout the rest of the course.\n\nGoals\n\nCreate an RStudio project and git repository on your computer\nCreate a corresponding GitHub repository online\nSet up an analysis-friendly folder structure\nActivate GitHub pages to give your project a website\n\n\n\nStep 1: Create an RStudio project and git repository\nOpen RStudio. From the top menu, click on File &gt; New Project to launch the New Project Wizard.\nChoose New Directory &gt; New Project. You should now see the Create New Project prompt.\n\nThe Directory name is the name of your project. Call it “bioe215lesson1”. When it comes to project directory naming, there are a couple of best practices to follow. Stick to letters and numbers, and avoid special characters like spaces, underscores, and dashes. This ensures your directory name will be compatible with the naming requirements for R, git, and GitHub.\nNext you’ll choose where to put your project on your computer. In the screenshot above, Create project as subdirectory of: is set to /Users/frank/Documents/GitHub, which is where I keep projects on my computer. Yours may default to somewhere unhelpful. I suggest creating a subfolder in your “Documents” directory called “GitHub”, then use the “Browse…” button to navigate there.\nMake sure the check box for Create a git repository is checked.\nClick on Create Project.\n\nOnce RStudio finishes creating your project, you should see something like the screenshot above. Make sure you see both the git pane and the project name. Let the instructor know when you’re done with this step so they can check everything looks right.\n\n\nStep 2: Create a GitHub repository\nRStudio projects and git repos both live locally on your computer. GitHub repos are remote repositories on the internet. Now you’re going to create a remote GitHub repository.\nFirst, install the usethis package, which has helpful functions for project organization and management. At the R console, run install.packages(\"usethis\").\nIf you don’t have a GitHub account yet, now’s the time to create one. Go to github.com and create an account.\nMake sure git is configured on your machine to have the correct user name and email. In the Terminal pane (not the Console pane)1, run git config --list. Your user.name should be your name and user.email should be the same email you used with your GitHub account. If they’re not configured correctly, run the following R command in the Console. Change YOURNAME and YOUREMAIL accordingly. This is a one-time setup command, you won’t have to do it again until you replace your computer.\nusethis::use_git_config(user.name = \"YOURNAME\", user.email = \"YOUREMAIL\")\n[Is the double colon :: unfamiliar? This operator tells R to look for a function in a certain package. So this command uses the use_git_config() function from the usethis package. Alternatively, you can call library(usethis) and then call the function directly.]\nThe last step before you can connect RStudio to GitHub is saving your credentials. The safest way to do that is with Personal Access Tokens, or PATs. These tell GitHub you are who you say you are and prevent anyone else from messing with your remote repositories2. If you know you already have a PAT, continue to the next step. This is easy to do with usethis. Call usethis::create_github_token(), which will launch GitHub in your web browser. Give your token the name “RSTUDIO” and change the Expiration from 30 days to 90 days. Scroll all the way to the bottom and click the green Generate token button.\n\nYou should see a long line of text with a green check mark next to it. That’s your token. Copy it, then go back to RStudio. At the Console, run gitcreds::gitcreds_set(). You’ll get a prompt to ? Enter new password or token:. Paste your token and click enter. Now RStudio and GitHub can talk to each other3.\nAll that’s left to do now is creating your GitHub repo. usethis helps automate this step. First, call usethis::use_git() and commit the uncommitted files. Then call usethis::git_default_branch_rename()4. Finally, call usethis::use_github(). You should now see your GitHub repository in your browser. Once again, let the instructor know when you’re done with this step so they can check everything looks right.\n\n\nStep 3: Set up folder structure\nThere are a lot of ways you can organize a computational project. It’s less important which system you use than it is to use a system consistently. Consistency reduces headaches! In this exercise, you’re going to use a modified version of the system described by Annna Krystalli in the Organising projects for reproducibility chapter of British Ecological Society and Cooper (2018) (some of the following comes from there verbatim). Create the following folders in your project.\n\nThe data folder contains all input data (and metadata) used in the analysis.\nThe paper folder contains the manuscript.\nThe figs directory contains figures generated by the analysis.\nThe output folder contains any type of intermediate or output files (e.g. simulation outputs, models, processed datasets, etc.). You might separate this and also have a cleaned-data folder.\nThe R directory contains R scripts with function definitions.\nThe reports folder contains Quarto documents5 that describe the analysis or report on results.\nThe docs folder contains the rendered versions of the reports.\nThe scratch folder contains early prototypes and other code I don’t fully understand yet.\nThe scripts that actually do things are stored in the root directory, but if your project has many scripts, you might want to organize them in a directory of their own.\n\nHere’s an example of what your project could look like when you’re done. Notice the numbered scripts: these run the steps of your analysis in order. The rest of the folders hold the components of your analysis so they’re easy to find.\n\nThe biggest benefit of adopting this system is the cognitive space it frees up in your brain. Any brainpower you were devoting to figuring out where to put a file or where to find something can now be reallocated to your actual science.\nA quick note about data. If your raw data are small (&lt;100 MB) and you have permission to make them public6, then it’s ok to store them on GitHub. If they’re big or private, you’ll need to keep them off GitHub. That’s what the .gitignore file is for. If necessary, call usethis::use_git_ignore(\"data/*\"), which will add your data/ directory to .gitignore and keep it out of GitHub.\n\n\nStep 4: Activate GitHub pages\nGitHub has an option for creating a website out of your repository. This is an incredible feature for working with collaborators! You can put your methods and results in Quarto documents that GitHub serves for you. Compared to email threads, a project website does a much better job keeping co-authors in the loop and getting new collaborators up to speed. The folder organization system you created in Step 3 makes this pretty simple.\nLet’s start with create a simple README. GitHub will turn everything in your docs/ directory into the project website. By default, anything called “index” will be your landing page. Create a text file called docs/index.md. The “.md” suffix stands for Markdown. You’ll learn more about Markdown next week. For now, it’s enough to know Markdown is a text-only format that allows basic formatting. When you open index.md, you’ll see RStudio’s visual editor. At the top of the editor, switch from Visual to Source. Add the following text.\n# README\n\nThis is my project website for the Computational Project Organization lesson of *Data Science for Eco/Evo*.\n\nThe reading assessment answers are [here](assessment.md).\n\nMy project organization notes are [here](proj_org_notes.md).\nYour editor should look like this.\n\nHere’s what the special characters do:\n\n# creates a header\n*text* puts text in italics\n[text](url) creates a link\n\nYou’ll create assessment.md and proj_org_notes.md in the assessment.\nLet’s see it in action. First, activate Pages on GitHub. go to your GitHub repo in your browser. Click on Settings and choose Pages under Code and automation. Under Source it should say Deploy from a branch. Under Branch, change None to main and the directory from / (root) to /docs. Click Save.\nNow you need to give GitHub something to deploy. Go back to RStudio and commit all your new and changed files. To do this, go to the Git pane. You’ll see a list of new and modified files. Check the boxes next to all of them to stage the files. This tells git you’d like to commit them. Click on the Commit button to launch the Review Changes dialog and add a commit message. As a rule of thumb, keep commit messages short (&lt;50 characters). Click the Commit button, then click the Push button.\nIt will take GitHub a minute or two to render your site. Return to your GitHub repo in your browser and switch to the Actions tab. You’ll see a job running called pages build and deployment with a yellow dot next to it. Click on the job and wait for the steps to all turn green.\n\nClick on the link under deploy. Notice the url, it’s [yourgithubname].github.io/[yourreponame]. That’s the pattern GitHub pages uses. You should see your README rendered in all its glory. Call the instructor over for debugging if necessary followed by a high five.\n\n\n\nAssessment\n\nReading questions\nAnswer the following questions about the reading. Create a markdown file called docs/reading.md. Put your answers to the following questions in that file.\n\nProject workflows\nBryan (2017)\n\nWhat problems can setwd() cause in your scripts and how do RStudio projects address them?\nWhen you call rm(list=ls()), what is removed from your environment? What’s left over that restarting your R session would remove? What’s the keyboard shortcut for restarting your R session?\n\n\n\nVersion control\nYou either read Bryan (2018) or Braga et al. (2023). Answer the questions for the paper you read.\nBryan (2018)\n\nThe basic git commands are commit, push, and pull. Which commands change happen locally (i.e., on your computer)? Which happen remotely?\nWhy do diffs work for source code (e.g., .R files) but not Word documents (i.e., .docx files)?\nWhy is Markdown useful for GitHub repos?\n\nBraga et al. (2023)\n\nImagine you’re working with a few collaborators on an analysis. Come up with two examples of Issues you might open. How would using Issues differ from communicating over email?\nWhat are three ways GitHub features can promote open science practices?\n\n\n\n\nProject organization notes\nYou were (probably) exposed to a lot of new material in this lesson. In this part of the assessment, you’ll create a cheat sheet for yourself. Create a markdown file called docs/proj_org_notes.md. In that file, create a short document you can use to guide you when you create your next analysis project. Consider which steps only need to be configured once versus which have to be repeated for every project. If there were steps you found counterintuitive or confusing today, make a note of why you did them or how you figured them out.\n\n\nSubmission\nSubmit your assessment by emailing your GitHub pages url to mczapans [at] ucsc [dot] edu7."
+  },
+  {
+    "objectID": "lessons/01_comp_proj_org.html#footnotes",
+    "href": "lessons/01_comp_proj_org.html#footnotes",
+    "title": "Computational project organization",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nIf you can’t find the Terminal pane, ask your instructor for help. Sometimes it needs to be activated the first time you use it.↩︎\nThe internet is full of vandals. C’est la vie.↩︎\nPATs are kind of like your git configuration in that they’re “set it and forget it” commands. You will only need to update your PAT every three months if you set Expiration to 90 days. The rest of the time you don’t need to think about it. And if you’re wondering why we set PATs to expire at all, see the previous footnote about vandals.↩︎\nWe won’t cover branches in this course, but they’re an important part of version control. Suffice to say, every repo has a main branch which by default is called “master”. That’s racist terminology, so there’s a concerted effort to use “main” instead.↩︎\n“Quarto, what’s that?” you might say. Quarto documents combine text, code, figures, and tables. They’re extremely useful for scientific analyses and writing! You’ll learn more about them next week. If you’re familiar with RMarkdown, Quarto is its next evolutionary step.↩︎\nIf you hold the rights to your data and they’re safe to put online (i.e., nothing sensitive), I strongly encourage you to make them public from the start. You might worry about getting scooped, which is understandable. But in my experience publishing datasets, it’s incredibly difficult to get other scientists to look at your data when you’re literally advertising them. In my opinion, the advantages of making data public far outweigh the risks. It facilitates collaboration and makes it easier to publish your data when you wrap up your project.↩︎\nTBH I haven’t figured out yet how to access UCSC’s Canvas as an instructor. You’ll submit future assessments through Canvas once I figure that out.↩︎"
+  },
+  {
+    "objectID": "syllabus.html",
+    "href": "syllabus.html",
+    "title": "Syllabus",
+>>>>>>> main
     "section": "",
-    "text": "This lesson reviews the key points about vector from lesson Computational Thinking 1."
+    "text": "Data Science for Eco/Evo\nBIOE215, 3 Credits, Fall 2023"
   },
   {
-    "objectID": "lessons/02b_vectors_key_points.html#atomic-vectors",
-    "href": "lessons/02b_vectors_key_points.html#atomic-vectors",
-    "title": "Vector review",
-    "section": "Atomic vectors",
-    "text": "Atomic vectors\nJargon:\n\ndata structure. The data you collect might be written on paper or bits collected by an instrument. But R is way too naïve to know anything about that. For R to do something useful with your data (transform it, fit a model to it, make a figure from it), you need to put your data into a data structure. R loves data structures, and if you choose the right data structure for your data then R will make your life way easier.\natomic vector. Just like how atoms are the building blocks of matter, atomic vectors are the building blocks of data in R. They’re the simplest kind of data structure R has. Think of them as variables in data you’d collect in the lab or field, like masses or times or counts. Everything in an atomic vector has to be the same type. Compare against lists (next section).\nelement. Ok, the chemistry analogy breaks down here. Thanks for nothing, R. The individual bits and pieces of data structures are called elements. An atomic vector holding the values 0, -1, and 3.14 has three elements.\n\nQ1: There are four types we care about when it comes to R vectors. What are they?\nQ2: What are the types of each of these vectors? How many elements do they have? What R function tells you the number of elements?\nsci_names &lt;- c(\"Balaenoptera musculus\", \"Balaenoptera physalus\", \"Megaptera noveangliae\")\nquadrat_counts &lt;- c(12L, 0L, 0L, 3L, 0L, 10L)\nrained &lt;- c(TRUE, TRUE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE)\nreact_time_s &lt;- c(0.13, 0.19, 0.15, 0.10, 0.15, 0.15, 0.15, 0.14)"
-  },
-  {
-    "objectID": "lessons/02b_vectors_key_points.html#lists",
-    "href": "lessons/02b_vectors_key_points.html#lists",
-    "title": "Vector review",
-    "section": "Lists",
-    "text": "Lists\nJargon:\n\nlist. If atomic vectors are atoms, then lists are molecules. A list is a more flexible data structure than an atomic vector. They can be made from multiple types of atomic vectors, or even other lists! Data frames (more on those next week) are actually a special form of lists.\n\nHere’s an example of how lists can be built from atomic vectors and/or other lists.\ndog1 &lt;- list(name = \"Bowie\", \n             weight_lb = 80.0, \n             skills = c(\"nap\", \"eat\", \"more nap\"))\ndog2 &lt;- list(name = \"Lassie\",\n             weight_lb = 65.0,\n             skills = c(\"save tommy\", \"bark\", \"acting\"))\ndogs &lt;- list(dog1, dog2)\n\n\n\n\n\n\nNote\n\n\n\nDid you notice the different functions used to make atomic vectors and lists? c() for atomic vectors, list() for lists.\n\n\nQ3: In the code above, what do you think is the length of dog1? dog2? dogs?\nQ4: What’s the type of dog1? dog1 has three elements, called name, weight_lb, and skills. What are their types and lengths?"
-  },
-  {
-    "objectID": "lessons/02b_vectors_key_points.html#atomic-vectors-1",
-    "href": "lessons/02b_vectors_key_points.html#atomic-vectors-1",
-    "title": "Vector review",
-    "section": "Atomic vectors",
-    "text": "Atomic vectors\nIf your data are in an atomic vector, then you can index in three different ways to get a subset.\n\nPosition\nLet’s start with indexing by position.\n\n# Start with two vectors: species and migration distances\nspecies &lt;- c(\"Arctic tern\", \"Sooty shearwater\", \"Adelie penguin\")\nmigration_km &lt;- c(96000, 64000, 18000)\n\n# What will these do?\nspecies[1]\nmigration_km[-1]\nmigration_km[1:2]\nspecies[c(1, 1, 1)]\ni &lt;- 3\nspecies[i]\n\nQ5: How would you subset migration_km to get the second element?\nQ6: What are three ways to subset migration_km to get the first and second elements? Hint: use :, c(), and a negative number.\nQ7: How would you use the length() function to get the last element of a vector? Demonstrate with species.\n\n\nName\nSometimes it’s helpful to give the elements of your vectors names. That way you can find the data you want even if you don’t know the position.\n\n# Instead of separate vectors for species and migration distances, we can\n# just name the elements of migration_km themselves.\nmigration_km &lt;- c(ArcticTern = 96000, SootyShearwater = 64000, AdeliePenguin = 18000)\n\n# One element by name\nmigration_km[\"ArcticTern\"]\n\n# Two elements by name (have to use c()! : won't work with names!)\nmigration_km[c(\"ArcticTern\", \"SootyShearwater\")]\n\n\n\n\n\n\n\nNote\n\n\n\nWhen you use c() or list() to make a data structure, follow the pattern c(name = value). R understands the bit to the left of the = is a name from context, so name doesn’t have to go in quotes unless it has a space in it. If you want value to be understood as text, then it would have to go in quotes. So this works c(a = \"b\") and this works c(\"a\" = \"b\") but this doesn’t c(a = b).\n\n\nQ8: Why doesn’t this work? migration_km[ArcticTern]\nQ9: Are migration_km[3] and migration_km[\"AdeliePenguin\"] equivalent? What if I remove an element from migration_km or shuffle it first?\nQ10: Here’s a deliberately tricky question. What does the following give you?\n\nArcticTern &lt;- \"SootyShearwater\"\nmigration_km[ArcticTern]\n\n\n\n\n\n\n\nNote\n\n\n\nYou may have noticed that printing a named vector gives you both the names and the values, which might make it look like there are two vectors. But really it’s just one. The names are basically decorative, displayed on top of the values. When it comes to the data, though, it’s the value that matters.\n\n\nQ11: Below you see the result of subsetting a named vector. What’s the type of the result - character or double?\n\nmigration_km[1]\n\n\n\nLogic\nThe third way to subset a vector is with a bunch of TRUEs and FALSEs. That might seem pointless on its own, but it becomes very useful when you use comparisons like == and &gt; to generate the TRUEs and FALSEs for you.\n\n# Temperature at a site for the first ten days of February\ndates &lt;- paste(\"Feb\", 1:10)\ntemp_F &lt;- c(54.0, 53.8, 53.1, 54, 71.9, 72.0, 54.0, 53.3, 53.9, 53.1)\n\n# Use logic to subset the first and second temperatures\n# This is a silly way to do this\ntemp_F[c(TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE)]\n# Slightly less silly, though still silly\ntemp_F[c(rep(TRUE, 2), rep(FALSE, 8))]\n\n# Which days were warmer than the median?\n# This is typically how you'll subset by logic\ndates[temp_F &gt; median(temp_F)]\n\n# Which days were \"heat waves\" (more than 2 standard deviations hotter \n# than the median)\nis_heat_wave &lt;- temp_F &gt; ___ + ___\nheat_wave_dates &lt;- dates[___]\nheat_wave_dates\n\nQ12: Fill in the blanks above to figure out the heat wave dates. What were they?\nQ13: What’s the type of is_heat_wave? Of heat_wave_dates?"
-  },
-  {
-    "objectID": "lessons/02b_vectors_key_points.html#lists-1",
-    "href": "lessons/02b_vectors_key_points.html#lists-1",
-    "title": "Vector review",
-    "section": "Lists",
-    "text": "Lists\nLists are more flexible than atomic vectors, so subsetting gets a little more complicated. Subsetting an atomic vector always gives you an atomic vector of the same type, but since lists can hold multiple types they work a little differently.\nThere are three ways to subset lists. [ works similarly as it does with atomic vectors: you get a subset of the list and it’s still a list. [[ and $ are a little different: they pull the contents out of a list. [ might be more familiar, but most of the time [[ and $ do what you actually want them to do. Let’s look at what that means in practice.\n\nSubsetting with [\n\n# Remember our dogs?\ndog1 &lt;- list(name = \"Bowie\", \n             weight_lb = 80.0, \n             skills = c(\"nap\", \"eat\", \"more nap\"))\ndog2 &lt;- list(name = \"Lassie\",\n             weight_lb = 65.0,\n             skills = c(\"save tommy\", \"bark\", \"acting\"))\ndogs &lt;- list(dog1, dog2)\n\n# Subsetting lists with `[` is very similar to atomic vectors, you're \n# always getting a list back\n\n# Index by position\ndog1[1]\ndogs[1]\n\n# Index by name\ndog1[\"weight_lb\"]\ndog2[\"skills\"]\n\n# You can index by logic, too, but it's not terribly helpful here\n\n\n\n\n\n\n\nNote\n\n\n\nWow, lists print a lot differently than atomic vectors, don’t they? That’s the price of being flexible, you end up being more complicated. But they share their roots with atomic vectors. [[1]] means the element at position 1 and $some_name means the element with position some_name. Lists can contain other lists, so [[1]]$some_name means “in the first element, the element named some_name”.\n\n\nQ14: What’s the type of dog1[1]? dog1[1:2]? dogs[2]?\n\n\nSubsetting with [[ and $\n[[ and $ are how you pull the contents out of elements in a list. You can only do this on a single element, so some of the things you can do with [ like x[1:3] and x[c(\"a\", \"b\")] won’t work.\nFor the next examples, you’ll need the palmerpenguins package installed.\n\n# Use `[[` to subset by position\ndog1[[2]]\n\n# Use `[[` to subset by name\ndog1[[\"weight_lb\"]]\n\n# Use `$` to subset by name\ndog1$weight_lb\n\n\n\n\n\n\n\nNote\n\n\n\nDid you notice the difference when subsetting by name with [[ and $? weight_lb had to go in quotes with [[, but was unquoted with $. Subsetting with $ is one of the few times you can use a name unquoted.\n\n\nQ15: Why doesn’t dog1[[weight_lb]] work? Use the error message to explain why.\nQ16: What’s the type of dog1[[2]]? How is it different than dog1[2]?\n\nA minute on data frames\nYou may already be familiar with $ if you’ve used it to subset columns from data frames. Data frames are a special type of list. The columns of the data frame are elements of the list. This kind of building complex data structures from simpler parts is a form of abstraction, which is key to solving problems computationally.\nFor this section, install the palmerpenguins package if necessary.\n\n# install.packages(\"palmerpenguins\")\nlibrary(palmerpenguins)\n\n# penguins is a data frame, meaning it's a list\ntypeof(penguins)\n\n# The elements of the list are the columns, so the length is the number of columns, not the number of rows.\nlength(penguins)\nnrow(penguins)\nncol(penguins)\n\n# Subsetting a column with $ and [[ returns *just* the column\npenguins$body_mass_g\npenguins[[\"body_mass_g\"]]\ntypeof(penguins$body_mass_g)\n\n# Remember subsetting a list with [ returns a shorter list, so \n# subsetting a column with [ returns a data frame\npenguins[\"body_mass_g\"]\ntypeof(penguins[\"body_mass_g\"])\n\nQ17: length(penguins) giving you the number of columns instead of rows is pretty counterintuitive.Why would columns be the elements in the list instead of the rows? Use types in your answer. Are the types of the elements in columns one type or many? How about rows?\nQ18: If you know the name of the column you want to subset in advance, then $ is convenient e.g., penguins$body_mass_g. But say the name of the column is in a variable e.g., penguin_var &lt;- \"body_mass_g\". How you would you use penguin_var to subset the body_mass_g column?"
-  },
-  {
-    "objectID": "lessons/02a_quarto_essentials.html",
-    "href": "lessons/02a_quarto_essentials.html",
-    "title": "Quarto essentials",
+    "objectID": "syllabus.html#course",
+    "href": "syllabus.html#course",
+    "title": "Syllabus",
     "section": "",
-    "text": "Quarto documents combine text, code, and results (e.g., figures and tables). They're a type of literate programming, which differs from scripts because they're intended for a human audience over computation. You'll use Quarto documents for assessments and your final project. Quarto is an extremely powerful data science platform: you can dynamically create PDFs, Word documents, and even websites in Quarto, plus they support R, Python, and other data science programming languages. For now, you just need to know the essentials. Ask yourself the following questions to see if you need this lesson.\nCan you…\nIf you answered yes to all these questions, skip this lesson. Otherwise, choose one of the two options below."
+    "text": "Data Science for Eco/Evo\nBIOE215, 3 Credits, Fall 2023"
   },
   {
-    "objectID": "lessons/02a_quarto_essentials.html#if-youve-used-r-markdown-before",
-    "href": "lessons/02a_quarto_essentials.html#if-youve-used-r-markdown-before",
-    "title": "Quarto essentials",
-    "section": "If you've used R Markdown before…",
-    "text": "If you've used R Markdown before…\nIf you've used R Markdown documents before, then you're already familiar with literate programming (though the terminology may be new to you). Quarto is extremely similar to R Markdown, but redesigned for consistency. Read We don't talk about Quarto by Alison Hill to learn what's the same and what's different."
+    "objectID": "syllabus.html#instructor",
+    "href": "syllabus.html#instructor",
+    "title": "Syllabus",
+    "section": "Instructor",
+    "text": "Instructor\nDr. Max Czapanskiy (he/they)\nEmail: mczapans@ucsc.edu"
   },
   {
-    "objectID": "lessons/02a_quarto_essentials.html#if-youre-brand-new-to-literate-programming",
-    "href": "lessons/02a_quarto_essentials.html#if-youre-brand-new-to-literate-programming",
-    "title": "Quarto essentials",
-    "section": "If you're brand new to literate programming…",
-    "text": "If you're brand new to literate programming…\nIf Quarto and R Markdown are unfamiliar to you, I recommend Chapter 29: Quarto, sections 29.1-29.5 (Introduction through Code chunks), in R 4 Data Science by Hadley Wickham. You'll learn the basics of creating Quarto documents, editing in both Visual and Source modes, and adding code chunks."
+    "objectID": "syllabus.html#location",
+    "href": "syllabus.html#location",
+    "title": "Syllabus",
+    "section": "Location",
+    "text": "Location\nCoastBio 115"
+  },
+  {
+    "objectID": "syllabus.html#times",
+    "href": "syllabus.html#times",
+    "title": "Syllabus",
+    "section": "Times",
+    "text": "Times\nMondays, 3:30-5:30 pm"
+  },
+  {
+    "objectID": "syllabus.html#office-hours",
+    "href": "syllabus.html#office-hours",
+    "title": "Syllabus",
+    "section": "Office Hours",
+    "text": "Office Hours\nTimes: Thursdays 3:30-5:30 pm\nLocation: CoastBio Otter Conference Room\nOr by appointment."
+  },
+  {
+    "objectID": "syllabus.html#course-description",
+    "href": "syllabus.html#course-description",
+    "title": "Syllabus",
+    "section": "Course Description",
+    "text": "Course Description\nThis course will aim to be practical and provide structure for learning the computational skills most eco/evo grad students have to pick up on their own. Topics will include programming best practices in R, organizing data and computational projects, and planning for reproducibility. This is a chance to gain knowledge and experience with the nuts and bolts of making your science work in code, without trying to learn generalized linear models at the same time. The course structure will be self-directed for weeks 1-6, followed by a final project in weeks 7-10."
+  },
+  {
+    "objectID": "syllabus.html#schedule",
+    "href": "syllabus.html#schedule",
+    "title": "Syllabus",
+    "section": "Schedule",
+    "text": "Schedule\nWeek 1: Computational project organization\nWeek 2: Computational thinking I\nWeek 3: Working with data\nWeek 4: Computational thinking II\nWeek 5: Troubleshooting\nWeek 6: Wrap up self-directed portion of class\nWeeks 7-9: Final projects\nWeek 10: Communities of practice"
+  },
+  {
+    "objectID": "syllabus.html#how-class-works",
+    "href": "syllabus.html#how-class-works",
+    "title": "Syllabus",
+    "section": "How class works",
+    "text": "How class works\nThe class format is self-paced with an emphasis on small-group learning. Each class will begin with a short discussion on the assigned readings, then we’ll break out into groups. I will require everyone to complete some lessons start to finish (for example, the project organization lesson). Other lessons will let you jump in at the point appropriate to your level of experience.\nAfter week 6, class time will be devoted to your final projects. These will be replication studies. You and your group will find a paper that you want to replicate some part of, either a figure or a table. Using the skills you’ve learned in this class, you will create a stand-alone analysis that replicates their work. I will encourage all groups to submit their replication to an appropriate journal such as Re-Science C.\nThis class covers computational thinking, programming in base R and the tidyverse, project organization and management, and open science practices. You all probably have very different levels of preparation in these areas. For example, if you have more base R programming experience, I’ll suggest you tackle advanced lessons like functional programming. If you feel your foundation is a little patchy, I’ll suggest you deepen your understanding of the core data structures. This means most students will complete somewhat distinct subsets of the available material. That’s by design! You’re not expected to do the same lessons as everyone else. You are expected to do the lessons that best support your growth as a scientist. Speaking of expectations…"
+  },
+  {
+    "objectID": "syllabus.html#course-expectations",
+    "href": "syllabus.html#course-expectations",
+    "title": "Syllabus",
+    "section": "Course Expectations",
+    "text": "Course Expectations\nThis course offers more material than can be covered in the time allocated and students should not expect to complete all of it! Biology grad students have diverse backgrounds, training, and experience with computational skills. Some of the available material will be too basic or too advanced for you at this time. With help from the instructor, you will identify what content will contribute most to your academic and professional success.\n\nWhat you can expect from your instructor\nThe instructor is here to support your learning and provide you with guidance as you develop your understanding of and skills in data science. I strive for an inclusive and collaborative classroom and welcome any suggestions for improvement. I will do my best to provide useful content, rapid feedback, and enthusiastic support, so let me know if I can do anything more. I highly encourage everyone to visit me in office hours or to set up a meeting, even if you don’t feel that you have questions. I want to get to know you and support you in this learning experience!\n\n\nWhat your instructor expects from you\nI expect you to attend class regularly, complete the self-guided material at the pace that works best for you, and contribute to your group’s final project. Your learning depends on your own preparation and engagement as well as that of your fellow students. I encourage you to rely on each other, as well as the instructor, for problem solving and finding solutions. Teaching reinforces learning, so after you complete lessons be prepared to assist other students with that material. Each member of this class has different ideas and perspectives that will enrich the experience for everyone else, so I ask you to be respectful and thoughtful in your interactions. To get the most out of the class, you should be prepared to share your ideas, ask questions, listen actively and collaborate effectively during small group work. Never hesitate to email your instructors, stop by office hours, or set up a meeting. This class should challenge you, but I believe everyone has the ability to succeed with some effort."
+  },
+  {
+    "objectID": "syllabus.html#why-isnt-there-a-remote-option",
+    "href": "syllabus.html#why-isnt-there-a-remote-option",
+    "title": "Syllabus",
+    "section": "Why isn’t there a remote option?",
+    "text": "Why isn’t there a remote option?\nRemote options have become standard for most classes and I wish I could offer one for this course. However, the structure of the class does not lend itself to hybrid formats because of the emphasis on peer learning and 1-on-1 coaching from the instructor. In the future, I hope to offer online and in-person versions of the course. For now, I only have resources to support the in-person version.\nFor the same reason, I can’t support auditing the class at this time. However, I am happy to share the educational materials with anyone who’s interested. I will try to connect these students so you can form a study group. If that happens, I will add additional office hours to meet with you."
   }
 ]
