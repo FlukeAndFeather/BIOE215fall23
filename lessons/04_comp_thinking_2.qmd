@@ -42,8 +42,7 @@ That's two columns, `city_name` and `population`, with four rows. Without functi
 
 1.  Open a connection to file.
 2.  Read all the text.
-3.  Split each row by commas
-. But only the right commas! E.g. not the one in "Santa Barbara, CA".
+3.  Split each row by commas. But only the right commas! E.g. not the one in "Santa Barbara, CA".
 4.  Figure out the column names.
 5.  Figure out column types, and perhaps convert types as necessary.
 6.  Create a data frame containing the data.
