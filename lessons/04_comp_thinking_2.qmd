@@ -24,9 +24,9 @@ In Week 2 you learned how R organizes information in *data structures*. Then in 
 
 This is where programming gets fun. Computational thinking is all about breaking problems down into manageable pieces, solving them individually, then re-assembling them into a solution. Functions are both how you solve individual problems *and* how you reassemble them.
 
-![Just as the crown once gave Prince John a feeling of power, functions will do the same for you.](/img/power.jpg){fig-alt="Prince John from Disney's Robin Hood clutching his fists and wearing a crown. The text reads \"Power, Hiss. Power!\"" width="375"}
+![Just as the crown once gave Prince John a great feeling of power, functions will do the same for you.](/img/power.jpg){fig-alt="Prince John from Disney's Robin Hood clutching his fists and wearing a crown. The text reads \"Power, Hiss. Power!\"" width="375"}
 
-But there are other ways to *do things*, so why should you bother learning functions? You've probably written meaningful analyses without ever writing a function yourself, so why take on the learning curve to add functions to your toolbox? Short answer: because they'll make your life easier. Long answer: scientific analysis in modern eco/evo requires solving complex problems computationally. Without functions, you pretty much have to tackle complex problems as a whole. Our brains are finite, so that limits the complexity of our science. But with functions, we can break down complex problems into simpler components, write functions to solve those components, then solve the whole problem by putting the components back together.
+But there are other ways to *do things*, so why should you bother learning functions? You've probably written meaningful analyses without ever writing a function yourself, so why take on the learning curve to add functions to your toolbox? Short answer: because they'll make your life easier. Long answer: scientific analysis in modern eco/evo requires solving complex problems computationally. Without functions, you pretty much have to tackle complex problems as a whole. Our brains are finite, so that limits the complexity of our science. But with functions, we can break down complex problems into simpler components, write functions to solve those components, then solve the whole problem by putting the components back together. Then we can solve vastly more complex problems than what our puny little brains can handle at one time.
 
 Here's an example of a complex problem: reading a CSV file. The contents of a CSV file might look like this:
 
@@ -43,7 +43,7 @@ That's two columns, `city_name` and `population`, with four rows. Without functi
 1.  Open a connection to file.
 2.  Read all the text.
 3.  Split each row by commas
-. But only the right commas! Not the one in "Santa Barbara, CA".
+. But only the right commas! E.g. not the one in "Santa Barbara, CA".
 4.  Figure out the column names.
 5.  Figure out column types, and perhaps convert types as necessary.
 6.  Create a data frame containing the data.
@@ -215,3 +215,9 @@ first_last_chr("___")
 
 A lot of possible answers. One is `first_last_chr("Max Czapanskiy")`.
 :::
+
+## TODO
+
+1.  Add some exercises with multiple parameters. E.g. add an `na.rm` parameter to `mean()`.
+2.  Create a function for setting up the computational project folder structure and put a REAMDE.md file in each folder.
+3.  Assessment: write a function that moves the output of a Quarto document in your reports/ folder to the docs/ folder.
