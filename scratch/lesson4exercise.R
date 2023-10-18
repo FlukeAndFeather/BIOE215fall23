@@ -87,3 +87,11 @@ find_hatching_beach <- function(site, date) {
   # result should end up as a data frame with one row for the hatching beach
   return(result$site) # return the site
 }
+
+bloy_chicks %>% 
+  # split
+  ___ %>% 
+  # apply and combine
+  ___
+
+# Think carefully how you'll use find_hatching_beach()!
