@@ -175,6 +175,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
     </ul>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../reporting_errors.html" rel="" target="">
+ <span class="menu-text">Reporting errors</span></a>
+  </li>  
 </ul>
             <div class="quarto-navbar-tools ms-auto">
 </div>
@@ -201,6 +205,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#student-learning-objectives" id="toc-student-learning-objectives" class="nav-link" data-scroll-target="#student-learning-objectives">Student learning objectives</a></li>
   <li><a href="#identify-the-parts-of-a-function" id="toc-identify-the-parts-of-a-function" class="nav-link" data-scroll-target="#identify-the-parts-of-a-function">Identify the parts of a function</a></li>
   <li><a href="#transform-arguments-into-output" id="toc-transform-arguments-into-output" class="nav-link" data-scroll-target="#transform-arguments-into-output">Transform arguments into output</a></li>
+  <li><a href="#multiple-parameters" id="toc-multiple-parameters" class="nav-link" data-scroll-target="#multiple-parameters">Multiple parameters</a></li>
+  </ul></li>
+  <li><a href="#assessment" id="toc-assessment" class="nav-link" data-scroll-target="#assessment">Assessment</a>
+  <ul class="collapse">
+  <li><a href="#automating-project-setup" id="toc-automating-project-setup" class="nav-link" data-scroll-target="#automating-project-setup">Automating project setup</a></li>
+  <li><a href="#where-did-birds-hatch" id="toc-where-did-birds-hatch" class="nav-link" data-scroll-target="#where-did-birds-hatch">Where did birds hatch?</a>
+  <ul class="collapse">
+  <li><a href="#generate-sample-data" id="toc-generate-sample-data" class="nav-link" data-scroll-target="#generate-sample-data">Generate sample data</a></li>
+  <li><a href="#without-a-custom-function" id="toc-without-a-custom-function" class="nav-link" data-scroll-target="#without-a-custom-function">Without a custom function</a></li>
+  </ul></li>
+  <li><a href="#with-a-custom-function" id="toc-with-a-custom-function" class="nav-link" data-scroll-target="#with-a-custom-function">With a custom function</a></li>
+  <li><a href="#todo" id="toc-todo" class="nav-link" data-scroll-target="#todo">TODO</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -239,10 +255,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../img/power.jpg" class="img-fluid figure-img" alt="Prince John from Disney's Robin Hood clutching his fists and wearing a crown. The text reads &quot;Power, Hiss. Power!&quot;" width="375"></p>
-<figcaption class="figure-caption">Just as the crown once gave Prince John a feeling of power, functions will do the same for you.</figcaption>
+<figcaption class="figure-caption">Just as the crown once gave Prince John a great feeling of power, functions will do the same for you.</figcaption>
 </figure>
 </div>
-<p>But there are other ways to <em>do things</em>, so why should you bother learning functions? You’ve probably written meaningful analyses without ever writing a function yourself, so why take on the learning curve to add functions to your toolbox? Short answer: because they’ll make your life easier. Long answer: scientific analysis in modern eco/evo requires solving complex problems computationally. Without functions, you pretty much have to tackle complex problems as a whole. Our brains are finite, so that limits the complexity of our science. But with functions, we can break down complex problems into simpler components, write functions to solve those components, then solve the whole problem by putting the components back together.</p>
+<p>But there are other ways to <em>do things</em>, so why should you bother learning functions? You’ve probably written meaningful analyses without ever writing a function yourself, so why take on the learning curve to add functions to your toolbox? Short answer: because they’ll make your life easier. Long answer: scientific analysis in modern eco/evo requires solving complex problems computationally. Without functions, you pretty much have to tackle complex problems as a whole. Our brains are finite, so that limits the complexity of our science. But with functions, we can break down complex problems into simpler components, write functions to solve those components, then solve the whole problem by putting the components back together. Then we can solve vastly more complex problems than what our puny little brains can handle at one time.</p>
 <p>Here’s an example of a complex problem: reading a CSV file. The contents of a CSV file might look like this:</p>
 <pre><code>“city_name”,“population”
 “Santa Barbara, CA”,88255
@@ -253,7 +269,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>Open a connection to file.</li>
 <li>Read all the text.</li>
-<li>Split each row by commas . But only the right commas! Not the one in “Santa Barbara, CA”.</li>
+<li>Split each row by commas. But only the right commas! E.g. not the one in “Santa Barbara, CA”.</li>
 <li>Figure out the column names.</li>
 <li>Figure out column types, and perhaps convert types as necessary.</li>
 <li>Create a data frame containing the data.</li>
@@ -300,7 +316,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">sum</span>(x) <span class="sc">/</span> <span class="fu">length</span>(x)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><code>mean</code> is our function name, followed by the keyword <code>function</code> (a signal to R to expect a function definition), then the parameter(s) in parentheses (which define what input the function expects), and finally the body in curly braces (the function’s actual logic).</p>
+<p><code>mean</code> is our function name, followed by the keyword <code>function</code> (a signal to R to expect a function definition), then the parameter(s) in parentheses (which define what input the function expects), and finally the body in curly braces (the function’s actual logic). The last line of the body is a call to <code>return()</code>, which returns the output.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>return()</code> technically isn’t necessary because R will implicitly return whatever the last value in the body is. But I want you to explicitly call it for now because it’s a reminder of what the function’s output is.</p>
+</div>
+</div>
 <p><strong>Q1</strong> I’ve written a function to calculate the standard error and broken it into four parts. Match the parts (left column) to their names (right column).</p>
 <table class="table">
 <colgroup>
@@ -350,26 +379,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">first_last_chr</span>(text)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Q2</strong> What are the four parts of this function?</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Answer
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Function name = <code>first_last_chr</code></p>
-<p>Keyword function = <code>function</code></p>
-<p>Parameters = <code>s</code></p>
-<p>Body = Everything in the <code>{}</code></p>
-</div>
-</div>
-</div>
-<p><strong>Q3</strong> What output do you get when you call <code>first_last_chr()</code> on <code>text</code>?</p>
-<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -380,6 +389,26 @@ Answer
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Function name = <code>first_last_chr</code></p>
+<p>Keyword function = <code>function</code></p>
+<p>Parameters = <code>s</code></p>
+<p>Body = Everything in the <code>{}</code></p>
+</div>
+</div>
+</div>
+<p><strong>Q3</strong> What output do you get when you call <code>first_last_chr()</code> on <code>text</code>?</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><code>A!</code></p>
 </div>
@@ -397,26 +426,6 @@ Answer
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Q4</strong> Let’s say you’re starting with a fresh R session and you run the code above to define <code>first_last_chr</code>. At the line where it says <code>### PAUSE HERE</code>, what is the value of <code>s</code>?</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Answer
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p><code>s</code> has no value <em>yet</em>. Parameters don’t have values until the function is called. Then they take on the value of the argument.</p>
-</div>
-</div>
-</div>
-<p>Now call the function on some input.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>text <span class="ot">&lt;-</span> <span class="st">"Amazing!"</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">first_last_chr</span>(text)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Q5</strong> At the line where it says <code>### PAUSE HERE</code>, what is the value of <code>s</code>?</p>
-<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -428,12 +437,14 @@ Answer
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Because we’re in the function body, the parameter <code>s</code> has taken on the value of its argument. So <code>s</code> is <code>"Amazing!"</code>.</p>
+<p><code>s</code> has no value <em>yet</em>. Parameters don’t have values until the function is called. Then they take on the value of the argument.</p>
 </div>
 </div>
 </div>
-<p><strong>Q6</strong> Fill in the blank below so the result is “My”.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">first_last_chr</span>(<span class="st">"___"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now call the function on some input.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>text <span class="ot">&lt;-</span> <span class="st">"Amazing!"</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">first_last_chr</span>(text)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Q5</strong> At the line where it says <code>### PAUSE HERE</code>, what is the value of <code>s</code>?</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -446,10 +457,226 @@ Answer
 </div>
 <div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
+<p>Because we’re in the function body, the parameter <code>s</code> has taken on the value of its argument. So <code>s</code> is <code>"Amazing!"</code>.</p>
+</div>
+</div>
+</div>
+<p><strong>Q6</strong> Fill in the blank below so the result is “My”.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">first_last_chr</span>(<span class="st">"___"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>A lot of possible answers. One is <code>first_last_chr("Max Czapanskiy")</code>.</p>
 </div>
 </div>
 </div>
+</section>
+<section id="multiple-parameters" class="level2">
+<h2 class="anchored" data-anchor-id="multiple-parameters">Multiple parameters</h2>
+<p>Functions can have more than one parameter. You’re already familiar with the <code>na.rm</code> parameter in base R’s <code>mean()</code>. Now you’ll add one to your version</p>
+<p><strong>Q7</strong> Fill in the blanks below to add an <code>na.rm</code> parameter to <code>mean()</code>. The skeleton of an <code>if</code> is there to help. If <code>if</code> is new to you, ask a classmate or instructor for help. Test your code with the calls to <code>mean()</code> provided below.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A new parameter: na.rm</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="cf">function</span>(x, na.rm) {</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (na.rm) {</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    ___</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> ___</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">9</span>), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">9</span>), <span class="at">na.rm =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="cn">NA</span>, <span class="dv">5</span>, <span class="dv">9</span>), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="cn">NA</span>, <span class="dv">5</span>, <span class="dv">9</span>), <span class="at">na.rm =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="cf">function</span>(x, na.rm) {</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (na.rm) {</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> x[<span class="sc">!</span><span class="fu">is.na</span>(x)] <span class="co"># or: x &lt;- na.omit(x)</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">sum</span>(x) <span class="sc">/</span> <span class="fu">length</span>(x)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<p>When you start having multiple parameters, some of them may be optional. You can specify a default value for parameters with <code>=</code>. For example, the following function repeats a character string multiple times, with an optional separating character that defaults to <code>_</code>.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>repeat_chr <span class="ot">&lt;-</span> <span class="cf">function</span>(s, n, <span class="at">separator =</span> <span class="st">"_"</span>) {</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  repeated <span class="ot">&lt;-</span> <span class="fu">rep</span>(s, n)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">paste</span>(repeated, <span class="at">collapse =</span> separator)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Leave `separator` with the default value</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="fu">repeat_chr</span>(<span class="st">"foo"</span>, <span class="dv">3</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify the `separator` by name</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="fu">repeat_chr</span>(<span class="st">"foo"</span>, <span class="dv">3</span>, <span class="at">separator =</span> <span class="st">" "</span>)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify the `separator` by position</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="fu">repeat_chr</span>(<span class="st">"foo"</span>, <span class="dv">3</span>, <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Q8</strong> Modify <code>mean()</code> so it only removes NAs if you tell it to.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Answer
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">na.rm =</span> <span class="cn">FALSE</span>) {</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (na.rm) {</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> x[<span class="sc">!</span><span class="fu">is.na</span>(x)] <span class="co"># or: x &lt;- na.omit(x)</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">sum</span>(x) <span class="sc">/</span> <span class="fu">length</span>(x)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="assessment" class="level1">
+<h1>Assessment</h1>
+<p>For your assessment, create a new project as you have in past assessments.</p>
+<section id="automating-project-setup" class="level2">
+<h2 class="anchored" data-anchor-id="automating-project-setup">Automating project setup</h2>
+</section>
+<section id="where-did-birds-hatch" class="level2">
+<h2 class="anchored" data-anchor-id="where-did-birds-hatch">Where did birds hatch?</h2>
+<p>You’re analyzing survey data of newly hatched Black Oystercatchers in Santa Cruz to figure out where chicks hatched. For safety reasons, the biologists weren’t able to band chicks at their nests. Instead, they caught the chicks later and gave them uniquely identifying 3-color band combinations. For example, GYB is the bird with Green-Yellow-Blue color bands.</p>
+<p>You know Black Oystercatcher chicks move around, but they tend to stick close to their hatch site. So you’ve decided to estimate the hatching site as the location where the bird was observed <em>most often</em> during weekly surveys.</p>
+<section id="generate-sample-data" class="level3">
+<h3 class="anchored" data-anchor-id="generate-sample-data">Generate sample data</h3>
+<p>First we’ll generate some sample data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate sample data</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Sightings of Black Oystercatcher chicks at Santa Cruz beaches</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>beaches <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Cowell's"</span>, <span class="st">"Steamer Lane"</span>, <span class="st">"Natural Bridges"</span>, <span class="st">"Mitchell's"</span>, <span class="st">"Main"</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>band_colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"B"</span>, <span class="st">"G"</span>, <span class="st">"K"</span>, <span class="st">"W"</span>, <span class="st">"Y"</span>) <span class="co"># blue, green, black, white, yellow</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>surveys <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">as.Date</span>(<span class="st">"2023-06-01"</span>), <span class="fu">as.Date</span>(<span class="st">"2023-08-31"</span>), <span class="at">by =</span> <span class="dv">7</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting the "seed" forces randomized functions (like sample()) to generate</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co"># the same output</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1538</span>)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 band colors identify a bird. We want 12 birds.</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>birds <span class="ot">&lt;-</span> <span class="fu">paste0</span>(</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample</span>(band_colors, <span class="dv">25</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample</span>(band_colors, <span class="dv">25</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample</span>(band_colors, <span class="dv">25</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">12</span>)</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>bloy_chicks <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Randomly generate survey data</span></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">beach =</span> <span class="fu">sample</span>(beaches, <span class="at">size =</span> <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">bird =</span> <span class="fu">sample</span>(birds, <span class="at">size =</span> <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">survey =</span> <span class="fu">sample</span>(surveys, <span class="at">size =</span> <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Remove duplicates (see ?distinct)</span></span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Sort by survey date and location</span></span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(survey, beach)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Q1</strong> We’re randomly generating data, but we’re all going to end up with the same data frames. How is that happening?</p>
+<p><strong>Q2</strong> What are the color combos for the 12 chicks?</p>
+<p><strong>Q3</strong> We generated 100 random survey observations. How many rows are in <code>bloy_chicks</code>? Why the difference?</p>
+</section>
+<section id="without-a-custom-function" class="level3">
+<h3 class="anchored" data-anchor-id="without-a-custom-function">Without a custom function</h3>
+<p>We want to estimate where chicks hatched using <code>tidyverse</code> functions. Here’s our process:</p>
+<ol type="1">
+<li>For each bird, where was it seen most often?</li>
+<li>If multiple sites are tied, choose the one with the earliest observation</li>
+<li>If still tied, randomly choose one</li>
+</ol>
+<p>The code below consists of three pipelines (sequences of commands linked by pipes). Each pipeline has been shuffled.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find most frequent beach per bird</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(bird) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>beach_freq <span class="ot">&lt;-</span> bloy_chicks <span class="sc">%&gt;%</span> </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(bird, beach) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">==</span> <span class="fu">max</span>(n)) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Find first date for each bird+beach</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">earliest =</span> <span class="fu">min</span>(survey),</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>beach_early <span class="ot">&lt;-</span> bloy_chicks <span class="sc">%&gt;%</span> </span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">"drop"</span>)</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(bird, beach) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Join the two conditions and retain most frequent beach, only earliest</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(earliest <span class="sc">==</span> <span class="fu">min</span>(earliest)) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample_n</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="co"># Randomly choose 1 row. See ?sample_n</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(beach_early, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"bird"</span>, <span class="st">"beach"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(bird) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>hatch_beach <span class="ot">&lt;-</span> beach_freq <span class="sc">%&gt;%</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Q4</strong> Sort the pipelines back into correct order.</p>
+</section>
+</section>
+<section id="with-a-custom-function" class="level2">
+<h2 class="anchored" data-anchor-id="with-a-custom-function">With a custom function</h2>
+<p>There are two issues with the approach above:</p>
+<ol type="1">
+<li>It’s kind of long and we have to make multiple intermediate data frames. So it’s not the easiest code to read.</li>
+<li>The logic for estimating a hatching beach is spread out across multiple locations in the code. If we choose a different approach then we have to change everything!</li>
+</ol>
+<p>Here’s a different approach using a custom function.</p>
+<ol type="1">
+<li>Put the logic for estimating the hatching beach in a single function.</li>
+<li>Group the data by bird</li>
+<li>Summarize each group using your custom function</li>
+</ol>
+<p>This is an example of a <em>split-apply-combine</em> strategy. Use <code>group_by()</code> to <em>split</em> our data frame by bird. Write a custom function to estimate the hatching beach for that bird. That’s critical: this function works on just one part of the whole! Use <code>summarize()</code> to <em>apply</em> our function to each bird and <em>combine</em> the results.</p>
+<p>Below is a skeleton of the custom function with key pieces missing, followed by a <em>split-apply-combine</em> skeleton.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>find_hatching_beach <span class="ot">&lt;-</span> <span class="cf">function</span>(site, date) {</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Start with a data frame (or tibble) of site and date for *one* bird</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Use pipes and dplyr functions to find the hatching beach</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  bird_observations <span class="ot">&lt;-</span> <span class="fu">tibble</span>(site, date)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> bird_observations <span class="sc">%&gt;%</span> </span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    ___ <span class="co"># use as many pipes and dplyr functions as necessary</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># result should end up as a data frame with one row for the hatching beach</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result<span class="sc">$</span>site) <span class="co"># return the hatching beach</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co"># split-apply-combine</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>bloy_chicks <span class="sc">%&gt;%</span> </span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(___) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(___)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Q5</strong> The two <em>parameters</em> of <code>find_hatching_beach()</code> are named <code>site</code> and <code>date</code>. When this function is called, what columns in <code>bloy_chicks</code> will you use as <em>arguments</em> for these parameters?</p>
+<p><strong>Q6</strong> What will be the value of <code>site</code> when <code>find_hatching_beach()</code> is called on the group for bird YWG? How about WYB?</p>
+</section>
+<section id="todo" class="level2">
+<h2 class="anchored" data-anchor-id="todo">TODO</h2>
+<ol type="1">
+<li>Create a function for setting up the computational project folder structure and put a REAMDE.md file in each folder.</li>
+<li>Assessment: write a function that moves the output of a Quarto document in your reports/ folder to the docs/ folder.</li>
+</ol>
 
 
 </section>

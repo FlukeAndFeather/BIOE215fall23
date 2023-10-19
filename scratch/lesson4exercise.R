@@ -6,6 +6,8 @@ beaches <- c("Cowell's", "Steamer Lane", "Natural Bridges", "Mitchell's", "Main"
 band_colors <- c("B", "G", "K", "W", "Y") # blue, green, black, white, yellow
 surveys <- seq(as.Date("2023-06-01"), as.Date("2023-08-31"), by = 7)
 
+# Setting the "seed" forces randomized functions (like sample()) to generate
+# the same output
 set.seed(1538)
 # 3 band colors identify a bird. We want 12 birds.
 birds <- paste0(
@@ -59,10 +61,10 @@ hatch_beach <- beach_freq %>%
   sample_n(1) %>% # Randomly choose 1 row. See ?sample_n
   ungroup()
 
-# Two issues with this approach 
+# Two issues with this approach
 # 1) It's kind of long and we have to make multiple intermediate data frames
-# 2) The logic for estimating a hatching beach is spread out across multiple 
-# locations in the code. If we choose a different approach then we have to 
+# 2) The logic for estimating a hatching beach is spread out across multiple
+# locations in the code. If we choose a different approach then we have to
 # change everything.
 
 # Different approach: functions

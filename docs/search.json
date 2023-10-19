@@ -70,6 +70,167 @@
     "text": "Lists\nLists are more flexible than atomic vectors, so subsetting gets a little more complicated. Subsetting an atomic vector always gives you an atomic vector of the same type, but since lists can hold multiple types they work a little differently.\nThere are three ways to subset lists. [ works similarly as it does with atomic vectors: you get a subset of the list and it’s still a list. [[ and $ are a little different: they pull the contents out of a list. [ might be more familiar, but most of the time [[ and $ do what you actually want them to do. Let’s look at what that means in practice.\n\nSubsetting with [\n\n# Remember our dogs?\ndog1 &lt;- list(name = \"Bowie\", \n             weight_lb = 80.0, \n             skills = c(\"nap\", \"eat\", \"more nap\"))\ndog2 &lt;- list(name = \"Lassie\",\n             weight_lb = 65.0,\n             skills = c(\"save tommy\", \"bark\", \"acting\"))\ndogs &lt;- list(dog1, dog2)\n\n# Subsetting lists with `[` is very similar to atomic vectors, you're \n# always getting a list back\n\n# Index by position\ndog1[1]\ndogs[1]\n\n# Index by name\ndog1[\"weight_lb\"]\ndog2[\"skills\"]\n\n# You can index by logic, too, but it's not terribly helpful here\n\n\n\n\n\n\n\nNote\n\n\n\nWow, lists print a lot differently than atomic vectors, don’t they? That’s the price of being flexible, you end up being more complicated. But they share their roots with atomic vectors. [[1]] means the element at position 1 and $some_name means the element with position some_name. Lists can contain other lists, so [[1]]$some_name means “in the first element, the element named some_name”.\n\n\nQ14: What’s the type of dog1[1]? dog1[1:2]? dogs[2]?\n\n\nSubsetting with [[ and $\n[[ and $ are how you pull the contents out of elements in a list. You can only do this on a single element, so some of the things you can do with [ like x[1:3] and x[c(\"a\", \"b\")] won’t work.\nFor the next examples, you’ll need the palmerpenguins package installed.\n\n# Use `[[` to subset by position\ndog1[[2]]\n\n# Use `[[` to subset by name\ndog1[[\"weight_lb\"]]\n\n# Use `$` to subset by name\ndog1$weight_lb\n\n\n\n\n\n\n\nNote\n\n\n\nDid you notice the difference when subsetting by name with [[ and $? weight_lb had to go in quotes with [[, but was unquoted with $. Subsetting with $ is one of the few times you can use a name unquoted.\n\n\nQ15: Why doesn’t dog1[[weight_lb]] work? Use the error message to explain why.\nQ16: What’s the type of dog1[[2]]? How is it different than dog1[2]?\n\nA minute on data frames\nYou may already be familiar with $ if you’ve used it to subset columns from data frames. Data frames are a special type of list. The columns of the data frame are elements of the list. This kind of building complex data structures from simpler parts is a form of abstraction, which is key to solving problems computationally.\nFor this section, install the palmerpenguins package if necessary.\n\n# install.packages(\"palmerpenguins\")\nlibrary(palmerpenguins)\n\n# penguins is a data frame, meaning it's a list\ntypeof(penguins)\n\n# The elements of the list are the columns, so the length is the number of columns, not the number of rows.\nlength(penguins)\nnrow(penguins)\nncol(penguins)\n\n# Subsetting a column with $ and [[ returns *just* the column\npenguins$body_mass_g\npenguins[[\"body_mass_g\"]]\ntypeof(penguins$body_mass_g)\n\n# Remember subsetting a list with [ returns a shorter list, so \n# subsetting a column with [ returns a data frame\npenguins[\"body_mass_g\"]\ntypeof(penguins[\"body_mass_g\"])\n\nQ17: length(penguins) giving you the number of columns instead of rows is pretty counterintuitive.Why would columns be the elements in the list instead of the rows? Use types in your answer. Are the types of the elements in columns one type or many? How about rows?\nQ18: If you know the name of the column you want to subset in advance, then $ is convenient e.g., penguins$body_mass_g. But say the name of the column is in a variable e.g., penguin_var &lt;- \"body_mass_g\". How you would you use penguin_var to subset the body_mass_g column?"
   },
   {
+    "objectID": "lessons/04_comp_thinking_2.html",
+    "href": "lessons/04_comp_thinking_2.html",
+    "title": "Computational thinking 2",
+    "section": "",
+    "text": "No I will not apologize.\nData are nouns. Functions are verbs. Together they make sentences.\nIn Week 2 you learned how R organizes information in data structures. Then in Week 3 you used tidyverse functions to manipulate data frames. Now you’re going to learn how to write your own functions.\n\n\n\nThis is where programming gets fun. Computational thinking is all about breaking problems down into manageable pieces, solving them individually, then re-assembling them into a solution. Functions are both how you solve individual problems and how you reassemble them.\n\n\n\nJust as the crown once gave Prince John a great feeling of power, functions will do the same for you.\n\n\nBut there are other ways to do things, so why should you bother learning functions? You’ve probably written meaningful analyses without ever writing a function yourself, so why take on the learning curve to add functions to your toolbox? Short answer: because they’ll make your life easier. Long answer: scientific analysis in modern eco/evo requires solving complex problems computationally. Without functions, you pretty much have to tackle complex problems as a whole. Our brains are finite, so that limits the complexity of our science. But with functions, we can break down complex problems into simpler components, write functions to solve those components, then solve the whole problem by putting the components back together. Then we can solve vastly more complex problems than what our puny little brains can handle at one time.\nHere’s an example of a complex problem: reading a CSV file. The contents of a CSV file might look like this:\n“city_name”,“population”\n“Santa Barbara, CA”,88255\n“Santa Cruz, CA”,61950\n“Washington, DC”,712816\n“Kennicott, AK”,NA\nThat’s two columns, city_name and population, with four rows. Without functions, reading a CSV file would require you to:\n\nOpen a connection to file.\nRead all the text.\nSplit each row by commas. But only the right commas! E.g. not the one in “Santa Barbara, CA”.\nFigure out the column names.\nFigure out column types, and perhaps convert types as necessary.\nCreate a data frame containing the data.\n\nHere’s how that complex problem works in code:\n\nCall read_csv()\n\nNow you might be saying, “wait, this is a bogus example because reading a CSV file is a simple task.” In that case, I suggest you try reading a CSV file from scratch in R. You’ll quickly discover that reading CSV files is in fact an extremely complex task. But all that complexity has been rolled up into a function called read_csv(), so you can safely ignore that complexity and focus on your science instead.\nThe fact we can forget how complex a problem like reading CSV files is showcases the the beauty of functions. It’s a principle called abstraction. We take a complex problem, stuff all the logic into a tidy box that’s easy to think about (file path in, data frame out), and free up our cognitive power for other tasks. Today you’ll learn how to do that for your own complex problems."
+  },
+  {
+    "objectID": "lessons/04_comp_thinking_2.html#lets-put-the-fun-in-functions",
+    "href": "lessons/04_comp_thinking_2.html#lets-put-the-fun-in-functions",
+    "title": "Computational thinking 2",
+    "section": "",
+    "text": "No I will not apologize.\nData are nouns. Functions are verbs. Together they make sentences.\nIn Week 2 you learned how R organizes information in data structures. Then in Week 3 you used tidyverse functions to manipulate data frames. Now you’re going to learn how to write your own functions."
+  },
+  {
+    "objectID": "lessons/04_comp_thinking_2.html#functions-do-things",
+    "href": "lessons/04_comp_thinking_2.html#functions-do-things",
+    "title": "Computational thinking 2",
+    "section": "",
+    "text": "This is where programming gets fun. Computational thinking is all about breaking problems down into manageable pieces, solving them individually, then re-assembling them into a solution. Functions are both how you solve individual problems and how you reassemble them.\n\n\n\nJust as the crown once gave Prince John a great feeling of power, functions will do the same for you.\n\n\nBut there are other ways to do things, so why should you bother learning functions? You’ve probably written meaningful analyses without ever writing a function yourself, so why take on the learning curve to add functions to your toolbox? Short answer: because they’ll make your life easier. Long answer: scientific analysis in modern eco/evo requires solving complex problems computationally. Without functions, you pretty much have to tackle complex problems as a whole. Our brains are finite, so that limits the complexity of our science. But with functions, we can break down complex problems into simpler components, write functions to solve those components, then solve the whole problem by putting the components back together. Then we can solve vastly more complex problems than what our puny little brains can handle at one time.\nHere’s an example of a complex problem: reading a CSV file. The contents of a CSV file might look like this:\n“city_name”,“population”\n“Santa Barbara, CA”,88255\n“Santa Cruz, CA”,61950\n“Washington, DC”,712816\n“Kennicott, AK”,NA\nThat’s two columns, city_name and population, with four rows. Without functions, reading a CSV file would require you to:\n\nOpen a connection to file.\nRead all the text.\nSplit each row by commas. But only the right commas! E.g. not the one in “Santa Barbara, CA”.\nFigure out the column names.\nFigure out column types, and perhaps convert types as necessary.\nCreate a data frame containing the data.\n\nHere’s how that complex problem works in code:\n\nCall read_csv()\n\nNow you might be saying, “wait, this is a bogus example because reading a CSV file is a simple task.” In that case, I suggest you try reading a CSV file from scratch in R. You’ll quickly discover that reading CSV files is in fact an extremely complex task. But all that complexity has been rolled up into a function called read_csv(), so you can safely ignore that complexity and focus on your science instead.\nThe fact we can forget how complex a problem like reading CSV files is showcases the the beauty of functions. It’s a principle called abstraction. We take a complex problem, stuff all the logic into a tidy box that’s easy to think about (file path in, data frame out), and free up our cognitive power for other tasks. Today you’ll learn how to do that for your own complex problems."
+  },
+  {
+    "objectID": "lessons/04_comp_thinking_2.html#student-learning-objectives",
+    "href": "lessons/04_comp_thinking_2.html#student-learning-objectives",
+    "title": "Computational thinking 2",
+    "section": "Student learning objectives",
+    "text": "Student learning objectives\n\nIdentify the parts of a function definition (syntax)\nUse functions to transform inputs (parameters, arguments) into outputs\nWrite a function to automate a common task"
+  },
+  {
+    "objectID": "lessons/04_comp_thinking_2.html#identify-the-parts-of-a-function",
+    "href": "lessons/04_comp_thinking_2.html#identify-the-parts-of-a-function",
+    "title": "Computational thinking 2",
+    "section": "Identify the parts of a function",
+    "text": "Identify the parts of a function\nJargon\nSyntax. In programming, syntax is basically spelling and grammar. It’s the rules for what the programming language can and cannot understand. For example, you have to use commas to separate arguments in a function call like this c(\"a\", \"b\"). If you leave out the comma c(\"a\" \"b\") then you have a syntax error and R won’t know what to do.\nParameter. The logic inside of a function is unaware of the real world around it, so parameters are placeholders for input.\nArgument. When you call a function on some input, those inputs are the arguments. Think of arguments as real things, which get substituted for the function’s parameters. The distinction between parameters and arguments will become clearer in a bit.\n\nLet’s use a mathematical function as a template for thinking about function syntax, where syntax is the rules for text that R can understand as code. We’ll use the mean, \\(\\bar x\\), defined as:\n\\[\n\\bar x = \\frac{\\sum_{i=1}^{n} x_i}{n}\n\\]\nIn plain language, the mean of \\(x\\) is the sum of its elements divided by the number of elements. Before we convert this logic to an R function, let’s break down function syntax.\nAn R function has four parts.\n\nThe name of the function\nThe keyword function\nParameters\nBody\n\nWe can write our own mean() function from those four parts.\nmean &lt;- function(x) {\n  result &lt;- sum(x) / length(x)\n  return(result)\n}\nmean is our function name, followed by the keyword function (a signal to R to expect a function definition), then the parameter(s) in parentheses (which define what input the function expects), and finally the body in curly braces (the function’s actual logic). The last line of the body is a call to return(), which returns the output.\n\n\n\n\n\n\nNote\n\n\n\nreturn() technically isn’t necessary because R will implicitly return whatever the last value in the body is. But I want you to explicitly call it for now because it’s a reminder of what the function’s output is.\n\n\nQ1 I’ve written a function to calculate the standard error and broken it into four parts. Match the parts (left column) to their names (right column).\n\n\n\n\n\n\n\nFunction parts (code)\nFunction parts (names)\n\n\n\n\n{\n  n &lt;- length(x)\n  result &lt;- sd(x) / sqrt(n)\n  return(result)\n}\nFunction name\n\n\nse\nKeyword “function”\n\n\n(x)\nParameters\n\n\nfunction\nBody"
+  },
+  {
+    "objectID": "lessons/04_comp_thinking_2.html#transform-arguments-into-output",
+    "href": "lessons/04_comp_thinking_2.html#transform-arguments-into-output",
+    "title": "Computational thinking 2",
+    "section": "Transform arguments into output",
+    "text": "Transform arguments into output\nConsider the following code snippet.\nfirst_last_chr &lt;- function(s) {\n  first_chr &lt;- substr(s, 1, 1)\n  last_chr &lt;- substr(s, nchar(s), nchar(s))\n  result &lt;- paste(first_chr, last_chr, sep = \"\")\n  return(result)\n}\ntext &lt;- \"Amazing!\"\nfirst_last_chr(text)\nQ2 What are the four parts of this function?\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nFunction name = first_last_chr\nKeyword function = function\nParameters = s\nBody = Everything in the {}\n\n\n\nQ3 What output do you get when you call first_last_chr() on text?\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nA!\n\n\n\nThe distinction between parameters and arguments is subtle, but it’s critical for understanding how functions transform inputs to create outputs.\ns is a parameter. text is an argument. s is a placeholder in the little mini-universe that is the body of first_last_chr(). text is an actual object that we assigned a value to. When we call a function on an argument, the function essentially renames the argument with the name of the parameter.\nLet’s look at the definition of first_last_chr() again.\nfirst_last_chr &lt;- function(s) {\n  first_chr &lt;- substr(s, 1, 1)\n  last_chr &lt;- substr(s, nchar(s), nchar(s))\n  ### PAUSE HERE\n  result &lt;- paste(first_chr, last_chr, sep = \"\")\n  return(result)\n}\nQ4 Let’s say you’re starting with a fresh R session and you run the code above to define first_last_chr. At the line where it says ### PAUSE HERE, what is the value of s?\n\n\n\n\n\n\nAnswer\n\n\n\n\n\ns has no value yet. Parameters don’t have values until the function is called. Then they take on the value of the argument.\n\n\n\nNow call the function on some input.\ntext &lt;- \"Amazing!\"\nfirst_last_chr(text)\nQ5 At the line where it says ### PAUSE HERE, what is the value of s?\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nBecause we’re in the function body, the parameter s has taken on the value of its argument. So s is \"Amazing!\".\n\n\n\nQ6 Fill in the blank below so the result is “My”.\nfirst_last_chr(\"___\")\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nA lot of possible answers. One is first_last_chr(\"Max Czapanskiy\")."
+  },
+  {
+    "objectID": "lessons/04_comp_thinking_2.html#multiple-parameters",
+    "href": "lessons/04_comp_thinking_2.html#multiple-parameters",
+    "title": "Computational thinking 2",
+    "section": "Multiple parameters",
+    "text": "Multiple parameters\nFunctions can have more than one parameter. You’re already familiar with the na.rm parameter in base R’s mean(). Now you’ll add one to your version\nQ7 Fill in the blanks below to add an na.rm parameter to mean(). The skeleton of an if is there to help. If if is new to you, ask a classmate or instructor for help. Test your code with the calls to mean() provided below.\n# A new parameter: na.rm\nmean &lt;- function(x, na.rm) {\n  if (na.rm) {\n    ___\n  }\n  result &lt;- ___\n  return(result)\n}\n\nmean(c(1, 5, 9), na.rm = TRUE)\nmean(c(1, 5, 9), na.rm = FALSE)\nmean(c(1, NA, 5, 9), na.rm = TRUE)\nmean(c(1, NA, 5, 9), na.rm = FALSE)\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nmean &lt;- function(x, na.rm) {\n  if (na.rm) {\n    x &lt;- x[!is.na(x)] # or: x &lt;- na.omit(x)\n  }\n  result &lt;- sum(x) / length(x)\n  return(result)\n}\n\n\n\nWhen you start having multiple parameters, some of them may be optional. You can specify a default value for parameters with =. For example, the following function repeats a character string multiple times, with an optional separating character that defaults to _.\nrepeat_chr &lt;- function(s, n, separator = \"_\") {\n  repeated &lt;- rep(s, n)\n  result &lt;- paste(repeated, collapse = separator)\n  return(result)\n}\n\n# Leave `separator` with the default value\nrepeat_chr(\"foo\", 3)\n# Specify the `separator` by name\nrepeat_chr(\"foo\", 3, separator = \" \")\n# Specify the `separator` by position\nrepeat_chr(\"foo\", 3, \" \")\nQ8 Modify mean() so it only removes NAs if you tell it to.\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nmean &lt;- function(x, na.rm = FALSE) {\n  if (na.rm) {\n    x &lt;- x[!is.na(x)] # or: x &lt;- na.omit(x)\n  }\n  result &lt;- sum(x) / length(x)\n  return(result)\n}"
+  },
+  {
+    "objectID": "lessons/04_comp_thinking_2.html#automating-project-setup",
+    "href": "lessons/04_comp_thinking_2.html#automating-project-setup",
+    "title": "Computational thinking 2",
+    "section": "Automating project setup",
+    "text": "Automating project setup"
+  },
+  {
+    "objectID": "lessons/04_comp_thinking_2.html#where-did-birds-hatch",
+    "href": "lessons/04_comp_thinking_2.html#where-did-birds-hatch",
+    "title": "Computational thinking 2",
+    "section": "Where did birds hatch?",
+    "text": "Where did birds hatch?\nYou’re analyzing survey data of newly hatched Black Oystercatchers in Santa Cruz to figure out where chicks hatched. For safety reasons, the biologists weren’t able to band chicks at their nests. Instead, they caught the chicks later and gave them uniquely identifying 3-color band combinations. For example, GYB is the bird with Green-Yellow-Blue color bands.\nYou know Black Oystercatcher chicks move around, but they tend to stick close to their hatch site. So you’ve decided to estimate the hatching site as the location where the bird was observed most often during weekly surveys.\n\nGenerate sample data\nFirst we’ll generate some sample data.\n\nlibrary(tidyverse)\n\n# Generate sample data\n# Sightings of Black Oystercatcher chicks at Santa Cruz beaches\nbeaches &lt;- c(\"Cowell's\", \"Steamer Lane\", \"Natural Bridges\", \"Mitchell's\", \"Main\")\nband_colors &lt;- c(\"B\", \"G\", \"K\", \"W\", \"Y\") # blue, green, black, white, yellow\nsurveys &lt;- seq(as.Date(\"2023-06-01\"), as.Date(\"2023-08-31\"), by = 7)\n\n# Setting the \"seed\" forces randomized functions (like sample()) to generate\n# the same output\nset.seed(1538)\n# 3 band colors identify a bird. We want 12 birds.\nbirds &lt;- paste0(\n  sample(band_colors, 25, replace = TRUE),\n  sample(band_colors, 25, replace = TRUE),\n  sample(band_colors, 25, replace = TRUE)\n) %&gt;% \n  unique() %&gt;%\n  head(12)\nbloy_chicks &lt;- tibble(\n  # Randomly generate survey data\n  beach = sample(beaches, size = 100, replace = TRUE),\n  bird = sample(birds, size = 100, replace = TRUE),\n  survey = sample(surveys, size = 100, replace = TRUE)\n) %&gt;% \n  # Remove duplicates (see ?distinct)\n  distinct() %&gt;% \n  # Sort by survey date and location\n  arrange(survey, beach)\n\nQ1 We’re randomly generating data, but we’re all going to end up with the same data frames. How is that happening?\nQ2 What are the color combos for the 12 chicks?\nQ3 We generated 100 random survey observations. How many rows are in bloy_chicks? Why the difference?\n\n\nWithout a custom function\nWe want to estimate where chicks hatched using tidyverse functions. Here’s our process:\n\nFor each bird, where was it seen most often?\nIf multiple sites are tied, choose the one with the earliest observation\nIf still tied, randomly choose one\n\nThe code below consists of three pipelines (sequences of commands linked by pipes). Each pipeline has been shuffled.\n\n# Find most frequent beach per bird\n  group_by(bird) %&gt;% \nbeach_freq &lt;- bloy_chicks %&gt;% \n  count(bird, beach) %&gt;% \n  ungroup()\n  filter(n == max(n)) %&gt;% \n# Find first date for each bird+beach\n  summarize(earliest = min(survey),\nbeach_early &lt;- bloy_chicks %&gt;% \n            .groups = \"drop\")\n  group_by(bird, beach) %&gt;% \n# Join the two conditions and retain most frequent beach, only earliest\n  filter(earliest == min(earliest)) %&gt;% \n  ungroup()\n  sample_n(1) %&gt;% # Randomly choose 1 row. See ?sample_n\n  left_join(beach_early, by = c(\"bird\", \"beach\")) %&gt;% \n  group_by(bird) %&gt;% \nhatch_beach &lt;- beach_freq %&gt;% \n\nQ4 Sort the pipelines back into correct order."
+  },
+  {
+    "objectID": "lessons/04_comp_thinking_2.html#with-a-custom-function",
+    "href": "lessons/04_comp_thinking_2.html#with-a-custom-function",
+    "title": "Computational thinking 2",
+    "section": "With a custom function",
+    "text": "With a custom function\nThere are two issues with the approach above:\n\nIt’s kind of long and we have to make multiple intermediate data frames. So it’s not the easiest code to read.\nThe logic for estimating a hatching beach is spread out across multiple locations in the code. If we choose a different approach then we have to change everything!\n\nHere’s a different approach using a custom function.\n\nPut the logic for estimating the hatching beach in a single function.\nGroup the data by bird\nSummarize each group using your custom function\n\nThis is an example of a split-apply-combine strategy. Use group_by() to split our data frame by bird. Write a custom function to estimate the hatching beach for that bird. That’s critical: this function works on just one part of the whole! Use summarize() to apply our function to each bird and combine the results.\nBelow is a skeleton of the custom function with key pieces missing, followed by a split-apply-combine skeleton.\n\nfind_hatching_beach &lt;- function(site, date) {\n  # Start with a data frame (or tibble) of site and date for *one* bird\n  # Use pipes and dplyr functions to find the hatching beach\n  bird_observations &lt;- tibble(site, date)\n  result &lt;- bird_observations %&gt;% \n    ___ # use as many pipes and dplyr functions as necessary\n  # result should end up as a data frame with one row for the hatching beach\n  return(result$site) # return the hatching beach\n}\n\n# split-apply-combine\nbloy_chicks %&gt;% \n  group_by(___) %&gt;% \n  summarize(___)\n\nQ5 The two parameters of find_hatching_beach() are named site and date. When this function is called, what columns in bloy_chicks will you use as arguments for these parameters?\nQ6 What will be the value of site when find_hatching_beach() is called on the group for bird YWG? How about WYB?"
+  },
+  {
+    "objectID": "lessons/04_comp_thinking_2.html#todo",
+    "href": "lessons/04_comp_thinking_2.html#todo",
+    "title": "Computational thinking 2",
+    "section": "TODO",
+    "text": "TODO\n\nCreate a function for setting up the computational project folder structure and put a REAMDE.md file in each folder.\nAssessment: write a function that moves the output of a Quarto document in your reports/ folder to the docs/ folder."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Your instructor, Max, is a postdoc with NOAA’s Southwest Fisheries Science Center. They began their career as a software engineer at Microsoft then spent ten years as a field ecologist (seabirds, mostly) and ecological data scientist (whales, mostly). His current research is on advancing open science practices in marine ecology. But more than research, their real passion is teaching (specifically, teaching data science to biologists) so they’re grateful for the opportunity to teach Data Science for Eco/Evo this quarter! In his free time, he’s a baker, a runner, and dog drummer (that’s when you drum on the side of your dog as loud as you can).\nYou can check out their personal website at www.flukeandfeather.com."
+  },
+  {
+    "objectID": "about.html#max-czapanskiy-hethey",
+    "href": "about.html#max-czapanskiy-hethey",
+    "title": "About",
+    "section": "",
+    "text": "Your instructor, Max, is a postdoc with NOAA’s Southwest Fisheries Science Center. They began their career as a software engineer at Microsoft then spent ten years as a field ecologist (seabirds, mostly) and ecological data scientist (whales, mostly). His current research is on advancing open science practices in marine ecology. But more than research, their real passion is teaching (specifically, teaching data science to biologists) so they’re grateful for the opportunity to teach Data Science for Eco/Evo this quarter! In his free time, he’s a baker, a runner, and dog drummer (that’s when you drum on the side of your dog as loud as you can).\nYou can check out their personal website at www.flukeandfeather.com."
+  },
+  {
+    "objectID": "discussions/04_open_data_2.html",
+    "href": "discussions/04_open_data_2.html",
+    "title": "Open data 2",
+    "section": "",
+    "text": "For this week you read Roche et al. (2022). You also submitted a PDF of your candidate replication paper on Canvas.\nIn today’s discussion, you’ll form final project groups of 3-4 students. Share your candidate paper with your group and explain the figure/table you’d like to replicate.\n\n\n\n\n\n\nImportant\n\n\n\nChoose just one figure or table! It should be the key finding of the paper. You don’t need to replicate the whole thing start to finish.\n\n\nWorking together, go through each paper and make a list of data you would need to replicate the figure. Be specific! What tables of data would you need? What columns and rows would need to be in those tables?\nNext week, you’ll use the metrics in Table 1 of Roche et al. (2022) to assess the completeness and reusability of the data in the paper you’ve chosen. The data requirements you come up with today will guide that exercise.\n\n\n\n\nReferences\n\nRoche, Dominique G., Ilias Berberi, Fares Dhane, Félix Lauzon, Sandrine Soeharjono, Roslyn Dakin, and Sandra A. Binning. 2022. “Slow Improvement to the Archiving Quality of Open Datasets Shared by Researchers in Ecology and Evolution.” Proceedings of the Royal Society B: Biological Sciences 289 (1975). https://doi.org/10.1098/rspb.2021.2780."
+  },
+  {
+    "objectID": "discussions/03_open_tools.html",
+    "href": "discussions/03_open_tools.html",
+    "title": "Open tools",
+    "section": "",
+    "text": "For this week you read Lowndes et al. (2017) and Marwick, Boettiger, and Mullen (2018) about open tools.\nOur discussion today will follow the Hatful of Quotes format (Brookfield and Preskill 2016). Here’s how it works.\n\nI’ve printed salient quotes from both papers on slips of paper and put them in a “hat”.\nYou’ll randomly draw a quote and take two minutes to think about it on your own. How does the quote relate to the rest of the paper? The other paper? The other content in this course? Your own experiences as a scientist?\nWe hold a group conversation. When it’s your turn to speak, read your quote and share your thoughts. If your quote has already been read, you can affirm, build on, or contradict earlier comments (respectfully).\n\n\n\n\n\nReferences\n\nBrookfield, Stephen D, and Stephen Preskill. 2016. The Discussion Book. London, England: Jossey-Bass.\n\n\nLowndes, Julia S. Stewart, Benjamin D. Best, Courtney Scarborough, Jamie C. Afflerbach, Melanie R. Frazier, Casey C. O’Hara, Ning Jiang, and Benjamin S. Halpern. 2017. “Our Path to Better Science in Less Time Using Open Data Science Tools.” Nature Ecology & Evolution 1 (6). https://doi.org/10.1038/s41559-017-0160.\n\n\nMarwick, Ben, Carl Boettiger, and Lincoln Mullen. 2018. “Packaging Data Analytical Work Reproducibly Using R (and Friends).” The American Statistician 72 (1): 80–88. https://doi.org/10.1080/00031305.2017.1375986."
+  },
+  {
+    "objectID": "discussions/02_open_data_1.html",
+    "href": "discussions/02_open_data_1.html",
+    "title": "Open data 1",
+    "section": "",
+    "text": "For this week you read Vines et al. (2014) and Wilkinson et al. (2016) about open data.\nOur discussion today will follow the Snowballing format (Brookfield and Preskill 2016). Here’s how it works.\n\nYou’re presented with two discussion questions.\n\nThink of a time you tried to use data from another scientist, lab, paper, etc. What challenges did you encounter trying to use those data? Conversely, what did the data provider do that made your science easier?\nWhat challenges do you anticipate encountering if/when you share your own data? What would you need to learn or what systems would have to change to make sharing data easier?\n\nTake two minutes to reflect and make a note of your thoughts.\nFind a partner. For three minutes, take turns sharing your thoughts. What did you have in common? What was different? How would you synthesize your two points of view?\nNow your pair finds another pair. For another three minutes, repeat step 3 with the larger group. As the group expands, be mindful of everyone’s participation. A little bit of silence can go a long way to giving everyone a chance to participate.\nRepeat step 4 until the whole group is discussing together.\n\n\n\n\n\nReferences\n\nBrookfield, Stephen D, and Stephen Preskill. 2016. The Discussion Book. London, England: Jossey-Bass.\n\n\nVines, Timothy H., Arianne Y.K. Albert, Rose L. Andrew, Florence Débarre, Dan G. Bock, Michelle T. Franklin, Kimberly J. Gilbert, Jean-Sébastien Moore, Sébastien Renaut, and Diana J. Rennison. 2014. “The Availability of Research Data Declines Rapidly with Article Age.” Current Biology 24 (1): 94–97. https://doi.org/10.1016/j.cub.2013.11.014.\n\n\nWilkinson, Mark D., Michel Dumontier, IJsbrand Jan Aalbersberg, Gabrielle Appleton, Myles Axton, Arie Baak, Niklas Blomberg, et al. 2016. “The FAIR Guiding Principles for Scientific Data Management and Stewardship.” Scientific Data 3 (1). https://doi.org/10.1038/sdata.2016.18."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Data Science for Eco/Evo (Fall 23 BIOE215)",
+    "section": "",
+    "text": "Welcome to Data Science for Eco/Evo! I’m excited to have you in class and hope this course helps you reach your research goals. On this website, you’ll find course logistics, schedule, and lessons. You’ll use GitHub for submitting assessments."
+  },
+  {
+    "objectID": "index.html#course",
+    "href": "index.html#course",
+    "title": "Data Science for Eco/Evo (Fall 23 BIOE215)",
+    "section": "Course",
+    "text": "Course\nData Science for Eco/Evo\nBIOE215, 3 Credits, Fall 2023"
+  },
+  {
+    "objectID": "index.html#instructor",
+    "href": "index.html#instructor",
+    "title": "Data Science for Eco/Evo (Fall 23 BIOE215)",
+    "section": "Instructor",
+    "text": "Instructor\nDr. Max Czapanskiy (he/they)\nEmail: mczapans@ucsc.edu"
+  },
+  {
+    "objectID": "index.html#location",
+    "href": "index.html#location",
+    "title": "Data Science for Eco/Evo (Fall 23 BIOE215)",
+    "section": "Location",
+    "text": "Location\nCoastBio 115"
+  },
+  {
+    "objectID": "index.html#times",
+    "href": "index.html#times",
+    "title": "Data Science for Eco/Evo (Fall 23 BIOE215)",
+    "section": "Times",
+    "text": "Times\nMondays, 3:30-5:30 pm"
+  },
+  {
+    "objectID": "index.html#office-hours",
+    "href": "index.html#office-hours",
+    "title": "Data Science for Eco/Evo (Fall 23 BIOE215)",
+    "section": "Office Hours",
+    "text": "Office Hours\nTimes: Thursdays 3:30-5:30 pm\nLocation: CoastBio Otter Conference Room\nOr by appointment."
+  },
+  {
+    "objectID": "index.html#course-description",
+    "href": "index.html#course-description",
+    "title": "Data Science for Eco/Evo (Fall 23 BIOE215)",
+    "section": "Course Description",
+    "text": "Course Description\nThis course will aim to be practical and provide structure for learning the computational skills most eco/evo grad students have to pick up on their own. Topics will include programming best practices in R, organizing data and computational projects, and planning for reproducibility. This is a chance to gain knowledge and experience with the nuts and bolts of making your science work in code, without trying to learn generalized linear models at the same time. The course structure will be self-directed for weeks 1-6, followed by a final project in weeks 7-10."
+  },
+  {
     "objectID": "lessons/03_working_data.html",
     "href": "lessons/03_working_data.html",
     "title": "Working with data",
@@ -168,11 +329,6 @@
     "text": "Explore\nWe’ll explore the boreal bird nestling data together. Follow along in your Quarto document.\nAre nestlings showing up earlier in the year over time?\n\nall_birds_trend &lt;- bor_nestlings %&gt;% \n  group_by(Year) %&gt;% \n  summarize(mean_doy = mean(Dayofyear))\n\nggplot(all_birds_trend, aes(Year, mean_doy)) + \n  geom_point() +\n  geom_smooth(method = \"lm\")\n\n\n\n\n\n\n\nNote\n\n\n\nThis may be your first time using ggplot. I’ll give you the ggplot code you need for today. You’ll learn more about it next week.\n\n\nThat combines 73 species. Let’s see the breakdown by species.\n\nspecies_trends &lt;- bor_nestlings %&gt;% \n  group_by(Year, Species) %&gt;% \n  summarize(mean_doy = mean(Dayofyear),\n            .groups = \"drop\")\n\nggplot(species_trends, aes(Year, mean_doy, color = Species)) + \n  geom_point() +\n  geom_smooth(method = \"lm\")\n\nSo chaotic! What if we just look at the 5 most data-rich species?\n\ndata_richness &lt;- bor_nestlings %&gt;% \n  count(Species)\n\nmost_rich &lt;- data_richness %&gt;% \n  arrange(desc(n)) %&gt;% \n  slice(1:5)\n\nmost_rich_trends &lt;- bor_nestlings %&gt;% \n  filter(Species %in% most_rich$Species) %&gt;% \n  group_by(Species, Year) %&gt;% \n  summarize(mean_doy = mean(Dayofyear), \n            .groups = \"drop\")\n\nggplot(most_rich_trends, aes(Year, mean_doy, color = Species)) +\n  geom_point() +\n  geom_smooth(method = \"lm\")\n\nA general pattern, with one conflicting example. What species have the strongest trends?\n\n# I'm giving you a *function* to help here. You'll learn more about those next week.\n\n# Finds the slope of the relationship between y and x\ntrend &lt;- function(x, y) {\n  xy_lm &lt;- lm(y ~ x)\n  coef(xy_lm)[2]\n}\n\n# Calculate the trend for all species\nbor_trends &lt;- bor_by_year %&gt;% \n  group_by(Species) %&gt;% \n  summarize(doy_trend = trend(Year, mean_doy))\n\nSpot check two species\n\nsoi &lt;- c(\"ARDCIN\", \"LARMIN\")\nbor_by_year %&gt;% \n  filter(Species %in% soi) %&gt;% \n  ggplot(aes(Year, mean_doy, color = Species)) +\n  geom_point() +\n  geom_smooth(method = \"lm\")"
   },
   {
-<<<<<<< HEAD
-    "objectID": "lessons/03_working_data.html",
-    "href": "lessons/03_working_data.html",
-    "title": "Working with data",
-=======
     "objectID": "lessons/03_working_data.html#your-turn",
     "href": "lessons/03_working_data.html#your-turn",
     "title": "Working with data",
@@ -192,91 +348,6 @@
     "title": "Working with data",
     "section": "Submission",
     "text": "Submission\n\nRender index.qmd, which produces reports/index.html. Move your HTML file to docs/.\nEnable GitHub pages for your repo.\nCommit your changes and push.\nOpen an issue and tag me in it."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Data Science for Eco/Evo (Fall 23 BIOE215)",
-    "section": "",
-    "text": "Welcome to Data Science for Eco/Evo! I’m excited to have you in class and hope this course helps you reach your research goals. On this website, you’ll find course logistics, schedule, and lessons. You’ll use GitHub for submitting assessments."
-  },
-  {
-    "objectID": "index.html#course",
-    "href": "index.html#course",
-    "title": "Data Science for Eco/Evo (Fall 23 BIOE215)",
-    "section": "Course",
-    "text": "Course\nData Science for Eco/Evo\nBIOE215, 3 Credits, Fall 2023"
-  },
-  {
-    "objectID": "index.html#instructor",
-    "href": "index.html#instructor",
-    "title": "Data Science for Eco/Evo (Fall 23 BIOE215)",
-    "section": "Instructor",
-    "text": "Instructor\nDr. Max Czapanskiy (he/they)\nEmail: mczapans@ucsc.edu"
-  },
-  {
-    "objectID": "index.html#location",
-    "href": "index.html#location",
-    "title": "Data Science for Eco/Evo (Fall 23 BIOE215)",
-    "section": "Location",
-    "text": "Location\nCoastBio 115"
-  },
-  {
-    "objectID": "index.html#times",
-    "href": "index.html#times",
-    "title": "Data Science for Eco/Evo (Fall 23 BIOE215)",
-    "section": "Times",
-    "text": "Times\nMondays, 3:30-5:30 pm"
-  },
-  {
-    "objectID": "index.html#office-hours",
-    "href": "index.html#office-hours",
-    "title": "Data Science for Eco/Evo (Fall 23 BIOE215)",
-    "section": "Office Hours",
-    "text": "Office Hours\nTimes: Thursdays 3:30-5:30 pm\nLocation: CoastBio Otter Conference Room\nOr by appointment."
-  },
-  {
-    "objectID": "index.html#course-description",
-    "href": "index.html#course-description",
-    "title": "Data Science for Eco/Evo (Fall 23 BIOE215)",
-    "section": "Course Description",
-    "text": "Course Description\nThis course will aim to be practical and provide structure for learning the computational skills most eco/evo grad students have to pick up on their own. Topics will include programming best practices in R, organizing data and computational projects, and planning for reproducibility. This is a chance to gain knowledge and experience with the nuts and bolts of making your science work in code, without trying to learn generalized linear models at the same time. The course structure will be self-directed for weeks 1-6, followed by a final project in weeks 7-10."
-  },
-  {
-    "objectID": "discussions/02_open_data_1.html",
-    "href": "discussions/02_open_data_1.html",
-    "title": "Open data 1",
->>>>>>> main
-    "section": "",
-    "text": "For this week you read Vines et al. (2014) and Wilkinson et al. (2016) about open data.\nOur discussion today will follow the Snowballing format (Brookfield and Preskill 2016). Here’s how it works.\n\nYou’re presented with two discussion questions.\n\nThink of a time you tried to use data from another scientist, lab, paper, etc. What challenges did you encounter trying to use those data? Conversely, what did the data provider do that made your science easier?\nWhat challenges do you anticipate encountering if/when you share your own data? What would you need to learn or what systems would have to change to make sharing data easier?\n\nTake two minutes to reflect and make a note of your thoughts.\nFind a partner. For three minutes, take turns sharing your thoughts. What did you have in common? What was different? How would you synthesize your two points of view?\nNow your pair finds another pair. For another three minutes, repeat step 3 with the larger group. As the group expands, be mindful of everyone’s participation. A little bit of silence can go a long way to giving everyone a chance to participate.\nRepeat step 4 until the whole group is discussing together.\n\n\n\n\n\nReferences\n\nBrookfield, Stephen D, and Stephen Preskill. 2016. The Discussion Book. London, England: Jossey-Bass.\n\n\nVines, Timothy H., Arianne Y.K. Albert, Rose L. Andrew, Florence Débarre, Dan G. Bock, Michelle T. Franklin, Kimberly J. Gilbert, Jean-Sébastien Moore, Sébastien Renaut, and Diana J. Rennison. 2014. “The Availability of Research Data Declines Rapidly with Article Age.” Current Biology 24 (1): 94–97. https://doi.org/10.1016/j.cub.2013.11.014.\n\n\nWilkinson, Mark D., Michel Dumontier, IJsbrand Jan Aalbersberg, Gabrielle Appleton, Myles Axton, Arie Baak, Niklas Blomberg, et al. 2016. “The FAIR Guiding Principles for Scientific Data Management and Stewardship.” Scientific Data 3 (1). https://doi.org/10.1038/sdata.2016.18."
-  },
-  {
-    "objectID": "discussions/03_open_tools.html",
-    "href": "discussions/03_open_tools.html",
-    "title": "Open tools",
-    "section": "",
-    "text": "For this week you read Lowndes et al. (2017) and Marwick, Boettiger, and Mullen (2018) about open tools.\nOur discussion today will follow the Hatful of Quotes format (Brookfield and Preskill 2016). Here’s how it works.\n\nI’ve printed salient quotes from both papers on slips of paper and put them in a “hat”.\nYou’ll randomly draw a quote and take two minutes to think about it on your own. How does the quote relate to the rest of the paper? The other paper? The other content in this course? Your own experiences as a scientist?\nWe hold a group conversation. When it’s your turn to speak, read your quote and share your thoughts. If your quote has already been read, you can affirm, build on, or contradict earlier comments (respectfully).\n\n\n\n\n\nReferences\n\nBrookfield, Stephen D, and Stephen Preskill. 2016. The Discussion Book. London, England: Jossey-Bass.\n\n\nLowndes, Julia S. Stewart, Benjamin D. Best, Courtney Scarborough, Jamie C. Afflerbach, Melanie R. Frazier, Casey C. O’Hara, Ning Jiang, and Benjamin S. Halpern. 2017. “Our Path to Better Science in Less Time Using Open Data Science Tools.” Nature Ecology & Evolution 1 (6). https://doi.org/10.1038/s41559-017-0160.\n\n\nMarwick, Ben, Carl Boettiger, and Lincoln Mullen. 2018. “Packaging Data Analytical Work Reproducibly Using R (and Friends).” The American Statistician 72 (1): 80–88. https://doi.org/10.1080/00031305.2017.1375986."
-  },
-  {
-    "objectID": "discussions/04_open_data_2.html",
-    "href": "discussions/04_open_data_2.html",
-    "title": "Open data 2",
-    "section": "",
-    "text": "For this week you read Roche et al. (2022). You also submitted a PDF of your candidate replication paper on Canvas.\nIn today’s discussion, you’ll form final project groups of 3-4 students. Share your candidate paper with your group and explain the figure/table you’d like to replicate.\n\n\n\n\n\n\nImportant\n\n\n\nChoose just one figure or table! It should be the key finding of the paper. You don’t need to replicate the whole thing start to finish.\n\n\nWorking together, go through each paper and make a list of data you would need to replicate the figure. Be specific! What tables of data would you need? What columns and rows would need to be in those tables?\nNext week, you’ll use the metrics in Table 1 of Roche et al. (2022) to assess the completeness and reusability of the data in the paper you’ve chosen. The data requirements you come up with today will guide that exercise.\n\n\n\n\nReferences\n\nRoche, Dominique G., Ilias Berberi, Fares Dhane, Félix Lauzon, Sandrine Soeharjono, Roslyn Dakin, and Sandra A. Binning. 2022. “Slow Improvement to the Archiving Quality of Open Datasets Shared by Researchers in Ecology and Evolution.” Proceedings of the Royal Society B: Biological Sciences 289 (1975). https://doi.org/10.1098/rspb.2021.2780."
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "Your instructor, Max, is a postdoc with NOAA’s Southwest Fisheries Science Center. They began their career as a software engineer at Microsoft then spent ten years as a field ecologist (seabirds, mostly) and ecological data scientist (whales, mostly). His current research is on advancing open science practices in marine ecology. But more than research, their real passion is teaching (specifically, teaching data science to biologists) so they’re grateful for the opportunity to teach Data Science for Eco/Evo this quarter! In his free time, he’s a baker, a runner, and dog drummer (that’s when you drum on the side of your dog as loud as you can).\nYou can check out their personal website at www.flukeandfeather.com."
-  },
-  {
-    "objectID": "about.html#max-czapanskiy-hethey",
-    "href": "about.html#max-czapanskiy-hethey",
-    "title": "About",
-    "section": "",
-    "text": "Your instructor, Max, is a postdoc with NOAA’s Southwest Fisheries Science Center. They began their career as a software engineer at Microsoft then spent ten years as a field ecologist (seabirds, mostly) and ecological data scientist (whales, mostly). His current research is on advancing open science practices in marine ecology. But more than research, their real passion is teaching (specifically, teaching data science to biologists) so they’re grateful for the opportunity to teach Data Science for Eco/Evo this quarter! In his free time, he’s a baker, a runner, and dog drummer (that’s when you drum on the side of your dog as loud as you can).\nYou can check out their personal website at www.flukeandfeather.com."
   },
   {
     "objectID": "lessons/02_comp_thinking_1.html",
@@ -363,137 +434,6 @@
     "text": "Students will be able to:\n\nDescribe the relationship between RStudio project, git repo, and GitHub repo\nOrganize files and folders to maximize reproducibility and collaboration\nCreate a project website on GitHub"
   },
   {
-<<<<<<< HEAD
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Data Science for Eco/Evo (Fall 23 BIOE215)",
-    "section": "",
-    "text": "Welcome to Data Science for Eco/Evo! I’m excited to have you in class and hope this course helps you reach your research goals. On this website, you’ll find course logistics, schedule, and lessons. You’ll use GitHub for submitting assessments."
-  },
-  {
-    "objectID": "index.html#course",
-    "href": "index.html#course",
-    "title": "Data Science for Eco/Evo (Fall 23 BIOE215)",
-    "section": "Course",
-    "text": "Course\nData Science for Eco/Evo\nBIOE215, 3 Credits, Fall 2023"
-  },
-  {
-    "objectID": "index.html#instructor",
-    "href": "index.html#instructor",
-    "title": "Data Science for Eco/Evo (Fall 23 BIOE215)",
-    "section": "Instructor",
-    "text": "Instructor\nDr. Max Czapanskiy (he/they)\nEmail: mczapans@ucsc.edu"
-  },
-  {
-    "objectID": "index.html#location",
-    "href": "index.html#location",
-    "title": "Data Science for Eco/Evo (Fall 23 BIOE215)",
-    "section": "Location",
-    "text": "Location\nCoastBio 115"
-  },
-  {
-    "objectID": "index.html#times",
-    "href": "index.html#times",
-    "title": "Data Science for Eco/Evo (Fall 23 BIOE215)",
-    "section": "Times",
-    "text": "Times\nMondays, 3:30-5:30 pm"
-  },
-  {
-    "objectID": "index.html#office-hours",
-    "href": "index.html#office-hours",
-    "title": "Data Science for Eco/Evo (Fall 23 BIOE215)",
-    "section": "Office Hours",
-    "text": "Office Hours\nTimes: Thursdays 3:30-5:30 pm\nLocation: CoastBio Otter Conference Room\nOr by appointment."
-  },
-  {
-    "objectID": "index.html#course-description",
-    "href": "index.html#course-description",
-    "title": "Data Science for Eco/Evo (Fall 23 BIOE215)",
-    "section": "Course Description",
-    "text": "Course Description\nThis course will aim to be practical and provide structure for learning the computational skills most eco/evo grad students have to pick up on their own. Topics will include programming best practices in R, organizing data and computational projects, and planning for reproducibility. This is a chance to gain knowledge and experience with the nuts and bolts of making your science work in code, without trying to learn generalized linear models at the same time. The course structure will be self-directed for weeks 1-6, followed by a final project in weeks 7-10."
-  },
-  {
-    "objectID": "discussions/02_open_data_1.html",
-    "href": "discussions/02_open_data_1.html",
-    "title": "Open data 1",
-    "section": "",
-    "text": "For this week you read Vines et al. (2014) and Wilkinson et al. (2016) about open data.\nOur discussion today will follow the Snowballing format (Brookfield and Preskill 2016). Here’s how it works.\n\nYou’re presented with two discussion questions.\n\nThink of a time you tried to use data from another scientist, lab, paper, etc. What challenges did you encounter trying to use those data? Conversely, what did the data provider do that made your science easier?\nWhat challenges do you anticipate encountering if/when you share your own data? What would you need to learn or what systems would have to change to make sharing data easier?\n\nTake two minutes to reflect and make a note of your thoughts.\nFind a partner. For three minutes, take turns sharing your thoughts. What did you have in common? What was different? How would you synthesize your two points of view?\nNow your pair finds another pair. For another three minutes, repeat step 3 with the larger group. As the group expands, be mindful of everyone’s participation. A little bit of silence can go a long way to giving everyone a chance to participate.\nRepeat step 4 until the whole group is discussing together.\n\n\n\n\n\nReferences\n\nBrookfield, Stephen D, and Stephen Preskill. 2016. The Discussion Book. London, England: Jossey-Bass.\n\n\nVines, Timothy H., Arianne Y.K. Albert, Rose L. Andrew, Florence Débarre, Dan G. Bock, Michelle T. Franklin, Kimberly J. Gilbert, Jean-Sébastien Moore, Sébastien Renaut, and Diana J. Rennison. 2014. “The Availability of Research Data Declines Rapidly with Article Age.” Current Biology 24 (1): 94–97. https://doi.org/10.1016/j.cub.2013.11.014.\n\n\nWilkinson, Mark D., Michel Dumontier, IJsbrand Jan Aalbersberg, Gabrielle Appleton, Myles Axton, Arie Baak, Niklas Blomberg, et al. 2016. “The FAIR Guiding Principles for Scientific Data Management and Stewardship.” Scientific Data 3 (1). https://doi.org/10.1038/sdata.2016.18."
-  },
-  {
-    "objectID": "discussions/03_open_tools.html",
-    "href": "discussions/03_open_tools.html",
-    "title": "Open tools",
-    "section": "",
-    "text": "For this week you read Lowndes et al. (2017) and Marwick, Boettiger, and Mullen (2018) about open tools.\nOur discussion today will follow the Hatful of Quotes format (Brookfield and Preskill 2016). Here’s how it works.\n\nI’ve printed salient quotes from both papers on slips of paper and put them in a “hat”.\nYou’ll randomly draw a quote and take two minutes to think about it on your own. How does the quote relate to the rest of the paper? The other paper? The other content in this course? Your own experiences as a scientist?\nWe hold a group conversation. When it’s your turn to speak, read your quote and share your thoughts. If your quote has already been read, you can affirm, build on, or contradict earlier comments (respectfully).\n\n\n\n\n\nReferences\n\nBrookfield, Stephen D, and Stephen Preskill. 2016. The Discussion Book. London, England: Jossey-Bass.\n\n\nLowndes, Julia S. Stewart, Benjamin D. Best, Courtney Scarborough, Jamie C. Afflerbach, Melanie R. Frazier, Casey C. O’Hara, Ning Jiang, and Benjamin S. Halpern. 2017. “Our Path to Better Science in Less Time Using Open Data Science Tools.” Nature Ecology & Evolution 1 (6). https://doi.org/10.1038/s41559-017-0160.\n\n\nMarwick, Ben, Carl Boettiger, and Lincoln Mullen. 2018. “Packaging Data Analytical Work Reproducibly Using R (and Friends).” The American Statistician 72 (1): 80–88. https://doi.org/10.1080/00031305.2017.1375986."
-  },
-  {
-    "objectID": "discussions/04_open_data_2.html",
-    "href": "discussions/04_open_data_2.html",
-    "title": "Open data 2",
-    "section": "",
-    "text": "For this week you read Roche et al. (2022). You also submitted a PDF of your candidate replication paper on Canvas.\nIn today’s discussion, you’ll form final project groups of 3-4 students. Share your candidate paper with your group and explain the figure/table you’d like to replicate.\n\n\n\n\n\n\nImportant\n\n\n\nChoose just one figure or table! It should be the key finding of the paper. You don’t need to replicate the whole thing start to finish.\n\n\nWorking together, go through each paper and make a list of data you would need to replicate the figure. Be specific! What tables of data would you need? What columns and rows would need to be in those tables?\nNext week, you’ll use the metrics in Table 1 of Roche et al. (2022) to assess the completeness and reusability of the data in the paper you’ve chosen. The data requirements you come up with today will guide that exercise.\n\n\n\n\nReferences\n\nRoche, Dominique G., Ilias Berberi, Fares Dhane, Félix Lauzon, Sandrine Soeharjono, Roslyn Dakin, and Sandra A. Binning. 2022. “Slow Improvement to the Archiving Quality of Open Datasets Shared by Researchers in Ecology and Evolution.” Proceedings of the Royal Society B: Biological Sciences 289 (1975). https://doi.org/10.1098/rspb.2021.2780."
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "Your instructor, Max, is a postdoc with NOAA’s Southwest Fisheries Science Center. They began their career as a software engineer at Microsoft then spent ten years as a field ecologist (seabirds, mostly) and ecological data scientist (whales, mostly). His current research is on advancing open science practices in marine ecology. But more than research, their real passion is teaching (specifically, teaching data science to biologists) so they’re grateful for the opportunity to teach Data Science for Eco/Evo this quarter! In his free time, he’s a baker, a runner, and dog drummer (that’s when you drum on the side of your dog as loud as you can).\nYou can check out their personal website at www.flukeandfeather.com."
-  },
-  {
-    "objectID": "about.html#max-czapanskiy-hethey",
-    "href": "about.html#max-czapanskiy-hethey",
-    "title": "About",
-    "section": "",
-    "text": "Your instructor, Max, is a postdoc with NOAA’s Southwest Fisheries Science Center. They began their career as a software engineer at Microsoft then spent ten years as a field ecologist (seabirds, mostly) and ecological data scientist (whales, mostly). His current research is on advancing open science practices in marine ecology. But more than research, their real passion is teaching (specifically, teaching data science to biologists) so they’re grateful for the opportunity to teach Data Science for Eco/Evo this quarter! In his free time, he’s a baker, a runner, and dog drummer (that’s when you drum on the side of your dog as loud as you can).\nYou can check out their personal website at www.flukeandfeather.com."
-  },
-  {
-    "objectID": "lessons/04_comp_thinking_2.html",
-    "href": "lessons/04_comp_thinking_2.html",
-    "title": "Computational thinking 2",
-    "section": "",
-    "text": "No I will not apologize.\nData are nouns. Functions are verbs. Together they make sentences.\nIn Week 2 you learned how R organizes information in data structures. Then in Week 3 you used tidyverse functions to manipulate data frames. Now you’re going to learn how to write your own functions.\n\n\n\nThis is where programming gets fun. Computational thinking is all about breaking problems down into manageable pieces, solving them individually, then re-assembling them into a solution. Functions are both how you solve individual problems and how you reassemble them.\n\n\n\nJust as the crown once gave Prince John a feeling of power, functions will do the same for you.\n\n\nBut there are other ways to do things, so why should you bother learning functions? You’ve probably written meaningful analyses without ever writing a function yourself, so why take on the learning curve to add functions to your toolbox? Short answer: because they’ll make your life easier. Long answer: scientific analysis in modern eco/evo requires solving complex problems computationally. Without functions, you pretty much have to tackle complex problems as a whole. Our brains are finite, so that limits the complexity of our science. But with functions, we can break down complex problems into simpler components, write functions to solve those components, then solve the whole problem by putting the components back together.\nHere’s an example of a complex problem: reading a CSV file. The contents of a CSV file might look like this:\n“city_name”,“population”\n“Santa Barbara, CA”,88255\n“Santa Cruz, CA”,61950\n“Washington, DC”,712816\n“Kennicott, AK”,NA\nThat’s two columns, city_name and population, with four rows. Without functions, reading a CSV file would require you to:\n\nOpen a connection to file.\nRead all the text.\nSplit each row by commas . But only the right commas! Not the one in “Santa Barbara, CA”.\nFigure out the column names.\nFigure out column types, and perhaps convert types as necessary.\nCreate a data frame containing the data.\n\nHere’s how that complex problem works in code:\n\nCall read_csv()\n\nNow you might be saying, “wait, this is a bogus example because reading a CSV file is a simple task.” In that case, I suggest you try reading a CSV file from scratch in R. You’ll quickly discover that reading CSV files is in fact an extremely complex task. But all that complexity has been rolled up into a function called read_csv(), so you can safely ignore that complexity and focus on your science instead.\nThe fact we can forget how complex a problem like reading CSV files is showcases the the beauty of functions. It’s a principle called abstraction. We take a complex problem, stuff all the logic into a tidy box that’s easy to think about (file path in, data frame out), and free up our cognitive power for other tasks. Today you’ll learn how to do that for your own complex problems."
-  },
-  {
-    "objectID": "lessons/04_comp_thinking_2.html#lets-put-the-fun-in-functions",
-    "href": "lessons/04_comp_thinking_2.html#lets-put-the-fun-in-functions",
-    "title": "Computational thinking 2",
-    "section": "",
-    "text": "No I will not apologize.\nData are nouns. Functions are verbs. Together they make sentences.\nIn Week 2 you learned how R organizes information in data structures. Then in Week 3 you used tidyverse functions to manipulate data frames. Now you’re going to learn how to write your own functions."
-  },
-  {
-    "objectID": "lessons/04_comp_thinking_2.html#functions-do-things",
-    "href": "lessons/04_comp_thinking_2.html#functions-do-things",
-    "title": "Computational thinking 2",
-    "section": "",
-    "text": "This is where programming gets fun. Computational thinking is all about breaking problems down into manageable pieces, solving them individually, then re-assembling them into a solution. Functions are both how you solve individual problems and how you reassemble them.\n\n\n\nJust as the crown once gave Prince John a feeling of power, functions will do the same for you.\n\n\nBut there are other ways to do things, so why should you bother learning functions? You’ve probably written meaningful analyses without ever writing a function yourself, so why take on the learning curve to add functions to your toolbox? Short answer: because they’ll make your life easier. Long answer: scientific analysis in modern eco/evo requires solving complex problems computationally. Without functions, you pretty much have to tackle complex problems as a whole. Our brains are finite, so that limits the complexity of our science. But with functions, we can break down complex problems into simpler components, write functions to solve those components, then solve the whole problem by putting the components back together.\nHere’s an example of a complex problem: reading a CSV file. The contents of a CSV file might look like this:\n“city_name”,“population”\n“Santa Barbara, CA”,88255\n“Santa Cruz, CA”,61950\n“Washington, DC”,712816\n“Kennicott, AK”,NA\nThat’s two columns, city_name and population, with four rows. Without functions, reading a CSV file would require you to:\n\nOpen a connection to file.\nRead all the text.\nSplit each row by commas . But only the right commas! Not the one in “Santa Barbara, CA”.\nFigure out the column names.\nFigure out column types, and perhaps convert types as necessary.\nCreate a data frame containing the data.\n\nHere’s how that complex problem works in code:\n\nCall read_csv()\n\nNow you might be saying, “wait, this is a bogus example because reading a CSV file is a simple task.” In that case, I suggest you try reading a CSV file from scratch in R. You’ll quickly discover that reading CSV files is in fact an extremely complex task. But all that complexity has been rolled up into a function called read_csv(), so you can safely ignore that complexity and focus on your science instead.\nThe fact we can forget how complex a problem like reading CSV files is showcases the the beauty of functions. It’s a principle called abstraction. We take a complex problem, stuff all the logic into a tidy box that’s easy to think about (file path in, data frame out), and free up our cognitive power for other tasks. Today you’ll learn how to do that for your own complex problems."
-  },
-  {
-    "objectID": "lessons/04_comp_thinking_2.html#student-learning-objectives",
-    "href": "lessons/04_comp_thinking_2.html#student-learning-objectives",
-    "title": "Computational thinking 2",
-    "section": "Student learning objectives",
-    "text": "Student learning objectives\n\nIdentify the parts of a function definition (syntax)\nUse functions to transform inputs (parameters, arguments) into outputs\nWrite a function to automate a common task"
-  },
-  {
-    "objectID": "lessons/04_comp_thinking_2.html#identify-the-parts-of-a-function",
-    "href": "lessons/04_comp_thinking_2.html#identify-the-parts-of-a-function",
-    "title": "Computational thinking 2",
-    "section": "Identify the parts of a function",
-    "text": "Identify the parts of a function\nJargon\nSyntax. In programming, syntax is basically spelling and grammar. It’s the rules for what the programming language can and cannot understand. For example, you have to use commas to separate arguments in a function call like this c(\"a\", \"b\"). If you leave out the comma c(\"a\" \"b\") then you have a syntax error and R won’t know what to do.\nParameter. The logic inside of a function is unaware of the real world around it, so parameters are placeholders for input.\nArgument. When you call a function on some input, those inputs are the arguments. Think of arguments as real things, which get substituted for the function’s parameters. The distinction between parameters and arguments will become clearer in a bit.\n\nLet’s use a mathematical function as a template for thinking about function syntax, where syntax is the rules for text that R can understand as code. We’ll use the mean, \\(\\bar x\\), defined as:\n\\[\n\\bar x = \\frac{\\sum_{i=1}^{n} x_i}{n}\n\\]\nIn plain language, the mean of \\(x\\) is the sum of its elements divided by the number of elements. Before we convert this logic to an R function, let’s break down function syntax.\nAn R function has four parts.\n\nThe name of the function\nThe keyword function\nParameters\nBody\n\nWe can write our own mean() function from those four parts.\nmean &lt;- function(x) {\n  result &lt;- sum(x) / length(x)\n  return(result)\n}\nmean is our function name, followed by the keyword function (a signal to R to expect a function definition), then the parameter(s) in parentheses (which define what input the function expects), and finally the body in curly braces (the function’s actual logic).\nQ1 I’ve written a function to calculate the standard error and broken it into four parts. Match the parts (left column) to their names (right column).\n\n\n\n\n\n\n\nFunction parts (code)\nFunction parts (names)\n\n\n\n\n{\n  n &lt;- length(x)\n  result &lt;- sd(x) / sqrt(n)\n  return(result)\n}\nFunction name\n\n\nse\nKeyword “function”\n\n\n(x)\nParameters\n\n\nfunction\nBody"
-  },
-  {
-    "objectID": "lessons/04_comp_thinking_2.html#transform-arguments-into-output",
-    "href": "lessons/04_comp_thinking_2.html#transform-arguments-into-output",
-    "title": "Computational thinking 2",
-    "section": "Transform arguments into output",
-    "text": "Transform arguments into output\nConsider the following code snippet.\nfirst_last_chr &lt;- function(s) {\n  first_chr &lt;- substr(s, 1, 1)\n  last_chr &lt;- substr(s, nchar(s), nchar(s))\n  result &lt;- paste(first_chr, last_chr, sep = \"\")\n  return(result)\n}\ntext &lt;- \"Amazing!\"\nfirst_last_chr(text)\nQ2 What are the four parts of this function?\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nFunction name = first_last_chr\nKeyword function = function\nParameters = s\nBody = Everything in the {}\n\n\n\nQ3 What output do you get when you call first_last_chr() on text?\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nA!\n\n\n\nThe distinction between parameters and arguments is subtle, but it’s critical for understanding how functions transform inputs to create outputs.\ns is a parameter. text is an argument. s is a placeholder in the little mini-universe that is the body of first_last_chr(). text is an actual object that we assigned a value to. When we call a function on an argument, the function essentially renames the argument with the name of the parameter.\nLet’s look at the definition of first_last_chr() again.\nfirst_last_chr &lt;- function(s) {\n  first_chr &lt;- substr(s, 1, 1)\n  last_chr &lt;- substr(s, nchar(s), nchar(s))\n  ### PAUSE HERE\n  result &lt;- paste(first_chr, last_chr, sep = \"\")\n  return(result)\n}\nQ4 Let’s say you’re starting with a fresh R session and you run the code above to define first_last_chr. At the line where it says ### PAUSE HERE, what is the value of s?\n\n\n\n\n\n\nAnswer\n\n\n\n\n\ns has no value yet. Parameters don’t have values until the function is called. Then they take on the value of the argument.\n\n\n\nNow call the function on some input.\ntext &lt;- \"Amazing!\"\nfirst_last_chr(text)\nQ5 At the line where it says ### PAUSE HERE, what is the value of s?\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nBecause we’re in the function body, the parameter s has taken on the value of its argument. So s is \"Amazing!\".\n\n\n\nQ6 Fill in the blank below so the result is “My”.\nfirst_last_chr(\"___\")\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nA lot of possible answers. One is first_last_chr(\"Max Czapanskiy\")."
-  },
-  {
-    "objectID": "lessons/02b_vectors_key_points.html",
-    "href": "lessons/02b_vectors_key_points.html",
-    "title": "Vector review",
-=======
     "objectID": "lessons/01_comp_proj_org.html#todays-lesson",
     "href": "lessons/01_comp_proj_org.html#todays-lesson",
     "title": "Computational project organization",
@@ -511,7 +451,6 @@
     "objectID": "syllabus.html",
     "href": "syllabus.html",
     "title": "Syllabus",
->>>>>>> main
     "section": "",
     "text": "Data Science for Eco/Evo\nBIOE215, 3 Credits, Fall 2023"
   },

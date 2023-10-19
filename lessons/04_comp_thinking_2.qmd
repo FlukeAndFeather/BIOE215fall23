@@ -99,7 +99,11 @@ mean <- function(x) {
 }
 ```
 
-`mean` is our function name, followed by the keyword `function` (a signal to R to expect a function definition), then the parameter(s) in parentheses (which define what input the function expects), and finally the body in curly braces (the function's actual logic).
+`mean` is our function name, followed by the keyword `function` (a signal to R to expect a function definition), then the parameter(s) in parentheses (which define what input the function expects), and finally the body in curly braces (the function's actual logic). The last line of the body is a call to `return()`, which returns the output.
+
+::: callout-note
+`return()` technically isn't necessary because R will implicitly return whatever the last value in the body is. But I want you to explicitly call it for now because it's a reminder of what the function's output is.
+:::
 
 **Q1** I've written a function to calculate the standard error and broken it into four parts. Match the parts (left column) to their names (right column).
 
@@ -215,8 +219,201 @@ first_last_chr("___")
 A lot of possible answers. One is `first_last_chr("Max Czapanskiy")`.
 :::
 
+## Multiple parameters
+
+Functions can have more than one parameter. You're already familiar with the `na.rm` parameter in base R's `mean()`. Now you'll add one to your version
+
+**Q7** Fill in the blanks below to add an `na.rm` parameter to `mean()`. The skeleton of an `if` is there to help. If `if` is new to you, ask a classmate or instructor for help. Test your code with the calls to `mean()` provided below.
+
+``` r
+# A new parameter: na.rm
+mean <- function(x, na.rm) {
+  if (na.rm) {
+    ___
+  }
+  result <- ___
+  return(result)
+}
+
+mean(c(1, 5, 9), na.rm = TRUE)
+mean(c(1, 5, 9), na.rm = FALSE)
+mean(c(1, NA, 5, 9), na.rm = TRUE)
+mean(c(1, NA, 5, 9), na.rm = FALSE)
+```
+
+::: {.callout-note collapse="true"}
+## Answer
+
+``` r
+mean <- function(x, na.rm) {
+  if (na.rm) {
+    x <- x[!is.na(x)] # or: x <- na.omit(x)
+  }
+  result <- sum(x) / length(x)
+  return(result)
+}
+```
+:::
+
+When you start having multiple parameters, some of them may be optional. You can specify a default value for parameters with `=`. For example, the following function repeats a character string multiple times, with an optional separating character that defaults to `_`.
+
+``` r
+repeat_chr <- function(s, n, separator = "_") {
+  repeated <- rep(s, n)
+  result <- paste(repeated, collapse = separator)
+  return(result)
+}
+
+# Leave `separator` with the default value
+repeat_chr("foo", 3)
+# Specify the `separator` by name
+repeat_chr("foo", 3, separator = " ")
+# Specify the `separator` by position
+repeat_chr("foo", 3, " ")
+```
+
+**Q8** Modify `mean()` so it only removes NAs if you tell it to.
+
+::: {.callout-note collapse="true"}
+## Answer
+
+``` r
+mean <- function(x, na.rm = FALSE) {
+  if (na.rm) {
+    x <- x[!is.na(x)] # or: x <- na.omit(x)
+  }
+  result <- sum(x) / length(x)
+  return(result)
+}
+```
+:::
+
+# Assessment
+
+For your assessment, create a new project as you have in past assessments.
+
+## Automating project setup
+
+## Where did birds hatch?
+
+You're analyzing survey data of newly hatched Black Oystercatchers in Santa Cruz to figure out where chicks hatched. For safety reasons, the biologists weren't able to band chicks at their nests. Instead, they caught the chicks later and gave them uniquely identifying 3-color band combinations. For example, GYB is the bird with Green-Yellow-Blue color bands.
+
+You know Black Oystercatcher chicks move around, but they tend to stick close to their hatch site. So you've decided to estimate the hatching site as the location where the bird was observed *most often* during weekly surveys.
+
+### Generate sample data
+
+First we'll generate some sample data.
+
+```{r}
+library(tidyverse)
+
+# Generate sample data
+# Sightings of Black Oystercatcher chicks at Santa Cruz beaches
+beaches <- c("Cowell's", "Steamer Lane", "Natural Bridges", "Mitchell's", "Main")
+band_colors <- c("B", "G", "K", "W", "Y") # blue, green, black, white, yellow
+surveys <- seq(as.Date("2023-06-01"), as.Date("2023-08-31"), by = 7)
+
+# Setting the "seed" forces randomized functions (like sample()) to generate
+# the same output
+set.seed(1538)
+# 3 band colors identify a bird. We want 12 birds.
+birds <- paste0(
+  sample(band_colors, 25, replace = TRUE),
+  sample(band_colors, 25, replace = TRUE),
+  sample(band_colors, 25, replace = TRUE)
+) %>% 
+  unique() %>%
+  head(12)
+bloy_chicks <- tibble(
+  # Randomly generate survey data
+  beach = sample(beaches, size = 100, replace = TRUE),
+  bird = sample(birds, size = 100, replace = TRUE),
+  survey = sample(surveys, size = 100, replace = TRUE)
+) %>% 
+  # Remove duplicates (see ?distinct)
+  distinct() %>% 
+  # Sort by survey date and location
+  arrange(survey, beach)
+```
+
+**Q1** We're randomly generating data, but we're all going to end up with the same data frames. How is that happening?
+
+**Q2** What are the color combos for the 12 chicks?
+
+**Q3** We generated 100 random survey observations. How many rows are in `bloy_chicks`? Why the difference?
+
+### Without a custom function
+
+We want to estimate where chicks hatched using `tidyverse` functions. Here's our process:
+
+1.  For each bird, where was it seen most often?
+2.  If multiple sites are tied, choose the one with the earliest observation
+3.  If still tied, randomly choose one
+
+The code below consists of three pipelines (sequences of commands linked by pipes). Each pipeline has been shuffled.
+
+```{r}
+# Find most frequent beach per bird
+  group_by(bird) %>% 
+beach_freq <- bloy_chicks %>% 
+  count(bird, beach) %>% 
+  ungroup()
+  filter(n == max(n)) %>% 
+# Find first date for each bird+beach
+  summarize(earliest = min(survey),
+beach_early <- bloy_chicks %>% 
+            .groups = "drop")
+  group_by(bird, beach) %>% 
+# Join the two conditions and retain most frequent beach, only earliest
+  filter(earliest == min(earliest)) %>% 
+  ungroup()
+  sample_n(1) %>% # Randomly choose 1 row. See ?sample_n
+  left_join(beach_early, by = c("bird", "beach")) %>% 
+  group_by(bird) %>% 
+hatch_beach <- beach_freq %>% 
+```
+
+**Q4** Sort the pipelines back into correct order.
+
+## With a custom function
+
+There are two issues with the approach above:
+
+1.  It's kind of long and we have to make multiple intermediate data frames. So it's not the easiest code to read.
+2.  The logic for estimating a hatching beach is spread out across multiple locations in the code. If we choose a different approach then we have to change everything!
+
+Here's a different approach using a custom function.
+
+1.  Put the logic for estimating the hatching beach in a single function.
+2.  Group the data by bird
+3.  Summarize each group using your custom function
+
+This is an example of a *split-apply-combine* strategy. Use `group_by()` to *split* our data frame by bird. Write a custom function to estimate the hatching beach for that bird. That's critical: this function works on just one part of the whole! Use `summarize()` to *apply* our function to each bird and *combine* the results.
+
+Below is a skeleton of the custom function with key pieces missing, followed by a *split-apply-combine* skeleton.
+
+```{r}
+find_hatching_beach <- function(site, date) {
+  # Start with a data frame (or tibble) of site and date for *one* bird
+  # Use pipes and dplyr functions to find the hatching beach
+  bird_observations <- tibble(site, date)
+  result <- bird_observations %>% 
+    ___ # use as many pipes and dplyr functions as necessary
+  # result should end up as a data frame with one row for the hatching beach
+  return(result$site) # return the hatching beach
+}
+
+# split-apply-combine
+bloy_chicks %>% 
+  group_by(___) %>% 
+  summarize(___)
+```
+
+**Q5** The two *parameters* of `find_hatching_beach()` are named `site` and `date`. When this function is called, what columns in `bloy_chicks` will you use as *arguments* for these parameters?
+
+**Q6** What will be the value of `site` when `find_hatching_beach()` is called on the group for bird YWG? How about WYB?
+
 ## TODO
 
-1.  Add some exercises with multiple parameters. E.g. add an `na.rm` parameter to `mean()`.
-2.  Create a function for setting up the computational project folder structure and put a REAMDE.md file in each folder.
-3.  Assessment: write a function that moves the output of a Quarto document in your reports/ folder to the docs/ folder.
+1.  Create a function for setting up the computational project folder structure and put a REAMDE.md file in each folder.
+2.  Assessment: write a function that moves the output of a Quarto document in your reports/ folder to the docs/ folder.
