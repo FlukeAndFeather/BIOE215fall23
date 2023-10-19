@@ -435,7 +435,7 @@ trend <- function(x, y) {
 }
 
 # Calculate the trend for all species
-bor_trends <- bor_by_year %>% 
+bor_trends <- species_trends %>% 
   group_by(Species) %>% 
   summarize(doy_trend = trend(Year, mean_doy))
 ```
@@ -444,7 +444,7 @@ Spot check two species
 
 ```{r}
 soi <- c("ARDCIN", "LARMIN")
-bor_by_year %>% 
+species_trends %>% 
   filter(Species %in% soi) %>% 
   ggplot(aes(Year, mean_doy, color = Species)) +
   geom_point() +
@@ -464,7 +464,7 @@ bor_extreme <- bor_trends %>%
   slice(c(___, ___))
 
 # Now plot them
-bor_by_year %>% 
+species_trends %>% 
   filter(Species %in% ___) %>% 
   ggplot(aes(Year, mean_doy, color = Species)) + 
     geom_point() +
