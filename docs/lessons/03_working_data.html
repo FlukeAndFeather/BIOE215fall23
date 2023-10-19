@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Science for Eco/Evo (Fall 23 BIOE215) - Working with data</title>
+<title>Data Science for Eco/Evo (Fall 23 BIOE215) - Week 3 - Working with data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -153,23 +153,23 @@ div.csl-indent {
     <ul class="dropdown-menu" aria-labelledby="nav-menu-lessons">    
         <li>
     <a class="dropdown-item" href="../lessons/01_comp_proj_org.html" rel="" target="">
- <span class="dropdown-text">Computational project organization</span></a>
+ <span class="dropdown-text">Week 1 - Computational project organization</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../lessons/02_comp_thinking_1.html" rel="" target="">
- <span class="dropdown-text">Computational thinking 1</span></a>
+ <span class="dropdown-text">Week 2 - Computational thinking 1</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../lessons/02b_vectors_key_points.html" rel="" target="">
- <span class="dropdown-text">Vector review</span></a>
+ <span class="dropdown-text">Week 2 - Vector review</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../lessons/03_working_data.html" rel="" target="">
- <span class="dropdown-text">Working with data</span></a>
+ <span class="dropdown-text">Week 3 - Working with data</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../lessons/04_comp_thinking_2.html" rel="" target="">
- <span class="dropdown-text">Computational thinking 2</span></a>
+ <span class="dropdown-text">Week 4 - Computational thinking 2</span></a>
   </li>  
     </ul>
   </li>
@@ -180,15 +180,15 @@ div.csl-indent {
     <ul class="dropdown-menu" aria-labelledby="nav-menu-discussions">    
         <li>
     <a class="dropdown-item" href="../discussions/02_open_data_1.html" rel="" target="">
- <span class="dropdown-text">Open data 1</span></a>
+ <span class="dropdown-text">Week 2 - Open data 1</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../discussions/03_open_tools.html" rel="" target="">
- <span class="dropdown-text">Open tools</span></a>
+ <span class="dropdown-text">Week 3 - Open tools</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../discussions/04_open_data_2.html" rel="" target="">
- <span class="dropdown-text">Open data 2</span></a>
+ <span class="dropdown-text">Week 4 - Open data 2</span></a>
   </li>  
     </ul>
   </li>
@@ -247,7 +247,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Working with data</h1>
+<h1 class="title">Week 3 - Working with data</h1>
 </div>
 
 
@@ -651,14 +651,14 @@ Note
 <span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the trend for all species</span></span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>bor_trends <span class="ot">&lt;-</span> bor_by_year <span class="sc">%&gt;%</span> </span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>bor_trends <span class="ot">&lt;-</span> species_trends <span class="sc">%&gt;%</span> </span>
 <span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Species) <span class="sc">%&gt;%</span> </span>
 <span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">doy_trend =</span> <span class="fu">trend</span>(Year, mean_doy))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Spot check two species</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>soi <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ARDCIN"</span>, <span class="st">"LARMIN"</span>)</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>bor_by_year <span class="sc">%&gt;%</span> </span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>species_trends <span class="sc">%&gt;%</span> </span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Species <span class="sc">%in%</span> soi) <span class="sc">%&gt;%</span> </span>
 <span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(Year, mean_doy, <span class="at">color =</span> Species)) <span class="sc">+</span></span>
 <span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
@@ -677,7 +677,7 @@ Note
 <span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="fu">c</span>(___, ___))</span>
 <span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Now plot them</span></span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>bor_by_year <span class="sc">%&gt;%</span> </span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>species_trends <span class="sc">%&gt;%</span> </span>
 <span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Species <span class="sc">%in%</span> ___) <span class="sc">%&gt;%</span> </span>
 <span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(Year, mean_doy, <span class="at">color =</span> Species)) <span class="sc">+</span> </span>
 <span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>

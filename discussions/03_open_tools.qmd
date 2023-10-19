@@ -1,5 +1,5 @@
 ---
-title: "Open tools"
+title: "Week 3 - Open tools"
 format: html
 bibliography: references.bib
 ---

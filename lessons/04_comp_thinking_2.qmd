@@ -1,5 +1,5 @@
 ---
-title: "Computational thinking 2"
+title: "Week 4 - Computational thinking 2"
 format: 
   html:
     toc: true
