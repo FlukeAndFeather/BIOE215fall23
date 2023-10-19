@@ -565,6 +565,25 @@ Note
 <section id="read-data" class="level2">
 <h2 class="anchored" data-anchor-id="read-data">Read data</h2>
 <p>In your Quarto document, add a code chunk that loads the <code>tidyverse</code> and reads the data.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Quarto documents interpret file paths relative to the document, <strong>not</strong> to your project. Since your Quarto document is in <code>reports/</code>, then <code>data/73_species.csv</code> will point to <code>reports/data/73_species.csv</code>, which doesn’t exist. This is where <code>here::here()</code> function comes in useful! Wrap <code>here::here()</code> around a file path and it’ll fix it to be relative to your project, which is what you want.</p>
+<p>This won’t work:</p>
+<p><code>read_csv("data/73_species.csv")</code></p>
+<p>This will work:</p>
+<p><code>read_csv(here::here("data/73_species.csv"))</code></p>
+<p>This also won’t work (notice it’s inverted):</p>
+<p><code>here::here(read_csv("data/73_species.csv"))</code></p>
+</div>
+</div>
 <ul>
 <li><p>Use <code>read_csv()</code> to read “73_species.csv” and assign it to a variable called <code>bor_nestlings</code>.</p></li>
 <li><p>Use <code>read_csv()</code> to read “Traits_73_species.csv” and assign it to a variable called <code>bor_traits</code>.</p></li>
