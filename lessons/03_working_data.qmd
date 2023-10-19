@@ -1,5 +1,5 @@
 ---
-title: "Working with data"
+title: "Week 3 - Working with data"
 format: 
   html:
     toc: true
