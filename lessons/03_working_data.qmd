@@ -359,6 +359,22 @@ From the AVONET database on Figshare, download "AVONET Supplementary dataset 1.x
 
 In your Quarto document, add a code chunk that loads the `tidyverse` and reads the data.
 
+::: callout-warning
+Quarto documents interpret file paths relative to the document, **not** to your project. Since your Quarto document is in `reports/`, then `data/73_species.csv` will point to `reports/data/73_species.csv`, which doesn't exist. This is where `here::here()` function comes in useful! Wrap `here::here()` around a file path and it'll fix it to be relative to your project, which is what you want.
+
+This won't work:
+
+`read_csv("data/73_species.csv")`
+
+This will work:
+
+`read_csv(here::here("data/73_species.csv"))`
+
+This also won't work (notice it's inverted):
+
+`here::here(read_csv("data/73_species.csv"))`
+:::
+
 -   Use `read_csv()` to read "73_species.csv" and assign it to a variable called `bor_nestlings`.
 
 -   Use `read_csv()` to read "Traits_73_species.csv" and assign it to a variable called `bor_traits`.
