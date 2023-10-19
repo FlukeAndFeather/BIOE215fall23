@@ -703,10 +703,10 @@ Note
 <h2 class="anchored" data-anchor-id="bring-in-more-data">Bring in more data</h2>
 <p>Next we’re going to test the hypothesis that smaller birds have more flexible phenology, i.e.&nbsp;the absolute value of the trend is correlated with smaller body sizes.</p>
 <p>To test our hypothesis, we need to add AVONET data to our phenology data by joining. The keys are a bit tricky here!</p>
-<p><code>bor_nestlings</code> has a column called <code>Species</code> with a 6-letter code.</p>
+<p><code>bor_trends</code> has a column called <code>Species</code> with a 6-letter code.</p>
 <p><code>bor_traits</code> has a column called <code>Abbreviation</code> with the 6-letter code and a column called <code>`Scientific name`</code> with the binomial name.</p>
 <p><code>avonet</code> has column called <code>Species1</code> with the binomial name.</p>
-<p>We need to join <code>bor_nestlings</code> to <code>bor_traits</code>, then join with <code>avonet</code>.</p>
+<p>We need to join <code>bor_trends</code> to <code>bor_traits</code>, then join with <code>avonet</code>.</p>
 <p>Welcome to data in the real world!</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First, select and rename important columns</span></span>
@@ -740,7 +740,8 @@ Note
 <section id="submission" class="level2">
 <h2 class="anchored" data-anchor-id="submission">Submission</h2>
 <ol type="1">
-<li>Render <code>index.qmd</code>, which produces <code>reports/index.html</code>. Move your HTML file to <code>docs/</code>.</li>
+<li>Render <code>index.qmd</code>, which produces a few outputs in your <code>reports/</code> folder.</li>
+<li>Move your output (an HTML file and a folder) from <code>reports/</code> to <code>docs/</code>.</li>
 <li>Enable GitHub pages for your repo.</li>
 <li>Commit your changes and push.</li>
 <li>Open an issue and tag me in it.</li>

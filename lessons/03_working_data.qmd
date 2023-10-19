@@ -493,13 +493,13 @@ Next we're going to test the hypothesis that smaller birds have more flexible ph
 
 To test our hypothesis, we need to add AVONET data to our phenology data by joining. The keys are a bit tricky here!
 
-`bor_nestlings` has a column called `Species` with a 6-letter code.
+`bor_trends` has a column called `Species` with a 6-letter code.
 
 `bor_traits` has a column called `Abbreviation` with the 6-letter code and a column called `` `Scientific name` `` with the binomial name.
 
 `avonet` has column called `Species1` with the binomial name.
 
-We need to join `bor_nestlings` to `bor_traits`, then join with `avonet`.
+We need to join `bor_trends` to `bor_traits`, then join with `avonet`.
 
 Welcome to data in the real world!
 
@@ -540,7 +540,8 @@ Is our hypothesis supported?
 
 ## Submission
 
-1.  Render `index.qmd`, which produces `reports/index.html`. Move your HTML file to `docs/`.
-2.  Enable GitHub pages for your repo.
-3.  Commit your changes and push.
-4.  Open an issue and tag me in it.
+1.  Render `index.qmd`, which produces a few outputs in your `reports/` folder.
+2.  Move your output (an HTML file and a folder) from `reports/` to `docs/`.
+3.  Enable GitHub pages for your repo.
+4.  Commit your changes and push.
+5.  Open an issue and tag me in it.
