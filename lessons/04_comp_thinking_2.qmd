@@ -1,0 +1,463 @@
+---
+title: "Week 4 - Computational thinking 2"
+format: 
+  html:
+    toc: true
+    toc-depth: 3
+editor: visual
+execute: 
+  eval: false
+bibliography: references.bib
+---
+
+# Introduction
+
+## Let's put the *fun* in functions
+
+No I will not apologize.
+
+Data are nouns. Functions are verbs. Together they make sentences.
+
+In Week 2 you learned how R organizes information in *data structures*. Then in Week 3 you used `tidyverse` functions to manipulate *data frames*. Now you're going to learn how to write your own functions.
+
+## Functions *do* things
+
+This is where programming gets fun. Computational thinking is all about breaking problems down into manageable pieces, solving them individually, then re-assembling them into a solution. Functions are both how you solve individual problems *and* how you reassemble them.
+
+![Just as the crown once gave Prince John a great feeling of power, functions will do the same for you.](/img/power.jpg){fig-alt="Prince John from Disney's Robin Hood clutching his fists and wearing a crown. The text reads \"Power, Hiss. Power!\"" width="375"}
+
+But there are other ways to *do things*, so why should you bother learning functions? You've probably written meaningful analyses without ever writing a function yourself, so why take on the learning curve to add functions to your toolbox? Short answer: because they'll make your life easier. Long answer: scientific analysis in modern eco/evo requires solving complex problems computationally. Without functions, you pretty much have to tackle complex problems as a whole. Our brains are finite, so that limits the complexity of our science. But with functions, we can break down complex problems into simpler components, write functions to solve those components, then solve the whole problem by putting the components back together. Then we can solve vastly more complex problems than what our puny little brains can handle at one time.
+
+Here's an example of a complex problem: reading a CSV file. The contents of a CSV file might look like this:
+
+```         
+“city_name”,“population”
+“Santa Barbara, CA”,88255
+“Santa Cruz, CA”,61950
+“Washington, DC”,712816
+“Kennicott, AK”,NA
+```
+
+That's two columns, `city_name` and `population`, with four rows. Without functions, reading a CSV file would require you to:
+
+1.  Open a connection to file.
+2.  Read all the text.
+3.  Split each row by commas. But only the right commas! E.g. not the one in "Santa Barbara, CA".
+4.  Figure out the column names.
+5.  Figure out column types, and perhaps convert types as necessary.
+6.  Create a data frame containing the data.
+
+Here's how that complex problem works with functions:
+
+1.  Call `read_csv()`
+
+Now you might be saying, "wait, this is a bogus example because reading a CSV file is a simple task." In that case, I suggest you try reading a CSV file from scratch in R. You'll quickly discover that reading CSV files is in fact an *extremely* complex task. But all that complexity has been rolled up into a function called `read_csv()`, so you can safely ignore that complexity and focus on your science instead.
+
+The fact we can forget how complex a problem like reading CSV files is showcases the the beauty of functions. It's a principle called *abstraction*. We take a complex problem, stuff all the logic into a tidy box that's easy to think about (file path in, data frame out), and free up our cognitive power for other tasks. Today you'll learn how to do that for your own complex problems.
+
+# Lesson
+
+## Student learning objectives
+
+1.  Identify the parts of a function definition (*syntax*)
+2.  Use functions to transform inputs (*parameters*, *arguments*) into outputs
+3.  Write a function to automate a common task
+
+## Identify the parts of a function
+
+**Jargon**
+
+*Syntax*. In programming, *syntax* is basically spelling and grammar. It's the rules for what the programming language can and cannot understand. For example, you have to use commas to separate arguments in a function call like this `c("a", "b")`. If you leave out the comma `c("a" "b")` then you have a *syntax* error and R won't know what to do.
+
+*Parameter*. The logic inside of a function is unaware of the real world around it, so *parameters* are placeholders for input.
+
+*Argument*. When you call a function on some input, those inputs are the *arguments*. Think of *arguments* as real things, which get substituted for the function's parameters. The distinction between parameters and arguments will become clearer in a bit.
+
+------------------------------------------------------------------------
+
+Let's use a mathematical function as a template for thinking about function *syntax*, where *syntax* is the rules for text that R can understand as code. We'll use the mean, $\bar x$, defined as:
+
+$$
+\bar x = \frac{\sum_{i=1}^{n} x_i}{n}
+$$
+
+In plain language, the mean of $x$ is the sum of its elements divided by the number of elements. Before we convert this logic to an R function, let's break down function syntax.
+
+An R function has four parts.
+
+1.  The name of the function
+2.  The keyword `function`
+3.  Parameters
+4.  Body
+
+We can write our own `mean()` function from those four parts.
+
+``` r
+mean <- function(x) {
+  result <- sum(x) / length(x)
+  return(result)
+}
+```
+
+`mean` is our function name, followed by the keyword `function` (a signal to R to expect a function definition), then the parameter(s) in parentheses (which define what input the function expects), and finally the body in curly braces (the function's actual logic). The last line of the body is a call to `return()`, which returns the output.
+
+::: callout-note
+`return()` technically isn't necessary because R will implicitly return whatever the last value in the body is. But I want you to explicitly call it for now because it's a reminder of what the function's output is.
+:::
+
+**Q1** I've written a function to calculate the standard error and broken it into four parts. Match the parts (left column) to their names (right column).
+
++-----------------------------+------------------------+
+| Function parts (code)       | Function parts (names) |
++=============================+========================+
+| ``` r                       | Function name          |
+| {                           |                        |
+|   n <- length(x)            |                        |
+|   result <- sd(x) / sqrt(n) |                        |
+|   return(result)            |                        |
+| }                           |                        |
+| ```                         |                        |
++-----------------------------+------------------------+
+| ``` r                       | Keyword "function"     |
+| se                          |                        |
+| ```                         |                        |
++-----------------------------+------------------------+
+| ``` r                       | Parameters             |
+| (x)                         |                        |
+| ```                         |                        |
++-----------------------------+------------------------+
+| ``` r                       | Body                   |
+| function                    |                        |
+| ```                         |                        |
++-----------------------------+------------------------+
+
+## Transform arguments into output
+
+Consider the following code snippet.
+
+``` r
+first_last_chr <- function(s) {
+  first_chr <- substr(s, 1, 1)
+  last_chr <- substr(s, nchar(s), nchar(s))
+  result <- paste(first_chr, last_chr, sep = "")
+  return(result)
+}
+text <- "Amazing!"
+first_last_chr(text)
+```
+
+**Q2** What are the four parts of this function?
+
+::: {.callout-note collapse="true"}
+## Answer
+
+Function name = `first_last_chr`
+
+Keyword function = `function`
+
+Parameters = `s`
+
+Body = Everything in the `{}`
+:::
+
+**Q3** What output do you get when you call `first_last_chr()` on `text`?
+
+::: {.callout-note collapse="true"}
+## Answer
+
+`A!`
+:::
+
+The distinction between parameters and arguments is subtle, but it's critical for understanding how functions transform inputs to create outputs.
+
+`s` is a parameter. `text` is an argument. `s` is a placeholder in the little mini-universe that is the body of `first_last_chr()`. `text` is an actual object that we assigned a value to. When we call a function on an argument, the function essentially renames the argument with the name of the parameter.
+
+Let's look at the definition of `first_last_chr()` again.
+
+``` r
+first_last_chr <- function(s) {
+  first_chr <- substr(s, 1, 1)
+  last_chr <- substr(s, nchar(s), nchar(s))
+  ### PAUSE HERE
+  result <- paste(first_chr, last_chr, sep = "")
+  return(result)
+}
+```
+
+**Q4** Let's say you're starting with a fresh R session and you run the code above to define `first_last_chr`. At the line where it says `### PAUSE HERE`, what is the value of `s`?
+
+::: {.callout-note collapse="true"}
+## Answer
+
+`s` has no value *yet*. Parameters don't have values until the function is called. Then they take on the value of the argument.
+:::
+
+Now call the function on some input.
+
+``` r
+text <- "Amazing!"
+first_last_chr(text)
+```
+
+**Q5** At the line where it says `### PAUSE HERE`, what is the value of `s`?
+
+::: {.callout-note collapse="true"}
+## Answer
+
+Because we're in the function body, the parameter `s` has taken on the value of its argument. So `s` is `"Amazing!"`.
+:::
+
+**Q6** Fill in the blank below so the result is "My".
+
+``` r
+first_last_chr("___")
+```
+
+::: {.callout-note collapse="true"}
+## Answer
+
+A lot of possible answers. One is `first_last_chr("Max Czapanskiy")`.
+:::
+
+## Multiple parameters
+
+Functions can have more than one parameter. You're already familiar with the `na.rm` parameter in base R's `mean()`. Now you'll add one to your version
+
+**Q7** Fill in the blanks below to add an `na.rm` parameter to `mean()`. The skeleton of an `if` is there to help. If `if` is new to you, ask a classmate or instructor for help. Test your code with the calls to `mean()` provided below.
+
+``` r
+# A new parameter: na.rm
+mean <- function(x, na.rm) {
+  if (na.rm) {
+    ___
+  }
+  result <- ___
+  return(result)
+}
+
+mean(c(1, 5, 9), na.rm = TRUE)
+mean(c(1, 5, 9), na.rm = FALSE)
+mean(c(1, NA, 5, 9), na.rm = TRUE)
+mean(c(1, NA, 5, 9), na.rm = FALSE)
+```
+
+::: {.callout-note collapse="true"}
+## Answer
+
+``` r
+mean <- function(x, na.rm) {
+  if (na.rm) {
+    x <- x[!is.na(x)] # or: x <- na.omit(x)
+  }
+  result <- sum(x) / length(x)
+  return(result)
+}
+```
+:::
+
+When you start having multiple parameters, some of them may be optional. You can specify a default value for parameters with `=`. For example, the following function repeats a character string multiple times, with an optional separating character that defaults to `_`.
+
+``` r
+repeat_chr <- function(s, n, separator = "_") {
+  repeated <- rep(s, n) # see ?rep
+  result <- paste(repeated, collapse = separator)
+  return(result)
+}
+
+# Leave `separator` with the default value
+repeat_chr("foo", 3)
+# Specify the `separator` by name
+repeat_chr("foo", 3, separator = " ")
+# Specify the `separator` by position
+repeat_chr("foo", 3, " ")
+```
+
+**Q8** Modify `mean()` so it only removes NAs if you tell it to.
+
+::: {.callout-note collapse="true"}
+## Answer
+
+``` r
+mean <- function(x, na.rm = FALSE) {
+  if (na.rm) {
+    x <- x[!is.na(x)] # or: x <- na.omit(x)
+  }
+  result <- sum(x) / length(x)
+  return(result)
+}
+```
+:::
+
+# Assessment
+
+For your assessment, create a new project as you have in past assessments. That means an RStudio project, a local git repo, and a remote GitHub repo with Pages enabled.
+
+***Don't set up the directories**.*
+
+Use your computational project organization notes to guide project setup. If they're insufficient, add to your computational project organization notes!
+
+## Automating project setup
+
+Manually creating a bunch of folders when you create a new project (`data/`, `reports/`, `docs/`, etc) is time consuming and error prone. It's easy to forget one or misspell a name. Let's make a function that will automate that for you.
+
+`dir.create()` is the function that creates directories. `file.create()` is the function that creates files. `writeLines()` will write a character to a file. So the following code creates a Markdown file called `bar.md` in `foo/` with some text in it explaining the purpose of the `foo/` directory.
+
+``` r
+dir.create("foo")
+file.create("foo/bar.md")
+writeLines("The foo directory is pointless, except for demonstration", 
+           "foo/bar.md")
+```
+
+Create a function called `project_setup()` that doesn't take any parameters. In the function body, do the following:
+
+1.  Create the directories for a new project.
+2.  Add a `README.md` file to each directory that explains the purpose of that directory.
+3.  Return the character "SUCCESS!"
+
+Now, let's use your function to set up your project. Run the code to define your function, then call it. Did it create the directory structure correctly? If not, start debugging! If so, put the function in a script called `project_setup.R`, and save it to your `R/` directory.
+
+## Where did birds hatch?
+
+You've learned to use built-in functions, like `mean()` and `min()`, with `group_by()` and `summarize()` to aggregate data. But sometimes the data aggregation you need to do is more complex or specific to your analysis. In this part of the assessment, you'll write a custom data aggregation function to use with `group_by()` and `summarize()`.
+
+Suddenly you're a shorebird biologist, analyzing survey data of young-of-the-year Black Oystercatchers in Santa Cruz to figure out where chicks hatched. For safety reasons, the biologists weren't able to band chicks at their nests. Instead, they caught the chicks later and gave them uniquely identifying 3-color band combinations. For example, GYB is the bird with Green-Yellow-Blue color bands.
+
+You know Black Oystercatcher chicks move around, but they tend to stick close to their hatch site. So you've decided to estimate the hatching site as the location where the bird was observed *most often* during weekly surveys.
+
+### Simulate data
+
+First, let's simulate some data to work with.
+
+```{r}
+library(tidyverse)
+
+# Generate sample data
+# Sightings of Black Oystercatcher chicks at Santa Cruz beaches
+beaches <- c("Cowell's", "Steamer Lane", "Natural Bridges", "Mitchell's", "Main")
+# blue, green, black, white, yellow
+band_colors <- c("B", "G", "K", "W", "Y") 
+# Surveys took place weekly in the summer of 2023
+surveys <- seq(as.Date("2023-06-01"), as.Date("2023-08-31"), by = 7)
+
+# Setting the "seed" forces randomized functions (like sample()) to generate
+# the same output
+set.seed(1538)
+# 3 band colors identify a bird. We want 12 birds.
+birds <- paste0(
+  sample(band_colors, 25, replace = TRUE),
+  sample(band_colors, 25, replace = TRUE),
+  sample(band_colors, 25, replace = TRUE)
+) %>% 
+  unique() %>%
+  head(12)
+bloy_chicks <- tibble(
+  # Randomly generate survey data
+  beach = sample(beaches, size = 100, replace = TRUE),
+  bird = sample(birds, size = 100, replace = TRUE),
+  survey = sample(surveys, size = 100, replace = TRUE)
+) %>% 
+  # Remove duplicates (see ?distinct)
+  distinct() %>% 
+  # Sort by survey date and location
+  arrange(survey, beach)
+```
+
+**Q1** We're randomly generating data, but we're all going to end up with the same data frames. How is that happening?
+
+**Q2** Explain in plain language what this part does. Your answer should be one or two sentences
+
+``` r
+birds <- paste0(
+  sample(band_colors, 25, replace = TRUE),
+  sample(band_colors, 25, replace = TRUE),
+  sample(band_colors, 25, replace = TRUE)
+) %>% 
+  unique() %>%
+  head(12)
+```
+
+**Q3** We generated 100 random survey observations. How many rows are in `bloy_chicks`? Why the difference?
+
+### Without a custom function
+
+We want to estimate where chicks hatched using `tidyverse` functions. Here's our process:
+
+1.  For each bird, where was it seen most often?
+2.  If multiple sites are tied, choose the one with the earliest observation
+3.  If still tied, randomly choose one
+
+The code below consists of three pipelines (sequences of commands linked by pipes). Each pipeline has been shuffled.
+
+```{r}
+# Find most frequent beach per bird
+  group_by(bird) %>% 
+beach_freq <- bloy_chicks %>% 
+  count(bird, beach) %>% 
+  ungroup()
+  filter(n == max(n)) %>% 
+# Find first date for each bird+beach
+  summarize(earliest = min(survey),
+beach_early <- bloy_chicks %>% 
+            .groups = "drop")
+  group_by(bird, beach) %>% 
+# Join the two conditions and retain most frequent beach, only earliest
+  filter(earliest == min(earliest)) %>% 
+  ungroup()
+  sample_n(1) %>% # Randomly choose 1 row. See ?sample_n
+  left_join(beach_early, by = c("bird", "beach")) %>% 
+  group_by(bird) %>% 
+hatch_beach <- beach_freq %>% 
+```
+
+**Q4** Sort the pipelines back into correct order.
+
+## With a custom function
+
+There are two issues with the approach above:
+
+1.  It's kind of long and we have to make multiple intermediate data frames. So it's not the easiest code to read.
+2.  The logic for estimating a hatching beach is spread out across multiple locations in the code. If we choose a different approach then we have to change everything!
+
+Here's a different approach using a custom function.
+
+1.  Put the logic for estimating the hatching beach in a single function.
+2.  Group the data by bird
+3.  Summarize each group using your custom function
+
+This is an example of a *split-apply-combine* strategy. Use `group_by()` to *split* our data frame by bird. Write a custom function to estimate the hatching beach for that bird. That's critical: this function works on just one part of the whole! Use `summarize()` to *apply* our function to each bird and *combine* the results.
+
+Below is a skeleton of the custom function with key pieces missing, followed by a *split-apply-combine* skeleton.
+
+```{r}
+find_hatching_beach <- function(site, date) {
+  # Start with a data frame (or tibble) of site and date for *one* bird
+  # Use pipes and dplyr functions to find the hatching beach
+  bird_observations <- tibble(site, date)
+  result <- bird_observations %>% 
+    ___ # use as many pipes and dplyr functions as necessary
+  # result should end up as a data frame with one row for the hatching beach
+  return(result$site) # return the hatching beach
+}
+
+# split-apply-combine
+bloy_chicks %>% 
+  group_by(___) %>% 
+  summarize(___)
+```
+
+**Q5** The two *parameters* of `find_hatching_beach()` are named `site` and `date`. When this function is called, what columns in `bloy_chicks` will you use as *arguments* for these parameters?
+
+**Q6** What will be the value of `site` when `find_hatching_beach()` is called on the group for bird YWG? How about WYB?
+
+## Bonus optional challenge
+
+This is a tricky one! I encourage you to work together to figure it out. But it's totally optional.
+
+Our workflow with Quarto documents so far has looked like this:
+
+1.  Create a Quarto document in `reports/`.
+2.  Render the document, which creates an HTML file and a folder in `reports/`.
+3.  Move the outputs from `reports/` to `docs/`.
+
+Your challenge: write a function to automate step 3. Call the function `move_report_output()`. It should have one parameter `quarto_doc`. In the function body, use `dir()` to find all the outputs in `reports/` created by rendering the document specified by `quarto_doc`. Move those outputs from `reports/` folder to the `docs/` folder.
