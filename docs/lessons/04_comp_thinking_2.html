@@ -212,11 +212,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#automating-project-setup" id="toc-automating-project-setup" class="nav-link" data-scroll-target="#automating-project-setup">Automating project setup</a></li>
   <li><a href="#where-did-birds-hatch" id="toc-where-did-birds-hatch" class="nav-link" data-scroll-target="#where-did-birds-hatch">Where did birds hatch?</a>
   <ul class="collapse">
-  <li><a href="#generate-sample-data" id="toc-generate-sample-data" class="nav-link" data-scroll-target="#generate-sample-data">Generate sample data</a></li>
+  <li><a href="#simulate-data" id="toc-simulate-data" class="nav-link" data-scroll-target="#simulate-data">Simulate data</a></li>
   <li><a href="#without-a-custom-function" id="toc-without-a-custom-function" class="nav-link" data-scroll-target="#without-a-custom-function">Without a custom function</a></li>
   </ul></li>
   <li><a href="#with-a-custom-function" id="toc-with-a-custom-function" class="nav-link" data-scroll-target="#with-a-custom-function">With a custom function</a></li>
-  <li><a href="#todo" id="toc-todo" class="nav-link" data-scroll-target="#todo">TODO</a></li>
+  <li><a href="#bonus-optional-challenge" id="toc-bonus-optional-challenge" class="nav-link" data-scroll-target="#bonus-optional-challenge">Bonus optional challenge</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -274,7 +274,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Figure out column types, and perhaps convert types as necessary.</li>
 <li>Create a data frame containing the data.</li>
 </ol>
-<p>Here’s how that complex problem works in code:</p>
+<p>Here’s how that complex problem works with functions:</p>
 <ol type="1">
 <li>Call <code>read_csv()</code></li>
 </ol>
@@ -521,7 +521,7 @@ Answer
 </div>
 <p>When you start having multiple parameters, some of them may be optional. You can specify a default value for parameters with <code>=</code>. For example, the following function repeats a character string multiple times, with an optional separating character that defaults to <code>_</code>.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>repeat_chr <span class="ot">&lt;-</span> <span class="cf">function</span>(s, n, <span class="at">separator =</span> <span class="st">"_"</span>) {</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  repeated <span class="ot">&lt;-</span> <span class="fu">rep</span>(s, n)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  repeated <span class="ot">&lt;-</span> <span class="fu">rep</span>(s, n) <span class="co"># see ?rep</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">paste</span>(repeated, <span class="at">collapse =</span> separator)</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>}</span>
@@ -559,50 +559,75 @@ Answer
 </section>
 <section id="assessment" class="level1">
 <h1>Assessment</h1>
-<p>For your assessment, create a new project as you have in past assessments.</p>
+<p>For your assessment, create a new project as you have in past assessments. That means an RStudio project, a local git repo, and a remote GitHub repo with Pages enabled.</p>
+<p><em><strong>Don’t set up the directories</strong>.</em></p>
+<p>Use your computational project organization notes to guide project setup. If they’re insufficient, add to your computational project organization notes!</p>
 <section id="automating-project-setup" class="level2">
 <h2 class="anchored" data-anchor-id="automating-project-setup">Automating project setup</h2>
+<p>Manually creating a bunch of folders when you create a new project (<code>data/</code>, <code>reports/</code>, <code>docs/</code>, etc) is time consuming and error prone. It’s easy to forget one or misspell a name. Let’s make a function that will automate that for you.</p>
+<p><code>dir.create()</code> is the function that creates directories. <code>file.create()</code> is the function that creates files. <code>writeLines()</code> will write a character to a file. So the following code creates a Markdown file called <code>bar.md</code> in <code>foo/</code> with some text in it explaining the purpose of the <code>foo/</code> directory.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"foo"</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">file.create</span>(<span class="st">"foo/bar.md"</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">writeLines</span>(<span class="st">"The foo directory is pointless, except for demonstration"</span>, </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>           <span class="st">"foo/bar.md"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Create a function called <code>project_setup()</code> that doesn’t take any parameters. In the function body, do the following:</p>
+<ol type="1">
+<li>Create the directories for a new project.</li>
+<li>Add a <code>README.md</code> file to each directory that explains the purpose of that directory.</li>
+<li>Return the character “SUCCESS!”</li>
+</ol>
+<p>Now, let’s use your function to set up your project. Run the code to define your function, then call it. Did it create the directory structure correctly? If not, start debugging! If so, put the function in a script called <code>project_setup.R</code>, and save it to your <code>R/</code> directory.</p>
 </section>
 <section id="where-did-birds-hatch" class="level2">
 <h2 class="anchored" data-anchor-id="where-did-birds-hatch">Where did birds hatch?</h2>
-<p>You’re analyzing survey data of newly hatched Black Oystercatchers in Santa Cruz to figure out where chicks hatched. For safety reasons, the biologists weren’t able to band chicks at their nests. Instead, they caught the chicks later and gave them uniquely identifying 3-color band combinations. For example, GYB is the bird with Green-Yellow-Blue color bands.</p>
+<p>You’ve learned to use built-in functions, like <code>mean()</code> and <code>min()</code>, with <code>group_by()</code> and <code>summarize()</code> to aggregate data. But sometimes the data aggregation you need to do is more complex or specific to your analysis. In this part of the assessment, you’ll write a custom data aggregation function to use with <code>group_by()</code> and <code>summarize()</code>.</p>
+<p>Suddenly you’re a shorebird biologist, analyzing survey data of young-of-the-year Black Oystercatchers in Santa Cruz to figure out where chicks hatched. For safety reasons, the biologists weren’t able to band chicks at their nests. Instead, they caught the chicks later and gave them uniquely identifying 3-color band combinations. For example, GYB is the bird with Green-Yellow-Blue color bands.</p>
 <p>You know Black Oystercatcher chicks move around, but they tend to stick close to their hatch site. So you’ve decided to estimate the hatching site as the location where the bird was observed <em>most often</em> during weekly surveys.</p>
-<section id="generate-sample-data" class="level3">
-<h3 class="anchored" data-anchor-id="generate-sample-data">Generate sample data</h3>
-<p>First we’ll generate some sample data.</p>
+<section id="simulate-data" class="level3">
+<h3 class="anchored" data-anchor-id="simulate-data">Simulate data</h3>
+<p>First, let’s simulate some data to work with.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate sample data</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Sightings of Black Oystercatcher chicks at Santa Cruz beaches</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>beaches <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Cowell's"</span>, <span class="st">"Steamer Lane"</span>, <span class="st">"Natural Bridges"</span>, <span class="st">"Mitchell's"</span>, <span class="st">"Main"</span>)</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>band_colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"B"</span>, <span class="st">"G"</span>, <span class="st">"K"</span>, <span class="st">"W"</span>, <span class="st">"Y"</span>) <span class="co"># blue, green, black, white, yellow</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>surveys <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">as.Date</span>(<span class="st">"2023-06-01"</span>), <span class="fu">as.Date</span>(<span class="st">"2023-08-31"</span>), <span class="at">by =</span> <span class="dv">7</span>)</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting the "seed" forces randomized functions (like sample()) to generate</span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co"># the same output</span></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1538</span>)</span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 band colors identify a bird. We want 12 birds.</span></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>birds <span class="ot">&lt;-</span> <span class="fu">paste0</span>(</span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample</span>(band_colors, <span class="dv">25</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample</span>(band_colors, <span class="dv">25</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample</span>(band_colors, <span class="dv">25</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> </span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">12</span>)</span>
-<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>bloy_chicks <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Randomly generate survey data</span></span>
-<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">beach =</span> <span class="fu">sample</span>(beaches, <span class="at">size =</span> <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">bird =</span> <span class="fu">sample</span>(birds, <span class="at">size =</span> <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">survey =</span> <span class="fu">sample</span>(surveys, <span class="at">size =</span> <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> </span>
-<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Remove duplicates (see ?distinct)</span></span>
-<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Sort by survey date and location</span></span>
-<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(survey, beach)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate sample data</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Sightings of Black Oystercatcher chicks at Santa Cruz beaches</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>beaches <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Cowell's"</span>, <span class="st">"Steamer Lane"</span>, <span class="st">"Natural Bridges"</span>, <span class="st">"Mitchell's"</span>, <span class="st">"Main"</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co"># blue, green, black, white, yellow</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>band_colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"B"</span>, <span class="st">"G"</span>, <span class="st">"K"</span>, <span class="st">"W"</span>, <span class="st">"Y"</span>) </span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Surveys took place weekly in the summer of 2023</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>surveys <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fu">as.Date</span>(<span class="st">"2023-06-01"</span>), <span class="fu">as.Date</span>(<span class="st">"2023-08-31"</span>), <span class="at">by =</span> <span class="dv">7</span>)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Setting the "seed" forces randomized functions (like sample()) to generate</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co"># the same output</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1538</span>)</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 band colors identify a bird. We want 12 birds.</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>birds <span class="ot">&lt;-</span> <span class="fu">paste0</span>(</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample</span>(band_colors, <span class="dv">25</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample</span>(band_colors, <span class="dv">25</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample</span>(band_colors, <span class="dv">25</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">12</span>)</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>bloy_chicks <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Randomly generate survey data</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">beach =</span> <span class="fu">sample</span>(beaches, <span class="at">size =</span> <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">bird =</span> <span class="fu">sample</span>(birds, <span class="at">size =</span> <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">survey =</span> <span class="fu">sample</span>(surveys, <span class="at">size =</span> <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Remove duplicates (see ?distinct)</span></span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Sort by survey date and location</span></span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(survey, beach)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Q1</strong> We’re randomly generating data, but we’re all going to end up with the same data frames. How is that happening?</p>
-<p><strong>Q2</strong> What are the color combos for the 12 chicks?</p>
+<p><strong>Q2</strong> Explain in plain language what this part does. Your answer should be one or two sentences</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>birds <span class="ot">&lt;-</span> <span class="fu">paste0</span>(</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample</span>(band_colors, <span class="dv">25</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample</span>(band_colors, <span class="dv">25</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample</span>(band_colors, <span class="dv">25</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unique</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">12</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Q3</strong> We generated 100 random survey observations. How many rows are in <code>bloy_chicks</code>? Why the difference?</p>
 </section>
 <section id="without-a-custom-function" class="level3">
@@ -615,24 +640,24 @@ Answer
 </ol>
 <p>The code below consists of three pipelines (sequences of commands linked by pipes). Each pipeline has been shuffled.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find most frequent beach per bird</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(bird) <span class="sc">%&gt;%</span> </span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>beach_freq <span class="ot">&lt;-</span> bloy_chicks <span class="sc">%&gt;%</span> </span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(bird, beach) <span class="sc">%&gt;%</span> </span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">==</span> <span class="fu">max</span>(n)) <span class="sc">%&gt;%</span> </span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Find first date for each bird+beach</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">earliest =</span> <span class="fu">min</span>(survey),</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>beach_early <span class="ot">&lt;-</span> bloy_chicks <span class="sc">%&gt;%</span> </span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">"drop"</span>)</span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(bird, beach) <span class="sc">%&gt;%</span> </span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Join the two conditions and retain most frequent beach, only earliest</span></span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(earliest <span class="sc">==</span> <span class="fu">min</span>(earliest)) <span class="sc">%&gt;%</span> </span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample_n</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="co"># Randomly choose 1 row. See ?sample_n</span></span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(beach_early, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"bird"</span>, <span class="st">"beach"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(bird) <span class="sc">%&gt;%</span> </span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>hatch_beach <span class="ot">&lt;-</span> beach_freq <span class="sc">%&gt;%</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find most frequent beach per bird</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(bird) <span class="sc">%&gt;%</span> </span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>beach_freq <span class="ot">&lt;-</span> bloy_chicks <span class="sc">%&gt;%</span> </span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(bird, beach) <span class="sc">%&gt;%</span> </span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">==</span> <span class="fu">max</span>(n)) <span class="sc">%&gt;%</span> </span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Find first date for each bird+beach</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">earliest =</span> <span class="fu">min</span>(survey),</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>beach_early <span class="ot">&lt;-</span> bloy_chicks <span class="sc">%&gt;%</span> </span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">"drop"</span>)</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(bird, beach) <span class="sc">%&gt;%</span> </span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Join the two conditions and retain most frequent beach, only earliest</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(earliest <span class="sc">==</span> <span class="fu">min</span>(earliest)) <span class="sc">%&gt;%</span> </span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample_n</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="co"># Randomly choose 1 row. See ?sample_n</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(beach_early, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"bird"</span>, <span class="st">"beach"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(bird) <span class="sc">%&gt;%</span> </span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>hatch_beach <span class="ot">&lt;-</span> beach_freq <span class="sc">%&gt;%</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Q4</strong> Sort the pipelines back into correct order.</p>
 </section>
@@ -653,30 +678,34 @@ Answer
 <p>This is an example of a <em>split-apply-combine</em> strategy. Use <code>group_by()</code> to <em>split</em> our data frame by bird. Write a custom function to estimate the hatching beach for that bird. That’s critical: this function works on just one part of the whole! Use <code>summarize()</code> to <em>apply</em> our function to each bird and <em>combine</em> the results.</p>
 <p>Below is a skeleton of the custom function with key pieces missing, followed by a <em>split-apply-combine</em> skeleton.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>find_hatching_beach <span class="ot">&lt;-</span> <span class="cf">function</span>(site, date) {</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Start with a data frame (or tibble) of site and date for *one* bird</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Use pipes and dplyr functions to find the hatching beach</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  bird_observations <span class="ot">&lt;-</span> <span class="fu">tibble</span>(site, date)</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> bird_observations <span class="sc">%&gt;%</span> </span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    ___ <span class="co"># use as many pipes and dplyr functions as necessary</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># result should end up as a data frame with one row for the hatching beach</span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result<span class="sc">$</span>site) <span class="co"># return the hatching beach</span></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co"># split-apply-combine</span></span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>bloy_chicks <span class="sc">%&gt;%</span> </span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(___) <span class="sc">%&gt;%</span> </span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(___)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>find_hatching_beach <span class="ot">&lt;-</span> <span class="cf">function</span>(site, date) {</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Start with a data frame (or tibble) of site and date for *one* bird</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Use pipes and dplyr functions to find the hatching beach</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  bird_observations <span class="ot">&lt;-</span> <span class="fu">tibble</span>(site, date)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> bird_observations <span class="sc">%&gt;%</span> </span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    ___ <span class="co"># use as many pipes and dplyr functions as necessary</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># result should end up as a data frame with one row for the hatching beach</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result<span class="sc">$</span>site) <span class="co"># return the hatching beach</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="co"># split-apply-combine</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>bloy_chicks <span class="sc">%&gt;%</span> </span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(___) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(___)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Q5</strong> The two <em>parameters</em> of <code>find_hatching_beach()</code> are named <code>site</code> and <code>date</code>. When this function is called, what columns in <code>bloy_chicks</code> will you use as <em>arguments</em> for these parameters?</p>
 <p><strong>Q6</strong> What will be the value of <code>site</code> when <code>find_hatching_beach()</code> is called on the group for bird YWG? How about WYB?</p>
 </section>
-<section id="todo" class="level2">
-<h2 class="anchored" data-anchor-id="todo">TODO</h2>
+<section id="bonus-optional-challenge" class="level2">
+<h2 class="anchored" data-anchor-id="bonus-optional-challenge">Bonus optional challenge</h2>
+<p>This is a tricky one! I encourage you to work together to figure it out. But it’s totally optional.</p>
+<p>Our workflow with Quarto documents so far has looked like this:</p>
 <ol type="1">
-<li>Create a function for setting up the computational project folder structure and put a REAMDE.md file in each folder.</li>
-<li>Assessment: write a function that moves the output of a Quarto document in your reports/ folder to the docs/ folder.</li>
+<li>Create a Quarto document in <code>reports/</code>.</li>
+<li>Render the document, which creates an HTML file and a folder in <code>reports/</code>.</li>
+<li>Move the outputs from <code>reports/</code> to <code>docs/</code>.</li>
 </ol>
+<p>Your challenge: write a function to automate step 3. Call the function <code>move_report_output()</code>. It should have one parameter <code>quarto_doc</code>. In the function body, use <code>dir()</code> to find all the outputs in <code>reports/</code> created by rendering the document specified by <code>quarto_doc</code>. Move those outputs from <code>reports/</code> folder to the <code>docs/</code> folder.</p>
 
 
 </section>

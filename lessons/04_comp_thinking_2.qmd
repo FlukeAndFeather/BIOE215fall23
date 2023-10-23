@@ -47,7 +47,7 @@ That's two columns, `city_name` and `population`, with four rows. Without functi
 5.  Figure out column types, and perhaps convert types as necessary.
 6.  Create a data frame containing the data.
 
-Here's how that complex problem works in code:
+Here's how that complex problem works with functions:
 
 1.  Call `read_csv()`
 
@@ -259,7 +259,7 @@ When you start having multiple parameters, some of them may be optional. You can
 
 ``` r
 repeat_chr <- function(s, n, separator = "_") {
-  repeated <- rep(s, n)
+  repeated <- rep(s, n) # see ?rep
   result <- paste(repeated, collapse = separator)
   return(result)
 }
@@ -290,19 +290,44 @@ mean <- function(x, na.rm = FALSE) {
 
 # Assessment
 
-For your assessment, create a new project as you have in past assessments.
+For your assessment, create a new project as you have in past assessments. That means an RStudio project, a local git repo, and a remote GitHub repo with Pages enabled.
+
+***Don't set up the directories**.*
+
+Use your computational project organization notes to guide project setup. If they're insufficient, add to your computational project organization notes!
 
 ## Automating project setup
 
+Manually creating a bunch of folders when you create a new project (`data/`, `reports/`, `docs/`, etc) is time consuming and error prone. It's easy to forget one or misspell a name. Let's make a function that will automate that for you.
+
+`dir.create()` is the function that creates directories. `file.create()` is the function that creates files. `writeLines()` will write a character to a file. So the following code creates a Markdown file called `bar.md` in `foo/` with some text in it explaining the purpose of the `foo/` directory.
+
+``` r
+dir.create("foo")
+file.create("foo/bar.md")
+writeLines("The foo directory is pointless, except for demonstration", 
+           "foo/bar.md")
+```
+
+Create a function called `project_setup()` that doesn't take any parameters. In the function body, do the following:
+
+1.  Create the directories for a new project.
+2.  Add a `README.md` file to each directory that explains the purpose of that directory.
+3.  Return the character "SUCCESS!"
+
+Now, let's use your function to set up your project. Run the code to define your function, then call it. Did it create the directory structure correctly? If not, start debugging! If so, put the function in a script called `project_setup.R`, and save it to your `R/` directory.
+
 ## Where did birds hatch?
 
-You're analyzing survey data of newly hatched Black Oystercatchers in Santa Cruz to figure out where chicks hatched. For safety reasons, the biologists weren't able to band chicks at their nests. Instead, they caught the chicks later and gave them uniquely identifying 3-color band combinations. For example, GYB is the bird with Green-Yellow-Blue color bands.
+You've learned to use built-in functions, like `mean()` and `min()`, with `group_by()` and `summarize()` to aggregate data. But sometimes the data aggregation you need to do is more complex or specific to your analysis. In this part of the assessment, you'll write a custom data aggregation function to use with `group_by()` and `summarize()`.
+
+Suddenly you're a shorebird biologist, analyzing survey data of young-of-the-year Black Oystercatchers in Santa Cruz to figure out where chicks hatched. For safety reasons, the biologists weren't able to band chicks at their nests. Instead, they caught the chicks later and gave them uniquely identifying 3-color band combinations. For example, GYB is the bird with Green-Yellow-Blue color bands.
 
 You know Black Oystercatcher chicks move around, but they tend to stick close to their hatch site. So you've decided to estimate the hatching site as the location where the bird was observed *most often* during weekly surveys.
 
-### Generate sample data
+### Simulate data
 
-First we'll generate some sample data.
+First, let's simulate some data to work with.
 
 ```{r}
 library(tidyverse)
@@ -310,7 +335,9 @@ library(tidyverse)
 # Generate sample data
 # Sightings of Black Oystercatcher chicks at Santa Cruz beaches
 beaches <- c("Cowell's", "Steamer Lane", "Natural Bridges", "Mitchell's", "Main")
-band_colors <- c("B", "G", "K", "W", "Y") # blue, green, black, white, yellow
+# blue, green, black, white, yellow
+band_colors <- c("B", "G", "K", "W", "Y") 
+# Surveys took place weekly in the summer of 2023
 surveys <- seq(as.Date("2023-06-01"), as.Date("2023-08-31"), by = 7)
 
 # Setting the "seed" forces randomized functions (like sample()) to generate
@@ -338,7 +365,17 @@ bloy_chicks <- tibble(
 
 **Q1** We're randomly generating data, but we're all going to end up with the same data frames. How is that happening?
 
-**Q2** What are the color combos for the 12 chicks?
+**Q2** Explain in plain language what this part does. Your answer should be one or two sentences
+
+``` r
+birds <- paste0(
+  sample(band_colors, 25, replace = TRUE),
+  sample(band_colors, 25, replace = TRUE),
+  sample(band_colors, 25, replace = TRUE)
+) %>% 
+  unique() %>%
+  head(12)
+```
 
 **Q3** We generated 100 random survey observations. How many rows are in `bloy_chicks`? Why the difference?
 
@@ -413,7 +450,14 @@ bloy_chicks %>%
 
 **Q6** What will be the value of `site` when `find_hatching_beach()` is called on the group for bird YWG? How about WYB?
 
-## TODO
+## Bonus optional challenge
 
-1.  Create a function for setting up the computational project folder structure and put a REAMDE.md file in each folder.
-2.  Assessment: write a function that moves the output of a Quarto document in your reports/ folder to the docs/ folder.
+This is a tricky one! I encourage you to work together to figure it out. But it's totally optional.
+
+Our workflow with Quarto documents so far has looked like this:
+
+1.  Create a Quarto document in `reports/`.
+2.  Render the document, which creates an HTML file and a folder in `reports/`.
+3.  Move the outputs from `reports/` to `docs/`.
+
+Your challenge: write a function to automate step 3. Call the function `move_report_output()`. It should have one parameter `quarto_doc`. In the function body, use `dir()` to find all the outputs in `reports/` created by rendering the document specified by `quarto_doc`. Move those outputs from `reports/` folder to the `docs/` folder.
