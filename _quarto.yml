@@ -17,6 +17,7 @@ website:
           - lessons/02b_vectors_key_points.qmd
           - lessons/03_working_data.qmd
           - lessons/04_comp_thinking_2.qmd
+          - lessons/05_debugging.qmd
       - text: "Discussions"
         menu:
           - discussions/02_open_data_1.qmd
