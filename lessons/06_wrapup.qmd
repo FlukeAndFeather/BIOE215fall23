@@ -225,3 +225,7 @@ penguins %>%
   geom_pointrange(aes(ymin = flipper_length_mm - sd_flipper, 
                       ymax = flipper_length_mm + sd_flipper))
 ```
+
+# Wrapping up
+
+We'll use the remainder of class today to get caught up on the Week 2-4 assessments.
