@@ -18,6 +18,7 @@ website:
           - lessons/03_working_data.qmd
           - lessons/04_comp_thinking_2.qmd
           - lessons/05_debugging.qmd
+          - lessons/06_wrapup.qmd
       - text: "Discussions"
         menu:
           - discussions/02_open_data_1.qmd

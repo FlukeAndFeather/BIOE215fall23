@@ -189,6 +189,41 @@
     "text": "Debugging with browser()\nIt can be difficult to picture what the R environment looks like at the exact moment where a bug occurs. That’s where browser() can help. This function pauses execution, allowing you to look around and explore. Let’s return to the bug in our original code chunk, but add browser() to bci().\n\n# Load some packages\nlibrary(lubridate)\nlibrary(nlme)\nlibrary(palmerpenguins)\nlibrary(tidyverse)\n\n# Define some functions\n\n# Standard error of the mean\nse_mean &lt;- function(x) {\n  sd(x) / sqrt(length(x))\n}\n\n# Standard error of a proportion\nse_prop &lt;- function(p, n) {\n  sqrt(p * (1 - p) / n)\n}\n\n# Body condition index (residual of body mass on structural size e.g. flipper or bill length)\nbci &lt;- function(mass, structural_size) {\n  # ADD BROWSER HERE\n  browser()\n  resid(lm(mass ~ structural_size))\n}\n\n# Start manipulating data\npenguins %&gt;% \n  arrange(body_mass_g) %&gt;% \n  mutate(mass_kg = body_mass_g / 1000) %&gt;% \n  group_by(species, island) %&gt;% \n  summarize(n = sum(!is.na(body_mass_g)),\n            mean_mass_g = mean(body_mass_g),\n            sd_mass_g = sd(body_mass_g),\n            bci_flipper = bci(body_mass_g, flipper_length_mm),\n            bci_bill = bci(body_mass_g, bill_length_mm),\n            .groups = \"drop\")\n\nNow when you call the pipeline, browser() will pause R so you can explore. Answer the following questions.\nQ13: Describe the values of bci()’s parameters mass and structural_size the first time browser() is called.\nQ14: What is the value of resid(lm(mass ~ structural_size))?\nQ15: What’s the cause of the bug here?"
   },
   {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Your instructor, Max, is a postdoc with NOAA’s Southwest Fisheries Science Center. They began their career as a software engineer at Microsoft then spent ten years as a field ecologist (seabirds, mostly) and ecological data scientist (whales, mostly). His current research is on advancing open science practices in marine ecology. But more than research, their real passion is teaching (specifically, teaching data science to biologists) so they’re grateful for the opportunity to teach Data Science for Eco/Evo this quarter! In his free time, he’s a baker, a runner, and dog drummer (that’s when you drum on the side of your dog as loud as you can).\nYou can check out their personal website at www.flukeandfeather.com."
+  },
+  {
+    "objectID": "about.html#max-czapanskiy-hethey",
+    "href": "about.html#max-czapanskiy-hethey",
+    "title": "About",
+    "section": "",
+    "text": "Your instructor, Max, is a postdoc with NOAA’s Southwest Fisheries Science Center. They began their career as a software engineer at Microsoft then spent ten years as a field ecologist (seabirds, mostly) and ecological data scientist (whales, mostly). His current research is on advancing open science practices in marine ecology. But more than research, their real passion is teaching (specifically, teaching data science to biologists) so they’re grateful for the opportunity to teach Data Science for Eco/Evo this quarter! In his free time, he’s a baker, a runner, and dog drummer (that’s when you drum on the side of your dog as loud as you can).\nYou can check out their personal website at www.flukeandfeather.com."
+  },
+  {
+    "objectID": "discussions/04_open_data_2.html",
+    "href": "discussions/04_open_data_2.html",
+    "title": "Week 4 - Open data 2",
+    "section": "",
+    "text": "For this week you read Roche et al. (2022). You also submitted a PDF of your candidate replication paper on Canvas.\nIn today’s discussion, you’ll form final project groups of 3-4 students. Share your candidate paper with your group and explain the figure/table you’d like to replicate.\n\n\n\n\n\n\nImportant\n\n\n\nChoose just one figure or table! It should be the key finding of the paper. You don’t need to replicate the whole thing start to finish.\n\n\nWorking together, go through each paper and make a list of data you would need to replicate the figure. Be specific! What tables of data would you need? What columns and rows would need to be in those tables?\nNext week, you’ll use the metrics in Table 1 of Roche et al. (2022) to assess the completeness and reusability of the data in the paper you’ve chosen. The data requirements you come up with today will guide that exercise.\n\n\n\n\nReferences\n\nRoche, Dominique G., Ilias Berberi, Fares Dhane, Félix Lauzon, Sandrine Soeharjono, Roslyn Dakin, and Sandra A. Binning. 2022. “Slow Improvement to the Archiving Quality of Open Datasets Shared by Researchers in Ecology and Evolution.” Proceedings of the Royal Society B: Biological Sciences 289 (1975). https://doi.org/10.1098/rspb.2021.2780."
+  },
+  {
+    "objectID": "discussions/03_open_tools.html",
+    "href": "discussions/03_open_tools.html",
+    "title": "Week 3 - Open tools",
+    "section": "",
+    "text": "For this week you read Lowndes et al. (2017) and Marwick, Boettiger, and Mullen (2018) about open tools.\nOur discussion today will follow the Hatful of Quotes format (Brookfield and Preskill 2016). Here’s how it works.\n\nI’ve printed salient quotes from both papers on slips of paper and put them in a “hat”.\nYou’ll randomly draw a quote and take two minutes to think about it on your own. How does the quote relate to the rest of the paper? The other paper? The other content in this course? Your own experiences as a scientist?\nWe hold a group conversation. When it’s your turn to speak, read your quote and share your thoughts. If your quote has already been read, you can affirm, build on, or contradict earlier comments (respectfully).\n\n\n\n\n\nReferences\n\nBrookfield, Stephen D, and Stephen Preskill. 2016. The Discussion Book. London, England: Jossey-Bass.\n\n\nLowndes, Julia S. Stewart, Benjamin D. Best, Courtney Scarborough, Jamie C. Afflerbach, Melanie R. Frazier, Casey C. O’Hara, Ning Jiang, and Benjamin S. Halpern. 2017. “Our Path to Better Science in Less Time Using Open Data Science Tools.” Nature Ecology & Evolution 1 (6). https://doi.org/10.1038/s41559-017-0160.\n\n\nMarwick, Ben, Carl Boettiger, and Lincoln Mullen. 2018. “Packaging Data Analytical Work Reproducibly Using R (and Friends).” The American Statistician 72 (1): 80–88. https://doi.org/10.1080/00031305.2017.1375986."
+  },
+  {
+    "objectID": "discussions/02_open_data_1.html",
+    "href": "discussions/02_open_data_1.html",
+    "title": "Week 2 - Open data 1",
+    "section": "",
+    "text": "For this week you read Vines et al. (2014) and Wilkinson et al. (2016) about open data.\nOur discussion today will follow the Snowballing format (Brookfield and Preskill 2016). Here’s how it works.\n\nYou’re presented with two discussion questions.\n\nThink of a time you tried to use data from another scientist, lab, paper, etc. What challenges did you encounter trying to use those data? Conversely, what did the data provider do that made your science easier?\nWhat challenges do you anticipate encountering if/when you share your own data? What would you need to learn or what systems would have to change to make sharing data easier?\n\nTake two minutes to reflect and make a note of your thoughts.\nFind a partner. For three minutes, take turns sharing your thoughts. What did you have in common? What was different? How would you synthesize your two points of view?\nNow your pair finds another pair. For another three minutes, repeat step 3 with the larger group. As the group expands, be mindful of everyone’s participation. A little bit of silence can go a long way to giving everyone a chance to participate.\nRepeat step 4 until the whole group is discussing together.\n\n\n\n\n\nReferences\n\nBrookfield, Stephen D, and Stephen Preskill. 2016. The Discussion Book. London, England: Jossey-Bass.\n\n\nVines, Timothy H., Arianne Y.K. Albert, Rose L. Andrew, Florence Débarre, Dan G. Bock, Michelle T. Franklin, Kimberly J. Gilbert, Jean-Sébastien Moore, Sébastien Renaut, and Diana J. Rennison. 2014. “The Availability of Research Data Declines Rapidly with Article Age.” Current Biology 24 (1): 94–97. https://doi.org/10.1016/j.cub.2013.11.014.\n\n\nWilkinson, Mark D., Michel Dumontier, IJsbrand Jan Aalbersberg, Gabrielle Appleton, Myles Axton, Arie Baak, Niklas Blomberg, et al. 2016. “The FAIR Guiding Principles for Scientific Data Management and Stewardship.” Scientific Data 3 (1). https://doi.org/10.1038/sdata.2016.18."
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Data Science for Eco/Evo (Fall 23 BIOE215)",
@@ -238,39 +273,67 @@
     "text": "Course Description\nThis course will aim to be practical and provide structure for learning the computational skills most eco/evo grad students have to pick up on their own. Topics will include programming best practices in R, organizing data and computational projects, and planning for reproducibility. This is a chance to gain knowledge and experience with the nuts and bolts of making your science work in code, without trying to learn generalized linear models at the same time. The course structure will be self-directed for weeks 1-6, followed by a final project in weeks 7-10."
   },
   {
-    "objectID": "discussions/02_open_data_1.html",
-    "href": "discussions/02_open_data_1.html",
-    "title": "Week 2 - Open data 1",
+    "objectID": "lessons/06_wrapup.html",
+    "href": "lessons/06_wrapup.html",
+    "title": "Week 6 - Wrap up skills portion",
     "section": "",
-    "text": "For this week you read Vines et al. (2014) and Wilkinson et al. (2016) about open data.\nOur discussion today will follow the Snowballing format (Brookfield and Preskill 2016). Here’s how it works.\n\nYou’re presented with two discussion questions.\n\nThink of a time you tried to use data from another scientist, lab, paper, etc. What challenges did you encounter trying to use those data? Conversely, what did the data provider do that made your science easier?\nWhat challenges do you anticipate encountering if/when you share your own data? What would you need to learn or what systems would have to change to make sharing data easier?\n\nTake two minutes to reflect and make a note of your thoughts.\nFind a partner. For three minutes, take turns sharing your thoughts. What did you have in common? What was different? How would you synthesize your two points of view?\nNow your pair finds another pair. For another three minutes, repeat step 3 with the larger group. As the group expands, be mindful of everyone’s participation. A little bit of silence can go a long way to giving everyone a chance to participate.\nRepeat step 4 until the whole group is discussing together.\n\n\n\n\n\nReferences\n\nBrookfield, Stephen D, and Stephen Preskill. 2016. The Discussion Book. London, England: Jossey-Bass.\n\n\nVines, Timothy H., Arianne Y.K. Albert, Rose L. Andrew, Florence Débarre, Dan G. Bock, Michelle T. Franklin, Kimberly J. Gilbert, Jean-Sébastien Moore, Sébastien Renaut, and Diana J. Rennison. 2014. “The Availability of Research Data Declines Rapidly with Article Age.” Current Biology 24 (1): 94–97. https://doi.org/10.1016/j.cub.2013.11.014.\n\n\nWilkinson, Mark D., Michel Dumontier, IJsbrand Jan Aalbersberg, Gabrielle Appleton, Myles Axton, Arie Baak, Niklas Blomberg, et al. 2016. “The FAIR Guiding Principles for Scientific Data Management and Stewardship.” Scientific Data 3 (1). https://doi.org/10.1038/sdata.2016.18."
+    "text": "Use browser() to diagnose an error in a pipeline\nCreate figures using ggplot\nChoose papers and figures/tables for final project"
   },
   {
-    "objectID": "discussions/03_open_tools.html",
-    "href": "discussions/03_open_tools.html",
-    "title": "Week 3 - Open tools",
-    "section": "",
-    "text": "For this week you read Lowndes et al. (2017) and Marwick, Boettiger, and Mullen (2018) about open tools.\nOur discussion today will follow the Hatful of Quotes format (Brookfield and Preskill 2016). Here’s how it works.\n\nI’ve printed salient quotes from both papers on slips of paper and put them in a “hat”.\nYou’ll randomly draw a quote and take two minutes to think about it on your own. How does the quote relate to the rest of the paper? The other paper? The other content in this course? Your own experiences as a scientist?\nWe hold a group conversation. When it’s your turn to speak, read your quote and share your thoughts. If your quote has already been read, you can affirm, build on, or contradict earlier comments (respectfully).\n\n\n\n\n\nReferences\n\nBrookfield, Stephen D, and Stephen Preskill. 2016. The Discussion Book. London, England: Jossey-Bass.\n\n\nLowndes, Julia S. Stewart, Benjamin D. Best, Courtney Scarborough, Jamie C. Afflerbach, Melanie R. Frazier, Casey C. O’Hara, Ning Jiang, and Benjamin S. Halpern. 2017. “Our Path to Better Science in Less Time Using Open Data Science Tools.” Nature Ecology & Evolution 1 (6). https://doi.org/10.1038/s41559-017-0160.\n\n\nMarwick, Ben, Carl Boettiger, and Lincoln Mullen. 2018. “Packaging Data Analytical Work Reproducibly Using R (and Friends).” The American Statistician 72 (1): 80–88. https://doi.org/10.1080/00031305.2017.1375986."
+    "objectID": "lessons/06_wrapup.html#what-does-browser-do",
+    "href": "lessons/06_wrapup.html#what-does-browser-do",
+    "title": "Week 6 - Wrap up skills portion",
+    "section": "What does browser() do?",
+    "text": "What does browser() do?\nWrite down what you remember about browser(). Turn to a partner and compare notes. I will call on pairs to share."
   },
   {
-    "objectID": "discussions/04_open_data_2.html",
-    "href": "discussions/04_open_data_2.html",
-    "title": "Week 4 - Open data 2",
-    "section": "",
-    "text": "For this week you read Roche et al. (2022). You also submitted a PDF of your candidate replication paper on Canvas.\nIn today’s discussion, you’ll form final project groups of 3-4 students. Share your candidate paper with your group and explain the figure/table you’d like to replicate.\n\n\n\n\n\n\nImportant\n\n\n\nChoose just one figure or table! It should be the key finding of the paper. You don’t need to replicate the whole thing start to finish.\n\n\nWorking together, go through each paper and make a list of data you would need to replicate the figure. Be specific! What tables of data would you need? What columns and rows would need to be in those tables?\nNext week, you’ll use the metrics in Table 1 of Roche et al. (2022) to assess the completeness and reusability of the data in the paper you’ve chosen. The data requirements you come up with today will guide that exercise.\n\n\n\n\nReferences\n\nRoche, Dominique G., Ilias Berberi, Fares Dhane, Félix Lauzon, Sandrine Soeharjono, Roslyn Dakin, and Sandra A. Binning. 2022. “Slow Improvement to the Archiving Quality of Open Datasets Shared by Researchers in Ecology and Evolution.” Proceedings of the Royal Society B: Biological Sciences 289 (1975). https://doi.org/10.1098/rspb.2021.2780."
+    "objectID": "lessons/06_wrapup.html#error-in-summarize",
+    "href": "lessons/06_wrapup.html#error-in-summarize",
+    "title": "Week 6 - Wrap up skills portion",
+    "section": "Error in summarize()",
+    "text": "Error in summarize()\nThe following pipeline has an error. Use it to answer the following questions.\n\nlibrary(palmerpenguins)\nlibrary(tidyverse)\n\ntraits_r2 &lt;- function(trait1, trait2) {\n  summary(lm(trait1 ~ trait2))$rsquared\n}\n\npenguins %&gt;% \n  summarize(flipper_bill_r2 = traits_r2(flipper_length_mm, bill_length_mm))\n\nQ1: How would you describe the error? I’m not asking you describe the cause of the error yet. Describe how the output is different than what you would expect.\nQ2: Where would you add browser() to explore the cause of the error?\nQ3: Does the body of traits_r2 use list or atomic vector indexing? Does it use indexing by position, logic, or name?\nQ4: What’s the cause of the error? How would you fix it?"
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "Your instructor, Max, is a postdoc with NOAA’s Southwest Fisheries Science Center. They began their career as a software engineer at Microsoft then spent ten years as a field ecologist (seabirds, mostly) and ecological data scientist (whales, mostly). His current research is on advancing open science practices in marine ecology. But more than research, their real passion is teaching (specifically, teaching data science to biologists) so they’re grateful for the opportunity to teach Data Science for Eco/Evo this quarter! In his free time, he’s a baker, a runner, and dog drummer (that’s when you drum on the side of your dog as loud as you can).\nYou can check out their personal website at www.flukeandfeather.com."
+    "objectID": "lessons/06_wrapup.html#adding-group_by",
+    "href": "lessons/06_wrapup.html#adding-group_by",
+    "title": "Week 6 - Wrap up skills portion",
+    "section": "Adding group_by()",
+    "text": "Adding group_by()\nThe following pipeline is similar to the one above, with an added layer of complexity. Use it to answer the following questions.\n\n# Pipeline 1\npenguins %&gt;% \n  group_by(species) %&gt;% \n  summarize(flipper_bill_r2 = traits_r2(flipper_length_mm, bill_length_mm))\n\n# Pipeline 2\npenguins %&gt;% \n  group_by(species, island) %&gt;% \n  summarize(flipper_bill_r2 = traits_r2(flipper_length_mm, bill_length_mm),\n            .groups = \"drop\")\n\nQ5: How many times does Pipeline 1 call traits_r2()? How about Pipeline 2?\nQ6: Create Pipeline 3 that additionally groups by sex. How many times does Pipeline 3 call traits_r2()?"
   },
   {
-    "objectID": "about.html#max-czapanskiy-hethey",
-    "href": "about.html#max-czapanskiy-hethey",
-    "title": "About",
-    "section": "",
-    "text": "Your instructor, Max, is a postdoc with NOAA’s Southwest Fisheries Science Center. They began their career as a software engineer at Microsoft then spent ten years as a field ecologist (seabirds, mostly) and ecological data scientist (whales, mostly). His current research is on advancing open science practices in marine ecology. But more than research, their real passion is teaching (specifically, teaching data science to biologists) so they’re grateful for the opportunity to teach Data Science for Eco/Evo this quarter! In his free time, he’s a baker, a runner, and dog drummer (that’s when you drum on the side of your dog as loud as you can).\nYou can check out their personal website at www.flukeandfeather.com."
+    "objectID": "lessons/06_wrapup.html#error-in-group_by-summarize",
+    "href": "lessons/06_wrapup.html#error-in-group_by-summarize",
+    "title": "Week 6 - Wrap up skills portion",
+    "section": "Error in group_by()-summarize()",
+    "text": "Error in group_by()-summarize()\nThe following code creates an error in Pipeline 3. Change your Pipeline 3 to use penguins2 instead of penguins, then answer the following questions.\n\nset.seed(12345)\npenguins2 &lt;- penguins %&gt;% \n  drop_na(sex) %&gt;% \n  sample_n(25)\npenguins2[7, 3:6] &lt;- NA\n\nQ7: How would you describe the error?\nQ8: Use browser() to diagnose the error. Hint: c will tell the debugger to continue until the next time it’s called.\nQ9: How would you fix the error?"
+  },
+  {
+    "objectID": "lessons/06_wrapup.html#components-of-ggplot",
+    "href": "lessons/06_wrapup.html#components-of-ggplot",
+    "title": "Week 6 - Wrap up skills portion",
+    "section": "Components of ggplot()",
+    "text": "Components of ggplot()\nggplot() has four major components:\n\nData\nScales\nGeometries\nAesthetics\n\n\nData\nA data frame containing the data you want to visualize. Emphasis on data frame. ggplot() is not designed to work with individual vectors, which you might be used to if you’ve used base R, Matlab, or other plotting tools.\n\n\nScales\nScales determine where/how variables in your data will show up in the plot. These include the x- and y-axes, as well as color, size, and more.\n\n\nGeometries\nGeometries determine the geometric properties of your variables. E.g. scatter plots use a point geometry and line plots use a line geometry. Other familiar geometries include histograms and box plots.\n\n\nAesthetics\nThe aesthetics unify data, scales, and geometries. They tell ggplot() how to translate data to scales for each geometry."
+  },
+  {
+    "objectID": "lessons/06_wrapup.html#a-simple-example",
+    "href": "lessons/06_wrapup.html#a-simple-example",
+    "title": "Week 6 - Wrap up skills portion",
+    "section": "A simple example",
+    "text": "A simple example\n\nlibrary(palmerpenguins)\nlibrary(tidyverse)\n\nggplot(data = penguins, aes(x = body_mass_g, y = flipper_length_mm)) +\n  geom_point()\n\n\n\nhead(penguins)\n\n# A tibble: 6 × 8\n  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n1 Adelie  Torgersen           39.1          18.7               181        3750\n2 Adelie  Torgersen           39.5          17.4               186        3800\n3 Adelie  Torgersen           40.3          18                 195        3250\n4 Adelie  Torgersen           NA            NA                  NA          NA\n5 Adelie  Torgersen           36.7          19.3               193        3450\n6 Adelie  Torgersen           39.3          20.6               190        3650\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;\n\n\n\n\n\n\n\n\n\n\n\nData\nScales\nGeometries\nAesthetics\n\n\n\n\npenguins\nx, y\ngeom_point()\nx = body_mass_g\ny = flipper_length_mm\n\n\nFirst parameter of ggplot()\nImplied by aes()\nAdded to ggplot()\nDefined by aes(), second parameter of ggplot()\n\n\n\nQ10: Change the aesthetics of the plot to show bill_depth_mm on the y-axis.\nQ11: Add an aesthetic for color, so points will be color-coded by species."
+  },
+  {
+    "objectID": "lessons/06_wrapup.html#customizing-scales",
+    "href": "lessons/06_wrapup.html#customizing-scales",
+    "title": "Week 6 - Wrap up skills portion",
+    "section": "Customizing scales",
+    "text": "Customizing scales\nIn addition to adding geometries with geom_*(), we can add scales with scale_*_*() to customize how scales appear in the figure. The first * is the name of the aesthetic, and the second * is the type of scale.\n\nggplot(data = penguins) +\n  # You can also define aesthetics directly inside the geometries\n  geom_point(aes(x = body_mass_g, \n                 y = flipper_length_mm,\n                 color = species)) +\n  # x aesthetic, continuous scale\n  scale_x_continuous(\n    # change the axis name\n    name = \"Body mass (g)\",\n    # change the limits\n    limits = c(2000, 8000)\n  ) +\n  # color aesthetic, manual scale\n  scale_color_manual(\n    # set the values for the colors\n    values = c(Adelie = \"cornflowerblue\",\n               Chinstrap = \"firebrick\",\n               Gentoo = \"darkorchid\")\n  )\n\n\n\n\nQ12: What function would you use to customize the y-axis? Use that function to expand the y-axis limits to include 150 and 250.\nQ13: Look up the help for scale_color_brewer(). Change the color scale to use the “Dark2” color palette."
+  },
+  {
+    "objectID": "lessons/06_wrapup.html#other-useful-geometries",
+    "href": "lessons/06_wrapup.html#other-useful-geometries",
+    "title": "Week 6 - Wrap up skills portion",
+    "section": "Other useful geometries",
+    "text": "Other useful geometries\nQ14: Use geom_histogram() to visualize the distribution of body masses.\nQ15: Use geom_boxplot() to create boxplots of the flipper lengths by species. It should look like the figure below. Hint: what aesthetics will you use?\n\n\n\n\n\nQ16: geom_pointrange() is like geom_point() with the addition of error bars. Like geom_point(), geom_pointrange() takes x and y aesthetics, but it also takes xmin, xmax, ymin and ymax aesthetics. Create a figure that shows the mean \\(\\pm\\) sd of each penguin species’ body mass and flipper lengths using points and error bars; it should look like the figure below. First, create a summary data frame that calculates the mean and standard deviation of the two variables you need by each species. Then use that summary data frame to create your figure. Hint: geom_pointrange() takes xmin or xmax, same for ymin or ymax. So you’ll need to call geom_pointrange() twice and specify the aesthetics within the geometry."
   },
   {
     "objectID": "lessons/03_working_data.html",
@@ -565,75 +628,5 @@
     "title": "Syllabus",
     "section": "Why isn’t there a remote option?",
     "text": "Why isn’t there a remote option?\nRemote options have become standard for most classes and I wish I could offer one for this course. However, the structure of the class does not lend itself to hybrid formats because of the emphasis on peer learning and 1-on-1 coaching from the instructor. In the future, I hope to offer online and in-person versions of the course. For now, I only have resources to support the in-person version.\nFor the same reason, I can’t support auditing the class at this time. However, I am happy to share the educational materials with anyone who’s interested. I will try to connect these students so you can form a study group. If that happens, I will add additional office hours to meet with you."
-  },
-  {
-    "objectID": "lessons/06_wrapup.html",
-    "href": "lessons/06_wrapup.html",
-    "title": "Week 6 - Wrap up skills portion",
-    "section": "",
-    "text": "Use browser() to diagnose an error in a pipeline\nCreate figures using ggplot\nChoose papers and figures/tables for final project"
-  },
-  {
-    "objectID": "lessons/06_wrapup.html#what-does-browser-do",
-    "href": "lessons/06_wrapup.html#what-does-browser-do",
-    "title": "Week 6 - Wrap up skills portion",
-    "section": "What does browser() do?",
-    "text": "What does browser() do?\nWrite down what you remember about browser(). Turn to a partner and compare notes. I will call on pairs to share."
-  },
-  {
-    "objectID": "lessons/06_wrapup.html#pipeline-with-an-error",
-    "href": "lessons/06_wrapup.html#pipeline-with-an-error",
-    "title": "Week 6 - Wrap up skills portion",
-    "section": "Pipeline with an error",
-    "text": "Pipeline with an error\nThe following pipeline has an error. Use it to answer the following questions.\n\nlibrary(palmerpenguins)\nlibrary(tidyverse)\n\ntraits_r2 &lt;- function(trait1, trait2) {\n  summary(lm(trait1 ~ trait2))$rsquared\n}\n\npenguins %&gt;% \n  summarize(flipper_bill_r2 = traits_r2(flipper_length_mm, bill_length_mm))\n\nQ1: How would you describe the error? I’m not asking you describe the cause of the error yet. Describe how the output is different than what you would expect.\nQ2: Where would you add browser() to explore the cause of the error?\nQ3: Does the body of traits_r2 use list or atomic vector indexing? Does it use indexing by position, logic, or name?\nQ4: What’s the cause of the error? How would you fix it?\nThe following pipeline is similar to the one above, with an added layer of complexity. Use it to answer the following questions.\n\n# Pipeline 1\npenguins %&gt;% \n  group_by(species) %&gt;% \n  summarize(flipper_bill_r2 = traits_r2(flipper_length_mm, bill_length_mm))\n\n# Pipeline 2\npenguins %&gt;% \n  group_by(species, island) %&gt;% \n  summarize(flipper_bill_r2 = traits_r2(flipper_length_mm, bill_length_mm),\n            .groups = \"drop\")\n\nQ5: How many times does Pipeline 1 call traits_r2()? How about Pipeline 2?\nQ6: Create Pipeline 3 that additionally groups by sex. How many times does Pipeline 3 call traits_r2()?\nThe following code creates an error in Pipeline 3. Change your Pipeline 3 to use penguins2, then answer the following questions.\n\nset.seed(12345)\npenguins2 &lt;- penguins %&gt;% \n  drop_na(sex) %&gt;% \n  sample_n(25)\npenguins2[7, 3:6] &lt;- NA\n\nQ7: How would you describe the error?\nQ8: Use browser() to diagnose the error. Hint: c will tell the debugger to continue until the next time it’s called.\nQ9: How would you fix the error?"
-  },
-  {
-    "objectID": "lessons/06_wrapup.html#error-in-summarize",
-    "href": "lessons/06_wrapup.html#error-in-summarize",
-    "title": "Week 6 - Wrap up skills portion",
-    "section": "Error in summarize()",
-    "text": "Error in summarize()\nThe following pipeline has an error. Use it to answer the following questions.\n\nlibrary(palmerpenguins)\nlibrary(tidyverse)\n\ntraits_r2 &lt;- function(trait1, trait2) {\n  summary(lm(trait1 ~ trait2))$rsquared\n}\n\npenguins %&gt;% \n  summarize(flipper_bill_r2 = traits_r2(flipper_length_mm, bill_length_mm))\n\nQ1: How would you describe the error? I’m not asking you describe the cause of the error yet. Describe how the output is different than what you would expect.\nQ2: Where would you add browser() to explore the cause of the error?\nQ3: Does the body of traits_r2 use list or atomic vector indexing? Does it use indexing by position, logic, or name?\nQ4: What’s the cause of the error? How would you fix it?"
-  },
-  {
-    "objectID": "lessons/06_wrapup.html#adding-group_by",
-    "href": "lessons/06_wrapup.html#adding-group_by",
-    "title": "Week 6 - Wrap up skills portion",
-    "section": "Adding group_by()",
-    "text": "Adding group_by()\nThe following pipeline is similar to the one above, with an added layer of complexity. Use it to answer the following questions.\n\n# Pipeline 1\npenguins %&gt;% \n  group_by(species) %&gt;% \n  summarize(flipper_bill_r2 = traits_r2(flipper_length_mm, bill_length_mm))\n\n# Pipeline 2\npenguins %&gt;% \n  group_by(species, island) %&gt;% \n  summarize(flipper_bill_r2 = traits_r2(flipper_length_mm, bill_length_mm),\n            .groups = \"drop\")\n\nQ5: How many times does Pipeline 1 call traits_r2()? How about Pipeline 2?\nQ6: Create Pipeline 3 that additionally groups by sex. How many times does Pipeline 3 call traits_r2()?"
-  },
-  {
-    "objectID": "lessons/06_wrapup.html#error-in-group_by-summarize",
-    "href": "lessons/06_wrapup.html#error-in-group_by-summarize",
-    "title": "Week 6 - Wrap up skills portion",
-    "section": "Error in group_by()-summarize()",
-    "text": "Error in group_by()-summarize()\nThe following code creates an error in Pipeline 3. Change your Pipeline 3 to use penguins2 instead of penguins, then answer the following questions.\n\nset.seed(12345)\npenguins2 &lt;- penguins %&gt;% \n  drop_na(sex) %&gt;% \n  sample_n(25)\npenguins2[7, 3:6] &lt;- NA\n\nQ7: How would you describe the error?\nQ8: Use browser() to diagnose the error. Hint: c will tell the debugger to continue until the next time it’s called.\nQ9: How would you fix the error?"
-  },
-  {
-    "objectID": "lessons/06_wrapup.html#components-of-ggplot",
-    "href": "lessons/06_wrapup.html#components-of-ggplot",
-    "title": "Week 6 - Wrap up skills portion",
-    "section": "Components of ggplot()",
-    "text": "Components of ggplot()\nggplot() has four major components:\n\nData\nScales\nGeometries\nAesthetics\n\n\nData\nA data frame containing the data you want to visualize. Emphasis on data frame. ggplot() is not designed to work with individual vectors, which you might be used to if you’ve used base R, Matlab, or other plotting tools.\n\n\nScales\nScales determine where/how variables in your data will show up in the plot. These include the x- and y-axes, as well as color, size, and more.\n\n\nGeometries\nGeometries determine the geometric properties of your variables. E.g. scatter plots use a point geometry and line plots use a line geometry. Other familiar geometries include histograms and box plots.\n\n\nAesthetics\nThe aesthetics unify data, scales, and geometries. They tell ggplot() how to translate data to scales for each geometry."
-  },
-  {
-    "objectID": "lessons/06_wrapup.html#a-simple-example",
-    "href": "lessons/06_wrapup.html#a-simple-example",
-    "title": "Week 6 - Wrap up skills portion",
-    "section": "A simple example",
-    "text": "A simple example\n\nlibrary(palmerpenguins)\nlibrary(tidyverse)\n\nggplot(data = penguins, aes(x = body_mass_g, y = flipper_length_mm)) +\n  geom_point()\n\n\n\nhead(penguins)\n\n# A tibble: 6 × 8\n  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n1 Adelie  Torgersen           39.1          18.7               181        3750\n2 Adelie  Torgersen           39.5          17.4               186        3800\n3 Adelie  Torgersen           40.3          18                 195        3250\n4 Adelie  Torgersen           NA            NA                  NA          NA\n5 Adelie  Torgersen           36.7          19.3               193        3450\n6 Adelie  Torgersen           39.3          20.6               190        3650\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;\n\n\n\n\n\n\n\n\n\n\n\nData\nScales\nGeometries\nAesthetics\n\n\n\n\npenguins\nx, y\ngeom_point()\nx = body_mass_g\ny = flipper_length_mm\n\n\nFirst parameter of ggplot()\nImplied by aes()\nAdded to ggplot()\nDefined by aes(), second parameter of ggplot()\n\n\n\nQ10: Change the aesthetics of the plot to show bill_depth_mm on the y-axis.\nQ11: Add an aesthetic for color, so points will be color-coded by species."
-  },
-  {
-    "objectID": "lessons/06_wrapup.html#customizing-scales",
-    "href": "lessons/06_wrapup.html#customizing-scales",
-    "title": "Week 6 - Wrap up skills portion",
-    "section": "Customizing scales",
-    "text": "Customizing scales\nIn addition to adding geometries with geom_*(), we can add scales with scale_*_*() to customize how scales appear in the figure. The first * is the name of the aesthetic, and the second * is the type of scale.\n\nggplot(data = penguins) +\n  # You can also define aesthetics directly inside the geometries\n  geom_point(aes(x = body_mass_g, \n                 y = flipper_length_mm,\n                 color = species)) +\n  # x aesthetic, continuous scale\n  scale_x_continuous(\n    # change the axis name\n    name = \"Body mass (g)\",\n    # change the limits\n    limits = c(2000, 8000)\n  ) +\n  # color aesthetic, manual scale\n  scale_color_manual(\n    # set the values for the colors\n    values = c(Adelie = \"cornflowerblue\",\n               Chinstrap = \"firebrick\",\n               Gentoo = \"darkorchid\")\n  )\n\n\n\n\nQ12: What function would you use to customize the y-axis? Use that function to expand the y-axis limits to include 150 and 250.\nQ13: Look up the help for scale_color_brewer(). Change the color scale to use the “Dark2” color palette."
-  },
-  {
-    "objectID": "lessons/06_wrapup.html#other-useful-geometries",
-    "href": "lessons/06_wrapup.html#other-useful-geometries",
-    "title": "Week 6 - Wrap up skills portion",
-    "section": "Other useful geometries",
-    "text": "Other useful geometries\nQ14: Use geom_histogram() to visualize the distribution of body masses.\nQ15: Use geom_boxplot() to create boxplots of the flipper lengths by species. It should look like the figure below. Hint: what aesthetics will you use?\n\n\n\n\n\nQ16: geom_pointrange() is like geom_point() with the addition of error bars. Like geom_point(), geom_pointrange() takes x and y aesthetics, but it also takes xmin, xmax, ymin and ymax aesthetics. Create a figure that shows the mean \\(\\pm\\) sd of each penguin species’ body mass and flipper lengths using points and error bars; it should look like the figure below. First, create a summary data frame that calculates the mean and standard deviation of the two variables you need by each species. Then use that summary data frame to create your figure. Hint: geom_pointrange() takes xmin or xmax, same for ymin or ymax. So you’ll need to call geom_pointrange() twice and specify the aesthetics within the geometry."
   }
 ]
