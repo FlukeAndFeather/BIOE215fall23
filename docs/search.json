@@ -565,5 +565,75 @@
     "title": "Syllabus",
     "section": "Why isn’t there a remote option?",
     "text": "Why isn’t there a remote option?\nRemote options have become standard for most classes and I wish I could offer one for this course. However, the structure of the class does not lend itself to hybrid formats because of the emphasis on peer learning and 1-on-1 coaching from the instructor. In the future, I hope to offer online and in-person versions of the course. For now, I only have resources to support the in-person version.\nFor the same reason, I can’t support auditing the class at this time. However, I am happy to share the educational materials with anyone who’s interested. I will try to connect these students so you can form a study group. If that happens, I will add additional office hours to meet with you."
+  },
+  {
+    "objectID": "lessons/06_wrapup.html",
+    "href": "lessons/06_wrapup.html",
+    "title": "Week 6 - Wrap up skills portion",
+    "section": "",
+    "text": "Use browser() to diagnose an error in a pipeline\nCreate figures using ggplot\nChoose papers and figures/tables for final project"
+  },
+  {
+    "objectID": "lessons/06_wrapup.html#what-does-browser-do",
+    "href": "lessons/06_wrapup.html#what-does-browser-do",
+    "title": "Week 6 - Wrap up skills portion",
+    "section": "What does browser() do?",
+    "text": "What does browser() do?\nWrite down what you remember about browser(). Turn to a partner and compare notes. I will call on pairs to share."
+  },
+  {
+    "objectID": "lessons/06_wrapup.html#pipeline-with-an-error",
+    "href": "lessons/06_wrapup.html#pipeline-with-an-error",
+    "title": "Week 6 - Wrap up skills portion",
+    "section": "Pipeline with an error",
+    "text": "Pipeline with an error\nThe following pipeline has an error. Use it to answer the following questions.\n\nlibrary(palmerpenguins)\nlibrary(tidyverse)\n\ntraits_r2 &lt;- function(trait1, trait2) {\n  summary(lm(trait1 ~ trait2))$rsquared\n}\n\npenguins %&gt;% \n  summarize(flipper_bill_r2 = traits_r2(flipper_length_mm, bill_length_mm))\n\nQ1: How would you describe the error? I’m not asking you describe the cause of the error yet. Describe how the output is different than what you would expect.\nQ2: Where would you add browser() to explore the cause of the error?\nQ3: Does the body of traits_r2 use list or atomic vector indexing? Does it use indexing by position, logic, or name?\nQ4: What’s the cause of the error? How would you fix it?\nThe following pipeline is similar to the one above, with an added layer of complexity. Use it to answer the following questions.\n\n# Pipeline 1\npenguins %&gt;% \n  group_by(species) %&gt;% \n  summarize(flipper_bill_r2 = traits_r2(flipper_length_mm, bill_length_mm))\n\n# Pipeline 2\npenguins %&gt;% \n  group_by(species, island) %&gt;% \n  summarize(flipper_bill_r2 = traits_r2(flipper_length_mm, bill_length_mm),\n            .groups = \"drop\")\n\nQ5: How many times does Pipeline 1 call traits_r2()? How about Pipeline 2?\nQ6: Create Pipeline 3 that additionally groups by sex. How many times does Pipeline 3 call traits_r2()?\nThe following code creates an error in Pipeline 3. Change your Pipeline 3 to use penguins2, then answer the following questions.\n\nset.seed(12345)\npenguins2 &lt;- penguins %&gt;% \n  drop_na(sex) %&gt;% \n  sample_n(25)\npenguins2[7, 3:6] &lt;- NA\n\nQ7: How would you describe the error?\nQ8: Use browser() to diagnose the error. Hint: c will tell the debugger to continue until the next time it’s called.\nQ9: How would you fix the error?"
+  },
+  {
+    "objectID": "lessons/06_wrapup.html#error-in-summarize",
+    "href": "lessons/06_wrapup.html#error-in-summarize",
+    "title": "Week 6 - Wrap up skills portion",
+    "section": "Error in summarize()",
+    "text": "Error in summarize()\nThe following pipeline has an error. Use it to answer the following questions.\n\nlibrary(palmerpenguins)\nlibrary(tidyverse)\n\ntraits_r2 &lt;- function(trait1, trait2) {\n  summary(lm(trait1 ~ trait2))$rsquared\n}\n\npenguins %&gt;% \n  summarize(flipper_bill_r2 = traits_r2(flipper_length_mm, bill_length_mm))\n\nQ1: How would you describe the error? I’m not asking you describe the cause of the error yet. Describe how the output is different than what you would expect.\nQ2: Where would you add browser() to explore the cause of the error?\nQ3: Does the body of traits_r2 use list or atomic vector indexing? Does it use indexing by position, logic, or name?\nQ4: What’s the cause of the error? How would you fix it?"
+  },
+  {
+    "objectID": "lessons/06_wrapup.html#adding-group_by",
+    "href": "lessons/06_wrapup.html#adding-group_by",
+    "title": "Week 6 - Wrap up skills portion",
+    "section": "Adding group_by()",
+    "text": "Adding group_by()\nThe following pipeline is similar to the one above, with an added layer of complexity. Use it to answer the following questions.\n\n# Pipeline 1\npenguins %&gt;% \n  group_by(species) %&gt;% \n  summarize(flipper_bill_r2 = traits_r2(flipper_length_mm, bill_length_mm))\n\n# Pipeline 2\npenguins %&gt;% \n  group_by(species, island) %&gt;% \n  summarize(flipper_bill_r2 = traits_r2(flipper_length_mm, bill_length_mm),\n            .groups = \"drop\")\n\nQ5: How many times does Pipeline 1 call traits_r2()? How about Pipeline 2?\nQ6: Create Pipeline 3 that additionally groups by sex. How many times does Pipeline 3 call traits_r2()?"
+  },
+  {
+    "objectID": "lessons/06_wrapup.html#error-in-group_by-summarize",
+    "href": "lessons/06_wrapup.html#error-in-group_by-summarize",
+    "title": "Week 6 - Wrap up skills portion",
+    "section": "Error in group_by()-summarize()",
+    "text": "Error in group_by()-summarize()\nThe following code creates an error in Pipeline 3. Change your Pipeline 3 to use penguins2 instead of penguins, then answer the following questions.\n\nset.seed(12345)\npenguins2 &lt;- penguins %&gt;% \n  drop_na(sex) %&gt;% \n  sample_n(25)\npenguins2[7, 3:6] &lt;- NA\n\nQ7: How would you describe the error?\nQ8: Use browser() to diagnose the error. Hint: c will tell the debugger to continue until the next time it’s called.\nQ9: How would you fix the error?"
+  },
+  {
+    "objectID": "lessons/06_wrapup.html#components-of-ggplot",
+    "href": "lessons/06_wrapup.html#components-of-ggplot",
+    "title": "Week 6 - Wrap up skills portion",
+    "section": "Components of ggplot()",
+    "text": "Components of ggplot()\nggplot() has four major components:\n\nData\nScales\nGeometries\nAesthetics\n\n\nData\nA data frame containing the data you want to visualize. Emphasis on data frame. ggplot() is not designed to work with individual vectors, which you might be used to if you’ve used base R, Matlab, or other plotting tools.\n\n\nScales\nScales determine where/how variables in your data will show up in the plot. These include the x- and y-axes, as well as color, size, and more.\n\n\nGeometries\nGeometries determine the geometric properties of your variables. E.g. scatter plots use a point geometry and line plots use a line geometry. Other familiar geometries include histograms and box plots.\n\n\nAesthetics\nThe aesthetics unify data, scales, and geometries. They tell ggplot() how to translate data to scales for each geometry."
+  },
+  {
+    "objectID": "lessons/06_wrapup.html#a-simple-example",
+    "href": "lessons/06_wrapup.html#a-simple-example",
+    "title": "Week 6 - Wrap up skills portion",
+    "section": "A simple example",
+    "text": "A simple example\n\nlibrary(palmerpenguins)\nlibrary(tidyverse)\n\nggplot(data = penguins, aes(x = body_mass_g, y = flipper_length_mm)) +\n  geom_point()\n\n\n\nhead(penguins)\n\n# A tibble: 6 × 8\n  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n1 Adelie  Torgersen           39.1          18.7               181        3750\n2 Adelie  Torgersen           39.5          17.4               186        3800\n3 Adelie  Torgersen           40.3          18                 195        3250\n4 Adelie  Torgersen           NA            NA                  NA          NA\n5 Adelie  Torgersen           36.7          19.3               193        3450\n6 Adelie  Torgersen           39.3          20.6               190        3650\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;\n\n\n\n\n\n\n\n\n\n\n\nData\nScales\nGeometries\nAesthetics\n\n\n\n\npenguins\nx, y\ngeom_point()\nx = body_mass_g\ny = flipper_length_mm\n\n\nFirst parameter of ggplot()\nImplied by aes()\nAdded to ggplot()\nDefined by aes(), second parameter of ggplot()\n\n\n\nQ10: Change the aesthetics of the plot to show bill_depth_mm on the y-axis.\nQ11: Add an aesthetic for color, so points will be color-coded by species."
+  },
+  {
+    "objectID": "lessons/06_wrapup.html#customizing-scales",
+    "href": "lessons/06_wrapup.html#customizing-scales",
+    "title": "Week 6 - Wrap up skills portion",
+    "section": "Customizing scales",
+    "text": "Customizing scales\nIn addition to adding geometries with geom_*(), we can add scales with scale_*_*() to customize how scales appear in the figure. The first * is the name of the aesthetic, and the second * is the type of scale.\n\nggplot(data = penguins) +\n  # You can also define aesthetics directly inside the geometries\n  geom_point(aes(x = body_mass_g, \n                 y = flipper_length_mm,\n                 color = species)) +\n  # x aesthetic, continuous scale\n  scale_x_continuous(\n    # change the axis name\n    name = \"Body mass (g)\",\n    # change the limits\n    limits = c(2000, 8000)\n  ) +\n  # color aesthetic, manual scale\n  scale_color_manual(\n    # set the values for the colors\n    values = c(Adelie = \"cornflowerblue\",\n               Chinstrap = \"firebrick\",\n               Gentoo = \"darkorchid\")\n  )\n\n\n\n\nQ12: What function would you use to customize the y-axis? Use that function to expand the y-axis limits to include 150 and 250.\nQ13: Look up the help for scale_color_brewer(). Change the color scale to use the “Dark2” color palette."
+  },
+  {
+    "objectID": "lessons/06_wrapup.html#other-useful-geometries",
+    "href": "lessons/06_wrapup.html#other-useful-geometries",
+    "title": "Week 6 - Wrap up skills portion",
+    "section": "Other useful geometries",
+    "text": "Other useful geometries\nQ14: Use geom_histogram() to visualize the distribution of body masses.\nQ15: Use geom_boxplot() to create boxplots of the flipper lengths by species. It should look like the figure below. Hint: what aesthetics will you use?\n\n\n\n\n\nQ16: geom_pointrange() is like geom_point() with the addition of error bars. Like geom_point(), geom_pointrange() takes x and y aesthetics, but it also takes xmin, xmax, ymin and ymax aesthetics. Create a figure that shows the mean \\(\\pm\\) sd of each penguin species’ body mass and flipper lengths using points and error bars; it should look like the figure below. First, create a summary data frame that calculates the mean and standard deviation of the two variables you need by each species. Then use that summary data frame to create your figure. Hint: geom_pointrange() takes xmin or xmax, same for ymin or ymax. So you’ll need to call geom_pointrange() twice and specify the aesthetics within the geometry."
   }
 ]
